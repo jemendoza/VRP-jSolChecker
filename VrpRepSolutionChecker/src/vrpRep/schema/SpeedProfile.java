@@ -6,7 +6,7 @@
 //
 
 
-package vrpRep.solutionChecker.schema;
+package vrpRep.schema;
 
 import java.util.ArrayList;
 import java.util.List;

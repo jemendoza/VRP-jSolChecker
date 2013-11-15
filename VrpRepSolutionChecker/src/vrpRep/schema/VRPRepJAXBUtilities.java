@@ -1,7 +1,7 @@
 /**
  * 
  */
-package vrpRep.solutionChecker.schema;
+package vrpRep.schema;
 
 import java.io.File;
 import java.io.FileInputStream;

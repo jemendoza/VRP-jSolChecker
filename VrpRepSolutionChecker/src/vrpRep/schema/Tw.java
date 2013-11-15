@@ -6,7 +6,7 @@
 //
 
 
-package vrpRep.solutionChecker.schema;
+package vrpRep.schema;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;

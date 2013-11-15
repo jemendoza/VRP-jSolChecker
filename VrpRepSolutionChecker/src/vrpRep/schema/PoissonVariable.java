@@ -6,7 +6,7 @@
 //
 
 
-package vrpRep.solutionChecker.schema;
+package vrpRep.schema;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
