@@ -9,11 +9,11 @@ import java.util.List;
 
 import javax.xml.bind.JAXBException;
 
-import vrpRep.schema.Instance;
-import vrpRep.schema.Instance.Fleet.Vehicle;
-import vrpRep.schema.Instance.Network.Links.Link;
-import vrpRep.schema.Instance.Network.Nodes.Node;
-import vrpRep.schema.Instance.Requests.Request;
+import vrpRep.schema.instance.Instance;
+import vrpRep.schema.instance.Instance.Fleet.Vehicle;
+import vrpRep.schema.instance.Instance.Network.Links.Link;
+import vrpRep.schema.instance.Instance.Network.Nodes.Node;
+import vrpRep.schema.instance.Instance.Requests.Request;
 import vrpRep.solutionChecker.instanceReader.InstanceReader;
 
 /**
@@ -46,6 +46,13 @@ public class DefaultInstance {
 	}
 	
 	
+	/**
+	 * 
+	 * @return instance
+	 */
+	public Instance getInstance(){
+		return this.instance;
+	}
 	
 	
 	/**

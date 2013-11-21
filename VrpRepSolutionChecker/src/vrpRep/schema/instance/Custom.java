@@ -6,7 +6,7 @@
 //
 
 
-package vrpRep.schema;
+package vrpRep.schema.instance;
 
 import java.util.ArrayList;
 import java.util.List;

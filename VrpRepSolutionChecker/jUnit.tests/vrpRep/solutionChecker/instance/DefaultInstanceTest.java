@@ -13,7 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import vrpRep.schema.Instance.Network.Nodes.Node;
+import vrpRep.schema.instance.Instance.Network.Nodes.Node;
 
 /**
  * Test the valididy of the instance reader

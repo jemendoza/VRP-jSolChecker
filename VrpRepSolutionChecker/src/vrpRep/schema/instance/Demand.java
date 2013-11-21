@@ -6,27 +6,28 @@
 //
 
 
-package vrpRep.schema;
+package vrpRep.schema.instance;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlMixed;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * Defines a time
- * 
- * <p>Classe Java pour _time complex type.
+ * <p>Classe Java pour anonymous complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="_time">
+ * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice minOccurs="0">
@@ -34,6 +35,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element ref="{}PoissonVariable"/>
  *         &lt;element ref="{}custom"/>
  *       &lt;/choice>
+ *       &lt;attribute name="isSplitable" type="{http://www.w3.org/2001/XMLSchema}boolean" default="false" />
+ *       &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -42,10 +45,11 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "_time", propOrder = {
+@XmlType(name = "", propOrder = {
     "content"
 })
-public class Time {
+@XmlRootElement(name = "demand")
+public class Demand {
 
     @XmlElementRefs({
         @XmlElementRef(name = "NormalVariable", type = NormalVariable.class),
@@ -54,9 +58,13 @@ public class Time {
     })
     @XmlMixed
     protected List<Object> content;
+    @XmlAttribute(name = "isSplitable")
+    protected Boolean isSplitable;
+    @XmlAttribute(name = "type")
+    protected BigInteger type;
 
     /**
-     * Defines a time Gets the value of the content property.
+     * Gets the value of the content property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
@@ -85,6 +93,58 @@ public class Time {
             content = new ArrayList<Object>();
         }
         return this.content;
+    }
+
+    /**
+     * Obtient la valeur de la propriété isSplitable.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isIsSplitable() {
+        if (isSplitable == null) {
+            return false;
+        } else {
+            return isSplitable;
+        }
+    }
+
+    /**
+     * Définit la valeur de la propriété isSplitable.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setIsSplitable(Boolean value) {
+        this.isSplitable = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété type.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getType() {
+        return type;
+    }
+
+    /**
+     * Définit la valeur de la propriété type.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setType(BigInteger value) {
+        this.type = value;
     }
 
 }

@@ -6,7 +6,7 @@
 //
 
 
-package vrpRep.schema;
+package vrpRep.schema.instance;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

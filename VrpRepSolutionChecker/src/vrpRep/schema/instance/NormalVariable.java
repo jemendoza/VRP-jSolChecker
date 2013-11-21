@@ -6,10 +6,11 @@
 //
 
 
-package vrpRep.schema;
+package vrpRep.schema.instance;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,7 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="lambda" type="{}positiveDouble"/>
+ *         &lt;element name="mean" type="{http://www.w3.org/2001/XMLSchema}double"/>
+ *         &lt;element name="variance" type="{}positiveDouble"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,27 +37,47 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "lambda"
+    "mean",
+    "variance"
 })
-@XmlRootElement(name = "PoissonVariable")
-public class PoissonVariable {
+@XmlRootElement(name = "NormalVariable")
+public class NormalVariable {
 
-    protected double lambda;
+    @XmlElement(defaultValue = "0")
+    protected double mean;
+    @XmlElement(defaultValue = "1")
+    protected double variance;
 
     /**
-     * Obtient la valeur de la propriété lambda.
+     * Obtient la valeur de la propriété mean.
      * 
      */
-    public double getLambda() {
-        return lambda;
+    public double getMean() {
+        return mean;
     }
 
     /**
-     * Définit la valeur de la propriété lambda.
+     * Définit la valeur de la propriété mean.
      * 
      */
-    public void setLambda(double value) {
-        this.lambda = value;
+    public void setMean(double value) {
+        this.mean = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété variance.
+     * 
+     */
+    public double getVariance() {
+        return variance;
+    }
+
+    /**
+     * Définit la valeur de la propriété variance.
+     * 
+     */
+    public void setVariance(double value) {
+        this.variance = value;
     }
 
 }

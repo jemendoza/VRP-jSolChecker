@@ -6,7 +6,7 @@
 //
 
 
-package vrpRep.schema;
+package vrpRep.schema.instance;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

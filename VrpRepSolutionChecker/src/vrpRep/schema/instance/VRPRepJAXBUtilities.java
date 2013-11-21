@@ -1,7 +1,7 @@
 /**
  * 
  */
-package vrpRep.schema;
+package vrpRep.schema.instance;
 
 import java.io.File;
 import java.io.FileInputStream;

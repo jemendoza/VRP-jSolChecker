@@ -6,7 +6,7 @@
 //
 
 
-package vrpRep.schema;
+package vrpRep.schema.instance;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -43,8 +43,8 @@ import javax.xml.namespace.QName;
 @XmlType(name = "", propOrder = {
     "content"
 })
-@XmlRootElement(name = "skill")
-public class Skill {
+@XmlRootElement(name = "tool")
+public class Tool {
 
     @XmlValue
     protected String content;
