@@ -15,6 +15,7 @@ import vrpRep.schema.instance.Instance.Network.Links.Link;
 import vrpRep.schema.instance.Instance.Network.Nodes.Node;
 import vrpRep.schema.instance.Instance.Requests.Request;
 import vrpRep.solutionChecker.instanceReader.InstanceReader;
+import vrpRep.utilities.DistanceCalculator;
 
 /**
  * Class used to store XML instance data.
