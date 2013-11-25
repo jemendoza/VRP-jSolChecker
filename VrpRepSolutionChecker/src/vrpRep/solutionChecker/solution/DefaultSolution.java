@@ -57,7 +57,7 @@ public class DefaultSolution {
 	 * 
 	 */
 	private void extractResults(){
-		
+		// TODO facade pour extraire les routes vers les tableaux
 	}
 	
 	
@@ -70,6 +70,48 @@ public class DefaultSolution {
 		return this.solution;
 	}
 	
+	
+	
+	/**
+	 * @return the of
+	 */
+	public double getOf() {
+		return of;
+	}
+
+
+	/**
+	 * @param of the of to set
+	 */
+	public void setOf(double of) {
+		this.of = of;
+	}
+
+
+	/**
+	 * @return the routes
+	 */
+	public LinkedList<Route> getRoutes() {
+		return routes;
+	}
+
+
+	/**
+	 * @param routes the routes to set
+	 */
+	public void setRoutes(LinkedList<Route> routes) {
+		this.routes = routes;
+	}
+
+
+	/**
+	 * @param solution the solution to set
+	 */
+	public void setSolution(Solution solution) {
+		this.solution = solution;
+	}
+
+
 	public void printRoutesOne(){
 		List<Node> route = this.solution.getRoutes().getRoute().get(0).getNode();
 		for(Node n : route){

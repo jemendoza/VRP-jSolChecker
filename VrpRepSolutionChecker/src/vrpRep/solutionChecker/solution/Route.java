@@ -12,23 +12,25 @@ import java.util.LinkedList;
 public class Route {
 	
 	/**
-	 * 
+	 * Id of route
 	 */
 	private int id;
 	
 	
 	/**
-	 * 
+	 * Type of vehicle used on route
 	 */
 	private int type;
 	
 	/**
-	 * 
+	 * List of nodes visited on route
 	 */
 	private LinkedList<Integer> route;
 
 	/**
-	 * 
+	 * Constructor
+	 * @param id Id of route
+	 * @param type Type of vehicle used on route
 	 */
 	public Route(int id, int type) {
 		this.id = id;
