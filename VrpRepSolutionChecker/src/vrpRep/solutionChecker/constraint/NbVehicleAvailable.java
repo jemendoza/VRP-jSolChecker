@@ -42,12 +42,12 @@ public class NbVehicleAvailable implements IConstraint {
 	 * @return true if the number of vehicles contraint is verified
 	 */
 	private boolean compare(List<BigInteger> nbVehicleTypeInstance, List<BigInteger> nbVehicleTypeSolution) {
-		boolean b=true;
+		
 		for(int i=0; i<nbVehicleTypeInstance.size();i++){
 			if(nbVehicleTypeSolution.get(i).compareTo(nbVehicleTypeInstance.get(i))>0)
-				b=false;
+				 return false;
 		}
-		return b;
+		return true;
 	}
 	
 	/**

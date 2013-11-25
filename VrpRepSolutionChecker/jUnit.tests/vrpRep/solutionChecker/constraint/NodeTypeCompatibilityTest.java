@@ -1,4 +1,4 @@
-package vrp.Rep.solutionChecker.constraint;
+package vrpRep.solutionChecker.constraint;
 
 import static org.junit.Assert.*;
 
@@ -8,20 +8,19 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import vrpRep.solutionChecker.constraint.NbVehicleAvailable;
 import vrpRep.solutionChecker.instance.DefaultInstance;
 import vrpRep.solutionChecker.solution.DefaultSolution;
 
-public class NbVehicleAvailableTest {
+public class NodeTypeCompatibilityTest {
 
-	private DefaultInstance d;
+private DefaultInstance d;
 	
 	private DefaultSolution sol;
 	@Before
 	public void setUp() throws Exception {
-		d = new DefaultInstance(new File("./schemaFiles/A-n32-k5.xml.zip"));
+		d = new DefaultInstance(new File("./schemaFiles/instancesNodeTypeCompatibility.zip"));
 		this.sol = new DefaultSolution(new File("./schemaFiles/testSolutionNbVehicle.xml"));
-		NbVehicleAvailable nb = new NbVehicleAvailable();
+		NodeTypeCompatibility nb = new NodeTypeCompatibility();
 		nb.evaluate(d, sol);
 	}
 
@@ -33,5 +32,6 @@ public class NbVehicleAvailableTest {
 	public void test() {
 		fail("Not yet implemented");
 	}
+
 
 }
