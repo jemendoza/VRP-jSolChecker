@@ -4,6 +4,7 @@
 package vrpRep.solutionChecker.constraint;
 
 
+import vrpRep.solutionChecker.instance.DefaultInstance;
 import vrpRep.solutionChecker.solution.DefaultSolution;
 
 /**
@@ -17,7 +18,7 @@ public class Capacity implements IConstraint {
 	 * @see vrpRep.solutionChecker.constraint.IConstraint#evaluate(vrpRep.schema.solution.Solution)
 	 */
 	@Override
-	public void evaluate(DefaultSolution sol) {
+	public void evaluate(DefaultInstance inst, DefaultSolution sol) {
 		// TODO Auto-generated method stub
 		
 	}
