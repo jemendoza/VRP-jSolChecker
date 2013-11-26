@@ -55,6 +55,16 @@ public class DefaultSolution {
 	}
 	
 	
+	public LinkedList<Route> getRoutes() {
+		return routes;
+	}
+
+
+	public void setRoutes(LinkedList<Route> routes) {
+		this.routes = routes;
+	}
+
+
 	/**
 	 * 
 	 */
