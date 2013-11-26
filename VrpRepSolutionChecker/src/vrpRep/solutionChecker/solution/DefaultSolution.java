@@ -34,11 +34,11 @@ public class DefaultSolution {
 	 * @see Route
 	 */
 	protected LinkedList<Route> routes;
-	
-	
 
-	
-	
+
+
+
+
 	/**
 	 * Constructor that creates xml tree on class instantiation 
 	 * @param xmlFile xml file to extract
@@ -53,8 +53,8 @@ public class DefaultSolution {
 			e.printStackTrace();
 		}		
 	}
-	
-	
+
+
 	public LinkedList<Route> getRoutes() {
 		return routes;
 	}
@@ -70,30 +70,35 @@ public class DefaultSolution {
 	 */
 	private void extractResults(){
 		List<vrpRep.schema.solution.Solution.Routes.Route> routeList = this.solution.getRoutes().getRoute();
-		LinkedList<Integer>result = new LinkedList<Integer>();	
+		LinkedList<Integer>result;
 		Route route = null;
-		
+
 		for (vrpRep.schema.solution.Solution.Routes.Route currentRoute : routeList){
-			BigInteger temp = currentRoute.getId();
+			result = new LinkedList<Integer>();
 			int id = 0,type = 0;
+			
+			BigInteger temp = currentRoute.getId();
 			if(temp != null)
 				id = temp.intValue();
 			temp = currentRoute.getType();
 			if(temp != null)
 				type = temp.intValue();
-			System.out.println("id : "+id);
-			System.out.println("Type : 0"+type);
 			route = new Route(id, type);
+			
+			for(int i=0;i<currentRoute.getNode().size();i++){
+				result.add(0);
+			}
+			
 			for(Node n : currentRoute.getNode()){
-				result.add(Integer.parseInt(n.getContent()));
+				result.set(n.getVisit().intValue(),Integer.parseInt(n.getContent()));
 			}
 			route.setRoute((LinkedList<Integer>)result);
 			routes.add(route);
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * 
 	 * @return solution
@@ -101,9 +106,8 @@ public class DefaultSolution {
 	public Solution getSolution(){
 		return this.solution;
 	}
-	
+
 	public void printRoutesOne(){
-		System.out.println(routes.size());
 		for(Route route : routes){
 			for(Integer n : route.getRoute()){
 				System.out.println(n);
