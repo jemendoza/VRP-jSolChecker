@@ -13,7 +13,7 @@ import javax.xml.bind.JAXBException;
 
 import vrpRep.schema.solution.Solution;
 import vrpRep.schema.solution.Solution.Routes.Route.Node;
-import vrpRep.solutionChecker.instanceReader.InstanceReader;
+import vrpRep.utilities.XmlReader;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -45,7 +45,7 @@ public class DefaultSolution {
 	 */
 	public DefaultSolution(File xmlFile){	
 		try {
-			InstanceReader<Solution> iR = new InstanceReader<Solution>();
+			XmlReader<Solution> iR = new XmlReader<Solution>();
 			this.solution = iR.unmarshallDocument(xmlFile, Solution.class.getName());
 			this.routes = new LinkedList<Route>();
 			extractResults();

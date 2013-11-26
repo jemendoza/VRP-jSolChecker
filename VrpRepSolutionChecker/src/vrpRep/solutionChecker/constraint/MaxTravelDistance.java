@@ -23,6 +23,7 @@ import vrpRep.utilities.DistanceCalculator;
 public class MaxTravelDistance implements IConstraint {
 
 	private DefaultInstance inst;
+	private DefaultSolution sol;
 	
 	
 	/* (non-Javadoc)
@@ -30,79 +31,77 @@ public class MaxTravelDistance implements IConstraint {
 	 */
 	@Override
 	public void evaluate(DefaultInstance inst, DefaultSolution sol) {
-		this.inst = inst;
-		boolean result = true;
+		boolean result;
 
-		// TODO requests on links
-
-		List<Vehicle> fleet = inst.getFleet();
-		double travelDist;
-
-		if(fleet.get(0).getType() != null){	
-			BigInteger currentType;
-
-			for(int i = 0; i < fleet.size(); i++){ // for each vehicle type
-				currentType = fleet.get(i).getType();
-
-				for(Route r : sol.getRoutes()){ // for each route
-					travelDist = 0;
-					
-					if(BigInteger.valueOf(r.getType()) == currentType){	// if route requires current type
-						for(int j = 0; j < r.getRoute().size()-1; j++){ // for each node pair
-							try {
-								travelDist += DistanceCalculator.getDistance(inst.getInstance(), getNode(BigInteger.valueOf(r.getRoute().get(j))), getNode(BigInteger.valueOf(r.getRoute().get(j+1))));
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-						}
-					}
-					if(travelDist > Double.valueOf(fleet.get(i).getMaxTravelDistance().getContent())){			
-						System.out.println("Max travel distance of vehicle "+fleet.get(i).getType()+" failed on route "+r.getId());
-						result = false;
-					}
-				}
-
-			}
-
+		if(inst.getFleet().get(0).getType() != null){	
+			result = evaluateMtdWithTypes();
 		}else{
-			for(Route r : sol.getRoutes()){ // for each route
-				travelDist = 0;
-				for(int j = 0; j < r.getRoute().size()-1; j++){ // for each node pair
-					try {
-						travelDist += DistanceCalculator.getDistance(inst.getInstance(), getNode(BigInteger.valueOf(r.getRoute().get(j))), getNode(BigInteger.valueOf(r.getRoute().get(j+1))));
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				if(travelDist > Double.valueOf(fleet.get(0).getMaxTravelDistance().getContent())){			
-					System.out.println("Max travel distance of vehicle failed on route "+r.getId());
-					result = false;
-				}
-			}
+			result = evaluateMtd();
 		}
 		System.out.println(result);
 	}
 
+
+	/**
+	 * Evaluate constraint with only one type of vehicle
+	 * @return result
+	 */
+	private boolean evaluateMtd(){
+		boolean result = true;
+		List<Vehicle> fleet = inst.getFleet();
+		double travelDist;
+		
+		for(Route r : sol.getRoutes()){ // for each route
+			travelDist = 0;
+			for(int j = 0; j < r.getRoute().size()-1; j++){ // for each node pair
+				try {
+					travelDist += DistanceCalculator.getDistance(inst.getInstance(), BigInteger.valueOf(r.getRoute().get(j)), BigInteger.valueOf(r.getRoute().get(j+1)));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if(travelDist > Double.valueOf(fleet.get(0).getMaxTravelDistance().getContent())){			
+				System.out.println("Max travel distance of vehicle failed on route "+r.getId());
+				result = false;
+			}
+		}
+		return result;
+	}
+	
 	
 	/**
-	 * Retrieve node in instance file based on node id
-	 * @param nodeId Id of node
-	 * @return Node object in instance file of id nodeId
+	 * Evaluate constraint with several types of vehicles
+	 * @return result
 	 */
-	private Node getNode(BigInteger nodeId){
-		List<Node> nodes = this.inst.getNodes();
-		int i = 0;
+	private boolean evaluateMtdWithTypes(){
+		boolean result = true;
+		List<Vehicle> fleet = inst.getFleet();
+		BigInteger currentType;
+		double travelDist;
 
-		while(i < nodes.size() && nodes.get(i).getId() != nodeId){
-			i++;
+		for(int i = 0; i < fleet.size(); i++){ // for each vehicle type
+			currentType = fleet.get(i).getType();
+
+			for(Route r : sol.getRoutes()){ // for each route
+				travelDist = 0;
+				
+				if(BigInteger.valueOf(r.getType()) == currentType){	// if route requires current type
+					for(int j = 0; j < r.getRoute().size()-1; j++){ // for each node pair
+						try {
+							travelDist += DistanceCalculator.getDistance(inst.getInstance(), BigInteger.valueOf(r.getRoute().get(j)), BigInteger.valueOf(r.getRoute().get(j+1)));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				if(travelDist > Double.valueOf(fleet.get(i).getMaxTravelDistance().getContent())){			
+					System.out.println("Max travel distance of vehicle "+fleet.get(i).getType()+" failed on route "+r.getId());
+					result = false;
+				}
+			}
 		}
-
-		if(i < nodes.size())
-			return nodes.get(i);
-		else
-			return null;
-	}
-
-
-
+		
+		return result;
+	}	
+	
 }

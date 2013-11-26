@@ -14,8 +14,8 @@ import vrpRep.schema.instance.Instance.Fleet.Vehicle;
 import vrpRep.schema.instance.Instance.Network.Links.Link;
 import vrpRep.schema.instance.Instance.Network.Nodes.Node;
 import vrpRep.schema.instance.Instance.Requests.Request;
-import vrpRep.solutionChecker.instanceReader.InstanceReader;
 import vrpRep.utilities.DistanceCalculator;
+import vrpRep.utilities.XmlReader;
 
 /**
  * Class used to store XML instance data.
@@ -39,7 +39,7 @@ public class DefaultInstance {
 	 */
 	public DefaultInstance(File xmlFile){	
 		try {
-			InstanceReader<Instance> iR = new InstanceReader<Instance>();
+			XmlReader<Instance> iR = new XmlReader<Instance>();
 			this.instance = iR.unmarshallDocument(xmlFile, Instance.class.getName());
 		} catch (ClassNotFoundException | JAXBException | IOException e) {
 			e.printStackTrace();

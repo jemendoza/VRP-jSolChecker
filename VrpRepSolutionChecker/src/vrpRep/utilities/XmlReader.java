@@ -1,7 +1,7 @@
 /**
  * 
  */
-package vrpRep.solutionChecker.instanceReader;
+package vrpRep.utilities;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,12 +20,12 @@ import javax.xml.bind.Unmarshaller;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  *
  */
-public class InstanceReader<T> {
+public class XmlReader<T> {
 
 	/**
 	 * Default constructor
 	 */
-	public InstanceReader(){
+	public XmlReader(){
 	}
 	
 	

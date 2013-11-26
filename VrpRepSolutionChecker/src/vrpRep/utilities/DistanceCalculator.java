@@ -24,9 +24,22 @@ import vrpRep.schema.instance.SpeedProfile;
  */
 public class DistanceCalculator {
 
-
+	
 	/**
-	 * Calculates the distance between two nodes
+	 * Calculates the distance between two nodes taking <b>node id's as parameters</b>.
+	 * @param inst Contains all the xml file
+	 * @param head Head node
+	 * @param tail Tail node
+	 * @return Distance between the nodes
+	 * @throws Exception Throws exception if custom elements are found of if information is missing
+	 */
+	public static double getDistance(Instance inst, BigInteger head, BigInteger tail) throws Exception{
+		return getDistance(inst, getNode(inst, head), getNode(inst, tail));
+	}
+
+	
+	/**
+	 * Calculates the distance between two nodes taking <b>Node objects as parameters</b>.
 	 * @param inst Contains all the xml file
 	 * @param head Head node
 	 * @param tail Tail node
@@ -179,6 +192,26 @@ public class DistanceCalculator {
 				return temp;
 		}
 		return null;
+	}
+	
+	/**
+	 * Retrieve node in instance file based on node id
+	 * @param instance Contains all the xml file
+	 * @param nodeId Id of node
+	 * @return Node object in instance file of id nodeId
+	 */
+	public static Node getNode(Instance instance, BigInteger nodeId){
+		List<Node> nodes = instance.getNetwork().getNodes().getNode();
+		int i = 0;
+
+		while(i < nodes.size() && nodes.get(i).getId() != nodeId){
+			i++;
+		}
+
+		if(i < nodes.size())
+			return nodes.get(i);
+		else
+			return null;
 	}
 
 
