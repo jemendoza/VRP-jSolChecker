@@ -3,7 +3,7 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import vrpRep.solutionChecker.instance.DefaultInstance;
+import vrpRep.solutionChecker.instance.StandardInstance;
 import vrpRep.solutionChecker.solution.DefaultSolution;
 
 /**
@@ -17,6 +17,6 @@ public interface IConstraint {
 	 * Evaluates a constraint of solution
 	 * @param sol Solution to evaluate
 	 */
-	public void evaluate(DefaultInstance inst, DefaultSolution sol);
+	public void evaluate(StandardInstance inst, DefaultSolution sol);
 
 }

@@ -7,10 +7,11 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import vrpRep.schema.instance.Instance;
 import vrpRep.schema.instance.Instance.Fleet.Vehicle;
 import vrpRep.schema.instance.Instance.Network.Nodes.Node;
 import vrpRep.schema.instance.Instance.Requests.Request;
-import vrpRep.solutionChecker.instance.DefaultInstance;
+import vrpRep.solutionChecker.instance.StandardInstance;
 import vrpRep.solutionChecker.solution.DefaultSolution;
 import vrpRep.solutionChecker.solution.Route;
 import vrpRep.utilities.DistanceCalculator;
@@ -22,7 +23,7 @@ import vrpRep.utilities.DistanceCalculator;
  */
 public class MaxTravelDistance implements IConstraint {
 
-	private DefaultInstance inst;
+	private Instance inst;
 	private DefaultSolution sol;
 	
 	
@@ -30,10 +31,12 @@ public class MaxTravelDistance implements IConstraint {
 	 * @see vrpRep.solutionChecker.constraint.IConstraint#evaluate(vrpRep.solutionChecker.instance.DefaultInstance, vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate(DefaultInstance inst, DefaultSolution sol) {
+	public void evaluate(StandardInstance inst, DefaultSolution sol) {
 		boolean result;
-
-		if(inst.getFleet().get(0).getType() != null){	
+		this.inst = (Instance)inst.getInstance();
+		this.sol = sol;
+		
+		if(this.inst.getFleet().getVehicle().get(0).getType() != null){	
 			result = evaluateMtdWithTypes();
 		}else{
 			result = evaluateMtd();
@@ -48,14 +51,14 @@ public class MaxTravelDistance implements IConstraint {
 	 */
 	private boolean evaluateMtd(){
 		boolean result = true;
-		List<Vehicle> fleet = inst.getFleet();
+		List<Vehicle> fleet = this.inst.getFleet().getVehicle();
 		double travelDist;
 		
 		for(Route r : sol.getRoutes()){ // for each route
 			travelDist = 0;
 			for(int j = 0; j < r.getRoute().size()-1; j++){ // for each node pair
 				try {
-					travelDist += DistanceCalculator.getDistance(inst.getInstance(), BigInteger.valueOf(r.getRoute().get(j)), BigInteger.valueOf(r.getRoute().get(j+1)));
+					travelDist += DistanceCalculator.getDistance(inst, BigInteger.valueOf(r.getRoute().get(j)), BigInteger.valueOf(r.getRoute().get(j+1)));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -75,7 +78,7 @@ public class MaxTravelDistance implements IConstraint {
 	 */
 	private boolean evaluateMtdWithTypes(){
 		boolean result = true;
-		List<Vehicle> fleet = inst.getFleet();
+		List<Vehicle> fleet = this.inst.getFleet().getVehicle();
 		BigInteger currentType;
 		double travelDist;
 
@@ -88,7 +91,7 @@ public class MaxTravelDistance implements IConstraint {
 				if(BigInteger.valueOf(r.getType()) == currentType){	// if route requires current type
 					for(int j = 0; j < r.getRoute().size()-1; j++){ // for each node pair
 						try {
-							travelDist += DistanceCalculator.getDistance(inst.getInstance(), BigInteger.valueOf(r.getRoute().get(j)), BigInteger.valueOf(r.getRoute().get(j+1)));
+							travelDist += DistanceCalculator.getDistance(inst, BigInteger.valueOf(r.getRoute().get(j)), BigInteger.valueOf(r.getRoute().get(j+1)));
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

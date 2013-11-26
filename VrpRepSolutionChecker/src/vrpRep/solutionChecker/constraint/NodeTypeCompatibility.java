@@ -10,7 +10,7 @@ import java.math.BigInteger;
 import vrpRep.schema.instance.Instance.Fleet.Vehicle;
 import vrpRep.schema.instance.Instance.Network.Nodes.Node;
 import vrpRep.schema.solution.Solution.Routes.Route;
-import vrpRep.solutionChecker.instance.DefaultInstance;
+import vrpRep.solutionChecker.instance.StandardInstance;
 import vrpRep.solutionChecker.solution.DefaultSolution;
 
 /**
@@ -23,7 +23,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * @see vrpRep.solutionChecker.constraint.IConstraint#evaluate(vrpRep.solutionChecker.instance.DefaultInstance, vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate(DefaultInstance inst, DefaultSolution sol) {
+	public void evaluate(StandardInstance inst, DefaultSolution sol) {
 		
 		List<List<BigInteger>> listCompatibilityInstance = vehicleNodeCompatibilityInstance(inst);
 		List<BigInteger>listNodeType = getListNodeType(inst);
@@ -60,7 +60,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * @param inst : Object used to store XML instance data
 	 * @return a list with all the node's type
 	 */
-	private List<BigInteger> getListNodeType(DefaultInstance inst) {
+	private List<BigInteger> getListNodeType(StandardInstance inst) {
 		List<BigInteger> list = new ArrayList<BigInteger>();
 		for(Node n : inst.getInstance().getNetwork().getNodes().getNode()){
 			list.add(n.getId().intValue(),n.getType());
@@ -74,7 +74,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * @param inst : Object used to store XML instance data
 	 * @return a list containing all the node compatible for each vehicle
 	 */
-	private List<List<BigInteger>> vehicleNodeCompatibilityInstance(DefaultInstance inst) {
+	private List<List<BigInteger>> vehicleNodeCompatibilityInstance(StandardInstance inst) {
 		List<List<BigInteger>> list = new ArrayList<List<BigInteger>>();
 		for(Vehicle v : inst.getFleet()){
 			list.add(v.getType().intValue(),v.getNodeTypesCompatible());

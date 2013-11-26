@@ -10,7 +10,7 @@ import java.util.List;
 
 import vrpRep.schema.instance.Instance.Fleet.Vehicle;
 import vrpRep.schema.solution.Solution.Routes.Route;
-import vrpRep.solutionChecker.instance.DefaultInstance;
+import vrpRep.solutionChecker.instance.StandardInstance;
 import vrpRep.solutionChecker.solution.DefaultSolution;
 
 /**
@@ -23,7 +23,7 @@ public class NbVehicleAvailable implements IConstraint {
 	 * @see vrpRep.solutionChecker.constraint.IConstraint#evaluate(vrpRep.solutionChecker.instance.DefaultInstance, vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate(DefaultInstance inst, DefaultSolution sol) {
+	public void evaluate(StandardInstance inst, DefaultSolution sol) {
 
 		List<BigInteger> nbVehicleTypeInstance = getInstanceVehicle(inst);
 
@@ -55,7 +55,7 @@ public class NbVehicleAvailable implements IConstraint {
 	 * @param inst : Object used to store XML solution data
 	 * @return the list containing the number of vehicle AVAILABLE per type
 	 */
-	private List<BigInteger> getInstanceVehicle(DefaultInstance inst) {
+	private List<BigInteger> getInstanceVehicle(StandardInstance inst) {
 		List<BigInteger> nbVehicleType = new ArrayList<BigInteger>();
 		for(Vehicle v : inst.getFleet()){
 			//If there is no type of vehicle define in the instance

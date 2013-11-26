@@ -25,7 +25,7 @@ public class DefaultInstanceTest {
 	/**
 	 * Class being tested
 	 */
-	private DefaultInstance d;
+	private StandardInstance d;
 
 	/**
 	 * First 10 node id values base on XML instance : A-n32-k5.xml.zip
@@ -50,7 +50,7 @@ public class DefaultInstanceTest {
 	 */
 	@Before	
 	public void setUp() throws Exception {
-		d = new DefaultInstance(new File("./schemaFiles/A-n32-k5.xml.zip"));
+		d = new StandardInstance(new File("./schemaFiles/A-n32-k5.xml.zip"));
 		
 		ids = new int[]{1,2,3,4,5,6,7,8,9,10};
 		types = new int[]{0,1,1,1,1,1,1,1,1,1};
