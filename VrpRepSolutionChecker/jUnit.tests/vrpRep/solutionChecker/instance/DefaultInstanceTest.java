@@ -13,6 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import vrpRep.schema.instance.Instance;
 import vrpRep.schema.instance.Instance.Network.Nodes.Node;
 
 /**
@@ -25,7 +26,8 @@ public class DefaultInstanceTest {
 	/**
 	 * Class being tested
 	 */
-	private StandardInstance d;
+	private Instance d;
+	
 
 	/**
 	 * First 10 node id values base on XML instance : A-n32-k5.xml.zip
@@ -50,8 +52,7 @@ public class DefaultInstanceTest {
 	 */
 	@Before	
 	public void setUp() throws Exception {
-		d = new StandardInstance(new File("./schemaFiles/A-n32-k5.xml.zip"));
-		
+		d = (Instance) new StandardInstance(new File("./schemaFiles/A-n32-k5.xml.zip")).instance;
 		ids = new int[]{1,2,3,4,5,6,7,8,9,10};
 		types = new int[]{0,1,1,1,1,1,1,1,1,1};
 		xs = new double[]{82.0,96.0,50.0,49.0,13.0,29.0,58.0,84.0,14.0,2.0};
@@ -72,7 +73,7 @@ public class DefaultInstanceTest {
 	 */
 	@Test
 	public void testIds() {
-		List<Node> nodes = d.getNodes();
+		List<Node> nodes = d.getNetwork().getNodes().getNode();
 		for(int i = 0; i < 10; i++){
 			assertEquals(nodes.get(i).getId(), BigInteger.valueOf(ids[i]));
 		}
@@ -84,7 +85,7 @@ public class DefaultInstanceTest {
 	 */
 	@Test
 	public void testTypes() {
-		List<Node> nodes = d.getNodes();
+		List<Node> nodes = d.getNetwork().getNodes().getNode();
 		for(int i = 0; i < 10; i++){
 			assertEquals(nodes.get(i).getType(), BigInteger.valueOf(types[i]));
 		}
@@ -96,7 +97,7 @@ public class DefaultInstanceTest {
 	 */
 	@Test
 	public void testXCoordinates() {
-		List<Node> nodes = d.getNodes();
+		List<Node> nodes = d.getNetwork().getNodes().getNode();
 		for(int i = 0; i < 10; i++){
 			assertEquals(nodes.get(i).getLocation().getEuclidean().getCx(), xs[i], 0);
 		}
@@ -108,7 +109,7 @@ public class DefaultInstanceTest {
 	 */
 	@Test
 	public void testYCoordinates() {
-		List<Node> nodes = d.getNodes();
+		List<Node> nodes = d.getNetwork().getNodes().getNode();
 		for(int i = 0; i < 10; i++){
 			assertEquals(nodes.get(i).getLocation().getEuclidean().getCy(), ys[i], 0);
 		}
