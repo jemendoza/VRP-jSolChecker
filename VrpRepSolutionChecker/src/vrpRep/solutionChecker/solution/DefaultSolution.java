@@ -5,6 +5,7 @@ package vrpRep.solutionChecker.solution;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class DefaultSolution {
 		try {
 			InstanceReader<Solution> iR = new InstanceReader<Solution>();
 			this.solution = iR.unmarshallDocument(xmlFile, Solution.class.getName());
+			this.routes = new LinkedList<Route>();
 			extractResults();
 		} catch (ClassNotFoundException | JAXBException | IOException e) {
 			e.printStackTrace();
@@ -57,7 +59,27 @@ public class DefaultSolution {
 	 * 
 	 */
 	private void extractResults(){
-		// TODO facade pour extraire les routes vers les tableaux
+		List<vrpRep.schema.solution.Solution.Routes.Route> routeList = this.solution.getRoutes().getRoute();
+		LinkedList<Integer>result = new LinkedList<Integer>();	
+		Route route = null;
+		
+		for (vrpRep.schema.solution.Solution.Routes.Route currentRoute : routeList){
+			BigInteger temp = currentRoute.getId();
+			int id = 0,type = 0;
+			if(temp != null)
+				id = temp.intValue();
+			temp = currentRoute.getType();
+			if(temp != null)
+				type = temp.intValue();
+			System.out.println("id : "+id);
+			System.out.println("Type : 0"+type);
+			route = new Route(id, type);
+			for(Node n : currentRoute.getNode()){
+				result.add(Integer.parseInt(n.getContent()));
+			}
+			route.setRoute((LinkedList<Integer>)result);
+			routes.add(route);
+		}
 	}
 	
 	
@@ -70,52 +92,12 @@ public class DefaultSolution {
 		return this.solution;
 	}
 	
-	
-	
-	/**
-	 * @return the of
-	 */
-	public double getOf() {
-		return of;
-	}
-
-
-	/**
-	 * @param of the of to set
-	 */
-	public void setOf(double of) {
-		this.of = of;
-	}
-
-
-	/**
-	 * @return the routes
-	 */
-	public LinkedList<Route> getRoutes() {
-		return routes;
-	}
-
-
-	/**
-	 * @param routes the routes to set
-	 */
-	public void setRoutes(LinkedList<Route> routes) {
-		this.routes = routes;
-	}
-
-
-	/**
-	 * @param solution the solution to set
-	 */
-	public void setSolution(Solution solution) {
-		this.solution = solution;
-	}
-
-
 	public void printRoutesOne(){
-		List<Node> route = this.solution.getRoutes().getRoute().get(0).getNode();
-		for(Node n : route){
-			System.out.println(n.getContent());
-		}		
+		System.out.println(routes.size());
+		for(Route route : routes){
+			for(Integer n : route.getRoute()){
+				System.out.println(n);
+			}		
+		}	
 	}
 }
