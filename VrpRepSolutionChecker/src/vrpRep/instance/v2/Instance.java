@@ -8,6 +8,8 @@ import vrpRep.exceptions.MissingElementException;
 
 /**
  * 
+ * Main class of default instance structure. Class should be used to add and
+ * retrieve elements from the structure
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  *
  */
@@ -120,7 +122,7 @@ public class Instance {
 	 * @return link if found
 	 * @throws MissingElementException Thrown if link not found
 	 */
-	public Link getlink(int head, int tail) throws MissingElementException{
+	public Link getLink(int head, int tail) throws MissingElementException{
 		int i = 0;
 		while(i < this.links.size() && (this.links.get(i).getHead() != head || this.links.get(i).getTail() != tail))
 			i++;
@@ -245,65 +247,51 @@ public class Instance {
 		return null;
 	}
 	
-	
-	
-
-	
+		
+	/**
+	 * 
+	 * @return List of nodes
+	 */
 	public List<Node> getNodes() {
 		return nodes;
 	}
 
 
-
-	public void setNodes(List<Node> nodes) {
-		this.nodes = nodes;
-	}
-
-
-
+	/**
+	 * 
+	 * @return List of links
+	 */
 	public List<Link> getLinks() {
 		return links;
 	}
 
 
-
-	public void setLinks(List<Link> links) {
-		this.links = links;
-	}
-
-
-
+	/**
+	 * 
+	 * @return List of fleet
+	 */
 	public List<Vehicle> getFleet() {
 		return fleet;
 	}
 
 
-
-	public void setFleet(List<Vehicle> fleet) {
-		this.fleet = fleet;
-	}
-
-
-
+	/**
+	 * 
+	 * @return List of requests
+	 */
 	public List<Request> getRequests() {
 		return requests;
 	}
 
 
-
-	public void setRequests(List<Request> requests) {
-		this.requests = requests;
-	}
-
-
-
+	/**
+	 *
+	 * @return network object
+	 */
 	public Network getNetwork() {
+		if(this.network == null)
+			this.network = new Network();
+		
 		return network;
-	}
-
-
-
-	public void setNetwork(Network network) {
-		this.network = network;
 	}
 }
