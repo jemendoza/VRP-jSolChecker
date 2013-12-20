@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.5-2 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2013.12.20 à 12:03:34 PM CET 
+// Généré le : 2013.12.20 à 12:33:34 PM CET 
 //
 
 
@@ -83,7 +83,7 @@ import javax.xml.bind.annotation.XmlValue;
  *                       &lt;complexContent>
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                           &lt;sequence>
- *                             &lt;element name="request">
+ *                             &lt;element name="request" maxOccurs="unbounded">
  *                               &lt;complexType>
  *                                 &lt;complexContent>
  *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
@@ -545,7 +545,7 @@ public class Solution {
      *             &lt;complexContent>
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                 &lt;sequence>
-     *                   &lt;element name="request">
+     *                   &lt;element name="request" maxOccurs="unbounded">
      *                     &lt;complexType>
      *                       &lt;complexContent>
      *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
@@ -629,7 +629,7 @@ public class Solution {
          *   &lt;complexContent>
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *       &lt;sequence>
-         *         &lt;element name="request">
+         *         &lt;element name="request" maxOccurs="unbounded">
          *           &lt;complexType>
          *             &lt;complexContent>
          *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
@@ -666,34 +666,39 @@ public class Solution {
         public static class Route {
 
             @XmlElement(required = true)
-            protected Solution.Routes.Route.Request request;
+            protected List<Solution.Routes.Route.Request> request;
             @XmlAttribute(name = "id", required = true)
             protected BigInteger id;
             @XmlAttribute(name = "type")
             protected BigInteger type;
 
             /**
-             * Obtient la valeur de la propriété request.
+             * Gets the value of the request property.
              * 
-             * @return
-             *     possible object is
-             *     {@link Solution.Routes.Route.Request }
-             *     
-             */
-            public Solution.Routes.Route.Request getRequest() {
-                return request;
-            }
-
-            /**
-             * Définit la valeur de la propriété request.
+             * <p>
+             * This accessor method returns a reference to the live list,
+             * not a snapshot. Therefore any modification you make to the
+             * returned list will be present inside the JAXB object.
+             * This is why there is not a <CODE>set</CODE> method for the request property.
              * 
-             * @param value
-             *     allowed object is
-             *     {@link Solution.Routes.Route.Request }
-             *     
+             * <p>
+             * For example, to add a new item, do as follows:
+             * <pre>
+             *    getRequest().add(newItem);
+             * </pre>
+             * 
+             * 
+             * <p>
+             * Objects of the following type(s) are allowed in the list
+             * {@link Solution.Routes.Route.Request }
+             * 
+             * 
              */
-            public void setRequest(Solution.Routes.Route.Request value) {
-                this.request = value;
+            public List<Solution.Routes.Route.Request> getRequest() {
+                if (request == null) {
+                    request = new ArrayList<Solution.Routes.Route.Request>();
+                }
+                return this.request;
             }
 
             /**

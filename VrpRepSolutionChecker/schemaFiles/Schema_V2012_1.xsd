@@ -72,7 +72,7 @@
 								</xs:annotation>
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="request">
+										<xs:element name="request" maxOccurs="unbounded">
 											<xs:annotation>
 												<xs:documentation>Request. Mixed element meaning it can either be filled with a demand element or simple text</xs:documentation>
 											</xs:annotation>
