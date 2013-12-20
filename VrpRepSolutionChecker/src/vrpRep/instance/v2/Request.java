@@ -1,5 +1,6 @@
 package vrpRep.instance.v2;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,13 +10,21 @@ import java.util.List;
  *
  */
 public class Request {
-	
+
 	private HashMap<String, List<VrpAtt>> atts;
 	private int id;
 
 
-	
-	
+
+	/**
+	 * @param id
+	 */
+	public Request(int id) {
+		super();
+		this.atts = new HashMap<String, List<VrpAtt>>();
+		this.id = id;
+	}
+
 	/**
 	 * @param atts
 	 * @param id
@@ -31,37 +40,65 @@ public class Request {
 	 * @param name
 	 * @param att
 	 */
-	public void put(String name, RequestAtt att){
-		//TODO
+	public void add(String name, RequestAtt att){
+
+		if(atts.containsKey(name)){
+			atts.get(name).add(att);
+		}else{
+			List<VrpAtt> value = new ArrayList<VrpAtt>();
+			value.add(att);
+			atts.put(name, value);
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param name
 	 * @param att
 	 */
-	public void put(String name, IntValue att){
-		//TODO
+	public void add(String name, IntValue att){
+		
+		if(atts.containsKey(name)){
+			atts.get(name).add(att);
+		}else{
+			List<VrpAtt> value = new ArrayList<VrpAtt>();
+			value.add(att);
+			atts.put(name, value);
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param name
 	 * @param att
 	 */
-	public void put(String name, DoubleValue att){
-		//TODO
+	public void add(String name, DoubleValue att){
+
+		if(atts.containsKey(name)){
+			atts.get(name).add(att);
+		}else{
+			List<VrpAtt> value = new ArrayList<VrpAtt>();
+			value.add(att);
+			atts.put(name, value);
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param name
 	 * @param att
 	 */
-	public void put(String name, BooleanValue att){
-		//TODO
+	public void add(String name, BooleanValue att){
+
+		if(atts.containsKey(name)){
+			atts.get(name).add(att);
+		}else{
+			List<VrpAtt> value = new ArrayList<VrpAtt>();
+			value.add(att);
+			atts.put(name, value);
+		}
 	}
-	
+
 	/**
 	 * @return the atts
 	 */
@@ -72,27 +109,9 @@ public class Request {
 
 
 	/**
-	 * @param atts the atts to set
-	 */
-	public void setAtts(HashMap<String, List<VrpAtt>> atts) {
-		this.atts = atts;
-	}
-
-
-
-	/**
 	 * @return the id
 	 */
 	public int getId() {
 		return id;
-	}
-
-
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
 	}
 }

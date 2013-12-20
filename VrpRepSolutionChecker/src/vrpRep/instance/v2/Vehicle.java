@@ -1,5 +1,6 @@
 package vrpRep.instance.v2;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,7 +30,13 @@ public class Vehicle {
 	 * @param att
 	 */
 	public void put(String name, VehicleAtt att){
-		//TODO
+		if(atts.containsKey(name)){
+			atts.get(name).add(att);
+		}else{
+			List<VrpAtt> value = new ArrayList<VrpAtt>();
+			value.add(att);
+			atts.put(name, value);
+		}
 	}
 	
 	/**
@@ -38,7 +45,13 @@ public class Vehicle {
 	 * @param att
 	 */
 	public void put(String name, IntValue att){
-		//TODO
+		if(atts.containsKey(name)){
+			atts.get(name).add(att);
+		}else{
+			List<VrpAtt> value = new ArrayList<VrpAtt>();
+			value.add(att);
+			atts.put(name, value);
+		}
 	}
 	
 	/**
@@ -47,7 +60,13 @@ public class Vehicle {
 	 * @param att
 	 */
 	public void put(String name, DoubleValue att){
-		//TODO
+		if(atts.containsKey(name)){
+			atts.get(name).add(att);
+		}else{
+			List<VrpAtt> value = new ArrayList<VrpAtt>();
+			value.add(att);
+			atts.put(name, value);
+		}
 	}
 	
 	/**
@@ -56,7 +75,13 @@ public class Vehicle {
 	 * @param att
 	 */
 	public void put(String name, BooleanValue att){
-		//TODO
+		if(atts.containsKey(name)){
+			atts.get(name).add(att);
+		}else{
+			List<VrpAtt> value = new ArrayList<VrpAtt>();
+			value.add(att);
+			atts.put(name, value);
+		}
 	}
 
 	/**
@@ -66,12 +91,6 @@ public class Vehicle {
 		return atts;
 	}
 
-	/**
-	 * @param atts the atts to set
-	 */
-	public void setAtts(HashMap<String, List<VrpAtt>> atts) {
-		this.atts = atts;
-	}
 
 	/**
 	 * @return the id
@@ -79,12 +98,4 @@ public class Vehicle {
 	public int getId() {
 		return id;
 	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-	
 }
