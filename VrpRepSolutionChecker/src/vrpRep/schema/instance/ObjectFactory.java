@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.5-2 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2012.07.18 à 10:55:38 AM CEST 
+// Généré le : 2013.12.20 à 12:01:55 PM CET 
 //
 
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the vroom.common.modeling.vrprep package. 
+ * generated in the vrpRep.schema.instance package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -30,10 +30,18 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: vroom.common.modeling.vrprep
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: vrpRep.schema.instance
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link ProbabilityDistribution }
+     * 
+     */
+    public ProbabilityDistribution createProbabilityDistribution() {
+        return new ProbabilityDistribution();
     }
 
     /**
@@ -146,6 +154,14 @@ public class ObjectFactory {
      */
     public PoissonVariable createPoissonVariable() {
         return new PoissonVariable();
+    }
+
+    /**
+     * Create an instance of {@link ProbabilityDistribution.Moment }
+     * 
+     */
+    public ProbabilityDistribution.Moment createProbabilityDistributionMoment() {
+        return new ProbabilityDistribution.Moment();
     }
 
     /**

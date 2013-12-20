@@ -3,7 +3,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:element name="solution">
 		<xs:annotation>
-			<xs:documentation>Comment describing your root element</xs:documentation>
+			<xs:documentation>Solutiions</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
@@ -13,11 +13,6 @@
 					</xs:annotation>
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="name" type="xs:string">
-								<xs:annotation>
-									<xs:documentation>Name of the instance (e.g., E-n22-k4)</xs:documentation>
-								</xs:annotation>
-							</xs:element>
 							<xs:element name="problem" type="xs:string">
 								<xs:annotation>
 									<xs:documentation>Name of the problem (e.g., CVRP, VRPTW)</xs:documentation>
@@ -55,10 +50,15 @@
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="objectiveFunction" type="xs:double">
+				<xs:element name="objectiveFunction">
 					<xs:annotation>
 						<xs:documentation>Objective function result</xs:documentation>
 					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:double"/>
+						</xs:simpleContent>
+					</xs:complexType>
 				</xs:element>
 				<xs:element name="routes">
 					<xs:annotation>
@@ -72,14 +72,28 @@
 								</xs:annotation>
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="node" maxOccurs="unbounded">
+										<xs:element name="request">
 											<xs:annotation>
-												<xs:documentation>Node visited in route</xs:documentation>
+												<xs:documentation>Request. Mixed element meaning it can either be filled with a demand element or simple text</xs:documentation>
 											</xs:annotation>
 											<xs:complexType mixed="true">
-												<xs:attribute name="visit" type="xs:integer" use="required">
+												<xs:sequence>
+													<xs:element name="demand" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>Quantity of demand served by request</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:attribute name="productId" type="xs:integer" use="required">
+																<xs:annotation>
+																	<xs:documentation>Id of product</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="requestId" use="required">
 													<xs:annotation>
-														<xs:documentation>Position at which the node was visited within route</xs:documentation>
+														<xs:documentation>Id of request</xs:documentation>
 													</xs:annotation>
 												</xs:attribute>
 											</xs:complexType>
@@ -101,14 +115,14 @@
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
+			<xs:attribute name="instance" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Name of problem instance solved</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="checked" type="xs:boolean" default="false">
 				<xs:annotation>
 					<xs:documentation>True if solution has been validated by solution checker</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<xs:attribute name="name" type="xs:string" use="required">
-				<xs:annotation>
-					<xs:documentation>Name of problem instance solved</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>

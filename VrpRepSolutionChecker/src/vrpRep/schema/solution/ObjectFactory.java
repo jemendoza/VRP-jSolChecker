@@ -2,13 +2,16 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.5-2 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2013.11.21 à 03:08:03 PM CET 
+// Généré le : 2013.12.20 à 12:03:34 PM CET 
 //
 
 
 package vrpRep.schema.solution;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
 
 
 /**
@@ -28,6 +31,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _SolutionRoutesRouteRequestDemand_QNAME = new QName("", "demand");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: vrpRep.schema.solution
@@ -61,6 +65,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Solution.Routes.Route.Request }
+     * 
+     */
+    public Solution.Routes.Route.Request createSolutionRoutesRouteRequest() {
+        return new Solution.Routes.Route.Request();
+    }
+
+    /**
      * Create an instance of {@link Solution.Info }
      * 
      */
@@ -69,11 +81,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Solution.Routes.Route.Node }
+     * Create an instance of {@link Solution.ObjectiveFunction }
      * 
      */
-    public Solution.Routes.Route.Node createSolutionRoutesRouteNode() {
-        return new Solution.Routes.Route.Node();
+    public Solution.ObjectiveFunction createSolutionObjectiveFunction() {
+        return new Solution.ObjectiveFunction();
+    }
+
+    /**
+     * Create an instance of {@link Solution.Routes.Route.Request.Demand }
+     * 
+     */
+    public Solution.Routes.Route.Request.Demand createSolutionRoutesRouteRequestDemand() {
+        return new Solution.Routes.Route.Request.Demand();
     }
 
     /**
@@ -82,6 +102,15 @@ public class ObjectFactory {
      */
     public Solution.Info.Contributor createSolutionInfoContributor() {
         return new Solution.Info.Contributor();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Solution.Routes.Route.Request.Demand }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "demand", scope = Solution.Routes.Route.Request.class)
+    public JAXBElement<Solution.Routes.Route.Request.Demand> createSolutionRoutesRouteRequestDemand(Solution.Routes.Route.Request.Demand value) {
+        return new JAXBElement<Solution.Routes.Route.Request.Demand>(_SolutionRoutesRouteRequestDemand_QNAME, Solution.Routes.Route.Request.Demand.class, Solution.Routes.Route.Request.class, value);
     }
 
 }

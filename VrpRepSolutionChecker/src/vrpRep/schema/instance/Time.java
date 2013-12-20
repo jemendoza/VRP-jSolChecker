@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.5-2 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2012.07.18 à 10:55:38 AM CEST 
+// Généré le : 2013.12.20 à 12:01:55 PM CET 
 //
 
 
@@ -30,8 +30,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice minOccurs="0">
- *         &lt;element ref="{}NormalVariable"/>
- *         &lt;element ref="{}PoissonVariable"/>
+ *         &lt;element ref="{}ProbabilityDistribution"/>
  *         &lt;element ref="{}custom"/>
  *       &lt;/choice>
  *     &lt;/restriction>
@@ -48,9 +47,8 @@ import javax.xml.bind.annotation.XmlType;
 public class Time {
 
     @XmlElementRefs({
-        @XmlElementRef(name = "NormalVariable", type = NormalVariable.class),
-        @XmlElementRef(name = "custom", type = Custom.class),
-        @XmlElementRef(name = "PoissonVariable", type = PoissonVariable.class)
+        @XmlElementRef(name = "custom", type = Custom.class, required = false),
+        @XmlElementRef(name = "ProbabilityDistribution", type = ProbabilityDistribution.class, required = false)
     })
     @XmlMixed
     protected List<Object> content;
@@ -73,10 +71,9 @@ public class Time {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link NormalVariable }
      * {@link String }
      * {@link Custom }
-     * {@link PoissonVariable }
+     * {@link ProbabilityDistribution }
      * 
      * 
      */
