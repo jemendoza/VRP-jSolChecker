@@ -26,23 +26,6 @@ public class Node {
 	}
 
 	/**
-	 * Retrieve node attribute from hashmap
-	 * 
-	 * @param name
-	 *            name of attribute
-	 * @return Attribute value
-	 * @throws MissingAttributeException
-	 *             Thrown if attribute not found
-	 */
-	public List<VrpAtt> getAttribute(String name)
-			throws MissingAttributeException {
-		if (!this.atts.containsKey(name))
-			throw new MissingAttributeException(name);
-		else
-			return this.atts.get(name);
-	}
-
-	/**
 	 * Add attribute in hashmap
 	 * 
 	 * @param name
@@ -109,18 +92,27 @@ public class Node {
 	}
 
 	/**
+	 * Retrieve node attribute from hashmap
+	 * 
+	 * @param name
+	 *            name of attribute
+	 * @return Attribute value
+	 * @throws MissingAttributeException
+	 *             Thrown if attribute not found
+	 */
+	public List<VrpAtt> getAttribute(String name)
+			throws MissingAttributeException {
+		if (!this.atts.containsKey(name))
+			throw new MissingAttributeException(name);
+		else
+			return this.atts.get(name);
+	}
+	
+	/**
 	 * @return the atts
 	 */
 	public HashMap<String, List<VrpAtt>> getAtts() {
 		return atts;
-	}
-
-	/**
-	 * @param atts
-	 *            the atts to set
-	 */
-	public void setAtts(HashMap<String, List<VrpAtt>> atts) {
-		this.atts = atts;
 	}
 
 	/**
@@ -129,13 +121,4 @@ public class Node {
 	public int getId() {
 		return id;
 	}
-
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
 }

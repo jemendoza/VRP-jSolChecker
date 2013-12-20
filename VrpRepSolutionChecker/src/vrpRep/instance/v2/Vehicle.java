@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import vrpRep.exceptions.MissingAttributeException;
+
 /**
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -29,7 +31,7 @@ public class Vehicle {
 	 * @param name
 	 * @param att
 	 */
-	public void put(String name, VehicleAtt att){
+	private void addAttr(String name, VrpAtt att) {
 		if(atts.containsKey(name)){
 			atts.get(name).add(att);
 		}else{
@@ -37,6 +39,15 @@ public class Vehicle {
 			value.add(att);
 			atts.put(name, value);
 		}
+	}
+	
+	/**
+	 * 
+	 * @param name
+	 * @param att
+	 */
+	public void add(String name, VehicleAtt att){
+		addAttr(name, att);
 	}
 	
 	/**
@@ -45,13 +56,7 @@ public class Vehicle {
 	 * @param att
 	 */
 	public void put(String name, IntValue att){
-		if(atts.containsKey(name)){
-			atts.get(name).add(att);
-		}else{
-			List<VrpAtt> value = new ArrayList<VrpAtt>();
-			value.add(att);
-			atts.put(name, value);
-		}
+		addAttr(name, att);
 	}
 	
 	/**
@@ -60,13 +65,7 @@ public class Vehicle {
 	 * @param att
 	 */
 	public void put(String name, DoubleValue att){
-		if(atts.containsKey(name)){
-			atts.get(name).add(att);
-		}else{
-			List<VrpAtt> value = new ArrayList<VrpAtt>();
-			value.add(att);
-			atts.put(name, value);
-		}
+		addAttr(name, att);
 	}
 	
 	/**
@@ -75,15 +74,23 @@ public class Vehicle {
 	 * @param att
 	 */
 	public void put(String name, BooleanValue att){
-		if(atts.containsKey(name)){
-			atts.get(name).add(att);
-		}else{
-			List<VrpAtt> value = new ArrayList<VrpAtt>();
-			value.add(att);
-			atts.put(name, value);
-		}
+		addAttr(name, att);
 	}
 
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 * @throws MissingAttributeException
+	 */
+	public List<VrpAtt> getAttribute(String name)
+			throws MissingAttributeException {
+		if (!this.atts.containsKey(name))
+			throw new MissingAttributeException(name);
+		else
+			return this.atts.get(name);
+	}
+	
 	/**
 	 * @return the atts
 	 */
