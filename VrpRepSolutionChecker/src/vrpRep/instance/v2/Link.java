@@ -1,17 +1,20 @@
 package vrpRep.instance.v2;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import vrpRep.exceptions.MissingAttributeException;
 
 /**
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
- *
+ * 
  */
 public class Link {
-	private HashMap<String, List<VrpAtt>> atts;
-	private int tail;
-	private int head;
+	private HashMap<String, List<VrpAtt>>	atts;
+	private int								tail;
+	private int								head;
 
 	/**
 	 * @param atts
@@ -26,40 +29,88 @@ public class Link {
 	}
 
 	/**
+	 * Retrieve link attribute from hashmap
 	 * 
 	 * @param name
-	 * @param att
+	 *            name of attribute
+	 * @return Attribute value
+	 * @throws MissingAttributeException
+	 *             Thrown if attribute not found
 	 */
-	public void put(String name, LinkAtt att){
-		//TODO
+	public List<VrpAtt> getAttribute(String name)
+			throws MissingAttributeException {
+		if (!this.atts.containsKey(name))
+			throw new MissingAttributeException(name);
+		else
+			return this.atts.get(name);
 	}
-	
+
 	/**
+	 * Add attribute in hashmap
 	 * 
 	 * @param name
+	 *            Name of attribute
 	 * @param att
+	 *            Attribute value
 	 */
-	public void put(String name, IntValue att){
-		//TODO
+	private void addAttr(String name, VrpAtt att) {
+		if (!atts.containsKey(name)) {
+			List<VrpAtt> listAtt = new ArrayList<VrpAtt>();
+			listAtt.add(att);
+			atts.put(name, listAtt);
+		} else {
+			atts.get(name).add(att);
+		}
 	}
-	
+
 	/**
+	 * Add attribute in hashmap
 	 * 
 	 * @param name
+	 *            Name of attribute
 	 * @param att
+	 *            Attribute value
 	 */
-	public void put(String name, DoubleValue att){
-		//TODO
+	public void addAttribute(String name, LinkAtt att) {
+		addAttr(name, att);
 	}
-	
+
 	/**
+	 * Add attribute in hashmap
 	 * 
 	 * @param name
+	 *            Name of attribute
 	 * @param att
+	 *            Attribute value
 	 */
-	public void put(String name, BooleanValue att){
-		//TODO
+	public void addAttribute(String name, IntValue att) {
+		addAttr(name, att);
 	}
+
+	/**
+	 * Add attribute in hashmap
+	 * 
+	 * @param name
+	 *            Name of attribute
+	 * @param att
+	 *            Attribute value
+	 */
+	public void addAttribute(String name, DoubleValue att) {
+		addAttr(name, att);
+	}
+
+	/**
+	 * Add attribute in hashmap
+	 * 
+	 * @param name
+	 *            Name of attribute
+	 * @param att
+	 *            Attribute value
+	 */
+	public void addAttribute(String name, BooleanValue att) {
+		addAttr(name, att);
+	}
+
 	/**
 	 * @return the atts
 	 */
@@ -67,16 +118,13 @@ public class Link {
 		return atts;
 	}
 
-
-
 	/**
-	 * @param atts the atts to set
+	 * @param atts
+	 *            the atts to set
 	 */
 	public void setAtts(HashMap<String, List<VrpAtt>> atts) {
 		this.atts = atts;
 	}
-
-
 
 	/**
 	 * @return the tail
@@ -85,16 +133,13 @@ public class Link {
 		return tail;
 	}
 
-
-
 	/**
-	 * @param tail the tail to set
+	 * @param tail
+	 *            the tail to set
 	 */
 	public void setTail(int tail) {
 		this.tail = tail;
 	}
-
-
 
 	/**
 	 * @return the head
@@ -103,14 +148,12 @@ public class Link {
 		return head;
 	}
 
-
-
 	/**
-	 * @param head the head to set
+	 * @param head
+	 *            the head to set
 	 */
 	public void setHead(int head) {
 		this.head = head;
 	}
 
-	
 }
