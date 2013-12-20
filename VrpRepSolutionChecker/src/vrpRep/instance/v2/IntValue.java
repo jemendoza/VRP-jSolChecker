@@ -8,16 +8,14 @@ package vrpRep.instance.v2;
  * 
  */
 public class IntValue implements VrpAtt {
-	boolean	isFlex;
-	int		value;
+	int	value;
 
 	/**
 	 * @param isFlex
 	 */
-	public IntValue(int value, boolean isFlex) {
+	public IntValue(int value) {
 		super();
 		this.value = value;
-		this.isFlex = isFlex;
 	}
 
 	public int getValue() {
@@ -26,21 +24,6 @@ public class IntValue implements VrpAtt {
 
 	public void setValue(int value) {
 		this.value = value;
-	}
-
-	/**
-	 * @return the isFlex
-	 */
-	public boolean isFlex() {
-		return isFlex;
-	}
-
-	/**
-	 * @param isFlex
-	 *            the isFlex to set
-	 */
-	public void setFlex(boolean isFlex) {
-		this.isFlex = isFlex;
 	}
 
 }
