@@ -29,23 +29,6 @@ public class Link {
 	}
 
 	/**
-	 * Retrieve link attribute from hashmap
-	 * 
-	 * @param name
-	 *            name of attribute
-	 * @return Attribute value
-	 * @throws MissingAttributeException
-	 *             Thrown if attribute not found
-	 */
-	public List<VrpAtt> getAttribute(String name)
-			throws MissingAttributeException {
-		if (!this.atts.containsKey(name))
-			throw new MissingAttributeException(name);
-		else
-			return this.atts.get(name);
-	}
-
-	/**
 	 * Add attribute in hashmap
 	 * 
 	 * @param name
@@ -112,18 +95,27 @@ public class Link {
 	}
 
 	/**
+	 * Retrieve link attribute from hashmap
+	 * 
+	 * @param name
+	 *            name of attribute
+	 * @return Attribute value
+	 * @throws MissingAttributeException
+	 *             Thrown if attribute not found
+	 */
+	public List<VrpAtt> getAttribute(String name)
+			throws MissingAttributeException {
+		if (!this.atts.containsKey(name))
+			throw new MissingAttributeException(name);
+		else
+			return this.atts.get(name);
+	}
+	
+	/**
 	 * @return the atts
 	 */
 	public HashMap<String, List<VrpAtt>> getAtts() {
 		return atts;
-	}
-
-	/**
-	 * @param atts
-	 *            the atts to set
-	 */
-	public void setAtts(HashMap<String, List<VrpAtt>> atts) {
-		this.atts = atts;
 	}
 
 	/**
@@ -134,26 +126,9 @@ public class Link {
 	}
 
 	/**
-	 * @param tail
-	 *            the tail to set
-	 */
-	public void setTail(int tail) {
-		this.tail = tail;
-	}
-
-	/**
 	 * @return the head
 	 */
 	public int getHead() {
 		return head;
 	}
-
-	/**
-	 * @param head
-	 *            the head to set
-	 */
-	public void setHead(int head) {
-		this.head = head;
-	}
-
 }

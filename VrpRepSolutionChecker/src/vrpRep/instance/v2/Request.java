@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import vrpRep.exceptions.MissingAttributeException;
+
 /**
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -38,8 +40,7 @@ public class Request {
 	 * @param name
 	 * @param att
 	 */
-	public void add(String name, RequestAtt att) {
-
+	private void addAttr(String name, VrpAtt att) {
 		if (atts.containsKey(name)) {
 			atts.get(name).add(att);
 		} else {
@@ -54,15 +55,12 @@ public class Request {
 	 * @param name
 	 * @param att
 	 */
-	public void add(String name, IntValue att) {
+	public void add(String name, RequestAtt att) {
+		addAttr(name, att);
+	}
 
-		if (atts.containsKey(name)) {
-			atts.get(name).add(att);
-		} else {
-			List<VrpAtt> value = new ArrayList<VrpAtt>();
-			value.add(att);
-			atts.put(name, value);
-		}
+	public void add(String name, IntValue att) {
+		addAttr(name, att);
 	}
 
 	/**
@@ -71,14 +69,7 @@ public class Request {
 	 * @param att
 	 */
 	public void add(String name, DoubleValue att) {
-
-		if (atts.containsKey(name)) {
-			atts.get(name).add(att);
-		} else {
-			List<VrpAtt> value = new ArrayList<VrpAtt>();
-			value.add(att);
-			atts.put(name, value);
-		}
+		addAttr(name, att);
 	}
 
 	/**
@@ -87,14 +78,21 @@ public class Request {
 	 * @param att
 	 */
 	public void add(String name, BooleanValue att) {
+		addAttr(name, att);
+	}
 
-		if (atts.containsKey(name)) {
-			atts.get(name).add(att);
-		} else {
-			List<VrpAtt> value = new ArrayList<VrpAtt>();
-			value.add(att);
-			atts.put(name, value);
-		}
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 * @throws MissingAttributeException
+	 */
+	public List<VrpAtt> getAttribute(String name)
+			throws MissingAttributeException {
+		if (!this.atts.containsKey(name))
+			throw new MissingAttributeException(name);
+		else
+			return this.atts.get(name);
 	}
 
 	/**
