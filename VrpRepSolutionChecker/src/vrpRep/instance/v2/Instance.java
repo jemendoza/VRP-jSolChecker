@@ -170,16 +170,79 @@ public class Instance {
 	
 	
 	/**
-	 * 
-	 * @param id
-	 * @param attName
-	 * @return
-	 * @throws MissingElementException
-	 * @throws MissingAttributeException 
+	 * Retrieves node attribute from node
+	 * @param id id of node
+	 * @param attName name of attribute requested
+	 * @return attribute 
 	 */
-	public List<VrpAtt> getNodeAttribute(int id, String attName) throws MissingElementException, MissingAttributeException{
-		Node n = getNode(id);
-		return n.getAttribute(attName);
+	public List<VrpAtt> getNodeAttribute(int id, String attName){
+		try {
+			Node n = getNode(id);
+			return n.getAttribute(attName);
+		} catch (MissingElementException e) {
+			e.printStackTrace();
+		} catch (MissingAttributeException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	/**
+	 * Retrieves link attribute from link
+	 * @param head id of head node
+	 * @param tail id of tail node
+	 * @param attName name of attribute requested
+	 * @return attribute 
+	 */
+	public List<VrpAtt> getLinkAttribute(int head, int tail, String attName){
+		try {
+			Link l = getLink(head, tail);
+			return l.getAttribute(attName);
+		} catch (MissingElementException e) {
+			e.printStackTrace();
+		} catch (MissingAttributeException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	/**
+	 * Retrieves request attribute from request
+	 * @param id id of request
+	 * @param attName name of attribute requested
+	 * @return attribute 
+	 */
+	public List<VrpAtt> getRequestAttribute(int id, String attName){
+		try {
+			Request r = getRequest(id);
+			return r.getAttribute(attName);
+		} catch (MissingElementException e) {
+			e.printStackTrace();
+		} catch (MissingAttributeException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	/**
+	 * Retrieves vehicle attribute from vehicle
+	 * @param id id of vehicle
+	 * @param attName name of attribute requested
+	 * @return attribute 
+	 */
+	public List<VrpAtt> getVehicleAttribute(int id, String attName){
+		try {
+			Vehicle v = getVehicle(id);
+			return v.getAttribute(attName);
+		} catch (MissingElementException e) {
+			e.printStackTrace();
+		} catch (MissingAttributeException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	
