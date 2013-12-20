@@ -5,6 +5,7 @@ public class SpeedIntTimeWindow {
 	private double	begin;
 	double			end;
 	private int		period;
+	private boolean	isFlexBegin, isFlexEnd;
 
 	public SpeedIntTimeWindow() {
 
@@ -15,21 +16,22 @@ public class SpeedIntTimeWindow {
 	 * @param end
 	 * @param period
 	 */
-	public SpeedIntTimeWindow(double begin, double end, int period) {
+	public SpeedIntTimeWindow(double begin, double end, int period,
+			boolean isFlexBegin, boolean isFlexEnd) {
 		super();
 		this.begin = begin;
 		this.end = end;
 		this.period = period;
+		this.isFlexBegin = isFlexBegin;
+		this.isFlexEnd = isFlexEnd;
 	}
 
-	public boolean isFlexBegin() {
-		// TODO
-		return false;
+	public boolean getIsFlexBegin() {
+		return isFlexBegin;
 	}
 
-	public boolean isFlexEnd() {
-		// TODO
-		return false;
+	public boolean getIsFlexEnd() {
+		return isFlexEnd;
 	}
 
 	/**

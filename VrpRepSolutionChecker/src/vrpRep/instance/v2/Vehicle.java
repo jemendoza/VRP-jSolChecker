@@ -54,7 +54,7 @@ public class Vehicle {
 	 * @param name
 	 * @param att
 	 */
-	public void put(String name, IntValue att) {
+	public void add(String name, IntValue att) {
 		addAttr(name, att);
 	}
 
@@ -63,7 +63,7 @@ public class Vehicle {
 	 * @param name
 	 * @param att
 	 */
-	public void put(String name, DoubleValue att) {
+	public void add(String name, DoubleValue att) {
 		addAttr(name, att);
 	}
 
@@ -72,7 +72,7 @@ public class Vehicle {
 	 * @param name
 	 * @param att
 	 */
-	public void put(String name, BooleanValue att) {
+	public void add(String name, BooleanValue att) {
 		addAttr(name, att);
 	}
 

@@ -1,8 +1,11 @@
 package vrpRep.instance.v2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SpeedInt {
-	private double				speed;
-	private SpeedIntTimeWindow	tw;
+	private double						speed;
+	private List<SpeedIntTimeWindow>	tw;
 
 	public SpeedInt() {
 
@@ -10,9 +13,18 @@ public class SpeedInt {
 
 	/**
 	 * @param speed
+	 */
+	public SpeedInt(double speed) {
+		super();
+		this.speed = speed;
+		this.tw = new ArrayList<SpeedIntTimeWindow>();
+	}
+
+	/**
+	 * @param speed
 	 * @param tw
 	 */
-	public SpeedInt(double speed, SpeedIntTimeWindow tw) {
+	public SpeedInt(double speed, List<SpeedIntTimeWindow> tw) {
 		super();
 		this.speed = speed;
 		this.tw = tw;
@@ -36,7 +48,7 @@ public class SpeedInt {
 	/**
 	 * @return the tw
 	 */
-	public SpeedIntTimeWindow getTw() {
+	public List<SpeedIntTimeWindow> getTw() {
 		return tw;
 	}
 
@@ -44,8 +56,8 @@ public class SpeedInt {
 	 * @param tw
 	 *            the tw to set
 	 */
-	public void setTw(SpeedIntTimeWindow tw) {
-		this.tw = tw;
+	public void addTw(SpeedIntTimeWindow tw) {
+		this.tw.add(tw);
 	}
 
 }

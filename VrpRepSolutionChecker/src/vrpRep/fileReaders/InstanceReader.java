@@ -24,6 +24,9 @@ import vrpRep.instance.v2.Node;
 import vrpRep.instance.v2.Request;
 import vrpRep.instance.v2.RequestProbaDist;
 import vrpRep.instance.v2.RequestTimeWindow;
+import vrpRep.instance.v2.SpeedInt;
+import vrpRep.instance.v2.SpeedIntTimeWindow;
+import vrpRep.instance.v2.Vehicle;
 import vrpRep.schema.instance.ProbabilityDistribution;
 import vrpRep.utilities.XmlReader;
 
@@ -154,7 +157,79 @@ public class InstanceReader {
 	}
 
 	private void vehicleTransformation() {
-		// TODO Auto-generated method stub
+		int i = 0;
+		for (vrpRep.schema.instance.Instance.Fleet.Vehicle v : schemaInstance
+				.getFleet().getVehicle()) {
+			Vehicle temp = new Vehicle(i);
+			temp.add("type", new IntValue(v.getType().intValue()));
+			if (v.getFixedCost() != null) {
+				for (double d : v.getFixedCost())
+					temp.add("fixedCost", new DoubleValue(d));
+			}
+			if (v.getVariableCost() != null) {
+				for (double d : v.getVariableCost())
+					temp.add("variableCost", new DoubleValue(d));
+			}
+			if (v.getNumber() != null)
+				temp.add("number", new IntValue(v.getNumber().intValue()));
+
+			if (v.getNodeTypesCompatible() != null) {
+				for (BigInteger compatible : v.getNodeTypesCompatible()) {
+					temp.add("nodeTypesCompatible",
+							new IntValue(compatible.intValue()));
+				}
+			}
+			if (v.getSpeedProfile() != null) {
+				if (v.getSpeedProfile().getAvg() != null)
+					temp.add("speedProfile", new DoubleValue(v
+							.getSpeedProfile().getAvg()));
+				else {
+					SpeedInt speed;
+					SpeedIntTimeWindow time;
+					for (vrpRep.schema.instance.SpeedProfile.SpeedInterval s : v
+							.getSpeedProfile().getSpeedInterval()) {
+						speed = new SpeedInt(s.getSpeed());
+						for (vrpRep.schema.instance.Tw tw : s.getTw()) {
+							time = new SpeedIntTimeWindow(Double.valueOf(tw
+									.getStart().getContent()),
+									Double.valueOf(tw.getEnd().getContent()),
+									tw.getPeriod().intValue(), tw.getStart()
+											.isIsHard(), tw.getEnd().isIsHard());
+							speed.addTw(time);
+						}
+					}
+				}
+			}
+			if (v.getMaxTravelDistance() != null) {
+				temp.add(
+						"maxTravelDistance",
+						new DoubleValue(Double.valueOf(v.getMaxTravelDistance()
+								.getContent())));
+				temp.add("maxTravelDistanceIsFlexible", new BooleanValue(v
+						.getMaxTravelDistance().isIsFlexible()));
+			}
+			if (v.getMaxRequests() != null) {
+				temp.add(
+						"maxRequests",
+						new DoubleValue(Double.valueOf(v.getMaxRequests()
+								.getContent())));
+				temp.add("maxRequestsIsFlexible", new BooleanValue(v
+						.getMaxRequests().isIsFlexible()));
+			}
+			if (v.getCapacity() != null) {
+				for (Double d : v.getCapacity()) {
+					temp.add("capacity", new DoubleValue(d));
+				}
+			}
+			if (v.getCompartment() != null) {
+				for (BigInteger compatible : v.getNodeTypesCompatible()) {
+					temp.add("nodeTypesCompatible",
+							new IntValue(compatible.intValue()));
+				}
+			}
+			i++;
+		}
+		// TODO From WorkLoadProfile to the end
 
 	}
 
