@@ -18,7 +18,7 @@ public class BooleanValue implements VrpAtt {
 		this.value = value;
 	}
 
-	public boolean isValue() {
+	public boolean getValue() {
 		return value;
 	}
 
