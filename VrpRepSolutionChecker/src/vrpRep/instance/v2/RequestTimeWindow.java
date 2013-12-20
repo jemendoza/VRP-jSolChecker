@@ -5,6 +5,8 @@ public class RequestTimeWindow implements RequestAtt {
 	private double	begin;
 	private double	end;
 	private int		period;
+	private boolean	isHardStart;
+	private boolean	isHardEnd;
 
 	public RequestTimeWindow() {
 
@@ -75,6 +77,22 @@ public class RequestTimeWindow implements RequestAtt {
 	 */
 	public void setPeriod(int period) {
 		this.period = period;
+	}
+
+	public boolean isHardStart() {
+		return isHardStart;
+	}
+
+	public void setHardStart(boolean isHardStart) {
+		this.isHardStart = isHardStart;
+	}
+
+	public boolean isHardEnd() {
+		return isHardEnd;
+	}
+
+	public void setHardEnd(boolean isHardEnd) {
+		this.isHardEnd = isHardEnd;
 	}
 
 }

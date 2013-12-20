@@ -5,10 +5,13 @@ package vrpRep.fileReaders;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 
 import javax.xml.bind.JAXBException;
 
 import vrpRep.instance.v2.BooleanValue;
+import vrpRep.instance.v2.DemandProbaDist;
+import vrpRep.instance.v2.DemandValue;
 import vrpRep.instance.v2.DoubleValue;
 import vrpRep.instance.v2.Euclidian;
 import vrpRep.instance.v2.GPS;
@@ -18,6 +21,10 @@ import vrpRep.instance.v2.Link;
 import vrpRep.instance.v2.LinkProbaDist;
 import vrpRep.instance.v2.Network;
 import vrpRep.instance.v2.Node;
+import vrpRep.instance.v2.Request;
+import vrpRep.instance.v2.RequestProbaDist;
+import vrpRep.instance.v2.RequestTimeWindow;
+import vrpRep.schema.instance.ProbabilityDistribution;
 import vrpRep.utilities.XmlReader;
 
 /**
@@ -60,8 +67,90 @@ public class InstanceReader {
 	}
 
 	private void requestTransformation() {
-		// TODO Auto-generated method stub
-
+		for (vrpRep.schema.instance.Instance.Requests.Request r : schemaInstance
+				.getRequests().getRequest()) {
+			Request temp = new Request(r.getId().intValue());
+			// Attributes
+			if (r.getType() != null)
+				temp.add("type", new IntValue(r.getType().intValue()));
+			if (r.getNode() != null)
+				temp.add("node", new IntValue(r.getNode().intValue()));
+			if (r.getLink() != null)
+				temp.add("link", new IntValue(r.getLink().intValue()));
+			// Elements
+			if (r.getTw() != null) {
+				for (vrpRep.schema.instance.Tw tw : r.getTw()) {
+					RequestTimeWindow rtw = new RequestTimeWindow();
+					if (tw.getPeriod() != null)
+						rtw.setPeriod(tw.getPeriod().intValue());
+					if (tw.getStart() != null)
+						rtw.setBegin(Double.valueOf(tw.getStart().getContent()));
+					if (tw.getEnd() != null)
+						rtw.setEnd(Double.valueOf(tw.getEnd().getContent()));
+					rtw.setHardStart(tw.getStart().isIsHard());
+					rtw.setHardEnd(tw.getEnd().isIsHard());
+					temp.add("tw", rtw);
+				}
+			}
+			if (r.getDemand() != null) {
+				for (vrpRep.schema.instance.Demand d : r.getDemand()) {
+					if (d.getContent().size() == 1)
+						temp.add(
+								"demand",
+								new DemandValue(d.getType().intValue(), d
+										.isIsSplitable(),
+										Double.valueOf((String) d.getContent()
+												.get(0))));
+					if (d.getContent().size() == 3) {
+						DemandProbaDist dpd = new DemandProbaDist();
+						ProbabilityDistribution pd = (ProbabilityDistribution) d
+								.getContent().get(1);
+						dpd.setName(pd.getName());
+						for (vrpRep.schema.instance.ProbabilityDistribution.Moment m : pd
+								.getMoment()) {
+							dpd.addMoment(m.getName(), m.getValue());
+						}
+						temp.add("demand", dpd);
+					}
+				}
+			}
+			if (r.getPrize() != null)
+				temp.add("price", new DoubleValue(r.getPrize().doubleValue()));
+			if (r.getCost() != null)
+				temp.add("cost", new DoubleValue(r.getCost().doubleValue()));
+			if (r.getReleaseDate() != null)
+				temp.add("releaseDate", new DoubleValue(r.getReleaseDate()
+						.doubleValue()));
+			if (r.getServiceTime() != null
+					&& r.getServiceTime().getContent().size() == 1)
+				temp.add(
+						"serviceTime",
+						new DoubleValue(Double.valueOf((String) r
+								.getServiceTime().getContent().get(0))));
+			if (r.getServiceTime() != null
+					&& r.getServiceTime().getContent().size() == 3) {
+				RequestProbaDist rpd = new RequestProbaDist();
+				ProbabilityDistribution pd = (ProbabilityDistribution) r
+						.getServiceTime().getContent().get(1);
+				rpd.setName(pd.getName());
+				for (vrpRep.schema.instance.ProbabilityDistribution.Moment m : pd
+						.getMoment()) {
+					rpd.addMoment(m.getName(), m.getValue());
+				}
+				temp.add("probabilityDistribution", rpd);
+			}
+			if (r.getPredecessors() != null) {
+				for (BigInteger prec : r.getPredecessors().getRequest()) {
+					temp.add("predecessor", new IntValue(prec.intValue()));
+				}
+			}
+			if (r.getSuccessors() != null) {
+				for (BigInteger prec : r.getSuccessors().getRequest()) {
+					temp.add("successor", new IntValue(prec.intValue()));
+				}
+			}
+			// TODO : Skill & Tool
+		}
 	}
 
 	private void vehicleTransformation() {
@@ -79,6 +168,7 @@ public class InstanceReader {
 			temp.addAttribute("directed", new BooleanValue(l.isDirected()));
 			if (l.getType() != null)
 				temp.addAttribute("type", new IntValue(l.getType().intValue()));
+			// Elements
 			if (l.getCost() != null)
 				temp.addAttribute("cost", new DoubleValue(l.getCost()));
 			if (l.getLength() != null)
@@ -90,8 +180,16 @@ public class InstanceReader {
 								.getContent().get(0))));
 			if (l.getTime() != null && l.getTime().getContent().size() == 3) {
 				LinkProbaDist lpd = new LinkProbaDist();
-
+				ProbabilityDistribution pd = (ProbabilityDistribution) l
+						.getTime().getContent().get(1);
+				lpd.setName(pd.getName());
+				for (vrpRep.schema.instance.ProbabilityDistribution.Moment m : pd
+						.getMoment()) {
+					lpd.addMoment(m.getName(), m.getValue());
+				}
+				temp.addAttribute("probabilityDistribution", lpd);
 			}
+			this.instance.addLink(temp);
 		}
 	}
 
@@ -100,23 +198,23 @@ public class InstanceReader {
 				.getNetwork().getNodes().getNode()) {
 			Node temp = new Node(n.getId().intValue());
 			if (n.getType() != null)
-				temp.addAttribute("Type", new IntValue(n.getType().intValue()));
+				temp.addAttribute("type", new IntValue(n.getType().intValue()));
 			if (n.getLocation() != null) {
 				if (n.getLocation().getEuclidean() != null) {
 					Euclidian euclidian = new Euclidian(n.getLocation()
 							.getEuclidean().getCx(), n.getLocation()
 							.getEuclidean().getCy(), n.getLocation()
 							.getEuclidean().getCz());
-					temp.addAttribute("Location", euclidian);
+					temp.addAttribute("location", euclidian);
 				}
 				if (n.getLocation().getGPSCoordinates() != null) {
 					GPS gps = new GPS(n.getLocation().getGPSCoordinates()
 							.getLat(), n.getLocation().getGPSCoordinates()
 							.getLon());
-					temp.addAttribute("Location", gps);
+					temp.addAttribute("location", gps);
 				}
 			}
-			instance.getNodes().add(temp);
+			instance.addNode(temp);
 		}
 	}
 
