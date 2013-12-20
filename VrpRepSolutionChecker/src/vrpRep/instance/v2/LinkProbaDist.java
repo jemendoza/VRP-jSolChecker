@@ -3,6 +3,7 @@
  */
 package vrpRep.instance.v2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,12 +11,25 @@ import java.util.List;
  * 
  */
 public class LinkProbaDist implements LinkAttTime {
-	private List<Double>	moments;
+	private List<Moment>	moments;
+	private String			name;
+
+	public LinkProbaDist() {
+		moments = new ArrayList<Moment>();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	/**
 	 * @param moments
 	 */
-	public LinkProbaDist(List<Double> moments) {
+	public LinkProbaDist(List<Moment> moments) {
 		super();
 		this.moments = moments;
 	}
@@ -23,7 +37,7 @@ public class LinkProbaDist implements LinkAttTime {
 	/**
 	 * @return the moments
 	 */
-	public List<Double> getMoments() {
+	public List<Moment> getMoments() {
 		return moments;
 	}
 
@@ -31,8 +45,12 @@ public class LinkProbaDist implements LinkAttTime {
 	 * @param moments
 	 *            the moments to set
 	 */
-	public void setMoments(List<Double> moments) {
+	public void setMoments(List<Moment> moments) {
 		this.moments = moments;
+	}
+
+	public void addMoment(String name, double value) {
+		this.moments.add(new Moment(name, value));
 	}
 
 }
