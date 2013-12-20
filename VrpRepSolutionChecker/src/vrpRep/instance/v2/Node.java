@@ -3,6 +3,8 @@ package vrpRep.instance.v2;
 import java.util.HashMap;
 import java.util.List;
 
+import vrpRep.exceptions.MissingAttributeException;
+
 /**
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -24,6 +26,21 @@ public class Node {
 		this.id = id;
 	}
 
+	
+	/**
+	 * Retrieve node attribute from hashmap
+	 * @param name name of attribute
+	 * @return Attribute value
+	 * @throws MissingAttributeException Thrown if attribute not found
+	 */
+	public List<VrpAtt> getAttribute(String name) throws MissingAttributeException{
+		if(!this.atts.containsKey(name))
+			throw new MissingAttributeException(name);
+		else
+			return this.atts.get(name);
+	}
+	
+	
 	/**
 	 * 
 	 * @param name

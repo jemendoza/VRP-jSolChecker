@@ -30,9 +30,9 @@ public class StandardInstance {
 	 */
 	protected Object instance;
 	
+	
 
-	
-	
+
 	/**
 	 * Constructor that creates xml tree on class instantiation 
 	 * @param xmlFile xml file to extract
