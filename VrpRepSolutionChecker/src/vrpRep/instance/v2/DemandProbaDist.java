@@ -13,6 +13,10 @@ public class DemandProbaDist extends Demand {
 
 	private List<Double> moments;
 	
+	public DemandProbaDist(){
+	
+	}
+	
 	public DemandProbaDist(int type, boolean isSplittable, List<Double> moments) {
 		super(type, isSplittable);
 		this.moments=moments;

@@ -7,10 +7,10 @@ import java.util.List;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
- *
+ * 
  */
 public class LinkProbaDist implements LinkAttTime {
-	private List<Double> moments;
+	private List<Double>	moments;
 
 	/**
 	 * @param moments
@@ -28,13 +28,11 @@ public class LinkProbaDist implements LinkAttTime {
 	}
 
 	/**
-	 * @param moments the moments to set
+	 * @param moments
+	 *            the moments to set
 	 */
 	public void setMoments(List<Double> moments) {
 		this.moments = moments;
 	}
-	
-	
-	
-}
 
+}

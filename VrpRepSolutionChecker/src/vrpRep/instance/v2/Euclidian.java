@@ -5,23 +5,26 @@ package vrpRep.instance.v2;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
- *
+ * 
  */
 public class Euclidian implements Location {
-	private double cx;
-	private double cy;
-	private double cz=(Double)null;
-	
-	
-	public Euclidian(double cx, double cy){
-		this.cx=cx;
-		this.cy=cy;
+	private double	cx;
+	private double	cy;
+	private double	cz	= (Double) null;
+
+	public Euclidian() {
+
 	}
-	
-	public Euclidian(double cx, double cy, double cz){
-		this.cx=cx;
-		this.cy=cy;
-		this.cz=cz;
+
+	public Euclidian(double cx, double cy) {
+		this.cx = cx;
+		this.cy = cy;
+	}
+
+	public Euclidian(double cx, double cy, double cz) {
+		this.cx = cx;
+		this.cy = cy;
+		this.cz = cz;
 	}
 
 	/**
@@ -32,7 +35,8 @@ public class Euclidian implements Location {
 	}
 
 	/**
-	 * @param cx the cx to set
+	 * @param cx
+	 *            the cx to set
 	 */
 	public void setCx(double cx) {
 		this.cx = cx;
@@ -46,7 +50,8 @@ public class Euclidian implements Location {
 	}
 
 	/**
-	 * @param cy the cy to set
+	 * @param cy
+	 *            the cy to set
 	 */
 	public void setCy(double cy) {
 		this.cy = cy;
@@ -60,10 +65,11 @@ public class Euclidian implements Location {
 	}
 
 	/**
-	 * @param cz the cz to set
+	 * @param cz
+	 *            the cz to set
 	 */
 	public void setCz(double cz) {
 		this.cz = cz;
 	}
-	
+
 }

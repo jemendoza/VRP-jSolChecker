@@ -7,11 +7,15 @@ import java.util.List;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
- *
+ * 
  */
 public class SpeedProfile implements VehicleAtt {
 
-	private List<SpeedInt> ints;
+	private List<SpeedInt>	ints;
+
+	public SpeedProfile() {
+
+	}
 
 	/**
 	 * @param ints
@@ -29,11 +33,11 @@ public class SpeedProfile implements VehicleAtt {
 	}
 
 	/**
-	 * @param ints the ints to set
+	 * @param ints
+	 *            the ints to set
 	 */
 	public void setInts(List<SpeedInt> ints) {
 		this.ints = ints;
 	}
-	
-	
+
 }

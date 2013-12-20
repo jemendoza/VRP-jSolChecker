@@ -21,7 +21,7 @@ public class Link {
 	 * @param tail
 	 * @param head
 	 */
-	public Link(HashMap<String, List<VrpAtt>> atts, int tail, int head) {
+	public Link(int tail, int head) {
 		super();
 		this.atts = atts;
 		this.tail = tail;

@@ -8,10 +8,12 @@ package vrpRep.instance.v2;
  * 
  */
 public class IntValue implements VrpAtt {
-	int	value;
+
+	private int	value;
 
 	/**
-	 * @param isFlex
+	 * 
+	 * @param value
 	 */
 	public IntValue(int value) {
 		super();

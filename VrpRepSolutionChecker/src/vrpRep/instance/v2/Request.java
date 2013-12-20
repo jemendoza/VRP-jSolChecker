@@ -7,14 +7,12 @@ import java.util.List;
 /**
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
- *
+ * 
  */
 public class Request {
 
-	private HashMap<String, List<VrpAtt>> atts;
-	private int id;
-
-
+	private HashMap<String, List<VrpAtt>>	atts;
+	private int								id;
 
 	/**
 	 * @param id
@@ -40,11 +38,11 @@ public class Request {
 	 * @param name
 	 * @param att
 	 */
-	public void add(String name, RequestAtt att){
+	public void add(String name, RequestAtt att) {
 
-		if(atts.containsKey(name)){
+		if (atts.containsKey(name)) {
 			atts.get(name).add(att);
-		}else{
+		} else {
 			List<VrpAtt> value = new ArrayList<VrpAtt>();
 			value.add(att);
 			atts.put(name, value);
@@ -56,11 +54,11 @@ public class Request {
 	 * @param name
 	 * @param att
 	 */
-	public void add(String name, IntValue att){
-		
-		if(atts.containsKey(name)){
+	public void add(String name, IntValue att) {
+
+		if (atts.containsKey(name)) {
 			atts.get(name).add(att);
-		}else{
+		} else {
 			List<VrpAtt> value = new ArrayList<VrpAtt>();
 			value.add(att);
 			atts.put(name, value);
@@ -72,11 +70,11 @@ public class Request {
 	 * @param name
 	 * @param att
 	 */
-	public void add(String name, DoubleValue att){
+	public void add(String name, DoubleValue att) {
 
-		if(atts.containsKey(name)){
+		if (atts.containsKey(name)) {
 			atts.get(name).add(att);
-		}else{
+		} else {
 			List<VrpAtt> value = new ArrayList<VrpAtt>();
 			value.add(att);
 			atts.put(name, value);
@@ -88,11 +86,11 @@ public class Request {
 	 * @param name
 	 * @param att
 	 */
-	public void add(String name, BooleanValue att){
+	public void add(String name, BooleanValue att) {
 
-		if(atts.containsKey(name)){
+		if (atts.containsKey(name)) {
 			atts.get(name).add(att);
-		}else{
+		} else {
 			List<VrpAtt> value = new ArrayList<VrpAtt>();
 			value.add(att);
 			atts.put(name, value);
@@ -105,8 +103,6 @@ public class Request {
 	public HashMap<String, List<VrpAtt>> getAtts() {
 		return atts;
 	}
-
-
 
 	/**
 	 * @return the id

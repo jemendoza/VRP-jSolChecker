@@ -7,10 +7,14 @@ import java.util.List;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
- *
+ * 
  */
 public class RequestProbaDist implements RequestAttTime {
-	private List<Double> moments;
+	private List<Double>	moments;
+
+	public RequestProbaDist() {
+
+	}
 
 	/**
 	 * @param moments
@@ -28,12 +32,11 @@ public class RequestProbaDist implements RequestAttTime {
 	}
 
 	/**
-	 * @param moments the moments to set
+	 * @param moments
+	 *            the moments to set
 	 */
 	public void setMoments(List<Double> moments) {
 		this.moments = moments;
 	}
-	
-	
-	
+
 }

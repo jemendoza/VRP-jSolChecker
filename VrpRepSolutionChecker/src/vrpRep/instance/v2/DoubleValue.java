@@ -11,7 +11,8 @@ public class DoubleValue implements VrpAtt {
 	double	value;
 
 	/**
-	 * @param isFlex
+	 * 
+	 * @param value
 	 */
 	public DoubleValue(double value) {
 		super();

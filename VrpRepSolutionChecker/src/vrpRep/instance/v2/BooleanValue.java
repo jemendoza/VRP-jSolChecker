@@ -8,7 +8,8 @@ package vrpRep.instance.v2;
  * 
  */
 public class BooleanValue implements VrpAtt {
-	boolean	value;
+
+	private boolean	value;
 
 	/**
 	 * @param isFlex

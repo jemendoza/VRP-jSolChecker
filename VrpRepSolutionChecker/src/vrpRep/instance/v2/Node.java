@@ -19,7 +19,7 @@ public class Node {
 	 * @param atts
 	 * @param id
 	 */
-	public Node(HashMap<String, List<VrpAtt>> atts, int id) {
+	public Node(int id) {
 		super();
 		this.atts = atts;
 		this.id = id;
