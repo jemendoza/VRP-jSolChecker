@@ -10,7 +10,7 @@ package vrpRep.instance.v2;
 public class Network {
 
 	private boolean	isComplete;
-	private int		distanceType;
+	private String	distanceType;
 	private String	roundingRule;
 
 	public Network() {
@@ -35,7 +35,7 @@ public class Network {
 	/**
 	 * @return the distanceType
 	 */
-	public int getDistanceType() {
+	public String getDistanceType() {
 		return distanceType;
 	}
 
@@ -43,7 +43,7 @@ public class Network {
 	 * @param distanceType
 	 *            the distanceType to set
 	 */
-	public void setDistanceType(int distanceType) {
+	public void setDistanceType(String distanceType) {
 		this.distanceType = distanceType;
 	}
 
