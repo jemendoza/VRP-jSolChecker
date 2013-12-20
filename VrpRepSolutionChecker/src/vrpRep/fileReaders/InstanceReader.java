@@ -10,11 +10,14 @@ import javax.xml.bind.JAXBException;
 
 import vrpRep.instance.v2.BooleanValue;
 import vrpRep.instance.v2.DoubleValue;
+import vrpRep.instance.v2.Euclidian;
+import vrpRep.instance.v2.GPS;
 import vrpRep.instance.v2.Instance;
 import vrpRep.instance.v2.IntValue;
 import vrpRep.instance.v2.Link;
 import vrpRep.instance.v2.LinkProbaDist;
 import vrpRep.instance.v2.Network;
+import vrpRep.instance.v2.Node;
 import vrpRep.utilities.XmlReader;
 
 /**
@@ -93,8 +96,28 @@ public class InstanceReader {
 	}
 
 	private void nodeTransformation() {
-		// TODO Auto-generated method stub
-
+		for (vrpRep.schema.instance.Instance.Network.Nodes.Node n : schemaInstance
+				.getNetwork().getNodes().getNode()) {
+			Node temp = new Node(n.getId().intValue());
+			if (n.getType() != null)
+				temp.addAttribute("Type", new IntValue(n.getType().intValue()));
+			if (n.getLocation() != null) {
+				if (n.getLocation().getEuclidean() != null) {
+					Euclidian euclidian = new Euclidian(n.getLocation()
+							.getEuclidean().getCx(), n.getLocation()
+							.getEuclidean().getCy(), n.getLocation()
+							.getEuclidean().getCz());
+					temp.addAttribute("Location", euclidian);
+				}
+				if (n.getLocation().getGPSCoordinates() != null) {
+					GPS gps = new GPS(n.getLocation().getGPSCoordinates()
+							.getLat(), n.getLocation().getGPSCoordinates()
+							.getLon());
+					temp.addAttribute("Location", gps);
+				}
+			}
+			instance.getNodes().add(temp);
+		}
 	}
 
 	private void networkTransformation() {

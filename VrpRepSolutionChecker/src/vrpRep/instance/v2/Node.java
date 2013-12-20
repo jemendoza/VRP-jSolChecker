@@ -21,7 +21,6 @@ public class Node {
 	 */
 	public Node(int id) {
 		super();
-		this.atts = atts;
 		this.id = id;
 	}
 
@@ -51,7 +50,7 @@ public class Node {
 	 * @param att
 	 *            Attribute value
 	 */
-	public void addAttribute(String name, NodeAtt att) {
+	public void addAttribute(String name, VrpAtt att) {
 		addAttr(name, att);
 	}
 
@@ -107,7 +106,7 @@ public class Node {
 		else
 			return this.atts.get(name);
 	}
-	
+
 	/**
 	 * @return the atts
 	 */
