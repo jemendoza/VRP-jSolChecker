@@ -13,6 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import vrpRep.fileReaders.InstanceReader;
 import vrpRep.schema.instance.Instance;
 import vrpRep.schema.instance.Instance.Network.Nodes.Node;
 
@@ -52,7 +53,7 @@ public class DefaultInstanceTest {
 	 */
 	@Before	
 	public void setUp() throws Exception {
-		d = (Instance) new StandardInstance(new File("./schemaFiles/A-n32-k5.xml.zip")).instance;
+		d = (Instance) new InstanceReader(new File("./schemaFiles/A-n32-k5.xml.zip")).instance;
 		ids = new int[]{1,2,3,4,5,6,7,8,9,10};
 		types = new int[]{0,1,1,1,1,1,1,1,1,1};
 		xs = new double[]{82.0,96.0,50.0,49.0,13.0,29.0,58.0,84.0,14.0,2.0};
