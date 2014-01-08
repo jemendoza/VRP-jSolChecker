@@ -24,10 +24,13 @@ import vrpRep.instance.v2.Node;
 import vrpRep.instance.v2.Request;
 import vrpRep.instance.v2.RequestProbaDist;
 import vrpRep.instance.v2.RequestTimeWindow;
+import vrpRep.instance.v2.SkillAndTool;
 import vrpRep.instance.v2.SpeedInt;
 import vrpRep.instance.v2.SpeedIntTimeWindow;
 import vrpRep.instance.v2.Vehicle;
 import vrpRep.schema.instance.ProbabilityDistribution;
+import vrpRep.schema.instance.Skill;
+import vrpRep.schema.instance.Tool;
 import vrpRep.utilities.XmlReader;
 
 /**
@@ -118,7 +121,7 @@ public class InstanceReader {
 				}
 			}
 			if (r.getPrize() != null)
-				temp.add("price", new DoubleValue(r.getPrize().doubleValue()));
+				temp.add("prize", new DoubleValue(r.getPrize().doubleValue()));
 			if (r.getCost() != null)
 				temp.add("cost", new DoubleValue(r.getCost().doubleValue()));
 			if (r.getReleaseDate() != null)
@@ -152,7 +155,23 @@ public class InstanceReader {
 					temp.add("successor", new IntValue(prec.intValue()));
 				}
 			}
-			// TODO : Skill & Tool
+			if (r.getSkill() != null) {
+				for (Skill s : r.getSkill()) {
+					SkillAndTool sat = new SkillAndTool();
+					sat.setId(s.getId().intValue());
+					sat.setValue(Integer.valueOf(s.getContent()));
+					temp.add("skill", sat);
+				}
+			}
+			if (r.getTool() != null) {
+				for (Tool t : r.getTool()) {
+					SkillAndTool sat = new SkillAndTool();
+					sat.setId(t.getId().intValue());
+					sat.setValue(Integer.valueOf(t.getContent()));
+					temp.add("tool", sat);
+				}
+			}
+			this.instance.addRequest(temp);
 		}
 	}
 
