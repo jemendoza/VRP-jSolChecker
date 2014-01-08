@@ -119,6 +119,9 @@ public class InstanceReader {
 
 					if (d.getContent().size() == 3) {
 						DemandProbaDist dpd = new DemandProbaDist();
+						dpd.setSplittable(d.isIsSplitable());
+						if (d.getType() != null)
+							dpd.setType(d.getType().intValue());
 						ProbabilityDistribution pd = (ProbabilityDistribution) d
 								.getContent().get(1);
 						dpd.setName(pd.getName());
