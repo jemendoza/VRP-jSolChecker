@@ -8,9 +8,9 @@ package vrpRep.instance.v2;
  * 
  */
 public class Compartment implements VehicleAtt {
-	private int	type;
-	private int	min;
-	private int	max;
+	private int		type;
+	private Double	min;
+	private Double	max;
 
 	public Compartment() {
 
@@ -21,7 +21,7 @@ public class Compartment implements VehicleAtt {
 	 * @param min
 	 * @param max
 	 */
-	public Compartment(int type, int min, int max) {
+	public Compartment(int type, Double min, Double max) {
 		super();
 		this.type = type;
 		this.min = min;
@@ -46,7 +46,7 @@ public class Compartment implements VehicleAtt {
 	/**
 	 * @return the min
 	 */
-	public int getMin() {
+	public Double getMin() {
 		return min;
 	}
 
@@ -54,14 +54,14 @@ public class Compartment implements VehicleAtt {
 	 * @param min
 	 *            the min to set
 	 */
-	public void setMin(int min) {
+	public void setMin(Double min) {
 		this.min = min;
 	}
 
 	/**
 	 * @return the max
 	 */
-	public int getMax() {
+	public Double getMax() {
 		return max;
 	}
 
@@ -69,7 +69,7 @@ public class Compartment implements VehicleAtt {
 	 * @param max
 	 *            the max to set
 	 */
-	public void setMax(int max) {
+	public void setMax(Double max) {
 		this.max = max;
 	}
 

@@ -3,7 +3,7 @@ package vrpRep.instance.v2;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpeedInt {
+public class SpeedInt implements VehicleAtt {
 	private double						speed;
 	private List<SpeedIntTimeWindow>	tw;
 

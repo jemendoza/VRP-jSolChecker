@@ -10,6 +10,7 @@ import java.math.BigInteger;
 import javax.xml.bind.JAXBException;
 
 import vrpRep.instance.v2.BooleanValue;
+import vrpRep.instance.v2.Compartment;
 import vrpRep.instance.v2.DemandProbaDist;
 import vrpRep.instance.v2.DemandValue;
 import vrpRep.instance.v2.DoubleValue;
@@ -28,6 +29,7 @@ import vrpRep.instance.v2.SkillAndTool;
 import vrpRep.instance.v2.SpeedInt;
 import vrpRep.instance.v2.SpeedIntTimeWindow;
 import vrpRep.instance.v2.Vehicle;
+import vrpRep.instance.v2.VehicleAttTimeWindow;
 import vrpRep.schema.instance.ProbabilityDistribution;
 import vrpRep.schema.instance.Skill;
 import vrpRep.schema.instance.Tool;
@@ -219,6 +221,7 @@ public class InstanceReader {
 											.isIsHard(), tw.getEnd().isIsHard());
 							speed.addTw(time);
 						}
+						temp.add("speedProfile", speed);
 					}
 				}
 			}
@@ -238,21 +241,68 @@ public class InstanceReader {
 				temp.add("maxRequestsIsFlexible", new BooleanValue(v
 						.getMaxRequests().isIsFlexible()));
 			}
+			if (v.getWorkloadProfile() != null) {
+				if (v.getWorkloadProfile().getMaxWorkTime() != null) {
+					temp.add(
+							"wLPMaxWorkTime",
+							new DoubleValue(Double.valueOf(v
+									.getWorkloadProfile().getMaxWorkTime()
+									.getContent())));
+					temp.add("wLPMaxWorkTimeIsFlexible", new BooleanValue(v
+							.getWorkloadProfile().getMaxWorkTime()
+							.isIsFlexible()));
+				}
+				if (v.getWorkloadProfile().getTw() != null) {
+					VehicleAttTimeWindow tw;
+					for (vrpRep.schema.instance.Tw timew : v
+							.getWorkloadProfile().getTw()) {
+						tw = new VehicleAttTimeWindow(Double.valueOf(timew
+								.getStart().getContent()), Double.valueOf(timew
+								.getEnd().getContent()), timew.getPeriod()
+								.intValue(), timew.getStart().isIsHard(), timew
+								.getEnd().isIsHard());
+						temp.add("vLPtw", tw);
+					}
+				}
+			}
 			if (v.getCapacity() != null) {
 				for (Double d : v.getCapacity()) {
 					temp.add("capacity", new DoubleValue(d));
 				}
 			}
 			if (v.getCompartment() != null) {
-				for (BigInteger compatible : v.getNodeTypesCompatible()) {
-					temp.add("nodeTypesCompatible",
-							new IntValue(compatible.intValue()));
+				for (vrpRep.schema.instance.Compartment compartment : v
+						.getCompartment()) {
+					if (compartment.getFixed() != null)
+						temp.add("compartment", new Compartment(compartment
+								.getType().intValue(), compartment.getFixed(),
+								compartment.getFixed()));
+					else
+						temp.add(
+								"compartment",
+								new Compartment(compartment.getType()
+										.intValue(), compartment
+										.getMinCapacity(), compartment
+										.getMaxCapacity()));
+
 				}
+			}
+			if (v.getDepartureNode() != null) {
+				temp.add("departureNode", new IntValue(v.getDepartureNode()
+						.intValue()));
+			}
+			if (v.getArrivalNode() != null) {
+				temp.add("arrivalNode", new IntValue(v.getArrivalNode()
+						.intValue()));
+			}
+			if (v.getSkill() != null) {
+
+			}
+			if (v.getTool() != null) {
+
 			}
 			i++;
 		}
-		// TODO From WorkLoadProfile to the end
-
 	}
 
 	private void linkTransformation() {

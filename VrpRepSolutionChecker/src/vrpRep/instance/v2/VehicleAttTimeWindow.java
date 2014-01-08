@@ -5,6 +5,7 @@ public class VehicleAttTimeWindow implements VehicleAtt {
 	private double	begin;
 	private double	end;
 	private int		period;
+	private boolean	isFlexBegin, isFlexEnd;
 
 	public VehicleAttTimeWindow() {
 
@@ -15,21 +16,22 @@ public class VehicleAttTimeWindow implements VehicleAtt {
 	 * @param end
 	 * @param period
 	 */
-	public VehicleAttTimeWindow(double begin, double end, int period) {
+	public VehicleAttTimeWindow(double begin, double end, int period,
+			boolean isFlexBegin, boolean isFlexEnd) {
 		super();
 		this.begin = begin;
 		this.end = end;
 		this.period = period;
+		this.isFlexBegin = isFlexBegin;
+		this.isFlexEnd = isFlexEnd;
 	}
 
 	public boolean isFlexBegin() {
-		// TODO
-		return false;
+		return isFlexBegin;
 	}
 
 	public boolean isFlexEnd() {
-		// TODO
-		return false;
+		return isFlexEnd;
 	}
 
 	/**
