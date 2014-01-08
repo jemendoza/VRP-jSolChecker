@@ -10,7 +10,7 @@ package vrpRep.instance.v2;
 public class Euclidian implements Location {
 	private double	cx;
 	private double	cy;
-	private double	cz	= (Double) null;
+	private double	cz;
 
 	public Euclidian() {
 

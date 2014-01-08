@@ -3,6 +3,7 @@
  */
 package vrpRep.instance.v2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,19 +23,11 @@ public class RequestProbaDist implements RequestAttTime {
 	}
 
 	public RequestProbaDist() {
-
+		moments = new ArrayList<Moment>();
 	}
 
 	public void addMoment(String name, double value) {
 		this.moments.add(new Moment(name, value));
-	}
-
-	/**
-	 * @param moments
-	 */
-	public RequestProbaDist(List<Moment> moments) {
-		super();
-		this.moments = moments;
 	}
 
 	/**

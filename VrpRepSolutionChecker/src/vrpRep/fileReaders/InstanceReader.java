@@ -157,8 +157,8 @@ public class InstanceReader {
 				}
 			}
 			if (r.getSuccessors() != null) {
-				for (BigInteger prec : r.getSuccessors().getRequest()) {
-					temp.add("successor", new IntValue(prec.intValue()));
+				for (BigInteger succ : r.getSuccessors().getRequest()) {
+					temp.add("successor", new IntValue(succ.intValue()));
 				}
 			}
 			if (r.getSkill() != null) {
@@ -313,6 +313,7 @@ public class InstanceReader {
 				}
 			}
 			i++;
+			this.instance.addFleet(temp);
 		}
 	}
 

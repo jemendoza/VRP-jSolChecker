@@ -24,13 +24,12 @@ public class DemandProbaDist extends Demand {
 	}
 
 	public DemandProbaDist() {
-
+		this.moments = new ArrayList<Moment>();
 	}
 
 	public DemandProbaDist(int type, boolean isSplittable) {
 		super(type, isSplittable);
 		this.moments = new ArrayList<Moment>();
-		// TODO Auto-generated constructor stub
 	}
 
 	public void addMoment(String name, double value) {

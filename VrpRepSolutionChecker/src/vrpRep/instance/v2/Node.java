@@ -22,6 +22,7 @@ public class Node {
 	public Node(int id) {
 		super();
 		this.id = id;
+		atts = new HashMap<String, List<VrpAtt>>();
 	}
 
 	/**

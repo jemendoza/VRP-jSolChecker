@@ -21,7 +21,7 @@ public class Vehicle {
 	 */
 	public Vehicle(int id) {
 		super();
-		this.atts = atts;
+		atts = new HashMap<String, List<VrpAtt>>();
 		this.id = id;
 	}
 

@@ -23,7 +23,7 @@ public class Link {
 	 */
 	public Link(int tail, int head) {
 		super();
-		this.atts = atts;
+		atts = new HashMap<String, List<VrpAtt>>();
 		this.tail = tail;
 		this.head = head;
 	}
@@ -110,7 +110,7 @@ public class Link {
 		else
 			return this.atts.get(name);
 	}
-	
+
 	/**
 	 * @return the atts
 	 */
