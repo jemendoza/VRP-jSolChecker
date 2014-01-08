@@ -296,10 +296,20 @@ public class InstanceReader {
 						.intValue()));
 			}
 			if (v.getSkill() != null) {
-
+				for (Skill s : v.getSkill()) {
+					SkillAndTool sat = new SkillAndTool();
+					sat.setId(s.getId().intValue());
+					sat.setValue(Integer.valueOf(s.getContent()));
+					temp.add("skill", sat);
+				}
 			}
 			if (v.getTool() != null) {
-
+				for (Tool t : v.getTool()) {
+					SkillAndTool sat = new SkillAndTool();
+					sat.setId(t.getId().intValue());
+					sat.setValue(Integer.valueOf(t.getContent()));
+					temp.add("tool", sat);
+				}
 			}
 			i++;
 		}
