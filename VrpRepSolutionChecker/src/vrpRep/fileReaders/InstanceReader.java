@@ -61,6 +61,7 @@ public class InstanceReader {
 			this.schemaInstance = iR.unmarshallDocument(xmlFile,
 					vrpRep.schema.instance.Instance.class.getName());
 			this.instance = new Instance();
+			this.translateInstance();
 		} catch (ClassNotFoundException | JAXBException | IOException e) {
 			e.printStackTrace();
 		}
