@@ -100,13 +100,16 @@ public class InstanceReader {
 			}
 			if (r.getDemand() != null) {
 				for (vrpRep.schema.instance.Demand d : r.getDemand()) {
-					if (d.getContent().size() == 1)
-						temp.add(
-								"demand",
-								new DemandValue(d.getType().intValue(), d
-										.isIsSplitable(),
-										Double.valueOf((String) d.getContent()
-												.get(0))));
+					if (d.getContent().size() == 1) {
+						DemandValue dv = new DemandValue();
+						dv.setSplittable(d.isIsSplitable());
+						if (d.getType() != null)
+							dv.setType(d.getType().intValue());
+						dv.setValue(Double.valueOf((String) d.getContent().get(
+								0)));
+						temp.add("demand", dv);
+					}
+
 					if (d.getContent().size() == 3) {
 						DemandProbaDist dpd = new DemandProbaDist();
 						ProbabilityDistribution pd = (ProbabilityDistribution) d

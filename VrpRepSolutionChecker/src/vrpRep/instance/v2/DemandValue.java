@@ -10,6 +10,10 @@ package vrpRep.instance.v2;
 public class DemandValue extends Demand {
 	private double	value;
 
+	public DemandValue() {
+		super();
+	}
+
 	/**
 	 * @param type
 	 * @param isSplittable
