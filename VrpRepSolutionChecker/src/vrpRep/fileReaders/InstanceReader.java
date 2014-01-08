@@ -67,6 +67,10 @@ public class InstanceReader {
 		}
 	}
 
+	public Instance getInstance() {
+		return instance;
+	}
+
 	private void translateInstance() {
 		networkTransformation();
 		nodeTransformation();
