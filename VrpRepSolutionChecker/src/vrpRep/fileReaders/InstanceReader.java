@@ -328,6 +328,8 @@ public class InstanceReader {
 			// Attributes
 			if (l.getId() != null)
 				temp.addAttribute("id", new IntValue(l.getId().intValue()));
+			temp.addAttribute("tail", new IntValue(l.getTail().intValue()));
+			temp.addAttribute("head", new IntValue(l.getHead().intValue()));
 			temp.addAttribute("directed", new BooleanValue(l.isDirected()));
 			if (l.getType() != null)
 				temp.addAttribute("type", new IntValue(l.getType().intValue()));
