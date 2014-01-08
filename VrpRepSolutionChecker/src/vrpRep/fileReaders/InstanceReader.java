@@ -156,7 +156,7 @@ public class InstanceReader {
 						.getMoment()) {
 					rpd.addMoment(m.getName(), m.getValue());
 				}
-				temp.add("probabilityDistribution", rpd);
+				temp.add("serviceTime", rpd);
 			}
 			if (r.getPredecessors() != null) {
 				for (BigInteger prec : r.getPredecessors().getRequest()) {
