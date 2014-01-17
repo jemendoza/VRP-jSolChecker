@@ -7,7 +7,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import vrpRep.fileReaders.InstanceReader;
+import vrpRep.fileReaders.InstanceTranslator;
 import vrpRep.schema.instance.Instance;
 import vrpRep.schema.instance.Instance.Fleet.Vehicle;
 import vrpRep.schema.instance.Instance.Network.Nodes.Node;
@@ -31,7 +31,7 @@ public class MaxTravelDistance implements IConstraint {
 	 * @see vrpRep.solutionChecker.constraint.IConstraint#evaluate(vrpRep.solutionChecker.instance.DefaultInstance, vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate(InstanceReader inst, DefaultSolution sol) {
+	public void evaluate(InstanceTranslator inst, DefaultSolution sol) {
 		boolean result;
 		this.inst = (Instance)inst.getInstance();
 		this.sol = sol;

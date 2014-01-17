@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import vrpRep.fileReaders.InstanceReader;
+import vrpRep.fileReaders.InstanceTranslator;
 import vrpRep.schema.instance.Instance;
 import vrpRep.schema.instance.Instance.Fleet.Vehicle;
 import vrpRep.schema.solution.Solution.Routes.Route;
@@ -27,7 +27,7 @@ public class NbVehicleAvailable implements IConstraint {
 	private Instance inst;
 	
 	@Override
-	public void evaluate(InstanceReader instance, DefaultSolution sol) {
+	public void evaluate(InstanceTranslator instance, DefaultSolution sol) {
 
 		this.inst=(Instance) instance.getInstance();
 		List<BigInteger> nbVehicleTypeInstance = getInstanceVehicle(inst);

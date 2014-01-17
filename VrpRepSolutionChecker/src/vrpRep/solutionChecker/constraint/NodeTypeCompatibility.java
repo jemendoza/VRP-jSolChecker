@@ -7,7 +7,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import vrpRep.fileReaders.InstanceReader;
+import vrpRep.fileReaders.InstanceTranslator;
 import vrpRep.schema.instance.Instance;
 import vrpRep.schema.instance.Instance.Fleet.Vehicle;
 import vrpRep.schema.instance.Instance.Network.Nodes.Node;
@@ -32,7 +32,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate(InstanceReader inst, DefaultSolution sol) {
+	public void evaluate(InstanceTranslator inst, DefaultSolution sol) {
 		this.inst = (Instance) inst.getInstance();
 		this.sol = sol;
 

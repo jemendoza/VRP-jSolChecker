@@ -5,7 +5,7 @@ package sandbox;
 
 import java.io.File;
 
-import vrpRep.fileReaders.InstanceReader;
+import vrpRep.fileReaders.InstanceTranslator;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -17,7 +17,7 @@ public class TestMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		InstanceReader inst = new InstanceReader(new File(
+		InstanceTranslator inst = new InstanceTranslator(new File(
 				"./schemaFiles/A-n32-k5.xml.zip"));
 
 		// Instance.Network.Descriptor des =

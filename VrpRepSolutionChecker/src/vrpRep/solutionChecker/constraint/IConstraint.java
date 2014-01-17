@@ -3,7 +3,7 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import vrpRep.fileReaders.InstanceReader;
+import vrpRep.fileReaders.InstanceTranslator;
 import vrpRep.solutionChecker.solution.DefaultSolution;
 
 /**
@@ -17,6 +17,6 @@ public interface IConstraint {
 	 * Evaluates a constraint of solution
 	 * @param sol Solution to evaluate
 	 */
-	public void evaluate(InstanceReader inst, DefaultSolution sol);
+	public void evaluate(InstanceTranslator inst, DefaultSolution sol);
 
 }

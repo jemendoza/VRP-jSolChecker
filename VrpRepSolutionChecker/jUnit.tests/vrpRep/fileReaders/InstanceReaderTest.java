@@ -14,22 +14,22 @@ import org.junit.Before;
 import org.junit.Test;
 
 import vrpRep.exceptions.MissingAttributeException;
-import vrpRep.instance.v2.BooleanValue;
-import vrpRep.instance.v2.Compartment;
-import vrpRep.instance.v2.DemandProbaDist;
-import vrpRep.instance.v2.DoubleValue;
-import vrpRep.instance.v2.Euclidian;
-import vrpRep.instance.v2.IntValue;
-import vrpRep.instance.v2.Link;
-import vrpRep.instance.v2.LinkProbaDist;
-import vrpRep.instance.v2.Network;
-import vrpRep.instance.v2.Node;
-import vrpRep.instance.v2.Request;
-import vrpRep.instance.v2.RequestProbaDist;
-import vrpRep.instance.v2.RequestTimeWindow;
-import vrpRep.instance.v2.SkillAndTool;
-import vrpRep.instance.v2.Vehicle;
-import vrpRep.instance.v2.VehicleAttTimeWindow;
+import vrpRep.structure.instance.BooleanValue;
+import vrpRep.structure.instance.Compartment;
+import vrpRep.structure.instance.DemandProbaDist;
+import vrpRep.structure.instance.DoubleValue;
+import vrpRep.structure.instance.Euclidian;
+import vrpRep.structure.instance.IntValue;
+import vrpRep.structure.instance.Link;
+import vrpRep.structure.instance.LinkProbaDist;
+import vrpRep.structure.instance.Network;
+import vrpRep.structure.instance.Node;
+import vrpRep.structure.instance.Request;
+import vrpRep.structure.instance.RequestProbaDist;
+import vrpRep.structure.instance.RequestTimeWindow;
+import vrpRep.structure.instance.SkillAndTool;
+import vrpRep.structure.instance.Vehicle;
+import vrpRep.structure.instance.VehicleAttTimeWindow;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -37,14 +37,14 @@ import vrpRep.instance.v2.VehicleAttTimeWindow;
  */
 public class InstanceReaderTest {
 
-	private InstanceReader	instR;
+	private InstanceTranslator	instR;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		this.instR = new InstanceReader(new File(
+		this.instR = new InstanceTranslator(new File(
 				"./schemaFiles/testXmlFile.xml"));
 	}
 

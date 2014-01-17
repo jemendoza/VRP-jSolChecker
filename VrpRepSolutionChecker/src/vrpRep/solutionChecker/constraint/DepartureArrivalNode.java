@@ -6,7 +6,7 @@ package vrpRep.solutionChecker.constraint;
 
 import java.math.BigInteger;
 
-import vrpRep.fileReaders.InstanceReader;
+import vrpRep.fileReaders.InstanceTranslator;
 import vrpRep.schema.instance.Instance;
 import vrpRep.schema.instance.Instance.Fleet.Vehicle;
 import vrpRep.schema.solution.Solution;
@@ -26,7 +26,7 @@ public class DepartureArrivalNode implements IConstraint {
 	private Solution solution;
 
 	@Override
-	public void evaluate(InstanceReader inst, DefaultSolution sol) {
+	public void evaluate(InstanceTranslator inst, DefaultSolution sol) {
 		instance = (Instance) inst.getInstance();
 		solution = sol.getSolution();
 		boolean b = test();
