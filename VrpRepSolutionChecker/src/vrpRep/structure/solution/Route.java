@@ -6,6 +6,8 @@ package vrpRep.structure.solution;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import vrpRep.exceptions.MissingAttributeException;
+
 /**
  * Represents a route of the solution
  * 
@@ -23,6 +25,10 @@ public class Route {
 	 */
 	private int					type;
 	/**
+	 * Boolean value to declare if route has a type
+	 */
+	private boolean				hasType;
+	/**
 	 * List of requests
 	 */
 	private ArrayList<Request>	requests;
@@ -37,6 +43,7 @@ public class Route {
 	public Route(int id, int type) {
 		this.id = id;
 		this.type = type;
+		this.hasType = true;
 		this.requests = new ArrayList<Request>();
 	}
 
@@ -47,6 +54,7 @@ public class Route {
 	 */
 	public Route(int id) {
 		this.id = id;
+		this.hasType = false;
 		this.requests = new ArrayList<Request>();
 	}
 
@@ -61,7 +69,16 @@ public class Route {
 	 * @return the type
 	 */
 	public int getType() {
-		return type;
+		if (!hasType) {
+			try {
+				throw new MissingAttributeException("type");
+			} catch (MissingAttributeException e) {
+				e.printStackTrace();
+			}
+			return type;
+		} else {
+			return type;
+		}
 	}
 
 	/**

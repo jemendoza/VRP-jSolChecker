@@ -82,7 +82,7 @@
 														<xs:annotation>
 															<xs:documentation>Quantity of demand served by request</xs:documentation>
 														</xs:annotation>
-														<xs:complexType>
+														<xs:complexType mixed="true">
 															<xs:attribute name="productId" type="xs:integer" use="required">
 																<xs:annotation>
 																	<xs:documentation>Id of product</xs:documentation>
@@ -91,7 +91,7 @@
 														</xs:complexType>
 													</xs:element>
 												</xs:sequence>
-												<xs:attribute name="requestId" use="required">
+												<xs:attribute name="requestId" type="xs:integer" use="required">
 													<xs:annotation>
 														<xs:documentation>Id of request</xs:documentation>
 													</xs:annotation>

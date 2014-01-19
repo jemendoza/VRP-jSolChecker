@@ -5,7 +5,7 @@ package sandbox;
 
 import java.io.File;
 
-import vrpRep.fileReaders.InstanceTranslator;
+import vrpRep.fileReaders.SolutionTranslator;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -13,8 +13,11 @@ import vrpRep.fileReaders.InstanceTranslator;
  */
 public class TestFileReader {
 	public static void main(String[] args) {
-		InstanceTranslator instR = new InstanceTranslator(new File(
-				"./schemaFiles/testXmlFile.xml"));
+		// InstanceTranslator instT = new InstanceTranslator(new
+		// File("./schemaFiles/testXmlFile.xml"));
+
+		SolutionTranslator solT = new SolutionTranslator(new File(
+				"./schemaFiles/sampleSolution.xml"));
 		System.out.println();
 	}
 }

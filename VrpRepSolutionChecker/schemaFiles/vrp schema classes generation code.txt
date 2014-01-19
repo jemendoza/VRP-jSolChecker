@@ -1,1 +1,1 @@
-./schemaFiles/xjc.bat -p vrpRep.schema.solution ./schemaFiles/VrpRep_schemaSolution_V1511_1.xsd -d src
+"./schemaFiles/xjc.bat" -p vrpRep.schema.solution "./schemaFiles/VrpRep_schemaSolution_V2012_1.xsd" -d src

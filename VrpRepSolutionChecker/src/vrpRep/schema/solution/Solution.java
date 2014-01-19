@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.5-2 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2013.12.20 à 12:33:34 PM CET 
+// Généré le : 2014.01.19 à 06:49:45 PM CET 
 //
 
 
@@ -20,7 +20,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlMixed;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 
@@ -98,7 +97,7 @@ import javax.xml.bind.annotation.XmlValue;
  *                                         &lt;/complexType>
  *                                       &lt;/element>
  *                                     &lt;/sequence>
- *                                     &lt;attribute name="requestId" use="required" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
+ *                                     &lt;attribute name="requestId" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
  *                               &lt;/complexType>
@@ -560,7 +559,7 @@ public class Solution {
      *                               &lt;/complexType>
      *                             &lt;/element>
      *                           &lt;/sequence>
-     *                           &lt;attribute name="requestId" use="required" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
+     *                           &lt;attribute name="requestId" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
      *                         &lt;/restriction>
      *                       &lt;/complexContent>
      *                     &lt;/complexType>
@@ -644,7 +643,7 @@ public class Solution {
          *                     &lt;/complexType>
          *                   &lt;/element>
          *                 &lt;/sequence>
-         *                 &lt;attribute name="requestId" use="required" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
+         *                 &lt;attribute name="requestId" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
          *               &lt;/restriction>
          *             &lt;/complexContent>
          *           &lt;/complexType>
@@ -770,7 +769,7 @@ public class Solution {
              *           &lt;/complexType>
              *         &lt;/element>
              *       &lt;/sequence>
-             *       &lt;attribute name="requestId" use="required" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
+             *       &lt;attribute name="requestId" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
              *     &lt;/restriction>
              *   &lt;/complexContent>
              * &lt;/complexType>
@@ -788,8 +787,7 @@ public class Solution {
                 @XmlMixed
                 protected List<Serializable> content;
                 @XmlAttribute(name = "requestId", required = true)
-                @XmlSchemaType(name = "anySimpleType")
-                protected String requestId;
+                protected BigInteger requestId;
 
                 /**
                  * Gets the value of the content property.
@@ -826,10 +824,10 @@ public class Solution {
                  * 
                  * @return
                  *     possible object is
-                 *     {@link String }
+                 *     {@link BigInteger }
                  *     
                  */
-                public String getRequestId() {
+                public BigInteger getRequestId() {
                     return requestId;
                 }
 
@@ -838,10 +836,10 @@ public class Solution {
                  * 
                  * @param value
                  *     allowed object is
-                 *     {@link String }
+                 *     {@link BigInteger }
                  *     
                  */
-                public void setRequestId(String value) {
+                public void setRequestId(BigInteger value) {
                     this.requestId = value;
                 }
 
@@ -864,11 +862,39 @@ public class Solution {
                  * 
                  */
                 @XmlAccessorType(XmlAccessType.FIELD)
-                @XmlType(name = "")
+                @XmlType(name = "", propOrder = {
+                    "content"
+                })
                 public static class Demand {
 
+                    @XmlValue
+                    protected String content;
                     @XmlAttribute(name = "productId", required = true)
                     protected BigInteger productId;
+
+                    /**
+                     * Obtient la valeur de la propriété content.
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getContent() {
+                        return content;
+                    }
+
+                    /**
+                     * Définit la valeur de la propriété content.
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setContent(String value) {
+                        this.content = value;
+                    }
 
                     /**
                      * Obtient la valeur de la propriété productId.
