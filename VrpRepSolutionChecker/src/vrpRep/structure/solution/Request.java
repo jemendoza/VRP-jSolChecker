@@ -4,6 +4,7 @@
 package vrpRep.structure.solution;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Represents a request in a solution
@@ -20,7 +21,11 @@ public class Request {
 	/**
 	 * List of demands
 	 */
-	private ArrayList<Demand>	demand;
+	private ArrayList<Demand>	demands;
+	/**
+	 * 
+	 */
+	private String				request;
 
 	/**
 	 * 
@@ -29,7 +34,7 @@ public class Request {
 	 */
 	public Request(int id) {
 		this.id = id;
-		this.demand = new ArrayList<Demand>();
+		this.demands = new ArrayList<Demand>();
 	}
 
 	/**
@@ -43,7 +48,7 @@ public class Request {
 	 * @return the demand
 	 */
 	public ArrayList<Demand> getDemand() {
-		return demand;
+		return demands;
 	}
 
 	/**
@@ -53,7 +58,31 @@ public class Request {
 	 *            new demand
 	 */
 	public void addDemand(Demand d) {
-		this.demand.add(d);
+		this.demands.add(d);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public String getRequest() {
+		return request;
+	}
+
+	/**
+	 * 
+	 * @param request
+	 */
+	public void setRequest(String request) {
+		this.request = request;
+	}
+
+	/**
+	 * 
+	 * @return iterator of demand
+	 */
+	public Iterator<Demand> getIterator() {
+		return demands.iterator();
 	}
 
 }

@@ -4,6 +4,7 @@
 package vrpRep.structure.solution;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Represents a route of the solution
@@ -78,6 +79,14 @@ public class Route {
 	 */
 	public void addRequest(Request r) {
 		this.requests.add(r);
+	}
+
+	/**
+	 * 
+	 * @return iterator of requests
+	 */
+	public Iterator<Request> getIterator() {
+		return requests.iterator();
 	}
 
 }

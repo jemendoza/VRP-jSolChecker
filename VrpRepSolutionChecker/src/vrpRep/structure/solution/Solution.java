@@ -4,6 +4,7 @@
 package vrpRep.structure.solution;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Represents the default solution
@@ -59,5 +60,13 @@ public class Solution {
 	 */
 	public void addRoute(Route r) {
 		this.routes.add(r);
+	}
+
+	/**
+	 * 
+	 * @return iterator of routes
+	 */
+	public Iterator<Route> getIterator() {
+		return routes.iterator();
 	}
 }
