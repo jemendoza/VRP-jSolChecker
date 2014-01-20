@@ -9,7 +9,7 @@
 			<email> @ . </email>
 		</contributor>
 	</info>
-	<objectiveFunction>3.14159265358979E0</objectiveFunction>
+	<objectiveFunction>3.14</objectiveFunction>
 	<routes>
 		<route type="0" id="0">
 			<request requestId="0">

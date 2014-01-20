@@ -119,8 +119,8 @@ public class SolutionTranslator {
 		Demand dR = null;
 		vrpRep.schema.solution.Solution.Routes.Route.Request.Demand d = null;
 		for (int i = 1; i < schemaR.getContent().size() - 2; i += 2) {
-			d = (vrpRep.schema.solution.Solution.Routes.Route.Request.Demand) schemaR
-					.getContent().get(i);
+			d = (vrpRep.schema.solution.Solution.Routes.Route.Request.Demand) ((javax.xml.bind.JAXBElement) schemaR
+					.getContent().get(i)).getValue();
 			dR = new Demand(d.getProductId().intValue());
 			dR.setDemand(Double.valueOf(d.getContent()));
 			request.addDemand(dR);
