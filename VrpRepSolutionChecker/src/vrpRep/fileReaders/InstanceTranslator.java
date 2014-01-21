@@ -187,10 +187,9 @@ public class InstanceTranslator {
 	}
 
 	private void vehicleTransformation() {
-		int i = 0;
 		for (vrpRep.schema.instance.Instance.Fleet.Vehicle v : schemaInstance
 				.getFleet().getVehicle()) {
-			Vehicle temp = new Vehicle(i);
+			Vehicle temp = new Vehicle();
 			temp.add("type", new IntValue(v.getType().intValue()));
 			if (v.getFixedCost() != null) {
 				for (double d : v.getFixedCost())
@@ -317,7 +316,6 @@ public class InstanceTranslator {
 					temp.add("tool", sat);
 				}
 			}
-			i++;
 			this.instance.addFleet(temp);
 		}
 	}

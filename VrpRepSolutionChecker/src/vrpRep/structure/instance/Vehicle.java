@@ -13,16 +13,14 @@ import vrpRep.exceptions.MissingAttributeException;
  */
 public class Vehicle {
 	private HashMap<String, List<VrpAtt>>	atts;
-	private int								id;
 
 	/**
 	 * @param atts
 	 * @param id
 	 */
-	public Vehicle(int id) {
+	public Vehicle() {
 		super();
 		atts = new HashMap<String, List<VrpAtt>>();
-		this.id = id;
 	}
 
 	/**
@@ -113,12 +111,5 @@ public class Vehicle {
 	 */
 	public HashMap<String, List<VrpAtt>> getAtts() {
 		return atts;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
 	}
 }
