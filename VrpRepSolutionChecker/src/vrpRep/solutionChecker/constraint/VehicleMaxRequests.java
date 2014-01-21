@@ -3,8 +3,8 @@
  */
 package vrpRep.solutionChecker.constraint;
 
+import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.structure.instance.Instance;
-import vrpRep.structure.instance.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
@@ -21,18 +21,32 @@ public class VehicleMaxRequests implements IConstraint {
 	public void evaluate(Instance inst, Solution sol) {
 		this.instance = inst;
 		this.solution = sol;
-		boolean b = checkMaxRequests();
+		try {
+			boolean b = checkMaxRequests();
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (MissingAttributeException e) {
+			e.printStackTrace();
+		}
 	}
 
-	private boolean checkMaxRequests() {
+	private boolean checkMaxRequests() throws NumberFormatException,
+			MissingAttributeException {
 
+		int maxRequest;
 		for (Route r : solution.getRoutes()) {
-			for (Request n : r.getRequests()) {
-
-			}
+			if (r.isHasType()) {
+				int type = r.getType();
+				maxRequest = Integer.valueOf(instance.getFleet().get(type)
+						.getAttribute("maxRequests").toString());
+			} else
+				maxRequest = Integer.valueOf(instance.getFleet().get(0)
+						.getAttribute("maxRequests").toString());
+			if (maxRequest < r.getRequests().size())
+				return false;
 		}
 
-		return false;
+		return true;
 	}
 
 }
