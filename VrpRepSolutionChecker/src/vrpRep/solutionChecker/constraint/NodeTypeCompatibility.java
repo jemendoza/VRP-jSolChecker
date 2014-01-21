@@ -3,16 +3,19 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.fileReaders.InstanceTranslator;
-import vrpRep.schema.instance.Instance;
-import vrpRep.schema.instance.Instance.Fleet.Vehicle;
-import vrpRep.schema.instance.Instance.Network.Nodes.Node;
-import vrpRep.schema.solution.Solution.Routes.Route;
-import vrpRep.solutionChecker.solution.DefaultSolution;
+import vrpRep.fileReaders.SolutionTranslator;
+import vrpRep.structure.instance.Instance;
+import vrpRep.structure.instance.Node;
+import vrpRep.structure.instance.Vehicle;
+import vrpRep.structure.instance.VrpAtt;
+import vrpRep.structure.solution.Request;
+import vrpRep.structure.solution.Route;
+import vrpRep.structure.solution.Solution;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -20,8 +23,8 @@ import vrpRep.solutionChecker.solution.DefaultSolution;
  */
 public class NodeTypeCompatibility implements IConstraint {
 
-	private Instance		inst;
-	private DefaultSolution	sol;
+	private Instance	inst;
+	private Solution	sol;
 
 	/*
 	 * (non-Javadoc)
@@ -32,13 +35,24 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate(InstanceTranslator inst, DefaultSolution sol) {
-		this.inst = (Instance) inst.getInstance();
-		this.sol = sol;
+	public void evaluate(InstanceTranslator inst, SolutionTranslator sol) {
+		this.inst = inst.getInstance();
+		this.sol = sol.getSolution();
 
-		List<List<BigInteger>> listCompatibilityInstance = vehicleNodeCompatibilityInstance();
-		List<BigInteger> listNodeType = getListNodeType();
-		boolean b = checkCompatibility(listCompatibilityInstance, listNodeType);
+		List<List<Integer>> listCompatibilityInstance;
+		try {
+			listCompatibilityInstance = vehicleNodeCompatibilityInstance();
+			List<Integer> listNodeType = getListNodeType();
+			boolean b = checkCompatibility(listCompatibilityInstance,
+					listNodeType);
+
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MissingAttributeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -54,16 +68,15 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * @return true if the node/vehicle compatibility is respected
 	 */
 	private boolean checkCompatibility(
-			List<List<BigInteger>> listCompatibilityInstance,
-			List<BigInteger> listNodeType) {
+			List<List<Integer>> listCompatibilityInstance,
+			List<Integer> listNodeType) {
 
-		for (Route r : sol.getSolution().getRoutes().getRoute()) {
+		for (Route r : sol.getRoutes()) {
 			// Type de véhicle de la route
-			BigInteger b = r.getType();
-			for (vrpRep.schema.solution.Solution.Routes.Route.Node n : r
-					.getNode()) {
-				if (!listCompatibilityInstance.get(b.intValue()).contains(
-						listNodeType.get(Integer.parseInt(n.getContent())))) {
+			int b = r.getType();
+			for (Request n : r.getRequests()) {
+				if (!listCompatibilityInstance.get(b).contains(
+						listNodeType.get(n.getId()))) {
 					return false;
 				}
 			}
@@ -76,11 +89,15 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * @param inst
 	 *            : Object used to store XML instance data
 	 * @return a list with all the node's type
+	 * @throws MissingAttributeException
+	 * @throws NumberFormatException
 	 */
-	private List<BigInteger> getListNodeType() {
-		List<BigInteger> list = new ArrayList<BigInteger>();
-		for (Node n : inst.getNetwork().getNodes().getNode()) {
-			list.add(n.getId().intValue(), n.getType());
+	private List<Integer> getListNodeType() throws NumberFormatException,
+			MissingAttributeException {
+		List<Integer> list = new ArrayList<Integer>();
+		for (Node n : inst.getNodes()) {
+			list.add(n.getId(),
+					Integer.valueOf(n.getAttribute("type").get(0).toString()));
 		}
 		return list;
 	}
@@ -90,13 +107,25 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * @param inst
 	 *            : Object used to store XML instance data
 	 * @return a list containing all the node compatible for each vehicle
+	 * @throws MissingAttributeException
+	 * @throws NumberFormatException
 	 */
-	private List<List<BigInteger>> vehicleNodeCompatibilityInstance() {
-		List<List<BigInteger>> list = new ArrayList<List<BigInteger>>();
-		for (Vehicle v : inst.getFleet().getVehicle()) {
-			list.add(v.getType().intValue(), v.getNodeTypesCompatible());
+	private List<List<Integer>> vehicleNodeCompatibilityInstance()
+			throws NumberFormatException, MissingAttributeException {
+		List<List<Integer>> list = new ArrayList<List<Integer>>();
+		for (Vehicle v : inst.getFleet()) {
+			list.add(Integer.valueOf(v.getAttribute("type").get(0).toString()),
+					getNodeTypesCompatible(v
+							.getAttribute("nodeTypesCompatible")));
 		}
 		return list;
 	}
 
+	private List<Integer> getNodeTypesCompatible(List<VrpAtt> listAtt) {
+		List<Integer> listInt = new ArrayList<Integer>();
+		for (VrpAtt att : listAtt) {
+			listInt.add(Integer.valueOf(att.toString()));
+		}
+		return listInt;
+	}
 }

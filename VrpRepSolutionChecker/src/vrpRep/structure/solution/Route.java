@@ -82,6 +82,14 @@ public class Route {
 	}
 
 	/**
+	 * 
+	 * @return hasType
+	 */
+	public boolean isHasType() {
+		return hasType;
+	}
+
+	/**
 	 * @return the requests
 	 */
 	public ArrayList<Request> getRequests() {
