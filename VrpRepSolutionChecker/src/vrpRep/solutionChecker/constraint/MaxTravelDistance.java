@@ -6,8 +6,6 @@ package vrpRep.solutionChecker.constraint;
 import java.util.List;
 
 import vrpRep.exceptions.MissingAttributeException;
-import vrpRep.fileReaders.InstanceTranslator;
-import vrpRep.fileReaders.SolutionTranslator;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;
@@ -35,10 +33,10 @@ public class MaxTravelDistance implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate(InstanceTranslator inst, SolutionTranslator sol) {
+	public void evaluate(Instance inst, Solution sol) {
 		boolean result;
-		this.inst = inst.getInstance();
-		this.sol = sol.getSolution();
+		this.inst = inst;
+		this.sol = sol;
 
 		try {
 			this.inst.getFleet().get(0).getAttribute("type");

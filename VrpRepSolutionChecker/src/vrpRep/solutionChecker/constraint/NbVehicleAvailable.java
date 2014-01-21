@@ -9,8 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 import vrpRep.exceptions.MissingAttributeException;
-import vrpRep.fileReaders.InstanceTranslator;
-import vrpRep.fileReaders.SolutionTranslator;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.Vehicle;
 import vrpRep.structure.solution.Route;
@@ -34,11 +32,10 @@ public class NbVehicleAvailable implements IConstraint {
 	private Instance	inst;
 	private Solution	sol;
 
-	public void evaluate(InstanceTranslator instance,
-			SolutionTranslator solution) {
+	public void evaluate(Instance instance, Solution solution) {
 
-		this.inst = instance.getInstance();
-		this.sol = solution.getSolution();
+		this.inst = instance;
+		this.sol = solution;
 		List<BigInteger> nbVehicleTypeInstance;
 		try {
 			nbVehicleTypeInstance = getInstanceVehicle(inst);

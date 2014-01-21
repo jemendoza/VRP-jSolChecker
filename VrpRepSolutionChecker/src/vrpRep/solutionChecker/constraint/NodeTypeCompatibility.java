@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vrpRep.exceptions.MissingAttributeException;
-import vrpRep.fileReaders.InstanceTranslator;
-import vrpRep.fileReaders.SolutionTranslator;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.Node;
 import vrpRep.structure.instance.Vehicle;
@@ -35,9 +33,9 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate(InstanceTranslator inst, SolutionTranslator sol) {
-		this.inst = inst.getInstance();
-		this.sol = sol.getSolution();
+	public void evaluate(Instance inst, Solution sol) {
+		this.inst = inst;
+		this.sol = sol;
 
 		List<List<Integer>> listCompatibilityInstance;
 		try {

@@ -5,8 +5,6 @@ package vrpRep.solutionChecker.constraint;
 
 import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.exceptions.MissingElementException;
-import vrpRep.fileReaders.InstanceTranslator;
-import vrpRep.fileReaders.SolutionTranslator;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;
@@ -31,9 +29,9 @@ public class DepartureArrivalNode implements IConstraint {
 	private Solution	solution;
 
 	@Override
-	public void evaluate(InstanceTranslator inst, SolutionTranslator sol) {
-		instance = inst.getInstance();
-		solution = sol.getSolution();
+	public void evaluate(Instance inst, Solution sol) {
+		instance = inst;
+		solution = sol;
 		try {
 			boolean b = test();
 		} catch (MissingAttributeException e) {

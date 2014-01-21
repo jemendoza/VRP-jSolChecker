@@ -3,8 +3,6 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import vrpRep.fileReaders.InstanceTranslator;
-import vrpRep.fileReaders.SolutionTranslator;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.Request;
 import vrpRep.structure.solution.Route;
@@ -20,9 +18,9 @@ public class VehicleMaxRequests implements IConstraint {
 	private Solution	solution;
 
 	@Override
-	public void evaluate(InstanceTranslator inst, SolutionTranslator sol) {
-		this.instance = inst.getInstance();
-		this.solution = sol.getSolution();
+	public void evaluate(Instance inst, Solution sol) {
+		this.instance = inst;
+		this.solution = sol;
 		boolean b = checkMaxRequests();
 	}
 
