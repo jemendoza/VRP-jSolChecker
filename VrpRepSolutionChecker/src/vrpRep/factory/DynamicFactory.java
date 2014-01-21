@@ -3,6 +3,7 @@
  */
 package vrpRep.factory;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -15,6 +16,7 @@ import vrpRep.fileReaders.ILocationReader;
 import vrpRep.fileReaders.ISolutionReader;
 import vrpRep.fileReaders.ISpeedProfileReader;
 import vrpRep.fileReaders.ITimeReader;
+import vrpRep.solutionChecker.constraint.IConstraint;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.solution.Solution;
 
@@ -63,6 +65,11 @@ public class DynamicFactory {
 	private ITimeReader				timeReader			= null;
 
 	/**
+	 * Constraint handler
+	 */
+	private ConstraintHandler		constraintHander	= null;
+
+	/**
 	 * Constructor
 	 * 
 	 * @param propertiesFilePath
@@ -75,6 +82,7 @@ public class DynamicFactory {
 		FileInputStream file = new FileInputStream(propertiesFilePath);
 		factory.properties = new Properties();
 		factory.properties.loadFromXML(file);
+		factory.constraintHander = new ConstraintHandler();
 	}
 
 	/**
@@ -303,11 +311,37 @@ public class DynamicFactory {
 	}
 
 	/**
+	 * 
+	 * @return constraint handler
+	 */
+	public ConstraintHandler getConstraintHandler() {
+		return factory.constraintHander;
+	}
+
+	/**
+	 * Adds a constraint to be evaluated to the constraint handler
+	 * 
+	 * @param constraint
+	 *            constraint to add
+	 */
+	public void addConstraint(IConstraint constraint) {
+		factory.constraintHander.addConstraint(constraint);
+	}
+
+	/**
+	 * Evaluates all constraints and stores the results in a xml file
+	 * 
+	 * @return XML file of constraint validity results
+	 */
+	public File evaluateConstraints() {
+		return factory.constraintHander.evaluateConstraints();
+	}
+
+	/**
 	 * Cloning forbidden
 	 */
 	protected Object clone() throws CloneNotSupportedException {
 		throw new CloneNotSupportedException(
 				"Singleton pattern implemented on this class");
 	}
-
 }
