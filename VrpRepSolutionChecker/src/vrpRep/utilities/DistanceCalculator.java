@@ -35,8 +35,8 @@ public class DistanceCalculator {
 	 *             Throws exception if custom elements are found of if
 	 *             information is missing
 	 */
-	public static double getDistance(Instance inst, BigInteger head,
-			BigInteger tail) throws Exception {
+	public static double getDistance(Instance inst, int head, int tail)
+			throws Exception {
 		return getDistance(inst, getNode(inst, head), getNode(inst, tail));
 	}
 
@@ -255,11 +255,11 @@ public class DistanceCalculator {
 	 *            Id of node
 	 * @return Node object in instance file of id nodeId
 	 */
-	public static Node getNode(Instance instance, BigInteger nodeId) {
+	public static Node getNode(Instance instance, int nodeId) {
 		List<Node> nodes = instance.getNodes();
 		int i = 0;
 
-		while (i < nodes.size() && nodes.get(i).getId() != nodeId.intValue()) {
+		while (i < nodes.size() && nodes.get(i).getId() != nodeId) {
 			i++;
 		}
 

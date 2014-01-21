@@ -176,10 +176,14 @@ public class Instance {
 	 * @return vehicle if found
 	 * @throws MissingElementException
 	 *             Thrown if vehicle not found
+	 * @throws MissingAttributeException
 	 */
-	public Vehicle getVehicle(int id) throws MissingElementException {
+	public Vehicle getVehicle(int id) throws MissingElementException,
+			MissingAttributeException {
 		int i = 0;
-		while (i < this.fleet.size() && this.fleet.get(i).getId() != id)
+		while (i < this.fleet.size()
+				&& ((IntValue) (this.fleet.get(i).getAttribute("type").get(0)))
+						.getValue() != id)
 			i++;
 
 		if (i >= this.fleet.size())

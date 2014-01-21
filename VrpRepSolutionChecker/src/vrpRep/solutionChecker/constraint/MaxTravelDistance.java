@@ -78,12 +78,17 @@ public class MaxTravelDistance implements IConstraint {
 					e.printStackTrace();
 				}
 			}
-			if (travelDist > Double.valueOf(fleet.get(0).getMaxTravelDistance()
-					.getContent())) {
-				System.out
-						.println("Max travel distance of vehicle failed on route "
-								+ r.getId());
-				result = false;
+			try {
+				if (travelDist > ((IntValue) (fleet.get(0).getAttribute(
+						"maxTravelDistance").get(0))).getValue()) {
+					System.out
+							.println("Max travel distance of vehicle failed on route "
+									+ r.getId());
+					result = false;
+				}
+			} catch (MissingAttributeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		return result;
