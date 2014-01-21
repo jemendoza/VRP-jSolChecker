@@ -18,16 +18,13 @@ import vrpRep.structure.instance.VrpAtt;
  */
 public class SpeedIntervalsReader implements ISpeedProfileReader {
 
-	/**
-	 * Retrieves speed intervals of a vehicle
-	 * 
-	 * @param instance
-	 *            link to instance object
-	 * @param id
-	 *            id of vehicle
-	 * @return List of vehicle's speed intervals
-	 */
-	public List<SpeedInt> getSpeed(Instance instance, int id) {
+	@Override
+	public double getAverageSpeed(Instance instance, int id) {
+		return 0;
+	}
+
+	@Override
+	public List<SpeedInt> getSpeedIntervals(Instance instance, int id) {
 		List<SpeedInt> result = new ArrayList<SpeedInt>();
 		for (VrpAtt sP : instance.getVehicleAttribute(id, "speedProfile")) {
 			result.add((SpeedInt) sP);

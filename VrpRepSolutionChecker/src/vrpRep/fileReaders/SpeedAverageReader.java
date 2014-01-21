@@ -3,8 +3,11 @@
  */
 package vrpRep.fileReaders;
 
+import java.util.List;
+
 import vrpRep.structure.instance.DoubleValue;
 import vrpRep.structure.instance.Instance;
+import vrpRep.structure.instance.SpeedInt;
 
 /**
  * Reads average speed of vehicle
@@ -14,17 +17,14 @@ import vrpRep.structure.instance.Instance;
  */
 public class SpeedAverageReader implements ISpeedProfileReader {
 
-	/**
-	 * Retrieves average vehicle speed
-	 * 
-	 * @param instance
-	 *            link to instance object
-	 * @param id
-	 *            id of vehicle
-	 * @return Average vehicle speed
-	 */
-	public double getSpeed(Instance instance, int id) {
+	@Override
+	public double getAverageSpeed(Instance instance, int id) {
 		return ((DoubleValue) instance.getVehicleAttribute(id, "speedProfile")
 				.get(0)).getValue();
+	}
+
+	@Override
+	public List<SpeedInt> getSpeedIntervals(Instance instance, int id) {
+		return null;
 	}
 }
