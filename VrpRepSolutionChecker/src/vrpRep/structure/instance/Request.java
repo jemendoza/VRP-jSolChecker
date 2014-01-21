@@ -84,6 +84,24 @@ public class Request {
 	/**
 	 * 
 	 * @param name
+	 * @param att
+	 */
+	public void add(String name, TimeWindow att) {
+		addAttr(name, att);
+	}
+
+	/**
+	 * 
+	 * @param name
+	 * @param att
+	 */
+	public void add(String name, SkillAndTool att) {
+		addAttr(name, att);
+	}
+
+	/**
+	 * 
+	 * @param name
 	 * @return
 	 * @throws MissingAttributeException
 	 */

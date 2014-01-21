@@ -1,37 +1,76 @@
 package vrpRep.structure.instance;
 
-public class RequestTimeWindow implements RequestAtt {
+/**
+ * Class to hold structure of a time window
+ * 
+ * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
+ * 
+ */
+public class TimeWindow implements VrpAtt {
 
+	/**
+	 * start of time window
+	 */
 	private double	begin;
+	/**
+	 * end of time window
+	 */
 	private double	end;
+	/**
+	 * periodicity of time window
+	 */
 	private int		period;
+	/**
+	 * is the start of time window hard
+	 */
 	private boolean	isHardStart;
+	/**
+	 * is the end of time window hard
+	 */
 	private boolean	isHardEnd;
 
-	public RequestTimeWindow() {
-
+	/**
+	 * Default constructor. Creates an empty TimeWindow object.
+	 */
+	public TimeWindow() {
 	}
 
 	/**
+	 * Complex constructor. Initializes constructor with all possible parameters
+	 * 
 	 * @param begin
+	 *            start of time window
 	 * @param end
+	 *            end of time window
 	 * @param period
+	 *            periodicity of time window
+	 * @param isHardStart
+	 *            is the start of time window hard
+	 * @param isHardEnd
+	 *            is the end of time window hard
 	 */
-	public RequestTimeWindow(double begin, double end, int period) {
+	public TimeWindow(double begin, double end, int period,
+			boolean isHardStart, boolean isHardEnd) {
 		super();
 		this.begin = begin;
 		this.end = end;
 		this.period = period;
+		this.isHardStart = isHardStart;
+		this.isHardEnd = isHardEnd;
 	}
 
-	public boolean isFlexBegin() {
-		// TODO
-		return false;
+	/**
+	 * @return true is start if hard, false otherwise
+	 */
+	public boolean isFlexStart() {
+		return isHardStart;
 	}
 
+	/**
+	 * @return true is end if hard, false otherwise
+	 */
 	public boolean isFlexEnd() {
-		// TODO
-		return false;
+		return isHardEnd;
 	}
 
 	/**

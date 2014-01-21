@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpeedInt implements VehicleAtt {
-	private double						speed;
-	private List<SpeedIntTimeWindow>	tw;
+	private double				speed;
+	private List<TimeWindow>	tw;
 
 	public SpeedInt() {
 
@@ -17,14 +17,14 @@ public class SpeedInt implements VehicleAtt {
 	public SpeedInt(double speed) {
 		super();
 		this.speed = speed;
-		this.tw = new ArrayList<SpeedIntTimeWindow>();
+		this.tw = new ArrayList<TimeWindow>();
 	}
 
 	/**
 	 * @param speed
 	 * @param tw
 	 */
-	public SpeedInt(double speed, List<SpeedIntTimeWindow> tw) {
+	public SpeedInt(double speed, List<TimeWindow> tw) {
 		super();
 		this.speed = speed;
 		this.tw = tw;
@@ -48,7 +48,7 @@ public class SpeedInt implements VehicleAtt {
 	/**
 	 * @return the tw
 	 */
-	public List<SpeedIntTimeWindow> getTw() {
+	public List<TimeWindow> getTw() {
 		return tw;
 	}
 
@@ -56,7 +56,7 @@ public class SpeedInt implements VehicleAtt {
 	 * @param tw
 	 *            the tw to set
 	 */
-	public void addTw(SpeedIntTimeWindow tw) {
+	public void addTw(TimeWindow tw) {
 		this.tw.add(tw);
 	}
 

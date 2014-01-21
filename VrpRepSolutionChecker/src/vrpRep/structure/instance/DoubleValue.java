@@ -8,7 +8,7 @@ package vrpRep.structure.instance;
  * 
  */
 public class DoubleValue implements VrpAtt {
-	double	value;
+	private double	value;
 
 	/**
 	 * 

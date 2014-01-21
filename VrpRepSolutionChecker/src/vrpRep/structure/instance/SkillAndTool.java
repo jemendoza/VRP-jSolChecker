@@ -7,7 +7,7 @@ package vrpRep.structure.instance;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
-public class SkillAndTool implements RequestAtt, VehicleAtt {
+public class SkillAndTool implements VrpAtt {
 	/**
 	 * 
 	 */

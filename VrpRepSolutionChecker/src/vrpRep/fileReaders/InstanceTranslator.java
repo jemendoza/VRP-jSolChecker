@@ -27,12 +27,10 @@ import vrpRep.structure.instance.Network;
 import vrpRep.structure.instance.Node;
 import vrpRep.structure.instance.Request;
 import vrpRep.structure.instance.RequestProbaDist;
-import vrpRep.structure.instance.RequestTimeWindow;
 import vrpRep.structure.instance.SkillAndTool;
 import vrpRep.structure.instance.SpeedInt;
-import vrpRep.structure.instance.SpeedIntTimeWindow;
+import vrpRep.structure.instance.TimeWindow;
 import vrpRep.structure.instance.Vehicle;
-import vrpRep.structure.instance.VehicleAttTimeWindow;
 
 /**
  * Class used to translate an instance from the VRPREP schema structure to the
@@ -93,7 +91,7 @@ public class InstanceTranslator {
 			// Elements
 			if (r.getTw() != null) {
 				for (vrpRep.schema.instance.Tw tw : r.getTw()) {
-					RequestTimeWindow rtw = new RequestTimeWindow();
+					TimeWindow rtw = new TimeWindow();
 					if (tw.getPeriod() != null)
 						rtw.setPeriod(tw.getPeriod().intValue());
 					if (tw.getStart() != null)
@@ -217,16 +215,16 @@ public class InstanceTranslator {
 							.getSpeedProfile().getAvg()));
 				else {
 					SpeedInt speed;
-					SpeedIntTimeWindow time;
+					TimeWindow time;
 					for (vrpRep.schema.instance.SpeedProfile.SpeedInterval s : v
 							.getSpeedProfile().getSpeedInterval()) {
 						speed = new SpeedInt(s.getSpeed());
 						for (vrpRep.schema.instance.Tw tw : s.getTw()) {
-							time = new SpeedIntTimeWindow(Double.valueOf(tw
-									.getStart().getContent()),
-									Double.valueOf(tw.getEnd().getContent()),
-									tw.getPeriod().intValue(), tw.getStart()
-											.isIsHard(), tw.getEnd().isIsHard());
+							time = new TimeWindow(Double.valueOf(tw.getStart()
+									.getContent()), Double.valueOf(tw.getEnd()
+									.getContent()), tw.getPeriod().intValue(),
+									tw.getStart().isIsHard(), tw.getEnd()
+											.isIsHard());
 							speed.addTw(time);
 						}
 						temp.add("speedProfile", speed);
@@ -261,14 +259,14 @@ public class InstanceTranslator {
 							.isIsFlexible()));
 				}
 				if (v.getWorkloadProfile().getTw() != null) {
-					VehicleAttTimeWindow tw;
+					TimeWindow tw;
 					for (vrpRep.schema.instance.Tw timew : v
 							.getWorkloadProfile().getTw()) {
-						tw = new VehicleAttTimeWindow(Double.valueOf(timew
-								.getStart().getContent()), Double.valueOf(timew
-								.getEnd().getContent()), timew.getPeriod()
-								.intValue(), timew.getStart().isIsHard(), timew
-								.getEnd().isIsHard());
+						tw = new TimeWindow(Double.valueOf(timew.getStart()
+								.getContent()), Double.valueOf(timew.getEnd()
+								.getContent()), timew.getPeriod().intValue(),
+								timew.getStart().isIsHard(), timew.getEnd()
+										.isIsHard());
 						temp.add("vLPtw", tw);
 					}
 				}
