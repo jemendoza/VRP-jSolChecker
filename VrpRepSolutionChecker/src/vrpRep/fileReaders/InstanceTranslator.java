@@ -39,7 +39,7 @@ import vrpRep.structure.instance.Vehicle;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
-public class InstanceTranslator {
+public class InstanceTranslator implements IInstanceReader {
 
 	/**
 	 * Master node containing all xml file info
@@ -65,6 +65,7 @@ public class InstanceTranslator {
 		}
 	}
 
+	@Override
 	public Instance getInstance() {
 		return instance;
 	}

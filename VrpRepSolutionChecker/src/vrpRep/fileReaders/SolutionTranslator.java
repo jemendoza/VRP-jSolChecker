@@ -20,7 +20,7 @@ import vrpRep.structure.solution.Solution;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
-public class SolutionTranslator {
+public class SolutionTranslator implements ISolutionReader {
 
 	/**
 	 * Master node containing all xml file info
@@ -46,6 +46,7 @@ public class SolutionTranslator {
 		}
 	}
 
+	@Override
 	public Solution getSolution() {
 		return solution;
 	}
