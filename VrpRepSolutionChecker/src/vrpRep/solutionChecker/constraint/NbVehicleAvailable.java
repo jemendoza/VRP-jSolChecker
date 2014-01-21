@@ -9,65 +9,77 @@ import java.util.Collections;
 import java.util.List;
 
 import vrpRep.fileReaders.InstanceTranslator;
-import vrpRep.schema.instance.Instance;
-import vrpRep.schema.instance.Instance.Fleet.Vehicle;
-import vrpRep.schema.solution.Solution.Routes.Route;
-import vrpRep.solutionChecker.solution.DefaultSolution;
+import vrpRep.fileReaders.SolutionTranslator;
+import vrpRep.structure.instance.Instance;
+import vrpRep.structure.solution.Solution;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
- *
+ * 
  */
 public class NbVehicleAvailable implements IConstraint {
 
-	/* (non-Javadoc)
-	 * @see vrpRep.solutionChecker.constraint.IConstraint#evaluate(vrpRep.solutionChecker.instance.DefaultInstance, vrpRep.solutionChecker.solution.DefaultSolution)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * vrpRep.solutionChecker.constraint.IConstraint#evaluate(vrpRep.solutionChecker
+	 * .instance.DefaultInstance,
+	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
-	
-	private Instance inst;
-	
-	@Override
-	public void evaluate(InstanceTranslator instance, DefaultSolution sol) {
 
-		this.inst=(Instance) instance.getInstance();
+	private Instance	inst;
+	private Solution	sol;
+
+	public void evaluate(InstanceTranslator instance,
+			SolutionTranslator solution) {
+
+		this.inst = instance.getInstance();
+		this.sol = solution.getSolution();
 		List<BigInteger> nbVehicleTypeInstance = getInstanceVehicle(inst);
 
 		List<BigInteger> nbVehicleTypeSolution = getSolutionVehicle(sol);
 
-		boolean b = compare(nbVehicleTypeInstance,nbVehicleTypeSolution);
+		boolean b = compare(nbVehicleTypeInstance, nbVehicleTypeSolution);
 		System.out.println(b);
-		
 
 	}
+
 	/**
-	 * Compare the number of vehicle used per type with the vehicle available in the instance
+	 * Compare the number of vehicle used per type with the vehicle available in
+	 * the instance
 	 * 
-	 * @param nbVehicleTypeInstance is a list containing the number of vehicle AVAILABLE per type
-	 * @param nbVehicleTypeSolution is a list containing the number of vehicle USED per type
+	 * @param nbVehicleTypeInstance
+	 *            is a list containing the number of vehicle AVAILABLE per type
+	 * @param nbVehicleTypeSolution
+	 *            is a list containing the number of vehicle USED per type
 	 * @return true if the number of vehicles contraint is verified
 	 */
-	private boolean compare(List<BigInteger> nbVehicleTypeInstance, List<BigInteger> nbVehicleTypeSolution) {
-		
-		for(int i=0; i<nbVehicleTypeInstance.size();i++){
-			if(nbVehicleTypeSolution.get(i).compareTo(nbVehicleTypeInstance.get(i))>0)
-				 return false;
+	private boolean compare(List<BigInteger> nbVehicleTypeInstance,
+			List<BigInteger> nbVehicleTypeSolution) {
+
+		for (int i = 0; i < nbVehicleTypeInstance.size(); i++) {
+			if (nbVehicleTypeSolution.get(i).compareTo(
+					nbVehicleTypeInstance.get(i)) > 0)
+				return false;
 		}
 		return true;
 	}
-	
+
 	/**
 	 * 
-	 * @param inst2 : Object used to store XML solution data
+	 * @param inst2
+	 *            : Object used to store XML solution data
 	 * @return the list containing the number of vehicle AVAILABLE per type
 	 */
 	private List<BigInteger> getInstanceVehicle(Instance inst) {
 		List<BigInteger> nbVehicleType = new ArrayList<BigInteger>();
-		for(Vehicle v : inst.getFleet().getVehicle()){
-			//If there is no type of vehicle define in the instance
-			if(inst.getFleet().getVehicle().get(0).getType()==null){
-				nbVehicleType.add(0,v.getNumber());
-			}else{
-				nbVehicleType.add(v.getType().intValue(),v.getNumber());
+		for (Vehicle v : inst.getFleet().getVehicle()) {
+			// If there is no type of vehicle define in the instance
+			if (inst.getFleet().getVehicle().get(0).getType() == null) {
+				nbVehicleType.add(0, v.getNumber());
+			} else {
+				nbVehicleType.add(v.getType().intValue(), v.getNumber());
 			}
 
 		}
@@ -76,20 +88,26 @@ public class NbVehicleAvailable implements IConstraint {
 
 	/**
 	 * 
-	 * @param sol : Object used to store XML solution data
+	 * @param sol
+	 *            : Object used to store XML solution data
 	 * @return the list containing the number of vehicle USED per type
 	 */
-	private List<BigInteger> getSolutionVehicle(DefaultSolution sol) {
-		List<BigInteger> nbVehicleType = new ArrayList<BigInteger>(Collections.nCopies(sol.getSolution().getRoutes().getRoute().size(), BigInteger.ZERO));
-		for(Route r: sol.getSolution().getRoutes().getRoute()){
-			//If there is no type of vehicle define in the instance
-			if(r.getType()==null){
+	private List<BigInteger> getSolutionVehicle(Solution sol) {
+		List<BigInteger> nbVehicleType = new ArrayList<BigInteger>(
+				Collections.nCopies(sol.getgetSolution().getRoutes().getRoute()
+						.size(), BigInteger.ZERO));
+		for (Route r : sol.getSolution().getRoutes().getRoute()) {
+			// If there is no type of vehicle define in the instance
+			if (r.getType() == null) {
 				BigInteger b = nbVehicleType.get(0);
 				nbVehicleType.set(0, b.add(new BigInteger("1")));
-			}
-			else
-				nbVehicleType.set(r.getType().intValue(), nbVehicleType.get(r.getType().intValue()).add(new BigInteger("1")));
+			} else
+				nbVehicleType.set(
+						r.getType().intValue(),
+						nbVehicleType.get(r.getType().intValue()).add(
+								new BigInteger("1")));
 		}
 		return nbVehicleType;
 	}
+
 }
