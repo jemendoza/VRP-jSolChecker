@@ -12,13 +12,13 @@ import java.util.Properties;
 
 import vrpRep.fileReaders.IDemandReader;
 import vrpRep.fileReaders.IInstanceReader;
-import vrpRep.fileReaders.ILocationReader;
 import vrpRep.fileReaders.ISolutionReader;
 import vrpRep.fileReaders.ISpeedProfileReader;
 import vrpRep.fileReaders.ITimeReader;
 import vrpRep.solutionChecker.constraint.IConstraint;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.solution.Solution;
+import vrpRep.utilities.IDistanceCalculator;
 
 /**
  * Dynamic factory containing links to all dynamic classes of the solution
@@ -54,7 +54,7 @@ public class DynamicFactory {
 	/**
 	 * Location reader
 	 */
-	private ILocationReader			locationReader		= null;
+	private IDistanceCalculator		distanceCalculator	= null;
 	/**
 	 * Speed profile reader
 	 */
@@ -237,18 +237,20 @@ public class DynamicFactory {
 	}
 
 	/**
-	 * Retrieves location reader. If exception thrown, ensure xml configuration
-	 * file contains class path to demand reader under key "locationReader".
+	 * Retrieves distance calculator. If exception thrown, ensure xml
+	 * configuration file contains class path to demand reader under key
+	 * "distanceCalculator".
 	 * 
-	 * @return location reader
+	 * @return distance calculator
 	 */
-	public ILocationReader getLocationReader() {
+	public IDistanceCalculator getDistanceCalculator() {
 		try {
-			if (this.properties.getProperty("locationReader") != null) {
+			if (this.properties.getProperty("distanceCalculator") != null) {
 				Class<?> tClass;
 				tClass = Class.forName(this.properties
-						.getProperty("locationReader"));
-				factory.locationReader = (ILocationReader) tClass.newInstance();
+						.getProperty("distanceCalculator"));
+				factory.distanceCalculator = (IDistanceCalculator) tClass
+						.newInstance();
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -257,7 +259,7 @@ public class DynamicFactory {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		return factory.locationReader;
+		return factory.distanceCalculator;
 	}
 
 	/**
