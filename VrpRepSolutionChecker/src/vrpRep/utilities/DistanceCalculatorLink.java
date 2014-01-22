@@ -7,8 +7,8 @@ import java.util.List;
 
 import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.exceptions.MissingElementException;
-import vrpRep.factory.DynamicFactory;
 import vrpRep.structure.instance.DoubleValue;
+import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.Link;
 import vrpRep.structure.instance.Node;
 
@@ -29,12 +29,10 @@ public class DistanceCalculatorLink extends DistanceCalculator {
 	@Override
 	public double calculate(int tail, int head) {
 		try {
-			Node headNode = DynamicFactory.getFactory().getInstance()
-					.getNode(head);
-			Node tailNode = DynamicFactory.getFactory().getInstance()
-					.getNode(tail);
-			Link link = getLink(DynamicFactory.getFactory().getInstance()
-					.getLinks(), headNode.getId(), tailNode.getId());
+			Node headNode = Instance.getNode(head);
+			Node tailNode = Instance.getNode(tail);
+			Link link = getLink(Instance.getLinks(), headNode.getId(),
+					tailNode.getId());
 			if (link.getAttribute("length").get(0) != null) {
 				return ((DoubleValue) link.getAttribute("lenght").get(0))
 						.getValue();

@@ -98,14 +98,14 @@ public class DynamicFactory {
 	 * 
 	 * @param instanceXmlPath
 	 *            path to instance xml file
-	 * @return instance
 	 */
-	public Instance buildInstance(String instanceXmlPath) {
+	public void buildInstance(String instanceXmlPath) {
 		try {
 			if (this.properties.getProperty("instanceReader") != null) {
 				Class<?> tClass;
 				tClass = Class.forName(this.properties
 						.getProperty("instanceReader"));
+				Instance.setInstance();
 				factory.instanceReader = (IInstanceReader) tClass
 						.getDeclaredConstructor(String.class).newInstance(
 								instanceXmlPath);
@@ -125,7 +125,6 @@ public class DynamicFactory {
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		}
-		return factory.instanceReader.getInstance();
 	}
 
 	/**
@@ -134,14 +133,14 @@ public class DynamicFactory {
 	 * 
 	 * @param instanceXmlPath
 	 *            path to solution xml file
-	 * @return solution
 	 */
-	public Solution buildSolution(String solutionXmlPath) {
+	public void buildSolution(String solutionXmlPath) {
 		try {
 			if (this.properties.getProperty("solutionReader") != null) {
 				Class<?> tClass;
 				tClass = Class.forName(this.properties
 						.getProperty("solutionReader"));
+				Solution.setSolution();
 				factory.solutionReader = (ISolutionReader) tClass
 						.getDeclaredConstructor(String.class).newInstance(
 								solutionXmlPath);
@@ -161,27 +160,6 @@ public class DynamicFactory {
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		}
-		return factory.solutionReader.getSolution();
-	}
-
-	/**
-	 * Returns instance. Ensure instance has been loaded via
-	 * buildInstance(String) method
-	 * 
-	 * @return instance
-	 */
-	public Instance getInstance() {
-		return factory.instanceReader.getInstance();
-	}
-
-	/**
-	 * Returns solution. Ensure solution has been loaded via
-	 * buildSolution(String) method
-	 * 
-	 * @return solution
-	 */
-	public Solution getSolution() {
-		return factory.solutionReader.getSolution();
 	}
 
 	/**

@@ -3,7 +3,6 @@
  */
 package vrpRep.fileReaders;
 
-import vrpRep.structure.instance.Instance;
 
 /**
  * Interface to facilitate implementation of instance reader
@@ -13,5 +12,4 @@ import vrpRep.structure.instance.Instance;
  */
 public interface IInstanceReader {
 
-	public Instance getInstance();
 }

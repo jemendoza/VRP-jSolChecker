@@ -4,8 +4,8 @@
 package vrpRep.utilities;
 
 import vrpRep.exceptions.MissingAttributeException;
-import vrpRep.factory.DynamicFactory;
 import vrpRep.structure.instance.Euclidian;
+import vrpRep.structure.instance.Instance;
 
 /**
  * Calculate distance between two sets of euclidean 2D points. <br />
@@ -23,14 +23,13 @@ public class DistanceCalculatorEuc2D extends DistanceCalculator {
 	 */
 	@Override
 	public double calculate(int tail, int head) {
-		String distanceType = DynamicFactory.getFactory().getInstance()
-				.getNetwork().getDistanceType();
+		String distanceType = Instance.getNetwork().getDistanceType();
 		Euclidian h, t;
 		try {
-			h = (Euclidian) DynamicFactory.getFactory().getInstance()
-					.getNode(head).getAttribute("location").get(0);
-			t = (Euclidian) DynamicFactory.getFactory().getInstance()
-					.getNode(tail).getAttribute("location").get(0);
+			h = (Euclidian) Instance.getNode(head).getAttribute("location")
+					.get(0);
+			t = (Euclidian) Instance.getNode(tail).getAttribute("location")
+					.get(0);
 			if (distanceType.equals("") || distanceType.contains("euclidean")) {
 				return Math.sqrt(Math.pow(h.getCx() - t.getCx(), 2)
 						+ Math.pow(h.getCy() - t.getCy(), 2));

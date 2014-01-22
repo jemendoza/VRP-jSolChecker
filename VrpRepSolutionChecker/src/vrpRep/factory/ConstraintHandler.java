@@ -7,6 +7,8 @@ import java.io.File;
 import java.util.ArrayList;
 
 import vrpRep.solutionChecker.constraint.IConstraint;
+import vrpRep.structure.instance.Instance;
+import vrpRep.structure.solution.Solution;
 
 /**
  * Stores add evaluates all the constraints.
@@ -35,8 +37,7 @@ public class ConstraintHandler {
 	 */
 	public File evaluateConstraints() {
 		for (IConstraint c : this.constraints) {
-			c.evaluate(DynamicFactory.getFactory().getInstance(),
-					DynamicFactory.getFactory().getSolution());
+			c.evaluate(Instance.getInstance(), Solution.getSolution());
 			// TODO add result to xml file
 		}
 		return null;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import vrpRep.exceptions.MissingAttributeException;
-import vrpRep.factory.DynamicFactory;
+import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 
 /**
@@ -44,9 +44,8 @@ public class Request {
 		this.id = id;
 		this.demands = new ArrayList<Demand>();
 		try {
-			this.nodeId = ((IntValue) DynamicFactory.getFactory().getInstance()
-					.getRequests().get(id).getAttribute("node").get(0))
-					.getValue();
+			this.nodeId = ((IntValue) Instance.getRequests().get(id)
+					.getAttribute("node").get(0)).getValue();
 		} catch (MissingAttributeException e) {
 			e.printStackTrace();
 		}

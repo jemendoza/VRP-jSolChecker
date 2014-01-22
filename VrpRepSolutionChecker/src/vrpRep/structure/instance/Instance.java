@@ -16,13 +16,53 @@ import vrpRep.exceptions.MissingElementException;
  */
 public class Instance {
 
+	/**
+	 * Path to instance
+	 */
+	private static Instance	myI;
+	/**
+	 * List of nodes
+	 * 
+	 * @see vrpRep.structure.instance.Node
+	 */
 	private List<Node>		nodes		= null;
+	/**
+	 * List of links
+	 * 
+	 * @see vrpRep.structure.instance.Link
+	 */
 	private List<Link>		links		= null;
+	/**
+	 * List of vehicles
+	 * 
+	 * @see vrpRep.structure.instance.Vehicle
+	 */
 	private List<Vehicle>	fleet		= null;
+	/**
+	 * List of requests
+	 * 
+	 * @see vrpRep.structure.instance.Request
+	 */
 	private List<Request>	requests	= null;
+	/**
+	 * Details about the network.
+	 * 
+	 * @see vrpRep.structure.instance.Network
+	 */
 	private Network			network		= null;
 
 	public Instance() {
+	}
+
+	/**
+	 * Sets the instance
+	 */
+	public static void setInstance() {
+		myI = new Instance();
+	}
+
+	public static Instance getInstance() {
+		return myI;
 	}
 
 	/**
@@ -36,11 +76,11 @@ public class Instance {
 	public Instance(List<Node> nodes, List<Link> links, List<Vehicle> fleet,
 			List<Request> requests, Network network) {
 		super();
-		this.nodes = nodes;
-		this.links = links;
-		this.fleet = fleet;
-		this.requests = requests;
-		this.network = network;
+		myI.nodes = nodes;
+		myI.links = links;
+		myI.fleet = fleet;
+		myI.requests = requests;
+		myI.network = network;
 	}
 
 	/**
@@ -49,12 +89,12 @@ public class Instance {
 	 * @param n
 	 *            Node to add to list
 	 */
-	public void addNode(Node n) {
-		if (this.nodes == null) {
-			this.nodes = new ArrayList<Node>();
-			this.nodes.add(n);
+	public static void addNode(Node n) {
+		if (myI.nodes == null) {
+			myI.nodes = new ArrayList<Node>();
+			myI.nodes.add(n);
 		} else {
-			this.nodes.add(n);
+			myI.nodes.add(n);
 		}
 	}
 
@@ -64,12 +104,12 @@ public class Instance {
 	 * @param l
 	 *            link to add to list
 	 */
-	public void addLink(Link l) {
-		if (this.links == null) {
-			this.links = new ArrayList<Link>();
-			this.links.add(l);
+	public static void addLink(Link l) {
+		if (myI.links == null) {
+			myI.links = new ArrayList<Link>();
+			myI.links.add(l);
 		} else {
-			this.links.add(l);
+			myI.links.add(l);
 		}
 	}
 
@@ -79,12 +119,12 @@ public class Instance {
 	 * @param v
 	 *            vehicle to add to list
 	 */
-	public void addFleet(Vehicle v) {
-		if (this.fleet == null) {
-			this.fleet = new ArrayList<Vehicle>();
-			this.fleet.add(v);
+	public static void addFleet(Vehicle v) {
+		if (myI.fleet == null) {
+			myI.fleet = new ArrayList<Vehicle>();
+			myI.fleet.add(v);
 		} else {
-			this.fleet.add(v);
+			myI.fleet.add(v);
 		}
 	}
 
@@ -95,12 +135,12 @@ public class Instance {
 	 * @param r
 	 *            Request to add to list
 	 */
-	public void addRequest(Request r) {
-		if (this.requests == null) {
-			this.requests = new ArrayList<Request>();
-			this.requests.add(r);
+	public static void addRequest(Request r) {
+		if (myI.requests == null) {
+			myI.requests = new ArrayList<Request>();
+			myI.requests.add(r);
 		} else {
-			this.requests.add(r);
+			myI.requests.add(r);
 		}
 	}
 
@@ -113,15 +153,15 @@ public class Instance {
 	 * @throws MissingElementException
 	 *             Thrown if Node not found
 	 */
-	public Node getNode(int id) throws MissingElementException {
+	public static Node getNode(int id) throws MissingElementException {
 		int i = 0;
-		while (i < this.nodes.size() && this.nodes.get(i).getId() != id)
+		while (i < myI.nodes.size() && myI.nodes.get(i).getId() != id)
 			i++;
 
-		if (i >= this.nodes.size())
+		if (i >= myI.nodes.size())
 			throw new MissingElementException("node");
 		else
-			return this.nodes.get(i);
+			return myI.nodes.get(i);
 	}
 
 	/**
@@ -135,17 +175,18 @@ public class Instance {
 	 * @throws MissingElementException
 	 *             Thrown if link not found
 	 */
-	public Link getLink(int head, int tail) throws MissingElementException {
+	public static Link getLink(int head, int tail)
+			throws MissingElementException {
 		int i = 0;
-		while (i < this.links.size()
-				&& (this.links.get(i).getHead() != head || this.links.get(i)
+		while (i < myI.links.size()
+				&& (myI.links.get(i).getHead() != head || myI.links.get(i)
 						.getTail() != tail))
 			i++;
 
-		if (i >= this.links.size())
+		if (i >= myI.links.size())
 			throw new MissingElementException("link");
 		else
-			return this.links.get(i);
+			return myI.links.get(i);
 	}
 
 	/**
@@ -157,15 +198,15 @@ public class Instance {
 	 * @throws MissingElementException
 	 *             Thrown if request not found
 	 */
-	public Request getRequest(int id) throws MissingElementException {
+	public static Request getRequest(int id) throws MissingElementException {
 		int i = 0;
-		while (i < this.requests.size() && this.requests.get(i).getId() != id)
+		while (i < myI.requests.size() && myI.requests.get(i).getId() != id)
 			i++;
 
-		if (i >= this.requests.size())
+		if (i >= myI.requests.size())
 			throw new MissingElementException("request");
 		else
-			return this.requests.get(i);
+			return myI.requests.get(i);
 	}
 
 	/**
@@ -178,18 +219,18 @@ public class Instance {
 	 *             Thrown if vehicle not found
 	 * @throws MissingAttributeException
 	 */
-	public Vehicle getVehicle(int id) throws MissingElementException,
+	public static Vehicle getVehicle(int id) throws MissingElementException,
 			MissingAttributeException {
 		int i = 0;
-		while (i < this.fleet.size()
-				&& ((IntValue) (this.fleet.get(i).getAttribute("type").get(0)))
+		while (i < myI.fleet.size()
+				&& ((IntValue) (myI.fleet.get(i).getAttribute("type").get(0)))
 						.getValue() != id)
 			i++;
 
-		if (i >= this.fleet.size())
+		if (i >= myI.fleet.size())
 			throw new MissingElementException("vehicle");
 		else
-			return this.fleet.get(i);
+			return myI.fleet.get(i);
 	}
 
 	/**
@@ -201,7 +242,7 @@ public class Instance {
 	 *            name of attribute requested
 	 * @return attribute
 	 */
-	public List<VrpAtt> getNodeAttribute(int id, String attName) {
+	public static List<VrpAtt> getNodeAttribute(int id, String attName) {
 		try {
 			Node n = getNode(id);
 			return n.getAttribute(attName);
@@ -224,7 +265,8 @@ public class Instance {
 	 *            name of attribute requested
 	 * @return attribute
 	 */
-	public List<VrpAtt> getLinkAttribute(int head, int tail, String attName) {
+	public static List<VrpAtt> getLinkAttribute(int head, int tail,
+			String attName) {
 		try {
 			Link l = getLink(head, tail);
 			return l.getAttribute(attName);
@@ -245,7 +287,7 @@ public class Instance {
 	 *            name of attribute requested
 	 * @return attribute
 	 */
-	public List<VrpAtt> getRequestAttribute(int id, String attName) {
+	public static List<VrpAtt> getRequestAttribute(int id, String attName) {
 		try {
 			Request r = getRequest(id);
 			return r.getAttribute(attName);
@@ -266,7 +308,7 @@ public class Instance {
 	 *            name of attribute requested
 	 * @return attribute
 	 */
-	public List<VrpAtt> getVehicleAttribute(int id, String attName) {
+	public static List<VrpAtt> getVehicleAttribute(int id, String attName) {
 		try {
 			Vehicle v = getVehicle(id);
 			return v.getAttribute(attName);
@@ -282,42 +324,42 @@ public class Instance {
 	 * 
 	 * @return List of nodes
 	 */
-	public List<Node> getNodes() {
-		return nodes;
+	public static List<Node> getNodes() {
+		return myI.nodes;
 	}
 
 	/**
 	 * 
 	 * @return List of links
 	 */
-	public List<Link> getLinks() {
-		return links;
+	public static List<Link> getLinks() {
+		return myI.links;
 	}
 
 	/**
 	 * 
 	 * @return List of fleet
 	 */
-	public List<Vehicle> getFleet() {
-		return fleet;
+	public static List<Vehicle> getFleet() {
+		return myI.fleet;
 	}
 
 	/**
 	 * 
 	 * @return List of requests
 	 */
-	public List<Request> getRequests() {
-		return requests;
+	public static List<Request> getRequests() {
+		return myI.requests;
 	}
 
 	/**
 	 * 
 	 * @return network object
 	 */
-	public Network getNetwork() {
-		if (this.network == null)
-			this.network = new Network();
+	public static Network getNetwork() {
+		if (myI.network == null)
+			myI.network = new Network();
 
-		return network;
+		return myI.network;
 	}
 }

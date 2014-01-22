@@ -4,8 +4,8 @@
 package vrpRep.utilities;
 
 import vrpRep.exceptions.MissingAttributeException;
-import vrpRep.factory.DynamicFactory;
 import vrpRep.structure.instance.GPS;
+import vrpRep.structure.instance.Instance;
 
 /**
  * Calculate distance between two sets of latitude and longitude points
@@ -25,10 +25,8 @@ public class DistanceCalculatorGPS extends DistanceCalculator {
 		GPS h, t;
 
 		try {
-			h = (GPS) DynamicFactory.getFactory().getInstance().getNode(head)
-					.getAttribute("location").get(0);
-			t = (GPS) DynamicFactory.getFactory().getInstance().getNode(tail)
-					.getAttribute("location").get(0);
+			h = (GPS) Instance.getNode(head).getAttribute("location").get(0);
+			t = (GPS) Instance.getNode(tail).getAttribute("location").get(0);
 
 			double lon1 = degreeToRadian(h.getLon());
 			double lon2 = degreeToRadian(t.getLon());

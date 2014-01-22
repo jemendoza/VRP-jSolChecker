@@ -26,7 +26,6 @@ public class SolutionTranslator implements ISolutionReader {
 	 * Master node containing all xml file info
 	 */
 	private vrpRep.schema.solution.Solution	schemaSolution;
-	private Solution						solution;
 
 	/**
 	 * Constructor that creates xml tree on class instantiation
@@ -39,16 +38,10 @@ public class SolutionTranslator implements ISolutionReader {
 			XmlSchemaReader<vrpRep.schema.solution.Solution> iR = new XmlSchemaReader<vrpRep.schema.solution.Solution>();
 			this.schemaSolution = iR.unmarshallDocument(xmlFile,
 					vrpRep.schema.solution.Solution.class.getName());
-			this.solution = new Solution();
 			this.translateSolution();
 		} catch (ClassNotFoundException | JAXBException | IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public Solution getSolution() {
-		return solution;
 	}
 
 	private void translateSolution() {
@@ -60,8 +53,7 @@ public class SolutionTranslator implements ISolutionReader {
 	 * Retrieves objective function
 	 */
 	private void getObjectiveFunction() {
-		this.solution.setOf(this.schemaSolution.getObjectiveFunction()
-				.getValue());
+		Solution.setOf(this.schemaSolution.getObjectiveFunction().getValue());
 	}
 
 	/**
@@ -76,7 +68,7 @@ public class SolutionTranslator implements ISolutionReader {
 			else
 				tR = new Route(r.getId().intValue());
 			tR = getRequests(r, tR);
-			this.solution.addRoute(tR);
+			Solution.addRoute(tR);
 		}
 	}
 

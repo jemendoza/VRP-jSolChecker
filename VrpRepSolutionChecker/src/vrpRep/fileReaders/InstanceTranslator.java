@@ -45,7 +45,6 @@ public class InstanceTranslator implements IInstanceReader {
 	 * Master node containing all xml file info
 	 */
 	private vrpRep.schema.instance.Instance	schemaInstance;
-	private Instance						instance;
 
 	/**
 	 * Constructor that creates xml tree on class instantiation
@@ -58,16 +57,10 @@ public class InstanceTranslator implements IInstanceReader {
 			XmlSchemaReader<vrpRep.schema.instance.Instance> iR = new XmlSchemaReader<vrpRep.schema.instance.Instance>();
 			this.schemaInstance = iR.unmarshallDocument(xmlFile,
 					vrpRep.schema.instance.Instance.class.getName());
-			this.instance = new Instance();
 			this.translateInstance();
 		} catch (ClassNotFoundException | JAXBException | IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public Instance getInstance() {
-		return instance;
 	}
 
 	private void translateInstance() {
@@ -183,7 +176,7 @@ public class InstanceTranslator implements IInstanceReader {
 					temp.add("tool", sat);
 				}
 			}
-			this.instance.addRequest(temp);
+			Instance.addRequest(temp);
 		}
 	}
 
@@ -317,7 +310,7 @@ public class InstanceTranslator implements IInstanceReader {
 					temp.add("tool", sat);
 				}
 			}
-			this.instance.addFleet(temp);
+			Instance.addFleet(temp);
 		}
 	}
 
@@ -354,7 +347,7 @@ public class InstanceTranslator implements IInstanceReader {
 				}
 				temp.addAttribute("probabilityDistribution", lpd);
 			}
-			this.instance.addLink(temp);
+			Instance.addLink(temp);
 		}
 	}
 
@@ -379,12 +372,12 @@ public class InstanceTranslator implements IInstanceReader {
 					temp.addAttribute("location", gps);
 				}
 			}
-			instance.addNode(temp);
+			Instance.addNode(temp);
 		}
 	}
 
 	private void networkTransformation() {
-		Network n = instance.getNetwork();
+		Network n = Instance.getNetwork();
 		if (schemaInstance.getNetwork().getDescriptor().isIsComplete() != null)
 			n.setComplete(schemaInstance.getNetwork().getDescriptor()
 					.isIsComplete());

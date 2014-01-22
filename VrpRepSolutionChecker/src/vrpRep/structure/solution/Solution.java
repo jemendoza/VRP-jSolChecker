@@ -15,41 +15,56 @@ import java.util.Iterator;
 public class Solution {
 
 	/**
+	 * Path to solution
+	 */
+	private static Solution		myS;
+
+	/**
 	 * Objective function value
 	 */
 	private double				of;
 	/**
 	 * List of routes
 	 */
-	private ArrayList<Route>	routes;
+	private ArrayList<Route>	routes	= null;
 
 	/**
 	 * 
 	 */
 	public Solution() {
-		this.routes = new ArrayList<Route>();
+	}
+
+	/**
+	 * Sets the solution
+	 */
+	public static void setSolution() {
+		myS = new Solution();
+	}
+
+	public static Solution getSolution() {
+		return myS;
 	}
 
 	/**
 	 * @return the of
 	 */
-	public double getOf() {
-		return of;
+	public static double getOf() {
+		return myS.of;
 	}
 
 	/**
 	 * @param of
 	 *            the of to set
 	 */
-	public void setOf(double of) {
-		this.of = of;
+	public static void setOf(double of) {
+		myS.of = of;
 	}
 
 	/**
 	 * @return the routes
 	 */
-	public ArrayList<Route> getRoutes() {
-		return routes;
+	public static ArrayList<Route> getRoutes() {
+		return myS.routes;
 	}
 
 	/**
@@ -58,15 +73,17 @@ public class Solution {
 	 * @param r
 	 *            new route
 	 */
-	public void addRoute(Route r) {
-		this.routes.add(r);
+	public static void addRoute(Route r) {
+		if (myS.routes == null)
+			myS.routes = new ArrayList<Route>();
+		myS.routes.add(r);
 	}
 
 	/**
 	 * 
 	 * @return iterator of routes
 	 */
-	public Iterator<Route> getIterator() {
-		return routes.iterator();
+	public static Iterator<Route> getIterator() {
+		return myS.routes.iterator();
 	}
 }

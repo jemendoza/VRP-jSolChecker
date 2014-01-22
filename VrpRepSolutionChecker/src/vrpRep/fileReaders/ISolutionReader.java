@@ -3,7 +3,6 @@
  */
 package vrpRep.fileReaders;
 
-import vrpRep.structure.solution.Solution;
 
 /**
  * Interface to facilitate implementation of solution reader
@@ -12,6 +11,4 @@ import vrpRep.structure.solution.Solution;
  * 
  */
 public interface ISolutionReader {
-
-	public Solution getSolution();
 }
