@@ -6,41 +6,44 @@ package vrpRep.utilities;
 import java.util.List;
 
 import vrpRep.exceptions.MissingAttributeException;
+import vrpRep.exceptions.MissingElementException;
 import vrpRep.factory.DynamicFactory;
 import vrpRep.structure.instance.DoubleValue;
 import vrpRep.structure.instance.Link;
 import vrpRep.structure.instance.Node;
 
 /**
+ * 
+ * Returns the length of a link between two nodes
+ * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
-public class DistanceCalculatorLink implements IDistanceCalculator {
+public class DistanceCalculatorLink extends DistanceCalculator {
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * vrpRep.utilities.IDistanceCalculator#calculDistance(vrpRep.structure.
-	 * instance.Node, vrpRep.structure.instance.Node)
+	 * @see vrpRep.utilities.DistanceCalculator#calculate(int, int)
 	 */
 	@Override
-	public double calculDistance(Node headNode, Node tailNode) {
-		Link link = getLink(DynamicFactory.getFactory().getInstance()
-				.getLinks(), headNode.getId(), tailNode.getId());
+	public double calculate(int tail, int head) {
 		try {
+			Node headNode = DynamicFactory.getFactory().getInstance()
+					.getNode(head);
+			Node tailNode = DynamicFactory.getFactory().getInstance()
+					.getNode(tail);
+			Link link = getLink(DynamicFactory.getFactory().getInstance()
+					.getLinks(), headNode.getId(), tailNode.getId());
 			if (link.getAttribute("length").get(0) != null) {
 				return ((DoubleValue) link.getAttribute("lenght").get(0))
 						.getValue();
-			} else if (link.getAttribute("probabilityDistribution").get(0) != null) {
-				// TODO probability distribution
-				return 0;
-			} else if (link.getAttribute("time").get(0) != null) {
-				return ((DoubleValue) link.getAttribute("time").get(0))
-						.getValue();
+			} else {
+				throw new MissingElementException("length");
 			}
+		} catch (MissingElementException e1) {
+			e1.printStackTrace();
 		} catch (MissingAttributeException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
