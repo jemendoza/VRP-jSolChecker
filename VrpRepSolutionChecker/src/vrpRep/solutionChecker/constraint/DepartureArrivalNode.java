@@ -44,23 +44,17 @@ public class DepartureArrivalNode implements IConstraint {
 	private boolean test() throws MissingAttributeException,
 			MissingElementException {
 		for (Route r : solution.getRoutes()) {
-			Integer b = r.getType();
+			int b = r.getType();
 
-			int nodeStart = ((IntValue) instance.getRequest(
-					r.getRequests().get(0).getId()).getAttribute("node"))
-					.getValue();
-			int nodeArrival = ((IntValue) instance.getRequest(
-					r.getRequests().get(r.getRequests().size() - 1).getId())
-					.getAttribute("node")).getValue();
+			int nodeStart = r.getRequests().get(0).getNodeId();
+			int nodeArrival = r.getRequests().get(r.getRequests().size())
+					.getNodeId();
 			for (Vehicle v : instance.getFleet()) {
-				if (Integer.valueOf(v.getAttribute("type").get(0).toString())
-						.equals(b)) {
-					if (!Integer.valueOf(
-							v.getAttribute("arrivalNode").get(0).toString())
-							.equals(nodeArrival)
-							|| !Integer.valueOf(
-									v.getAttribute("departureNode").get(0)
-											.toString()).equals(nodeStart))
+				if (((IntValue) v.getAttribute("type").get(0)).getValue() == b) {
+					if (((IntValue) v.getAttribute("arrivalNode").get(0))
+							.getValue() != nodeArrival
+							|| ((IntValue) v.getAttribute("departureNode").get(
+									0)).getValue() != nodeStart)
 						return false;
 
 				}

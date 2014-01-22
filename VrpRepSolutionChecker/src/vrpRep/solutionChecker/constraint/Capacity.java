@@ -5,6 +5,7 @@ package vrpRep.solutionChecker.constraint;
 
 import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.structure.instance.Instance;
+import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.solution.Demand;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
@@ -43,8 +44,9 @@ public abstract class Capacity implements IConstraint {
 			if (r.isHasType()) {
 				vehicleType = r.getType();
 			}
-			int vehicleCapacity = Integer.valueOf(instance.getFleet()
-					.get(vehicleType).getAttribute("capacity").toString());
+			int vehicleCapacity = ((IntValue) instance.getFleet()
+					.get(vehicleType).getAttribute("capacity").get(0))
+					.getValue();
 			double demand = 0.0;
 			for (Request n : r.getRequests()) {
 				if (n.getDemand().size() != 0)

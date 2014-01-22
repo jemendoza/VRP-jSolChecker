@@ -5,6 +5,7 @@ package vrpRep.solutionChecker.constraint;
 
 import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.structure.instance.Instance;
+import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
@@ -37,11 +38,11 @@ public class VehicleMaxRequests implements IConstraint {
 		for (Route r : solution.getRoutes()) {
 			if (r.isHasType()) {
 				int type = r.getType();
-				maxRequest = Integer.valueOf(instance.getFleet().get(type)
-						.getAttribute("maxRequests").toString());
+				maxRequest = ((IntValue) instance.getFleet().get(type)
+						.getAttribute("maxRequests").get(0)).getValue();
 			} else
-				maxRequest = Integer.valueOf(instance.getFleet().get(0)
-						.getAttribute("maxRequests").toString());
+				maxRequest = ((IntValue) instance.getFleet().get(0)
+						.getAttribute("maxRequests").get(0)).getValue();
 			if (maxRequest < r.getRequests().size())
 				return false;
 		}

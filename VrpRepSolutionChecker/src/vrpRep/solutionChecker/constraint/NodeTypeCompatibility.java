@@ -8,6 +8,7 @@ import java.util.List;
 
 import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.structure.instance.Instance;
+import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Node;
 import vrpRep.structure.instance.Vehicle;
 import vrpRep.structure.instance.VrpAtt;
@@ -95,7 +96,7 @@ public class NodeTypeCompatibility implements IConstraint {
 		List<Integer> list = new ArrayList<Integer>();
 		for (Node n : inst.getNodes()) {
 			list.add(n.getId(),
-					Integer.valueOf(n.getAttribute("type").get(0).toString()));
+					((IntValue) n.getAttribute("type").get(0)).getValue());
 		}
 		return list;
 	}
@@ -112,7 +113,7 @@ public class NodeTypeCompatibility implements IConstraint {
 			throws NumberFormatException, MissingAttributeException {
 		List<List<Integer>> list = new ArrayList<List<Integer>>();
 		for (Vehicle v : inst.getFleet()) {
-			list.add(Integer.valueOf(v.getAttribute("type").get(0).toString()),
+			list.add(((IntValue) v.getAttribute("type").get(0)).getValue(),
 					getNodeTypesCompatible(v
 							.getAttribute("nodeTypesCompatible")));
 		}
@@ -122,7 +123,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	private List<Integer> getNodeTypesCompatible(List<VrpAtt> listAtt) {
 		List<Integer> listInt = new ArrayList<Integer>();
 		for (VrpAtt att : listAtt) {
-			listInt.add(Integer.valueOf(att.toString()));
+			listInt.add(((IntValue) att).getValue());
 		}
 		return listInt;
 	}
