@@ -3,13 +3,18 @@
  */
 package vrpRep.utilities;
 
-import java.math.BigInteger;
 import java.util.List;
 
-import vrpRep.exceptions.MissingCustomElementException;
+import vrpRep.factory.DynamicFactory;
 import vrpRep.fileReaders.ILocationReader;
+import vrpRep.fileReaders.LocationEuc2DReader;
+import vrpRep.fileReaders.LocationEuc3DReader;
+import vrpRep.fileReaders.LocationGpsReader;
+import vrpRep.structure.instance.DoubleValue;
+import vrpRep.structure.instance.Euclidian;
+import vrpRep.structure.instance.GPS;
 import vrpRep.structure.instance.Instance;
-import vrpRep.structure.instance.Location;
+import vrpRep.structure.instance.Link;
 import vrpRep.structure.instance.Node;
 
 /**
@@ -60,75 +65,40 @@ public class DistanceCalculator {
 		// check if instance file contains node locations
 		if (head.getAttribute("location") != null
 				&& tail.getAttribute("location") != null) {
-			ILocationReader lr;
-			lr.getLocation(inst, head);
-			(ILocationReader) head.getAttribute("Location").get(0);
-			location.getLocation(inst, head);
-			
+			ILocationReader lr = DynamicFactory.getFactory()
+					.getLocationReader();
+			if (lr instanceof LocationEuc2DReader) {
+				getEuclideanDist(
+						(Euclidian) head.getAttribute("location").get(0),
+						(Euclidian) tail.getAttribute("location").get(0), inst
+								.getNetwork().getDistanceType(), 2);
+			} else if (lr instanceof LocationEuc3DReader) {
+				getEuclideanDist(
+						(Euclidian) head.getAttribute("location").get(0),
+						(Euclidian) tail.getAttribute("location").get(0), inst
+								.getNetwork().getDistanceType(), 3);
+			} else if (lr instanceof LocationGpsReader) {
+				getGPSDist((GPS) head.getAttribute("location").get(0),
+						(GPS) tail.getAttribute("location").get(0));
+			}
 			// check whether the distance is euclidean or gps or custom
-			if (head.getLocation().getEuclidean() != null
-					&& tail.getLocation().getEuclidean() != null)
-				return getEuclideanDist(head.getLocation().getEuclidean(), tail
-						.getLocation().getEuclidean(), inst.getNetwork()
-						.getDescriptor().getDistanceType());
-			else if (head.getLocation().getGPSCoordinates() != null
-					&& tail.getLocation().getGPSCoordinates() != null)
-				return getGPSDist(head.getLocation().getGPSCoordinates(), tail
-						.getLocation().getGPSCoordinates());
-			else if (head.getLocation().getCustom() != null
-					|| tail.getLocation().getCustom() != null)
-				throw new MissingCustomElementException("node location");
-			else
-				throw new NullPointerException("Node location element missing");
 		}
 		// else use link measurement
 		else {
 			// check whether the link length is length or time
-			Link link = getLink(inst.getNetwork().getLinks().getLink(),
-					head.getId(), tail.getId());
-			if (link.getLength() != null) {
-				return link.getLength();
-			} else if (link.getTime() != null) {
-				List<Object> timeContent = link.getTime().getContent();
-				if (timeContent.get(0) != null) // NormalVariable
-					return 0.0; // TODO link time NormalVariable
-				else if (timeContent.get(0) != null) // PoissonVariable
-					return 0.0; // TODO link time PoissonVariable
-				else if (timeContent.get(0) != null) // Custom
-					throw new MissingCustomElementException("link time");
-				else
-					// Standard value
-					return Double.valueOf(timeContent.get(0).toString());
-			} else if (link.getCustom() != null) {
-				throw new MissingCustomElementException("link");
-			} else {
-				throw new NullPointerException("Link element missing");
+			Link link = getLink(inst.getLinks(), head.getId(), tail.getId());
+			if (link.getAttribute("lenght").get(0) != null) {
+				return ((DoubleValue) link.getAttribute("lenght").get(0))
+						.getValue();
+			} else if (link.getAttribute("probabilityDistribution").get(0) != null) {
+				// TODO probability distribution
+				return 0;
+			} else if (link.getAttribute("time").get(0) != null) {
+				return ((DoubleValue) link.getAttribute("time").get(0))
+						.getValue();
 			}
 		}
-
-	}
-
-	/**
-	 * Calculates the distance between two nodes taking into account the speed
-	 * profile of a vehicle
-	 * 
-	 * @param inst
-	 *            Contains all the xml file
-	 * @param head
-	 *            Head node
-	 * @param tail
-	 *            Tail node
-	 * @param sProfile
-	 *            Speed profile of vehicle
-	 * @return Distance between the nodes
-	 * @throws Exception
-	 *             Throws exception if custom elements are found of if
-	 *             information is missing
-	 */
-	public static double getDistance(Instance inst, Node head, Node tail,
-			SpeedProfile sProfile) throws Exception {
-		// TODO GetDistance with speed profile
-		return 0.0;
+		return 0;
 	}
 
 	/**
@@ -146,18 +116,11 @@ public class DistanceCalculator {
 	 * @throws Exception
 	 *             Throws exception if distance type is unknown
 	 */
-	public static double getEuclideanDist(Euclidean head, Euclidean tail,
-			String distanceType) throws Exception {
-		// check if 3D distance
-		boolean is3D = false;
-		if (head.getCz() != null && tail.getCz() != null) {
-			is3D = true;
-		} else {
-			is3D = false;
-		}
+	public static double getEuclideanDist(Euclidian head, Euclidian tail,
+			String distanceType, int d2d3) throws Exception {
 
 		if (distanceType.equals("") || distanceType.contains("euclidean")) {
-			if (is3D) {
+			if (d2d3 == 3) {
 				return Math.sqrt(Math.pow(head.getCx() - tail.getCx(), 2)
 						+ Math.pow(head.getCy() - tail.getCy(), 2)
 						+ Math.pow(head.getCz() - tail.getCz(), 2));
@@ -167,7 +130,7 @@ public class DistanceCalculator {
 			}
 		} else if (!distanceType.equals("")
 				&& distanceType.contains("manhattan")) {
-			if (is3D) {
+			if (d2d3 == 3) {
 				return Math.abs(head.getCx() - tail.getCx())
 						+ Math.abs(head.getCy() - tail.getCy())
 						+ Math.abs(head.getCz() - tail.getCz());
@@ -177,7 +140,7 @@ public class DistanceCalculator {
 			}
 		} else if (!distanceType.equals("")
 				&& distanceType.contains("geodesic")) {
-			if (is3D) {// TODO Geodesic distance
+			if (d2d3 == 3) {// TODO Geodesic distance
 				return 0.0;
 			} else {
 				return 0.0;
@@ -196,7 +159,7 @@ public class DistanceCalculator {
 	 *            GPS coordinates of tail node
 	 * @return Distance between the nodes
 	 */
-	public static double getGPSDist(GPSCoordinates head, GPSCoordinates tail) {
+	public static double getGPSDist(GPS head, GPS tail) {
 		double lon1 = degreeToRadian(head.getLon());
 		double lon2 = degreeToRadian(tail.getLon());
 		double lat1 = degreeToRadian(head.getLat());
@@ -234,14 +197,14 @@ public class DistanceCalculator {
 	 *            Tail node id
 	 * @return Link if found, null otherwise
 	 */
-	public static Link getLink(List<Link> links, BigInteger headId,
-			BigInteger tailId) {
+	public static Link getLink(List<Link> links, int headId, int tailId) {
 		Link temp = null;
 		int i = 0;
 		while (i < links.size()) {
-			temp = links.get(i++);
+			temp = links.get(i);
 			if (temp.getHead() == headId && temp.getTail() == tailId)
 				return temp;
+			i++;
 		}
 		return null;
 	}
