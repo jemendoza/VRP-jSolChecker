@@ -6,13 +6,12 @@ package vrpRep.solutionChecker.constraint;
 import java.util.List;
 
 import vrpRep.exceptions.MissingAttributeException;
-import vrpRep.factory.DynamicFactory;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
-import vrpRep.structure.instance.Node;
 import vrpRep.structure.instance.Vehicle;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
+import vrpRep.utilities.DistanceCalculator;
 
 /**
  * Class verifies that all vehicle traveling distance constraints are respected.
@@ -57,7 +56,6 @@ public class MaxTravelDistance implements IConstraint {
 		boolean result = true;
 		double travelDist;
 		int nodeId1, nodeId2;
-		Node head, tail;
 
 		for (Route r : sol.getRoutes()) { // for each route
 			travelDist = 0;
@@ -70,10 +68,8 @@ public class MaxTravelDistance implements IConstraint {
 					nodeId2 = ((IntValue) inst.getRequest(
 							r.getRequests().get(j + 1).getId()).getAttribute(
 							"node")).getValue();
-					head = inst.getNode(nodeId1);
-					tail = inst.getNode(nodeId2);
-					travelDist += DynamicFactory.getFactory()
-							.getDistanceCalculator().calculDistance(head, tail);
+					travelDist += DistanceCalculator.calculateDistance(nodeId2,
+							nodeId1);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -103,7 +99,6 @@ public class MaxTravelDistance implements IConstraint {
 		List<Vehicle> fleet = this.inst.getFleet();
 		int currentType = 0, nodeId1, nodeId2;
 		double travelDist;
-		Node head, tail;
 
 		for (Route r : sol.getRoutes()) {
 			travelDist = 0;
@@ -115,10 +110,8 @@ public class MaxTravelDistance implements IConstraint {
 					nodeId2 = ((IntValue) inst.getRequest(
 							r.getRequests().get(j + 1).getId()).getAttribute(
 							"node")).getValue();
-					head = inst.getNode(nodeId1);
-					tail = inst.getNode(nodeId2);
-					travelDist += DynamicFactory.getFactory()
-							.getDistanceCalculator().calculDistance(head, tail);
+					travelDist += DistanceCalculator.calculateDistance(nodeId2,
+							nodeId1);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
