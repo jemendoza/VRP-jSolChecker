@@ -6,6 +6,10 @@ package vrpRep.structure.solution;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import vrpRep.exceptions.MissingAttributeException;
+import vrpRep.factory.DynamicFactory;
+import vrpRep.structure.instance.IntValue;
+
 /**
  * Represents a request in a solution
  * 
@@ -26,6 +30,10 @@ public class Request {
 	 * 
 	 */
 	private String				request;
+	/**
+	 * Id of the node
+	 */
+	private int					nodeId;
 
 	/**
 	 * 
@@ -35,6 +43,13 @@ public class Request {
 	public Request(int id) {
 		this.id = id;
 		this.demands = new ArrayList<Demand>();
+		try {
+			this.nodeId = ((IntValue) DynamicFactory.getFactory().getInstance()
+					.getRequests().get(id).getAttribute("node").get(0))
+					.getValue();
+		} catch (MissingAttributeException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -42,6 +57,10 @@ public class Request {
 	 */
 	public int getId() {
 		return id;
+	}
+
+	public int getNodeId() {
+		return nodeId;
 	}
 
 	/**
