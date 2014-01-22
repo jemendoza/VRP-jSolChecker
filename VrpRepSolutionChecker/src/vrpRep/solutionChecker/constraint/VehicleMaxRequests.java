@@ -18,12 +18,21 @@ public class VehicleMaxRequests implements IConstraint {
 	private Instance	instance;
 	private Solution	solution;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * vrpRep.solutionChecker.constraint.IConstraint#evaluate(vrpRep.solutionChecker
+	 * .instance.DefaultInstance,
+	 * vrpRep.solutionChecker.solution.DefaultSolution)
+	 */
 	@Override
 	public void evaluate(Instance inst, Solution sol) {
 		this.instance = inst;
 		this.solution = sol;
 		try {
 			boolean b = checkMaxRequests();
+			System.out.println(b);
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (MissingAttributeException e) {

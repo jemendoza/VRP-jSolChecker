@@ -34,13 +34,20 @@ public class VehicleSkill implements IConstraint {
 	public void evaluate(Instance inst, Solution sol) {
 		this.instance = inst;
 		this.solution = sol;
+
 		try {
 			boolean b = checkVehicleSkill();
+			System.out.println(b);
 		} catch (MissingAttributeException e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 * @throws MissingAttributeException
+	 */
 	private boolean checkVehicleSkill() throws MissingAttributeException {
 
 		for (Route r : solution.getRoutes()) {
@@ -66,6 +73,11 @@ public class VehicleSkill implements IConstraint {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param list
+	 * @return
+	 */
 	private List<SkillAndTool> getSkillVehicle(List<VrpAtt> list) {
 		List<SkillAndTool> sat = new ArrayList<SkillAndTool>();
 		for (VrpAtt vrpAtt : list) {

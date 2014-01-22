@@ -36,6 +36,7 @@ public class VehicleTool implements IConstraint {
 		this.solution = sol;
 		try {
 			boolean b = checkVehicletool();
+			System.out.println(b);
 		} catch (MissingAttributeException e) {
 			e.printStackTrace();
 		}

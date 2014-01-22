@@ -22,6 +22,14 @@ public abstract class Capacity implements IConstraint {
 	private Instance	instance;
 	private Solution	solution;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * vrpRep.solutionChecker.constraint.IConstraint#evaluate(vrpRep.solutionChecker
+	 * .instance.DefaultInstance,
+	 * vrpRep.solutionChecker.solution.DefaultSolution)
+	 */
 	@Override
 	public void evaluate(Instance inst, Solution sol) {
 		this.instance = inst;
@@ -29,6 +37,7 @@ public abstract class Capacity implements IConstraint {
 
 		try {
 			boolean b = checkVehicleCapacity();
+			System.out.println(b);
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (MissingAttributeException e) {
@@ -36,6 +45,12 @@ public abstract class Capacity implements IConstraint {
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 * @throws NumberFormatException
+	 * @throws MissingAttributeException
+	 */
 	private boolean checkVehicleCapacity() throws NumberFormatException,
 			MissingAttributeException {
 

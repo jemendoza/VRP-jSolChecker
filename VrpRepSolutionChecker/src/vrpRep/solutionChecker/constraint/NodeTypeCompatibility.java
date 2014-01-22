@@ -44,6 +44,7 @@ public class NodeTypeCompatibility implements IConstraint {
 			List<Integer> listNodeType = getListNodeType();
 			boolean b = checkCompatibility(listCompatibilityInstance,
 					listNodeType);
+			System.out.println(b);
 
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block

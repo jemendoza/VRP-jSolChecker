@@ -34,6 +34,7 @@ public class DepartureArrivalNode implements IConstraint {
 		solution = sol;
 		try {
 			boolean b = test();
+			System.out.println(b);
 		} catch (MissingAttributeException e) {
 			e.printStackTrace();
 		} catch (MissingElementException e) {
