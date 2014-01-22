@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+ <properties>
+   <comment>List of configurations</comment>
+   <entry key="instanceReader">vrpRep.fileReaders.InstanceTranslator</entry>
+   <entry key="solutionReader">vrpRep.fileReaders.SolutionTranslator</entry>
+   <entry key="demandReader">vrpRep.fileReaders.DefaultDemandReader</entry>
+   <entry key="locationReader">vrpRep.fileReaders.Euclidean2D</entry>
+   <entry key="speedProfileReader">vrpRep.fileReaders.SpeedAverageReader</entry>
+   <entry key="timeReader">vrpRep.fileReaders.DefaultTimeReader</entry>
+ </properties>
