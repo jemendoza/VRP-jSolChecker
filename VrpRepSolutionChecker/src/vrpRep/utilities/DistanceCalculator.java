@@ -22,7 +22,7 @@ public abstract class DistanceCalculator {
 	 *            id of head node
 	 * @return distance between two nodes
 	 */
-	static double calculateDistance(int tail, int head) {
+	public static double calculateDistance(int tail, int head) {
 		return myDC.calculate(tail, head);
 	}
 
