@@ -3,8 +3,6 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import vrpRep.structure.instance.Instance;
-import vrpRep.structure.solution.Solution;
 
 /**
  * Interface used to help implementation of constraint evaluators
@@ -20,6 +18,6 @@ public interface IConstraint {
 	 * @param sol
 	 *            Solution to evaluate
 	 */
-	public void evaluate(Instance inst, Solution sol);
+	public void evaluate();
 
 }

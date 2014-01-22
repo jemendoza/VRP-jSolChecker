@@ -3,7 +3,6 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import vrpRep.structure.instance.Instance;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
@@ -13,8 +12,6 @@ import vrpRep.structure.solution.Solution;
  * 
  */
 public class DemandSatisfied implements IConstraint {
-	private Instance	instance;
-	private Solution	solution;
 
 	/*
 	 * (non-Javadoc)
@@ -25,9 +22,7 @@ public class DemandSatisfied implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate(Instance inst, Solution sol) {
-		this.instance = inst;
-		this.solution = sol;
+	public void evaluate() {
 		isDemandSatisfied();
 	}
 
@@ -37,7 +32,7 @@ public class DemandSatisfied implements IConstraint {
 	 */
 	private boolean isDemandSatisfied() {
 
-		for (Route r : solution.getRoutes()) {
+		for (Route r : Solution.getRoutes()) {
 			for (Request n : r.getRequests()) {
 				// TODO wait for probability distribution to be code
 			}

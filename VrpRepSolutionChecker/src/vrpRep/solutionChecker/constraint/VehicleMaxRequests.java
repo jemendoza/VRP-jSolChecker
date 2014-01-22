@@ -15,9 +15,6 @@ import vrpRep.structure.solution.Solution;
  */
 public class VehicleMaxRequests implements IConstraint {
 
-	private Instance	instance;
-	private Solution	solution;
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -27,9 +24,7 @@ public class VehicleMaxRequests implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate(Instance inst, Solution sol) {
-		this.instance = inst;
-		this.solution = sol;
+	public void evaluate() {
 		try {
 			boolean b = checkMaxRequests();
 			System.out.println(b);
@@ -44,13 +39,13 @@ public class VehicleMaxRequests implements IConstraint {
 			MissingAttributeException {
 
 		int maxRequest;
-		for (Route r : solution.getRoutes()) {
+		for (Route r : Solution.getRoutes()) {
 			if (r.isHasType()) {
 				int type = r.getType();
-				maxRequest = ((IntValue) instance.getFleet().get(type)
+				maxRequest = ((IntValue) Instance.getFleet().get(type)
 						.getAttribute("maxRequests").get(0)).getValue();
 			} else
-				maxRequest = ((IntValue) instance.getFleet().get(0)
+				maxRequest = ((IntValue) Instance.getFleet().get(0)
 						.getAttribute("maxRequests").get(0)).getValue();
 			if (maxRequest < r.getRequests().size())
 				return false;

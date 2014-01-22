@@ -21,9 +21,6 @@ import vrpRep.utilities.DistanceCalculator;
  */
 public class MaxTravelDistance implements IConstraint {
 
-	private Instance	inst;
-	private Solution	sol;
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -33,13 +30,10 @@ public class MaxTravelDistance implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate(Instance inst, Solution sol) {
+	public void evaluate() {
 		boolean result;
-		this.inst = inst;
-		this.sol = sol;
-
 		try {
-			this.inst.getFleet().get(0).getAttribute("type");
+			Instance.getFleet().get(0).getAttribute("type");
 			result = evaluateMtdWithTypes();
 		} catch (MissingAttributeException e) {
 			result = evaluateMtd();
@@ -57,15 +51,15 @@ public class MaxTravelDistance implements IConstraint {
 		double travelDist;
 		int nodeId1, nodeId2;
 
-		for (Route r : sol.getRoutes()) { // for each route
+		for (Route r : Solution.getRoutes()) { // for each route
 			travelDist = 0;
 			// for each pair of node
 			for (int j = 0; j < r.getRequests().size() - 1; j++) {
 				try {
-					nodeId1 = ((IntValue) inst.getRequest(
+					nodeId1 = ((IntValue) Instance.getRequest(
 							r.getRequests().get(j).getId())
 							.getAttribute("node")).getValue();
-					nodeId2 = ((IntValue) inst.getRequest(
+					nodeId2 = ((IntValue) Instance.getRequest(
 							r.getRequests().get(j + 1).getId()).getAttribute(
 							"node")).getValue();
 					travelDist += DistanceCalculator.calculateDistance(nodeId2,
@@ -75,7 +69,7 @@ public class MaxTravelDistance implements IConstraint {
 				}
 			}
 			try {
-				if (travelDist > ((IntValue) (inst.getFleet().get(0)
+				if (travelDist > ((IntValue) (Instance.getFleet().get(0)
 						.getAttribute("maxTravelDistance").get(0))).getValue()) {
 					System.out
 							.println("Max travel distance of vehicle failed on route "
@@ -96,18 +90,18 @@ public class MaxTravelDistance implements IConstraint {
 	 */
 	private boolean evaluateMtdWithTypes() {
 		boolean result = true;
-		List<Vehicle> fleet = this.inst.getFleet();
+		List<Vehicle> fleet = Instance.getFleet();
 		int currentType = 0, nodeId1, nodeId2;
 		double travelDist;
 
-		for (Route r : sol.getRoutes()) {
+		for (Route r : Solution.getRoutes()) {
 			travelDist = 0;
 			for (int j = 0; j < r.getRequests().size() - 1; j++) {
 				try {
-					nodeId1 = ((IntValue) inst.getRequest(
+					nodeId1 = ((IntValue) Instance.getRequest(
 							r.getRequests().get(j).getId())
 							.getAttribute("node")).getValue();
-					nodeId2 = ((IntValue) inst.getRequest(
+					nodeId2 = ((IntValue) Instance.getRequest(
 							r.getRequests().get(j + 1).getId()).getAttribute(
 							"node")).getValue();
 					travelDist += DistanceCalculator.calculateDistance(nodeId2,
@@ -121,9 +115,9 @@ public class MaxTravelDistance implements IConstraint {
 					currentType = ((IntValue) (fleet.get(i)
 							.getAttribute("Type").get(0))).getValue();
 					if (currentType == r.getType()) {
-						if (travelDist > ((IntValue) (inst.getFleet().get(i)
-								.getAttribute("maxTravelDistance").get(0)))
-								.getValue()) {
+						if (travelDist > ((IntValue) (Instance.getFleet()
+								.get(i).getAttribute("maxTravelDistance")
+								.get(0))).getValue()) {
 							System.out
 									.println("Max travel distance of vehicle failed on route "
 											+ r.getId());

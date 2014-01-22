@@ -25,13 +25,9 @@ public class DepartureArrivalNode implements IConstraint {
 	 * .instance.DefaultInstance,
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
-	private Instance	instance;
-	private Solution	solution;
 
 	@Override
-	public void evaluate(Instance inst, Solution sol) {
-		instance = inst;
-		solution = sol;
+	public void evaluate() {
 		try {
 			boolean b = test();
 			System.out.println(b);
@@ -44,13 +40,13 @@ public class DepartureArrivalNode implements IConstraint {
 
 	private boolean test() throws MissingAttributeException,
 			MissingElementException {
-		for (Route r : solution.getRoutes()) {
+		for (Route r : Solution.getRoutes()) {
 			int b = r.getType();
 
 			int nodeStart = r.getRequests().get(0).getNodeId();
 			int nodeArrival = r.getRequests().get(r.getRequests().size())
 					.getNodeId();
-			for (Vehicle v : instance.getFleet()) {
+			for (Vehicle v : Instance.getFleet()) {
 				if (((IntValue) v.getAttribute("type").get(0)).getValue() == b) {
 					if (((IntValue) v.getAttribute("arrivalNode").get(0))
 							.getValue() != nodeArrival

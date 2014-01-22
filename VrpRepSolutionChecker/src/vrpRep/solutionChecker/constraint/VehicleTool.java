@@ -20,9 +20,6 @@ import vrpRep.structure.solution.Solution;
  */
 public class VehicleTool implements IConstraint {
 
-	private Instance	instance;
-	private Solution	solution;
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -31,9 +28,7 @@ public class VehicleTool implements IConstraint {
 	 * .instance.Instance, vrpRep.structure.solution.Solution)
 	 */
 	@Override
-	public void evaluate(Instance inst, Solution sol) {
-		this.instance = inst;
-		this.solution = sol;
+	public void evaluate() {
 		try {
 			boolean b = checkVehicletool();
 			System.out.println(b);
@@ -44,17 +39,17 @@ public class VehicleTool implements IConstraint {
 
 	private boolean checkVehicletool() throws MissingAttributeException {
 
-		for (Route r : solution.getRoutes()) {
+		for (Route r : Solution.getRoutes()) {
 			int vehicle = 0;
 			if (r.isHasType()) {
 				vehicle = r.getType();
 			}
-			List<SkillAndTool> vehicletool = getToolVehicle(instance.getFleet()
+			List<SkillAndTool> vehicletool = getToolVehicle(Instance.getFleet()
 					.get(vehicle).getAttribute("tool"));
 			List<SkillAndTool> requesttool = new ArrayList<SkillAndTool>();
 			for (Request n : r.getRequests()) {
 				int id = n.getId();
-				List<VrpAtt> list = instance.getRequests().get(id)
+				List<VrpAtt> list = Instance.getRequests().get(id)
 						.getAttribute("tool");
 				for (VrpAtt vrpAtt : list) {
 					requesttool.add((SkillAndTool) vrpAtt);

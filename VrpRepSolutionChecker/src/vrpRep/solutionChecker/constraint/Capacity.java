@@ -19,9 +19,6 @@ import vrpRep.structure.solution.Solution;
  */
 public abstract class Capacity implements IConstraint {
 
-	private Instance	instance;
-	private Solution	solution;
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -31,10 +28,7 @@ public abstract class Capacity implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate(Instance inst, Solution sol) {
-		this.instance = inst;
-		this.solution = sol;
-
+	public void evaluate() {
 		try {
 			boolean b = checkVehicleCapacity();
 			System.out.println(b);
@@ -54,12 +48,12 @@ public abstract class Capacity implements IConstraint {
 	private boolean checkVehicleCapacity() throws NumberFormatException,
 			MissingAttributeException {
 
-		for (Route r : solution.getRoutes()) {
+		for (Route r : Solution.getRoutes()) {
 			int vehicleType = 0;
 			if (r.isHasType()) {
 				vehicleType = r.getType();
 			}
-			int vehicleCapacity = ((IntValue) instance.getFleet()
+			int vehicleCapacity = ((IntValue) Instance.getFleet()
 					.get(vehicleType).getAttribute("capacity").get(0))
 					.getValue();
 			double demand = 0.0;

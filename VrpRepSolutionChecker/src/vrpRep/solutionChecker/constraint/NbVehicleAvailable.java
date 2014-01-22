@@ -28,18 +28,11 @@ public class NbVehicleAvailable implements IConstraint {
 	 * .instance.DefaultInstance,
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
-
-	private Instance	inst;
-	private Solution	sol;
-
-	public void evaluate(Instance instance, Solution solution) {
-
-		this.inst = instance;
-		this.sol = solution;
+	public void evaluate() {
 		List<Integer> nbVehicleTypeInstance;
 		try {
-			nbVehicleTypeInstance = getInstanceVehicle(inst);
-			List<Integer> nbVehicleTypeSolution = getSolutionVehicle(sol);
+			nbVehicleTypeInstance = getInstanceVehicle();
+			List<Integer> nbVehicleTypeSolution = getSolutionVehicle();
 			boolean b = compare(nbVehicleTypeInstance, nbVehicleTypeSolution);
 			System.out.println(b);
 
@@ -82,14 +75,14 @@ public class NbVehicleAvailable implements IConstraint {
 	 * @throws MissingAttributeException
 	 * @throws NumberFormatException
 	 */
-	private List<Integer> getInstanceVehicle(Instance inst) {
+	private List<Integer> getInstanceVehicle() {
 		List<Integer> nbVehicleType = new ArrayList<Integer>();
 		try {
-			if (inst.getFleet().size() == 1) {
-				nbVehicleType.add(((IntValue) inst.getFleet().get(0)
+			if (Instance.getFleet().size() == 1) {
+				nbVehicleType.add(((IntValue) Instance.getFleet().get(0)
 						.getAttribute("number").get(0)).getValue());
 			} else {
-				for (Vehicle v : inst.getFleet()) {
+				for (Vehicle v : Instance.getFleet()) {
 
 					nbVehicleType.add(
 							((IntValue) v.getAttribute("type").get(0))
@@ -109,14 +102,12 @@ public class NbVehicleAvailable implements IConstraint {
 
 	/**
 	 * 
-	 * @param sol
-	 *            : Object used to store XML solution data
 	 * @return the list containing the number of vehicle USED per type
 	 */
-	private List<Integer> getSolutionVehicle(Solution sol) {
+	private List<Integer> getSolutionVehicle() {
 		List<Integer> nbVehicleType = new ArrayList<Integer>(
-				Collections.nCopies(sol.getRoutes().size(), 0));
-		for (Route r : sol.getRoutes()) {
+				Collections.nCopies(Solution.getRoutes().size(), 0));
+		for (Route r : Solution.getRoutes()) {
 			// If there is no type of vehicle define in the instance
 			if (r.isHasType() == false) {
 				int b = nbVehicleType.get(0);

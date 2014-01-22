@@ -22,9 +22,6 @@ import vrpRep.structure.solution.Solution;
  */
 public class NodeTypeCompatibility implements IConstraint {
 
-	private Instance	inst;
-	private Solution	sol;
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -34,10 +31,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate(Instance inst, Solution sol) {
-		this.inst = inst;
-		this.sol = sol;
-
+	public void evaluate() {
 		List<List<Integer>> listCompatibilityInstance;
 		try {
 			listCompatibilityInstance = vehicleNodeCompatibilityInstance();
@@ -71,7 +65,7 @@ public class NodeTypeCompatibility implements IConstraint {
 			List<List<Integer>> listCompatibilityInstance,
 			List<Integer> listNodeType) {
 
-		for (Route r : sol.getRoutes()) {
+		for (Route r : Solution.getRoutes()) {
 			// Type de véhicle de la route
 			int b = r.getType();
 			for (Request n : r.getRequests()) {
@@ -95,7 +89,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	private List<Integer> getListNodeType() throws NumberFormatException,
 			MissingAttributeException {
 		List<Integer> list = new ArrayList<Integer>();
-		for (Node n : inst.getNodes()) {
+		for (Node n : Instance.getNodes()) {
 			list.add(n.getId(),
 					((IntValue) n.getAttribute("type").get(0)).getValue());
 		}
@@ -113,7 +107,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	private List<List<Integer>> vehicleNodeCompatibilityInstance()
 			throws NumberFormatException, MissingAttributeException {
 		List<List<Integer>> list = new ArrayList<List<Integer>>();
-		for (Vehicle v : inst.getFleet()) {
+		for (Vehicle v : Instance.getFleet()) {
 			list.add(((IntValue) v.getAttribute("type").get(0)).getValue(),
 					getNodeTypesCompatible(v
 							.getAttribute("nodeTypesCompatible")));
