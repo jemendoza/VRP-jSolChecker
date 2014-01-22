@@ -18,7 +18,7 @@ import vrpRep.structure.solution.Solution;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
-public class VehicleSkill implements IConstraint {
+public class VehicleTool implements IConstraint {
 
 	private Instance	instance;
 	private Solution	solution;
@@ -35,38 +35,38 @@ public class VehicleSkill implements IConstraint {
 		this.instance = inst;
 		this.solution = sol;
 		try {
-			boolean b = checkVehicleSkill();
+			boolean b = checkVehicletool();
 		} catch (MissingAttributeException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private boolean checkVehicleSkill() throws MissingAttributeException {
+	private boolean checkVehicletool() throws MissingAttributeException {
 
 		for (Route r : solution.getRoutes()) {
 			int vehicle = 0;
 			if (r.isHasType()) {
 				vehicle = r.getType();
 			}
-			List<SkillAndTool> vehicleSkill = getSkillVehicle(instance
-					.getFleet().get(vehicle).getAttribute("skill"));
-			List<SkillAndTool> requestSkill = new ArrayList<SkillAndTool>();
+			List<SkillAndTool> vehicletool = getToolVehicle(instance.getFleet()
+					.get(vehicle).getAttribute("tool"));
+			List<SkillAndTool> requesttool = new ArrayList<SkillAndTool>();
 			for (Request n : r.getRequests()) {
 				int id = n.getId();
 				List<VrpAtt> list = instance.getRequests().get(id)
-						.getAttribute("skill");
+						.getAttribute("tool");
 				for (VrpAtt vrpAtt : list) {
-					requestSkill.add((SkillAndTool) vrpAtt);
+					requesttool.add((SkillAndTool) vrpAtt);
 				}
 			}
-			for (SkillAndTool s : requestSkill)
-				if (!vehicleSkill.contains(s))
+			for (SkillAndTool s : requesttool)
+				if (!vehicletool.contains(s))
 					return false;
 		}
 		return true;
 	}
 
-	private List<SkillAndTool> getSkillVehicle(List<VrpAtt> list) {
+	private List<SkillAndTool> getToolVehicle(List<VrpAtt> list) {
 		List<SkillAndTool> sat = new ArrayList<SkillAndTool>();
 		for (VrpAtt vrpAtt : list) {
 			sat.add((SkillAndTool) vrpAtt);
