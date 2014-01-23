@@ -11,6 +11,7 @@ import vrpRep.structure.instance.VrpAtt;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
+import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -24,15 +25,22 @@ public class Predecessors implements IConstraint {
 	 * @see vrpRep.solutionChecker.constraint.IConstraint#evaluate()
 	 */
 	@Override
-	public void evaluate() {
+	public ConstraintResult evaluate() {
+		ConstraintResult cr = null;
 		try {
 			boolean b = checkPredecessors();
 			System.out.println(b);
+			if (b)
+				cr = new ConstraintResult(b, "", "predecessors");
+			else
+				cr = new ConstraintResult(b, "", "predecessors");
+			// TODO : écrire detail
 		} catch (MissingAttributeException e) {
 			e.printStackTrace();
 		} catch (MissingElementException e) {
 			e.printStackTrace();
 		}
+		return cr;
 
 	}
 

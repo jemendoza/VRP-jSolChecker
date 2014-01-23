@@ -10,6 +10,7 @@ import vrpRep.structure.solution.Demand;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
+import vrpRep.utilities.ConstraintResult;
 
 /**
  * Class used to evaluate capacity constraints
@@ -28,7 +29,7 @@ public abstract class Capacity implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate() {
+	public ConstraintResult evaluate() {
 		try {
 			boolean b = checkVehicleCapacity();
 			System.out.println(b);
@@ -37,6 +38,7 @@ public abstract class Capacity implements IConstraint {
 		} catch (MissingAttributeException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	/**

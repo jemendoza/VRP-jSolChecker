@@ -10,6 +10,7 @@ import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
+import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -27,7 +28,7 @@ public class DepartureArrivalNode implements IConstraint {
 	 */
 
 	@Override
-	public void evaluate() {
+	public ConstraintResult evaluate() {
 		try {
 			boolean b = test();
 			System.out.println(b);
@@ -36,6 +37,7 @@ public class DepartureArrivalNode implements IConstraint {
 		} catch (MissingElementException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	private boolean test() throws MissingAttributeException,

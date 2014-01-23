@@ -13,6 +13,7 @@ import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
+import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -28,7 +29,7 @@ public class NbVehicleAvailable implements IConstraint {
 	 * .instance.DefaultInstance,
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
-	public void evaluate() {
+	public ConstraintResult evaluate() {
 		List<Integer> nbVehicleTypeInstance;
 		try {
 			nbVehicleTypeInstance = getInstanceVehicle();
@@ -39,6 +40,7 @@ public class NbVehicleAvailable implements IConstraint {
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
+		return null;
 
 	}
 

@@ -11,6 +11,7 @@ import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
+import vrpRep.utilities.ConstraintResult;
 import vrpRep.utilities.DistanceCalculator;
 
 /**
@@ -30,7 +31,7 @@ public class MaxTravelDistance implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate() {
+	public ConstraintResult evaluate() {
 		boolean result;
 		try {
 			Instance.getFleet().get(0).getAttribute("type");
@@ -39,6 +40,7 @@ public class MaxTravelDistance implements IConstraint {
 			result = evaluateMtd();
 		}
 		System.out.println(result);
+		return null;
 	}
 
 	/**

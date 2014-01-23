@@ -6,6 +6,7 @@ package vrpRep.factory;
 import java.io.File;
 import java.util.ArrayList;
 
+import vrpRep.schema.output.ObjectFactory;
 import vrpRep.solutionChecker.constraint.IConstraint;
 
 /**
@@ -15,6 +16,10 @@ import vrpRep.solutionChecker.constraint.IConstraint;
  * 
  */
 public class ConstraintHandler {
+	/**
+	 * Xml output object creator
+	 */
+	public static ObjectFactory		of;
 
 	/**
 	 * List of constraints
@@ -25,6 +30,7 @@ public class ConstraintHandler {
 	 * Default constructor. Initializes constraints list
 	 */
 	public ConstraintHandler() {
+		of = new ObjectFactory();
 		this.constraints = new ArrayList<IConstraint>();
 	}
 

@@ -8,6 +8,7 @@ import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
+import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -24,7 +25,7 @@ public class VehicleMaxRequests implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate() {
+	public ConstraintResult evaluate() {
 		try {
 			boolean b = checkMaxRequests();
 			System.out.println(b);
@@ -33,6 +34,7 @@ public class VehicleMaxRequests implements IConstraint {
 		} catch (MissingAttributeException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	private boolean checkMaxRequests() throws NumberFormatException,

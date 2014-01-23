@@ -15,6 +15,7 @@ import vrpRep.structure.instance.VrpAtt;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
+import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -31,7 +32,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate() {
+	public ConstraintResult evaluate() {
 		List<List<Integer>> listCompatibilityInstance;
 		try {
 			listCompatibilityInstance = vehicleNodeCompatibilityInstance();
@@ -47,6 +48,7 @@ public class NodeTypeCompatibility implements IConstraint {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 
 	}
 

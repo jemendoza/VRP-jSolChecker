@@ -13,6 +13,7 @@ import vrpRep.structure.instance.VrpAtt;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
+import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -28,13 +29,14 @@ public class VehicleSkill implements IConstraint {
 	 * .instance.Instance, vrpRep.structure.solution.Solution)
 	 */
 	@Override
-	public void evaluate() {
+	public ConstraintResult evaluate() {
 		try {
 			boolean b = checkVehicleSkill();
 			System.out.println(b);
 		} catch (MissingAttributeException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	/**

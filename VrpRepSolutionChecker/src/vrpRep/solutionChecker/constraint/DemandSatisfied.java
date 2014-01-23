@@ -6,6 +6,7 @@ package vrpRep.solutionChecker.constraint;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
+import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -22,8 +23,9 @@ public class DemandSatisfied implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public void evaluate() {
+	public ConstraintResult evaluate() {
 		isDemandSatisfied();
+		return null;
 	}
 
 	/**

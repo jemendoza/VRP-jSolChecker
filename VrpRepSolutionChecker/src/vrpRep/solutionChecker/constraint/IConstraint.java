@@ -3,6 +3,8 @@
  */
 package vrpRep.solutionChecker.constraint;
 
+import vrpRep.utilities.ConstraintResult;
+
 
 /**
  * Interface used to help implementation of constraint evaluators
@@ -17,7 +19,8 @@ public interface IConstraint {
 	 * 
 	 * @param sol
 	 *            Solution to evaluate
+	 * @return TODO
 	 */
-	public void evaluate();
+	public ConstraintResult evaluate();
 
 }
