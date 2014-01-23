@@ -64,6 +64,7 @@ public class InstanceTranslator implements IInstanceReader {
 	}
 
 	private void translateInstance() {
+		Instance.setInstance();
 		networkTransformation();
 		nodeTransformation();
 		linkTransformation();

@@ -11,8 +11,6 @@ import java.util.Properties;
 
 import vrpRep.fileReaders.IInstanceReader;
 import vrpRep.fileReaders.ISolutionReader;
-import vrpRep.structure.instance.Instance;
-import vrpRep.structure.solution.Solution;
 import vrpRep.utilities.DistanceCalculator;
 
 /**
@@ -105,7 +103,6 @@ public class DynamicFactory {
 				Class<?> tClass;
 				tClass = Class.forName(this.properties
 						.getProperty("instanceReader"));
-				Instance.setInstance();
 				factory.instanceReader = (IInstanceReader) tClass
 						.getDeclaredConstructor(String.class).newInstance(
 								instanceXmlPath);
@@ -140,7 +137,6 @@ public class DynamicFactory {
 				Class<?> tClass;
 				tClass = Class.forName(this.properties
 						.getProperty("solutionReader"));
-				Solution.setSolution();
 				factory.solutionReader = (ISolutionReader) tClass
 						.getDeclaredConstructor(String.class).newInstance(
 								solutionXmlPath);
