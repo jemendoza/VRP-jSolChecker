@@ -7,34 +7,46 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:all>
-				<xs:element name="solution"/>
+				<xs:element name="solution">
+					<xs:annotation>
+						<xs:documentation>Name of solution</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 				<xs:element name="objectiveFunction">
+					<xs:annotation>
+						<xs:documentation>Result of objective function check</xs:documentation>
+					</xs:annotation>
 					<xs:complexType>
-						<xs:attribute name="valid"/>
+						<xs:attribute name="valid">
+							<xs:annotation>
+								<xs:documentation>true of objective function correct, false otherwise</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="constraints">
+					<xs:annotation>
+						<xs:documentation>Results of constraint checks</xs:documentation>
+					</xs:annotation>
 					<xs:complexType>
 						<xs:all>
 							<xs:element name="nonValid" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>List of non-valid constraints</xs:documentation>
+								</xs:annotation>
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="constraint" maxOccurs="unbounded">
-											<xs:complexType mixed="true">
-												<xs:attribute name="name"/>
-											</xs:complexType>
-										</xs:element>
+										<xs:element ref="constraint" maxOccurs="unbounded"/>
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="valid" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>List of valid constaints</xs:documentation>
+								</xs:annotation>
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="constraint" maxOccurs="unbounded">
-											<xs:complexType mixed="true">
-												<xs:attribute name="name"/>
-											</xs:complexType>
-										</xs:element>
+										<xs:element ref="constraint" maxOccurs="unbounded"/>
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
@@ -42,6 +54,18 @@
 					</xs:complexType>
 				</xs:element>
 			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="constraint">
+		<xs:annotation>
+			<xs:documentation>Represents the result of a constraint</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:attribute name="name">
+				<xs:annotation>
+					<xs:documentation>Name of constraint</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.5-2 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2014.01.23 à 04:10:08 PM CET 
+// Généré le : 2014.01.23 à 04:25:41 PM CET 
 //
 
 
@@ -53,11 +53,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Result.Constraints.Valid }
+     * Create an instance of {@link Result.ObjectiveFunction }
      * 
      */
-    public Result.Constraints.Valid createResultConstraintsValid() {
-        return new Result.Constraints.Valid();
+    public Result.ObjectiveFunction createResultObjectiveFunction() {
+        return new Result.ObjectiveFunction();
+    }
+
+    /**
+     * Create an instance of {@link Constraint }
+     * 
+     */
+    public Constraint createConstraint() {
+        return new Constraint();
     }
 
     /**
@@ -69,27 +77,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Result.ObjectiveFunction }
+     * Create an instance of {@link Result.Constraints.Valid }
      * 
      */
-    public Result.ObjectiveFunction createResultObjectiveFunction() {
-        return new Result.ObjectiveFunction();
-    }
-
-    /**
-     * Create an instance of {@link Result.Constraints.Valid.Constraint }
-     * 
-     */
-    public Result.Constraints.Valid.Constraint createResultConstraintsValidConstraint() {
-        return new Result.Constraints.Valid.Constraint();
-    }
-
-    /**
-     * Create an instance of {@link Result.Constraints.NonValid.Constraint }
-     * 
-     */
-    public Result.Constraints.NonValid.Constraint createResultConstraintsNonValidConstraint() {
-        return new Result.Constraints.NonValid.Constraint();
+    public Result.Constraints.Valid createResultConstraintsValid() {
+        return new Result.Constraints.Valid();
     }
 
 }
