@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (http://www.altova.com) by End User (free.org) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="result">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="solution"/>
+				<xs:element name="objectiveFunction">
+					<xs:complexType>
+						<xs:attribute name="valid"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="constraints">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="nonValid" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="constraint" maxOccurs="unbounded">
+											<xs:complexType mixed="true">
+												<xs:attribute name="name"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="valid" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="constraint" maxOccurs="unbounded">
+											<xs:complexType mixed="true">
+												<xs:attribute name="name"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
