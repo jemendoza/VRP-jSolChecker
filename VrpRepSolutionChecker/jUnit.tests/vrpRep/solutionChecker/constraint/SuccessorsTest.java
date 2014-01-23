@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package vrpRep.solutionChecker.constraint;
 
 import static org.junit.Assert.assertTrue;
@@ -15,7 +18,7 @@ import vrpRep.utilities.ConstraintResult;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
-public class PredecessorsTest {
+public class SuccessorsTest {
 	/**
 	 * 
 	 */
@@ -29,8 +32,8 @@ public class PredecessorsTest {
 		new InstanceTranslator(new File("./schemaFiles/testXmlFile.xml"));
 		new SolutionTranslator(new File("./schemaFiles/sampleSolution.xml"));
 
-		Predecessors pred = new Predecessors();
-		cr = pred.evaluate();
+		Successors succ = new Successors();
+		cr = succ.evaluate();
 	}
 
 	@Test

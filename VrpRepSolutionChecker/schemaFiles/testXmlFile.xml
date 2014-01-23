@@ -179,7 +179,6 @@
 			</predecessors>
 			<successors>
 				<request>1</request>
-				<request>0</request>
 			</successors>
 			<skill id="0">1</skill>
 			<skill id="1">2</skill>
@@ -220,7 +219,6 @@
 				<request>0</request>
 			</predecessors>
 			<successors>
-				<request>0</request>
 				<request>1</request>
 			</successors>
 			<skill id="0">3</skill>
@@ -263,8 +261,7 @@
 				<request>1</request>
 			</predecessors>
 			<successors>
-				<request>1</request>
-				<request>0</request>
+				<request>3</request>
 			</successors>
 			<skill id="0">1</skill>
 			<skill id="1">2</skill>
@@ -307,8 +304,7 @@
 				<request>2</request>
 			</predecessors>
 			<successors>
-				<request>1</request>
-				<request>0</request>
+				<request>3</request>
 			</successors>
 			<skill id="0">1</skill>
 			<skill id="1">2</skill>
