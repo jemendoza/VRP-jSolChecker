@@ -5,8 +5,6 @@ package vrpRep.utilities;
 
 import java.util.List;
 
-import vrpRep.exceptions.MissingAttributeException;
-import vrpRep.exceptions.MissingElementException;
 import vrpRep.structure.instance.DoubleValue;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.Link;
@@ -28,23 +26,16 @@ public class DistanceCalculatorLink extends DistanceCalculator {
 	 */
 	@Override
 	public double calculate(int tail, int head) {
-		try {
-			Node headNode = Instance.getNode(head);
-			Node tailNode = Instance.getNode(tail);
-			Link link = getLink(Instance.getLinks(), headNode.getId(),
-					tailNode.getId());
-			if (link.getAttribute("length").get(0) != null) {
-				return ((DoubleValue) link.getAttribute("lenght").get(0))
-						.getValue();
-			} else {
-				throw new MissingElementException("length");
-			}
-		} catch (MissingElementException e1) {
-			e1.printStackTrace();
-		} catch (MissingAttributeException e) {
-			e.printStackTrace();
+		Node headNode = Instance.getNode(head);
+		Node tailNode = Instance.getNode(tail);
+		Link link = getLink(Instance.getLinks(), headNode.getId(),
+				tailNode.getId());
+		if (link.getAttribute("length").get(0) != null) {
+			return ((DoubleValue) link.getAttribute("lenght").get(0))
+					.getValue();
+		} else {
+			return -1;
 		}
-		return 0;
 	}
 
 	/**

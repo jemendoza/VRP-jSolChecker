@@ -103,10 +103,9 @@ public class Link {
 	 * @throws MissingAttributeException
 	 *             Thrown if attribute not found
 	 */
-	public List<VrpAtt> getAttribute(String name)
-			throws MissingAttributeException {
+	public List<VrpAtt> getAttribute(String name) {
 		if (!this.atts.containsKey(name))
-			throw new MissingAttributeException(name);
+			return null;
 		else
 			return this.atts.get(name);
 	}

@@ -5,7 +5,6 @@ package vrpRep.solutionChecker.constraint;
 
 import java.util.List;
 
-import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;
@@ -33,13 +32,12 @@ public class MaxTravelDistance implements IConstraint {
 	@Override
 	public ConstraintResult evaluate() {
 		boolean result;
-		try {
-			Instance.getFleet().get(0).getAttribute("type");
+		if (Instance.getFleet().get(0).getAttribute("type") != null)
 			result = evaluateMtdWithTypes();
-		} catch (MissingAttributeException e) {
+		else
 			result = evaluateMtd();
-		}
-		System.out.println(result);
+		// System.out.println(result);
+		// TODO
 		return null;
 	}
 
@@ -70,16 +68,12 @@ public class MaxTravelDistance implements IConstraint {
 					e.printStackTrace();
 				}
 			}
-			try {
-				if (travelDist > ((IntValue) (Instance.getFleet().get(0)
-						.getAttribute("maxTravelDistance").get(0))).getValue()) {
-					System.out
-							.println("Max travel distance of vehicle failed on route "
-									+ r.getId());
-					result = false;
-				}
-			} catch (MissingAttributeException e) {
-				System.out.println("Missing maxTravelDistance attribute");
+			if (travelDist > ((IntValue) (Instance.getFleet().get(0)
+					.getAttribute("maxTravelDistance").get(0))).getValue()) {
+				System.out
+						.println("Max travel distance of vehicle failed on route "
+								+ r.getId());
+				result = false;
 			}
 		}
 		return result;
@@ -113,23 +107,17 @@ public class MaxTravelDistance implements IConstraint {
 				}
 			}
 			for (int i = 0; i < fleet.size(); i++) {
-				try {
-					currentType = ((IntValue) (fleet.get(i)
-							.getAttribute("Type").get(0))).getValue();
-					if (currentType == r.getType()) {
-						if (travelDist > ((IntValue) (Instance.getFleet()
-								.get(i).getAttribute("maxTravelDistance")
-								.get(0))).getValue()) {
-							System.out
-									.println("Max travel distance of vehicle failed on route "
-											+ r.getId());
-							result = false;
-						}
+				currentType = ((IntValue) (fleet.get(i).getAttribute("Type")
+						.get(0))).getValue();
+				if (currentType == r.getType()) {
+					if (travelDist > ((IntValue) (Instance.getFleet().get(i)
+							.getAttribute("maxTravelDistance").get(0)))
+							.getValue()) {
+						System.out
+								.println("Max travel distance of vehicle failed on route "
+										+ r.getId());
+						result = false;
 					}
-				} catch (MissingAttributeException e) {
-					System.out.println("No type attribute for fleet number "
-							+ i);
-					e.printStackTrace();
 				}
 			}
 		}

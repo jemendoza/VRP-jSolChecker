@@ -79,24 +79,19 @@ public class NbVehicleAvailable implements IConstraint {
 	 */
 	private List<Integer> getInstanceVehicle() {
 		List<Integer> nbVehicleType = new ArrayList<Integer>();
-		try {
-			if (Instance.getFleet().size() == 1) {
-				nbVehicleType.add(((IntValue) Instance.getFleet().get(0)
-						.getAttribute("number").get(0)).getValue());
-			} else {
-				for (Vehicle v : Instance.getFleet()) {
+		if (Instance.getFleet().size() == 1) {
+			nbVehicleType.add(((IntValue) Instance.getFleet().get(0)
+					.getAttribute("number").get(0)).getValue());
+		} else {
+			for (Vehicle v : Instance.getFleet()) {
 
-					nbVehicleType.add(
-							((IntValue) v.getAttribute("type").get(0))
-									.getValue(),
-							((IntValue) v.getAttribute("number").get(0))
-									.getValue());
-				}
-
+				nbVehicleType
+						.add(((IntValue) v.getAttribute("type").get(0))
+								.getValue(),
+								((IntValue) v.getAttribute("number").get(0))
+										.getValue());
 			}
-		} catch (MissingAttributeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
 		}
 
 		return nbVehicleType;

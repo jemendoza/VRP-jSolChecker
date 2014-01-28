@@ -6,7 +6,6 @@ package vrpRep.structure.solution;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 
@@ -43,12 +42,8 @@ public class Request {
 	public Request(int id) {
 		this.id = id;
 		this.demands = new ArrayList<Demand>();
-		try {
-			this.nodeId = ((IntValue) Instance.getRequests().get(id)
-					.getAttribute("node").get(0)).getValue();
-		} catch (MissingAttributeException e) {
-			e.printStackTrace();
-		}
+		this.nodeId = ((IntValue) Instance.getRequests().get(id)
+				.getAttribute("node").get(0)).getValue();
 	}
 
 	/**

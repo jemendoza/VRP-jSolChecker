@@ -153,13 +153,13 @@ public class Instance {
 	 * @throws MissingElementException
 	 *             Thrown if Node not found
 	 */
-	public static Node getNode(int id) throws MissingElementException {
+	public static Node getNode(int id) {
 		int i = 0;
 		while (i < myI.nodes.size() && myI.nodes.get(i).getId() != id)
 			i++;
 
 		if (i >= myI.nodes.size())
-			throw new MissingElementException("node");
+			throw new IndexOutOfBoundsException("Node");
 		else
 			return myI.nodes.get(i);
 	}
@@ -175,8 +175,7 @@ public class Instance {
 	 * @throws MissingElementException
 	 *             Thrown if link not found
 	 */
-	public static Link getLink(int head, int tail)
-			throws MissingElementException {
+	public static Link getLink(int head, int tail) {
 		int i = 0;
 		while (i < myI.links.size()
 				&& (myI.links.get(i).getHead() != head || myI.links.get(i)
@@ -184,7 +183,7 @@ public class Instance {
 			i++;
 
 		if (i >= myI.links.size())
-			throw new MissingElementException("link");
+			throw new IndexOutOfBoundsException("Link");
 		else
 			return myI.links.get(i);
 	}
@@ -198,13 +197,13 @@ public class Instance {
 	 * @throws MissingElementException
 	 *             Thrown if request not found
 	 */
-	public static Request getRequest(int id) throws MissingElementException {
+	public static Request getRequest(int id) {
 		int i = 0;
 		while (i < myI.requests.size() && myI.requests.get(i).getId() != id)
 			i++;
 
 		if (i >= myI.requests.size())
-			throw new MissingElementException("request");
+			throw new IndexOutOfBoundsException("Request");
 		else
 			return myI.requests.get(i);
 	}
@@ -219,8 +218,7 @@ public class Instance {
 	 *             Thrown if vehicle not found
 	 * @throws MissingAttributeException
 	 */
-	public static Vehicle getVehicle(int id) throws MissingElementException,
-			MissingAttributeException {
+	public static Vehicle getVehicle(int id) {
 		int i = 0;
 		while (i < myI.fleet.size()
 				&& ((IntValue) (myI.fleet.get(i).getAttribute("type").get(0)))
@@ -228,7 +226,7 @@ public class Instance {
 			i++;
 
 		if (i >= myI.fleet.size())
-			throw new MissingElementException("vehicle");
+			throw new IndexOutOfBoundsException("Vehicle");
 		else
 			return myI.fleet.get(i);
 	}
@@ -243,15 +241,8 @@ public class Instance {
 	 * @return attribute
 	 */
 	public static List<VrpAtt> getNodeAttribute(int id, String attName) {
-		try {
-			Node n = getNode(id);
-			return n.getAttribute(attName);
-		} catch (MissingElementException e) {
-			e.printStackTrace();
-		} catch (MissingAttributeException e) {
-			e.printStackTrace();
-		}
-		return null;
+		Node n = getNode(id);
+		return n.getAttribute(attName);
 	}
 
 	/**
@@ -267,15 +258,8 @@ public class Instance {
 	 */
 	public static List<VrpAtt> getLinkAttribute(int head, int tail,
 			String attName) {
-		try {
-			Link l = getLink(head, tail);
-			return l.getAttribute(attName);
-		} catch (MissingElementException e) {
-			e.printStackTrace();
-		} catch (MissingAttributeException e) {
-			e.printStackTrace();
-		}
-		return null;
+		Link l = getLink(head, tail);
+		return l.getAttribute(attName);
 	}
 
 	/**
@@ -288,15 +272,8 @@ public class Instance {
 	 * @return attribute
 	 */
 	public static List<VrpAtt> getRequestAttribute(int id, String attName) {
-		try {
-			Request r = getRequest(id);
-			return r.getAttribute(attName);
-		} catch (MissingElementException e) {
-			e.printStackTrace();
-		} catch (MissingAttributeException e) {
-			e.printStackTrace();
-		}
-		return null;
+		Request r = getRequest(id);
+		return r.getAttribute(attName);
 	}
 
 	/**
@@ -309,15 +286,8 @@ public class Instance {
 	 * @return attribute
 	 */
 	public static List<VrpAtt> getVehicleAttribute(int id, String attName) {
-		try {
-			Vehicle v = getVehicle(id);
-			return v.getAttribute(attName);
-		} catch (MissingElementException e) {
-			e.printStackTrace();
-		} catch (MissingAttributeException e) {
-			e.printStackTrace();
-		}
-		return null;
+		Vehicle v = getVehicle(id);
+		return v.getAttribute(attName);
 	}
 
 	/**

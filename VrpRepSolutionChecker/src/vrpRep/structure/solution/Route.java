@@ -6,8 +6,6 @@ package vrpRep.structure.solution;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import vrpRep.exceptions.MissingAttributeException;
-
 /**
  * Represents a route of the solution
  * 
@@ -70,12 +68,7 @@ public class Route {
 	 */
 	public int getType() {
 		if (!hasType) {
-			try {
-				throw new MissingAttributeException("type");
-			} catch (MissingAttributeException e) {
-				e.printStackTrace();
-			}
-			return type;
+			return -1;
 		} else {
 			return type;
 		}

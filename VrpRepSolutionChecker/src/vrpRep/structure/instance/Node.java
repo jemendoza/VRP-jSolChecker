@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import vrpRep.exceptions.MissingAttributeException;
-
 /**
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -97,13 +95,10 @@ public class Node {
 	 * @param name
 	 *            name of attribute
 	 * @return Attribute value
-	 * @throws MissingAttributeException
-	 *             Thrown if attribute not found
 	 */
-	public List<VrpAtt> getAttribute(String name)
-			throws MissingAttributeException {
+	public List<VrpAtt> getAttribute(String name) {
 		if (!this.atts.containsKey(name))
-			throw new MissingAttributeException(name);
+			return null;
 		else
 			return this.atts.get(name);
 	}
