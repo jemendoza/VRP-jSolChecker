@@ -42,8 +42,11 @@ public class Request {
 	public Request(int id) {
 		this.id = id;
 		this.demands = new ArrayList<Demand>();
-		this.nodeId = ((IntValue) Instance.getRequests().get(id)
-				.getAttribute("node").get(0)).getValue();
+		if (Instance.getRequests().get(id).getAttribute("node").get(0) != null)
+			this.nodeId = ((IntValue) Instance.getRequests().get(id)
+					.getAttribute("node").get(0)).getValue();
+		else
+			this.nodeId = -1;
 	}
 
 	/**

@@ -27,29 +27,35 @@ public class DepartureArrivalNode implements IConstraint {
 
 	@Override
 	public ConstraintResult evaluate() {
-		boolean b = test();
-		System.out.println(b);
-		return null;
+		
+		boolean valid = test();
+		return new ConstraintResult(valid, "", "");
 	}
 
 	private boolean test() {
 		for (Route r : Solution.getRoutes()) {
 			int b = r.getType();
 
-			int nodeStart = r.getRequests().get(0).getNodeId();
-			int nodeArrival = r.getRequests().get(r.getRequests().size())
-					.getNodeId();
-			for (Vehicle v : Instance.getFleet()) {
-				if (((IntValue) v.getAttribute("type").get(0)).getValue() == b) {
-					if (((IntValue) v.getAttribute("arrivalNode").get(0))
-							.getValue() != nodeArrival
-							|| ((IntValue) v.getAttribute("departureNode").get(
-									0)).getValue() != nodeStart)
-						return false;
+			if (r.getRequests().get(0).getNodeId() != -1) {
+				int nodeStart = r.getRequests().get(0).getNodeId();
+				int nodeArrival = r.getRequests().get(r.getRequests().size()-1)
+						.getNodeId();
+				for (Vehicle v : Instance.getFleet()) {
+					if (v.getAttribute("type").get(0) != null) {
+						if (((IntValue) v.getAttribute("type").get(0)).getValue() == b) {
+							if (((IntValue) v.getAttribute("arrivalNode").get(0)).getValue() != 
+									nodeArrival|| ((IntValue) v.getAttribute("departureNode").get(0)).getValue() != nodeStart)
+								return false;
 
+						}
+					} else {
+						if (((IntValue) v.getAttribute("arrivalNode").get(0)).getValue() != 
+								nodeArrival|| ((IntValue) v.getAttribute("departureNode").get(0)).getValue() != nodeStart)
+							return false;
+					}
 				}
-			}
-
+			} else
+				return true;
 		}
 		return true;
 	}

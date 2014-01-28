@@ -185,7 +185,8 @@ public class InstanceTranslator implements IInstanceReader {
 		for (vrpRep.schema.instance.Instance.Fleet.Vehicle v : schemaInstance
 				.getFleet().getVehicle()) {
 			Vehicle temp = new Vehicle();
-			temp.add("type", new IntValue(v.getType().intValue()));
+			if (v.getType() != null)
+				temp.add("type", new IntValue(v.getType().intValue()));
 			if (v.getFixedCost() != null) {
 				for (double d : v.getFixedCost())
 					temp.add("fixedCost", new DoubleValue(d));
