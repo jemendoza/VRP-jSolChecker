@@ -3,14 +3,15 @@
  */
 package vrpRep.factory;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
-import vrpRep.fileReaders.IInstanceReader;
-import vrpRep.fileReaders.ISolutionReader;
+import vrpRep.fileReaders.InstanceTranslator;
+import vrpRep.fileReaders.SolutionTranslator;
 import vrpRep.utilities.DistanceCalculator;
 
 /**
@@ -23,22 +24,9 @@ import vrpRep.utilities.DistanceCalculator;
 public class DynamicFactory {
 
 	/**
-	 * Singleton instance of factory
-	 */
-	private static DynamicFactory	factory			= null;
-	/**
 	 * Properties containing dynamic initialization parameters
 	 */
-	private Properties				properties;
-
-	/**
-	 * Instance reader
-	 */
-	private IInstanceReader			instanceReader	= null;
-	/**
-	 * solution reader
-	 */
-	private ISolutionReader			solutionReader	= null;
+	private Properties	properties;
 
 	/**
 	 * Constructor
@@ -48,46 +36,19 @@ public class DynamicFactory {
 	 * @throws IOException
 	 * @throws InvalidPropertiesFormatException
 	 */
-	private DynamicFactory(String propertiesFilePath)
-			throws InvalidPropertiesFormatException, IOException {
-		FileInputStream file = new FileInputStream(propertiesFilePath);
-		factory.properties = new Properties();
-		factory.properties.loadFromXML(file);
-	}
-
-	/**
-	 * Static access to build factory
-	 * 
-	 * @param configFileName
-	 *            path to properties XML File
-	 * @return newly initialized factory
-	 * @throws IOException
-	 * @throws InvalidPropertiesFormatException
-	 */
-	public static DynamicFactory buildFactory(String configFileName)
-			throws InvalidPropertiesFormatException, IOException {
-		if (factory == null) {
-			factory = new DynamicFactory(configFileName);
+	public DynamicFactory(String propertiesFilePath) {
+		try {
+			FileInputStream file = new FileInputStream(propertiesFilePath);
+			this.properties = new Properties();
+			this.properties.loadFromXML(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (InvalidPropertiesFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return factory;
-	}
 
-	/**
-	 * Static access to factory
-	 * 
-	 * @return factory
-	 */
-	public static DynamicFactory getFactory() {
-		if (factory == null) {
-			try {
-				throw new IllegalStateException(
-						"DynamicFactory Singleton must be initialized.\n"
-								+ "Use method buildFactory(configFileName) to initialize the Singleton");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return factory;
 	}
 
 	/**
@@ -97,31 +58,8 @@ public class DynamicFactory {
 	 * @param instanceXmlPath
 	 *            path to instance xml file
 	 */
-	public void buildInstance(String instanceXmlPath) {
-		try {
-			if (this.properties.getProperty("instanceReader") != null) {
-				Class<?> tClass;
-				tClass = Class.forName(this.properties
-						.getProperty("instanceReader"));
-				factory.instanceReader = (IInstanceReader) tClass
-						.getDeclaredConstructor(String.class).newInstance(
-								instanceXmlPath);
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		}
+	public void buildDefaultInstance(String instanceXmlPath) {
+		new InstanceTranslator(new File(instanceXmlPath));
 	}
 
 	/**
@@ -132,30 +70,7 @@ public class DynamicFactory {
 	 *            path to solution xml file
 	 */
 	public void buildSolution(String solutionXmlPath) {
-		try {
-			if (this.properties.getProperty("solutionReader") != null) {
-				Class<?> tClass;
-				tClass = Class.forName(this.properties
-						.getProperty("solutionReader"));
-				factory.solutionReader = (ISolutionReader) tClass
-						.getDeclaredConstructor(String.class).newInstance(
-								solutionXmlPath);
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		}
+		new SolutionTranslator(new File(solutionXmlPath));
 	}
 
 	/**
