@@ -56,4 +56,14 @@ public class ConstraintHandler {
 	public void addConstraint(IConstraint constraint) {
 		this.constraints.add(constraint);
 	}
+
+	public static ObjectFactory getOf() {
+		return of;
+	}
+
+	public ArrayList<IConstraint> getConstraints() {
+		return constraints;
+	}
+	
+	
 }

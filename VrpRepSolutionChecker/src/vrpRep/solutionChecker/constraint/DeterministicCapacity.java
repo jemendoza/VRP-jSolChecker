@@ -64,10 +64,9 @@ public class DeterministicCapacity implements IConstraint {
 			checkDemands(vcr, multiVehiTypes);
 		}
 		if (!cValid) {
-			String sResult = "";
-			sResult.concat(details.get(0));
+			String sResult = details.get(0);
 			for (int i = 1; i < details.size(); i++)
-				sResult.concat("\n" + details.get(i));
+				sResult = sResult.concat("\n" + details.get(i));
 
 			return new ConstraintResult(cValid, sResult,
 					"Deterministic capacity");
@@ -84,35 +83,35 @@ public class DeterministicCapacity implements IConstraint {
 			for (int pId : vcr.getProductIds()) {
 				if (multiVehiTypes) {
 					compartement = (Compartment) Instance.getVehicle(
-							vcr.getVehiType()).getAttribute("compartment");
+							vcr.getVehiType()).getAttribute("compartment").get(pId);
 					capacityMin = compartement.getMin();
 					capacityMax = compartement.getMax();
 					if (vcr.getSumDemands().get(pId) > capacityMax) {
 						details.add("Vehicle capacity type "
 								+ vcr.getVehiType() + " , Product Id " + pId
-								+ " - " + vcr.getSumDemands().get(pId) + " > "
+								+ " - " + vcr.getSumDemands().get(pId) + " greater than "
 								+ capacityMax);
 						cValid = false;
 					} else if (vcr.getSumDemands().get(pId) < capacityMin) {
 						details.add("Vehicle capacity type "
 								+ vcr.getVehiType() + " , Product Id " + pId
-								+ " - " + vcr.getSumDemands().get(pId) + " < "
+								+ " - " + vcr.getSumDemands().get(pId) + " less than "
 								+ capacityMin);
 						cValid = false;
 					}
 				} else {
 					compartement = (Compartment) Instance.getVehicle()
-							.getAttribute("compartment");
+							.getAttribute("compartment").get(pId);
 					capacityMin = compartement.getMin();
 					capacityMax = compartement.getMax();
 					if (vcr.getSumDemands().get(pId) > capacityMax) {
 						details.add("Vehicle capacity , Product Id " + pId
-								+ " - " + vcr.getSumDemands().get(pId) + " > "
+								+ " - " + vcr.getSumDemands().get(pId) + " greater than "
 								+ capacityMax);
 						cValid = false;
 					} else if (vcr.getSumDemands().get(pId) < capacityMin) {
 						details.add("Vehicle capacity , Product Id " + pId
-								+ " - " + vcr.getSumDemands().get(pId) + " < "
+								+ " - " + vcr.getSumDemands().get(pId) + " less than "
 								+ capacityMin);
 						cValid = false;
 					}
@@ -124,15 +123,15 @@ public class DeterministicCapacity implements IConstraint {
 						vcr.getVehiType()).getAttribute("capacity")).getValue();
 				if (vcr.getSumDemands().get(vcr.getProductIds().get(0)) > capacityMax) {
 					details.add("Vehicle capacity " + vcr.getVehiType() + " - "
-							+ vcr.getSumDemands().get(0) + " > " + capacityMax);
+							+ vcr.getSumDemands().get(0) + " greater than " + capacityMax);
 					cValid = false;
 				}
 			} else {
 				capacityMax = ((DoubleValue) Instance.getVehicle()
-						.getAttribute("capacity")).getValue();
+						.getAttribute("capacity").get(0)).getValue();
 				if (vcr.getSumDemands().get(vcr.getProductIds().get(0)) > capacityMax) {
 					details.add("Vehicle capacity - "
-							+ vcr.getSumDemands().get(0) + " > " + capacityMax);
+							+ vcr.getSumDemands().get(0) + " greater than " + capacityMax);
 					cValid = false;
 				}
 			}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<result>
+    <constraints>
+        <nonValid>
+            <constraint name="Deterministic capacity">Vehicle capacity type 0 , Product Id 1 - 1.0 less than 2.0
+Vehicle capacity type 1 , Product Id 1 - 5.0 greater than 3.0</constraint>
+        </nonValid>
+    </constraints>
+</result>

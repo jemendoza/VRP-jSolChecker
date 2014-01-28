@@ -155,10 +155,10 @@ public class Instance {
 		while (i < myI.nodes.size() && myI.nodes.get(i).getId() != id)
 			i++;
 
-		if (i >= myI.nodes.size())
+		if (i > myI.nodes.size())
 			throw new IndexOutOfBoundsException("Node");
 		else
-			return myI.nodes.get(i);
+			return myI.nodes.get(--i);
 	}
 
 	/**
@@ -179,10 +179,10 @@ public class Instance {
 						.getTail() != tail))
 			i++;
 
-		if (i >= myI.links.size())
+		if (i > myI.links.size())
 			throw new IndexOutOfBoundsException("Link");
 		else
-			return myI.links.get(i);
+			return myI.links.get(--i);
 	}
 
 	/**
@@ -199,10 +199,10 @@ public class Instance {
 		while (i < myI.requests.size() && myI.requests.get(i).getId() != id)
 			i++;
 
-		if (i >= myI.requests.size())
+		if (i > myI.requests.size())
 			throw new IndexOutOfBoundsException("Request");
 		else
-			return myI.requests.get(i);
+			return myI.requests.get(--i);
 	}
 
 	/**
@@ -225,10 +225,10 @@ public class Instance {
 			i++;
 		}
 
-		if (i >= myI.fleet.size())
+		if (i > myI.fleet.size())
 			throw new IndexOutOfBoundsException("Vehicle");
 		else
-			return myI.fleet.get(i);
+			return myI.fleet.get(--i);
 	}
 
 	/**
