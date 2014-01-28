@@ -6,7 +6,6 @@ package vrpRep.solutionChecker.constraint;
 import java.util.ArrayList;
 import java.util.List;
 
-import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Node;
@@ -42,9 +41,6 @@ public class NodeTypeCompatibility implements IConstraint {
 			System.out.println(b);
 
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MissingAttributeException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -88,8 +84,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * @throws MissingAttributeException
 	 * @throws NumberFormatException
 	 */
-	private List<Integer> getListNodeType() throws NumberFormatException,
-			MissingAttributeException {
+	private List<Integer> getListNodeType() throws NumberFormatException {
 		List<Integer> list = new ArrayList<Integer>();
 		for (Node n : Instance.getNodes()) {
 			list.add(n.getId(),
@@ -107,7 +102,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * @throws NumberFormatException
 	 */
 	private List<List<Integer>> vehicleNodeCompatibilityInstance()
-			throws NumberFormatException, MissingAttributeException {
+			throws NumberFormatException {
 		List<List<Integer>> list = new ArrayList<List<Integer>>();
 		for (Vehicle v : Instance.getFleet()) {
 			list.add(((IntValue) v.getAttribute("type").get(0)).getValue(),

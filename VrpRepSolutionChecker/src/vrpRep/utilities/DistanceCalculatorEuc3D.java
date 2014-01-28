@@ -3,7 +3,6 @@
  */
 package vrpRep.utilities;
 
-import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.structure.instance.Euclidian;
 import vrpRep.structure.instance.Instance;
 
@@ -45,8 +44,6 @@ public class DistanceCalculatorEuc3D extends DistanceCalculator {
 			} else {
 				throw new Exception("Unknown distance type");
 			}
-		} catch (MissingAttributeException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

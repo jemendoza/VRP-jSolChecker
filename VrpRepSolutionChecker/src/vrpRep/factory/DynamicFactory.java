@@ -69,7 +69,7 @@ public class DynamicFactory {
 	 * @param instanceXmlPath
 	 *            path to solution xml file
 	 */
-	public void buildSolution(String solutionXmlPath) {
+	public void buildDefaultSolution(String solutionXmlPath) {
 		new SolutionTranslator(new File(solutionXmlPath));
 	}
 
@@ -79,7 +79,7 @@ public class DynamicFactory {
 	 * "distanceCalculator".
 	 * 
 	 */
-	public void getDistanceCalculator() {
+	public void buildDistanceCalculator() {
 		try {
 			if (this.properties.getProperty("distanceCalculator") != null) {
 				Class<?> tClass;
@@ -98,11 +98,4 @@ public class DynamicFactory {
 		}
 	}
 
-	/**
-	 * Cloning forbidden
-	 */
-	protected Object clone() throws CloneNotSupportedException {
-		throw new CloneNotSupportedException(
-				"Singleton pattern implemented on this class");
-	}
 }

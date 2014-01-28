@@ -3,7 +3,6 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.solution.Demand;
@@ -35,8 +34,6 @@ public abstract class Capacity implements IConstraint {
 			System.out.println(b);
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-		} catch (MissingAttributeException e) {
-			e.printStackTrace();
 		}
 		return null;
 	}
@@ -47,8 +44,7 @@ public abstract class Capacity implements IConstraint {
 	 * @throws NumberFormatException
 	 * @throws MissingAttributeException
 	 */
-	private boolean checkVehicleCapacity() throws NumberFormatException,
-			MissingAttributeException {
+	private boolean checkVehicleCapacity() throws NumberFormatException {
 
 		for (Route r : Solution.getRoutes()) {
 			int vehicleType = 0;

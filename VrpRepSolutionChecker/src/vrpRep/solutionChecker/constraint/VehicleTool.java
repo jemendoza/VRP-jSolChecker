@@ -6,7 +6,6 @@ package vrpRep.solutionChecker.constraint;
 import java.util.ArrayList;
 import java.util.List;
 
-import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.SkillAndTool;
 import vrpRep.structure.instance.VrpAtt;
@@ -30,16 +29,13 @@ public class VehicleTool implements IConstraint {
 	 */
 	@Override
 	public ConstraintResult evaluate() {
-		try {
-			boolean b = checkVehicletool();
-			System.out.println(b);
-		} catch (MissingAttributeException e) {
-			e.printStackTrace();
-		}
+		boolean b = checkVehicletool();
+		System.out.println(b);
+		// TODO
 		return null;
 	}
 
-	private boolean checkVehicletool() throws MissingAttributeException {
+	private boolean checkVehicletool() {
 
 		for (Route r : Solution.getRoutes()) {
 			int vehicle = 0;

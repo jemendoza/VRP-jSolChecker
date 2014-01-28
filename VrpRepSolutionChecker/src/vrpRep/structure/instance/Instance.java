@@ -3,9 +3,6 @@ package vrpRep.structure.instance;
 import java.util.ArrayList;
 import java.util.List;
 
-import vrpRep.exceptions.MissingAttributeException;
-import vrpRep.exceptions.MissingElementException;
-
 /**
  * 
  * Main class of default instance structure. Class should be used to add and

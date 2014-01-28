@@ -3,8 +3,6 @@ package vrpRep.solutionChecker.constraint;
 import java.util.ArrayList;
 import java.util.List;
 
-import vrpRep.exceptions.MissingAttributeException;
-import vrpRep.exceptions.MissingElementException;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.VrpAtt;
@@ -27,25 +25,18 @@ public class Predecessors implements IConstraint {
 	@Override
 	public ConstraintResult evaluate() {
 		ConstraintResult cr = null;
-		try {
-			boolean b = checkPredecessors();
-			System.out.println(b);
-			if (b)
-				cr = new ConstraintResult(b, "", "predecessors");
-			else
-				cr = new ConstraintResult(b, "", "predecessors");
-			// TODO : écrire detail
-		} catch (MissingAttributeException e) {
-			e.printStackTrace();
-		} catch (MissingElementException e) {
-			e.printStackTrace();
-		}
+		boolean b = checkPredecessors();
+		System.out.println(b);
+		if (b)
+			cr = new ConstraintResult(b, "", "predecessors");
+		else
+			cr = new ConstraintResult(b, "", "predecessors");
+		// TODO : écrire detail
 		return cr;
 
 	}
 
-	private boolean checkPredecessors() throws MissingAttributeException,
-			MissingElementException {
+	private boolean checkPredecessors() {
 		List<Integer> listRequest = new ArrayList<Integer>();
 		for (Route r : Solution.getRoutes()) {
 			listRequest.clear();

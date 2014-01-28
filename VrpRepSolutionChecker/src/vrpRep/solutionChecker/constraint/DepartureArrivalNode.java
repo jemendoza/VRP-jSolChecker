@@ -3,8 +3,6 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import vrpRep.exceptions.MissingAttributeException;
-import vrpRep.exceptions.MissingElementException;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;
@@ -29,19 +27,12 @@ public class DepartureArrivalNode implements IConstraint {
 
 	@Override
 	public ConstraintResult evaluate() {
-		try {
-			boolean b = test();
-			System.out.println(b);
-		} catch (MissingAttributeException e) {
-			e.printStackTrace();
-		} catch (MissingElementException e) {
-			e.printStackTrace();
-		}
+		boolean b = test();
+		System.out.println(b);
 		return null;
 	}
 
-	private boolean test() throws MissingAttributeException,
-			MissingElementException {
+	private boolean test() {
 		for (Route r : Solution.getRoutes()) {
 			int b = r.getType();
 

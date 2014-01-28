@@ -3,7 +3,6 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import vrpRep.exceptions.MissingAttributeException;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.solution.Route;
@@ -31,14 +30,11 @@ public class VehicleMaxRequests implements IConstraint {
 			System.out.println(b);
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-		} catch (MissingAttributeException e) {
-			e.printStackTrace();
 		}
 		return null;
 	}
 
-	private boolean checkMaxRequests() throws NumberFormatException,
-			MissingAttributeException {
+	private boolean checkMaxRequests() throws NumberFormatException {
 
 		int maxRequest;
 		for (Route r : Solution.getRoutes()) {
