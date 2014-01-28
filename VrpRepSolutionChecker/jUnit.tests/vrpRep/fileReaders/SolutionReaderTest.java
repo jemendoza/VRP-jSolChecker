@@ -11,6 +11,7 @@ import org.junit.Test;
 import vrpRep.structure.solution.Demand;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
+import vrpRep.structure.solution.Solution;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -25,15 +26,18 @@ public class SolutionReaderTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		this.instS = new SolutionTranslator(new File(
+		IInstanceReader instR = new InstanceTranslator(new File(
+				"./schemaFiles/testXmlFile.xml"));
+		ISolutionReader solR = new SolutionTranslator(new File(
 				"./schemaFiles/sampleSolution.xml"));
+
 	}
 
 	@Test
 	public void testSolution() {
-		assertEquals(instS.getSolution().getOf(), 3.14, 0);
+		assertEquals(Solution.getOf(), 3.14, 0);
 
-		ArrayList<Route> routes = instS.getSolution().getRoutes();
+		ArrayList<Route> routes = Solution.getRoutes();
 		for (Route r : routes) {
 			if (r.getId() == 0) {
 				assertEquals(r.getType(), 0);

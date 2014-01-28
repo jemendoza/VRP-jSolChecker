@@ -1,6 +1,6 @@
 package vrpRep.solutionChecker.constraint;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 
@@ -9,17 +9,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 import vrpRep.fileReaders.InstanceTranslator;
-import vrpRep.solutionChecker.solution.DefaultSolution;
 
 public class NodeTypeCompatibilityTest {
 
-private InstanceTranslator d;
-	
-	private DefaultSolution sol;
+	private InstanceTranslator	d;
+
+	private Solution			sol;
+
 	@Before
 	public void setUp() throws Exception {
-		d = new InstanceTranslator(new File("./schemaFiles/instancesNodeTypeCompatibility.zip"));
-		this.sol = new DefaultSolution(new File("./schemaFiles/testSolutionNbVehicle.xml"));
+		d = new InstanceTranslator(new File(
+				"./schemaFiles/instancesNodeTypeCompatibility.zip"));
+		this.sol = new DefaultSolution(new File(
+				"./schemaFiles/testSolutionNbVehicle.xml"));
 		NodeTypeCompatibility nb = new NodeTypeCompatibility();
 		nb.evaluate(d, sol);
 	}
@@ -32,6 +34,5 @@ private InstanceTranslator d;
 	public void test() {
 		fail("Not yet implemented");
 	}
-
 
 }
