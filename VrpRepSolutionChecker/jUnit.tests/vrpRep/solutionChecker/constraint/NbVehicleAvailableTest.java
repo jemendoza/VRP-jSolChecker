@@ -1,30 +1,35 @@
 package vrpRep.solutionChecker.constraint;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertFalse;
 
-import org.junit.After;
+import java.io.File;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import vrpRep.fileReaders.IInstanceReader;
+import vrpRep.fileReaders.ISolutionReader;
 import vrpRep.fileReaders.InstanceTranslator;
 import vrpRep.fileReaders.SolutionTranslator;
+import vrpRep.utilities.ConstraintResult;
 
 public class NbVehicleAvailableTest {
 
-	private InstanceTranslator	instR;
-	private SolutionTranslator	solR;
-
+	
 	@Before
 	public void setUp() throws Exception {
-	}
+		IInstanceReader instR = new InstanceTranslator(new File(
+				"./schemaFiles/InstanceNbVehicleAvailable.xml"));
+		ISolutionReader solR = new SolutionTranslator(new File(
+				"./schemaFiles/SolutionNbVehicleAvailable.xml"));
 
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		IConstraint constraint = new NbVehicleAvailable();
+		ConstraintResult result =constraint.evaluate();
+		assertFalse(result.isValid());
 	}
 
 }
