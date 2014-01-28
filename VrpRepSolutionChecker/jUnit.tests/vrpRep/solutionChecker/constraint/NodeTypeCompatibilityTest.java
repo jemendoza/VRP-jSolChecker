@@ -19,9 +19,9 @@ public class NodeTypeCompatibilityTest {
 	@Before
 	public void setUp() throws Exception {
 		IInstanceReader instR = new InstanceTranslator(new File(
-				"./schemaFiles/InstanceNbVehicleAvailable.xml"));
+				"./schemaFiles/NodeTypeCompatibilityInstance.xml"));
 		ISolutionReader solR = new SolutionTranslator(new File(
-				"./schemaFiles/SolutionNbVehicleAvailable.xml"));
+				"./schemaFiles/NodeTypeCompatibilitySolution.xml"));
 	}
 	
 	@Test
