@@ -33,17 +33,18 @@ public class NodeTypeCompatibility implements IConstraint {
 	@Override
 	public ConstraintResult evaluate() {
 		List<List<Integer>> listCompatibilityInstance;
+		boolean valid = false;
 		try {
 			listCompatibilityInstance = vehicleNodeCompatibilityInstance();
 			List<Integer> listNodeType = getListNodeType();
-			boolean b = checkCompatibility(listCompatibilityInstance,
+			 valid= checkCompatibility(listCompatibilityInstance,
 					listNodeType);
-			System.out.println(b);
+			
 
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return new ConstraintResult(valid, "","NodeTypeCompatibility");
 
 	}
 

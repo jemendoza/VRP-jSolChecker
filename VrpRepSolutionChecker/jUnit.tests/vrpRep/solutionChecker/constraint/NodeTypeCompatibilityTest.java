@@ -1,38 +1,34 @@
 package vrpRep.solutionChecker.constraint;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertFalse;
 
 import java.io.File;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import vrpRep.fileReaders.IInstanceReader;
+import vrpRep.fileReaders.ISolutionReader;
 import vrpRep.fileReaders.InstanceTranslator;
+import vrpRep.fileReaders.SolutionTranslator;
+import vrpRep.utilities.ConstraintResult;
 
 public class NodeTypeCompatibilityTest {
 
-	private InstanceTranslator	d;
-
-	private Solution			sol;
 
 	@Before
 	public void setUp() throws Exception {
-		d = new InstanceTranslator(new File(
-				"./schemaFiles/instancesNodeTypeCompatibility.zip"));
-		this.sol = new DefaultSolution(new File(
-				"./schemaFiles/testSolutionNbVehicle.xml"));
-		NodeTypeCompatibility nb = new NodeTypeCompatibility();
-		nb.evaluate(d, sol);
+		IInstanceReader instR = new InstanceTranslator(new File(
+				"./schemaFiles/InstanceNbVehicleAvailable.xml"));
+		ISolutionReader solR = new SolutionTranslator(new File(
+				"./schemaFiles/SolutionNbVehicleAvailable.xml"));
 	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
+	
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		IConstraint constraint = new NodeTypeCompatibility();
+		ConstraintResult result =constraint.evaluate();
+		assertFalse(result.isValid());
 	}
 
 }
