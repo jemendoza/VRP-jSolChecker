@@ -41,7 +41,6 @@ public class NodeTypeCompatibility implements IConstraint {
 			System.out.println(b);
 
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -65,11 +64,13 @@ public class NodeTypeCompatibility implements IConstraint {
 
 		for (Route r : Solution.getRoutes()) {
 			// Type de véhicle de la route
-			int b = r.getType();
-			for (Request n : r.getRequests()) {
-				if (!listCompatibilityInstance.get(b).contains(
-						listNodeType.get(n.getId()))) {
-					return false;
+			if(r.isHasType()) {
+				int b = r.getType();
+				for (Request n : r.getRequests()) {
+					if (!listCompatibilityInstance.get(b).contains(
+							listNodeType.get(n.getId()))) {
+						return false;
+					}
 				}
 			}
 		}
