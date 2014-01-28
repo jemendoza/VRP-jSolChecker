@@ -31,4 +31,18 @@ public class SolutionChecker {
 		this.factory.buildDistanceCalculator();
 	}
 
+	/**
+	 * @return the factory
+	 */
+	public DynamicFactory getFactory() {
+		return factory;
+	}
+
+	/**
+	 * @return the cHandler
+	 */
+	public ConstraintHandler getConstraintHandler() {
+		return cHandler;
+	}
+
 }

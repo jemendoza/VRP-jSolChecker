@@ -208,24 +208,36 @@ public class Instance {
 	/**
 	 * Retrieves vehicle from list based on vehicle id
 	 * 
-	 * @param id
+	 * @param type
 	 *            id of vehicle
 	 * @return vehicle if found
-	 * @throws MissingElementException
-	 *             Thrown if vehicle not found
-	 * @throws MissingAttributeException
 	 */
-	public static Vehicle getVehicle(int id) {
+	public static Vehicle getVehicle(int type) {
 		int i = 0;
-		while (i < myI.fleet.size()
-				&& ((IntValue) (myI.fleet.get(i).getAttribute("type").get(0)))
-						.getValue() != id)
+		boolean result = false;
+		while (i < myI.fleet.size() && !result) {
+
+			if (myI.fleet.get(i).getAttribute("type") != null) {
+				if (((IntValue) (myI.fleet.get(i).getAttribute("type").get(0)))
+						.getValue() == type)
+					result = true;
+			}
 			i++;
+		}
 
 		if (i >= myI.fleet.size())
 			throw new IndexOutOfBoundsException("Vehicle");
 		else
 			return myI.fleet.get(i);
+	}
+
+	/**
+	 * Retrieves vehicle from list based when only one vehicle type exists
+	 * 
+	 * @return vehicle if found
+	 */
+	public static Vehicle getVehicle() {
+		return myI.fleet.get(0);
 	}
 
 	/**

@@ -31,6 +31,15 @@ public class ConstraintResult {
 		this.contraintName = contraintName;
 	}
 
+	/**
+	 * 
+	 */
+	public ConstraintResult(boolean valid, String contraintName) {
+		this.valid = valid;
+		this.detail = null;
+		this.contraintName = contraintName;
+	}
+
 	public Constraint toXml() {
 		Constraint c = ConstraintHandler.of.createConstraint();
 		c.setName(this.contraintName);
