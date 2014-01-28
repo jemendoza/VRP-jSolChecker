@@ -1,6 +1,6 @@
 package vrpRep.solutionChecker.constraint;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import java.io.File;
 
@@ -28,7 +28,7 @@ public class DepartureArrivalNodeTest {
 	public void test() {
 		IConstraint contrainte = new DepartureArrivalNode();
 		ConstraintResult c = contrainte.evaluate();;
-		assertTrue(c.isValid());
+		assertFalse(c.isValid());
 	}
 
 }

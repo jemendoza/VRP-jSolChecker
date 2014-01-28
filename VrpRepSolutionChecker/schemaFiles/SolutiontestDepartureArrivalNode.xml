@@ -18,7 +18,7 @@
 			</request>
 			<request requestId="1">
 				<demand productId="0">10</demand>
-				<demand productId="1">11</demand>
+				<demand productId="2">11</demand>
 			</request>
 		</route>
 		<route type="1" id="1">
@@ -26,7 +26,7 @@
 				<demand productId="0">10</demand>
 				<demand productId="1">11</demand>
 			</request>
-			<request requestId="2">
+			<request requestId="3">
 				<demand productId="0">10</demand>
 				<demand productId="1">11</demand>
 			</request>

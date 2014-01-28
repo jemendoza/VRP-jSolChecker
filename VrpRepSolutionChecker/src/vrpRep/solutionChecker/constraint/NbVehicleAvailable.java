@@ -30,16 +30,18 @@ public class NbVehicleAvailable implements IConstraint {
 	 */
 	public ConstraintResult evaluate() {
 		List<Integer> nbVehicleTypeInstance;
+		boolean valid = false;
 		try {
 			nbVehicleTypeInstance = getInstanceVehicle();
 			List<Integer> nbVehicleTypeSolution = getSolutionVehicle();
-			boolean b = compare(nbVehicleTypeInstance, nbVehicleTypeSolution);
-			System.out.println(b);
+			
+			valid  = compare(nbVehicleTypeInstance, nbVehicleTypeSolution);
+			;
 
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return new ConstraintResult(valid, "","");
 
 	}
 
@@ -56,12 +58,11 @@ public class NbVehicleAvailable implements IConstraint {
 	private boolean compare(List<Integer> nbVehicleTypeInstance,
 			List<Integer> nbVehicleTypeSolution) {
 		if (nbVehicleTypeInstance.size() == 1) {
-			if (nbVehicleTypeInstance.get(0) != nbVehicleTypeSolution.get(0))
+			if (nbVehicleTypeInstance.get(0) < nbVehicleTypeSolution.get(0))
 				return false;
 		} else {
 			for (int i = 0; i < nbVehicleTypeInstance.size(); i++) {
-				if (nbVehicleTypeSolution.get(i).compareTo(
-						nbVehicleTypeInstance.get(i)) > 0)
+				if (nbVehicleTypeSolution.get(i) > nbVehicleTypeInstance.get(i))
 					return false;
 			}
 		}
