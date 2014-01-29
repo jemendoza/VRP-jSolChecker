@@ -1,6 +1,6 @@
 package vrpRep.solutionChecker.constraint;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
@@ -28,7 +28,7 @@ public class NodeTypeCompatibilityTest {
 	public void test() {
 		IConstraint constraint = new NodeTypeCompatibility();
 		ConstraintResult result =constraint.evaluate();
-		assertFalse(result.isValid());
+		assertTrue(result.isValid());
 	}
 
 }

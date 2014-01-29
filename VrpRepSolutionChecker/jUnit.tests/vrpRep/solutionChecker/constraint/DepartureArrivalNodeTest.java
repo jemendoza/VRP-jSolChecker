@@ -1,17 +1,17 @@
 package vrpRep.solutionChecker.constraint;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import vrpRep.factory.ConstraintHandler;
 import vrpRep.fileReaders.IInstanceReader;
 import vrpRep.fileReaders.ISolutionReader;
 import vrpRep.fileReaders.InstanceTranslator;
 import vrpRep.fileReaders.SolutionTranslator;
-import vrpRep.utilities.ConstraintResult;
 
 public class DepartureArrivalNodeTest {
 
@@ -26,9 +26,10 @@ public class DepartureArrivalNodeTest {
 
 	@Test
 	public void test() {
-		IConstraint contrainte = new DepartureArrivalNode();
-		ConstraintResult c = contrainte.evaluate();;
-		assertFalse(c.isValid());
+		ConstraintHandler ch = new ConstraintHandler();	
+		ch.addConstraint(new DepartureArrivalNode());	
+		ch.evaluateConstraints("./solutionTestOutput/DepartureArrivalNode", false);
+		assertTrue(ch.getConstraintResult().isValid());
 	}
 
 }

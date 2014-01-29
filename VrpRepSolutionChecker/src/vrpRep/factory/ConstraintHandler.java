@@ -99,7 +99,7 @@ public class ConstraintHandler {
 			}
 
 		}
-		writeToXML(xmlResultFilePath, zipFile);
+		writeToXML(xmlResultFilePath+".xml", zipFile);
 	}
 
 

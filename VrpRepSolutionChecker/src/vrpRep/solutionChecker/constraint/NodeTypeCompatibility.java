@@ -49,7 +49,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	}
 
 	/**
-	 * Check if every vehicle pass through a compatible node
+	 * Check if every vehicle passes through a compatible node
 	 * 
 	 * @param listCompatibilityInstance
 	 *            : contain all the node compatible for each vehicle
@@ -69,7 +69,7 @@ public class NodeTypeCompatibility implements IConstraint {
 				int b = r.getType();
 				for (Request n : r.getRequests()) {
 					if (!listCompatibilityInstance.get(b).contains(
-							listNodeType.get(n.getId()))) {
+							listNodeType.get(n.getNodeId()))) {
 						return false;
 					}
 				}
@@ -83,7 +83,6 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * @param inst
 	 *            : Object used to store XML instance data
 	 * @return a list with all the node's type
-	 * @throws MissingAttributeException
 	 * @throws NumberFormatException
 	 */
 	private List<Integer> getListNodeType() throws NumberFormatException {
@@ -100,7 +99,6 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * @param inst
 	 *            : Object used to store XML instance data
 	 * @return a list containing all the node compatible for each vehicle
-	 * @throws MissingAttributeException
 	 * @throws NumberFormatException
 	 */
 	private List<List<Integer>> vehicleNodeCompatibilityInstance()
@@ -114,6 +112,11 @@ public class NodeTypeCompatibility implements IConstraint {
 		return list;
 	}
 
+	/**
+	 * 
+	 * @param listAtt
+	 * @return
+	 */
 	private List<Integer> getNodeTypesCompatible(List<VrpAtt> listAtt) {
 		List<Integer> listInt = new ArrayList<Integer>();
 		for (VrpAtt att : listAtt) {
