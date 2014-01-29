@@ -3,6 +3,7 @@
  */
 package vrpRep.solutionChecker.constraint;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import vrpRep.structure.instance.Instance;
@@ -21,6 +22,8 @@ import vrpRep.utilities.DistanceCalculator;
  */
 public class MaxTravelDistance implements IConstraint {
 
+	private boolean				cValid	= true;
+	private ArrayList<String>	details	= new ArrayList<String>();
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -31,14 +34,19 @@ public class MaxTravelDistance implements IConstraint {
 	 */
 	@Override
 	public ConstraintResult evaluate() {
-		boolean result;
+		
 		if (Instance.getFleet().get(0).getAttribute("type") != null)
-			result = evaluateMtdWithTypes();
+			evaluateMtdWithTypes();
 		else
-			result = evaluateMtd();
-		// System.out.println(result);
-		// TODO
-		return null;
+			evaluateMtd();
+		if(cValid)
+			return new ConstraintResult(cValid , "MaxTravelDistance");
+		else{
+			String sResult =details.get(0);
+			for(int i=1;i<details.size();i++)
+				sResult=sResult.concat("\n" + details.get(i));
+			return new ConstraintResult(cValid, sResult,"MaxTravelDistance");
+		}
 	}
 
 	/**
@@ -46,8 +54,7 @@ public class MaxTravelDistance implements IConstraint {
 	 * 
 	 * @return result
 	 */
-	private boolean evaluateMtd() {
-		boolean result = true;
+	private void evaluateMtd() {
 		double travelDist;
 		int nodeId1, nodeId2;
 
@@ -68,15 +75,16 @@ public class MaxTravelDistance implements IConstraint {
 					e.printStackTrace();
 				}
 			}
-			if (travelDist > ((IntValue) (Instance.getFleet().get(0)
-					.getAttribute("maxTravelDistance").get(0))).getValue()) {
+			int maxTravelDist = ((IntValue) (Instance.getFleet().get(0)
+					.getAttribute("maxTravelDistance").get(0))).getValue();
+			if (travelDist > maxTravelDist) {
 				System.out
 						.println("Max travel distance of vehicle failed on route "
 								+ r.getId());
-				result = false;
+				cValid = false;
+				details.add("On route :"+r.getId()+" distance travelled :"+travelDist+" greater than "+maxTravelDist);
 			}
 		}
-		return result;
 	}
 
 	/**
@@ -84,8 +92,7 @@ public class MaxTravelDistance implements IConstraint {
 	 * 
 	 * @return result
 	 */
-	private boolean evaluateMtdWithTypes() {
-		boolean result = true;
+	private void evaluateMtdWithTypes() {
 		List<Vehicle> fleet = Instance.getFleet();
 		int currentType = 0, nodeId1, nodeId2;
 		double travelDist;
@@ -110,17 +117,18 @@ public class MaxTravelDistance implements IConstraint {
 				currentType = ((IntValue) (fleet.get(i).getAttribute("Type")
 						.get(0))).getValue();
 				if (currentType == r.getType()) {
-					if (travelDist > ((IntValue) (Instance.getFleet().get(i)
+					int maxTravelDist=((IntValue) (Instance.getFleet().get(i)
 							.getAttribute("maxTravelDistance").get(0)))
-							.getValue()) {
+							.getValue();
+					if (travelDist >maxTravelDist ) {
 						System.out
 								.println("Max travel distance of vehicle failed on route "
 										+ r.getId());
-						result = false;
+						cValid = false;
+						details.add("On route :"+r.getId()+"vehicle of type : "+currentType+" travelled a distance of:"+travelDist+" greater than "+maxTravelDist);
 					}
 				}
 			}
 		}
-		return result;
 	}
 }

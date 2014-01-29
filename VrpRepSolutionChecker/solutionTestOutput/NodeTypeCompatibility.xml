@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<result>
+    <constraints>
+        <nonValid>
+            <constraint name="DepartureArrivalNode">The vehicle of type 0 is not compatible to pass on node2</constraint>
+        </nonValid>
+        <valid/>
+    </constraints>
+</result>

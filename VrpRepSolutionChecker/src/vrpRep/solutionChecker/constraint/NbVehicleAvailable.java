@@ -20,6 +20,8 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class NbVehicleAvailable implements IConstraint {
 
+	private boolean				cValid	= true;
+	private ArrayList<String>	details	= new ArrayList<String>();
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -30,18 +32,22 @@ public class NbVehicleAvailable implements IConstraint {
 	 */
 	public ConstraintResult evaluate() {
 		List<Integer> nbVehicleTypeInstance;
-		boolean valid = false;
 		try {
 			nbVehicleTypeInstance = getInstanceVehicle();
 			List<Integer> nbVehicleTypeSolution = getSolutionVehicle();
-			
-			valid  = compare(nbVehicleTypeInstance, nbVehicleTypeSolution);
-			;
+			compare(nbVehicleTypeInstance, nbVehicleTypeSolution);
 
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		return new ConstraintResult(valid, "","");
+		if(cValid)
+			return new ConstraintResult(cValid , "NbVehicleAvailable");
+		else{
+			String sResult =details.get(0);
+			for(int i=1;i<details.size();i++)
+				sResult=sResult.concat("\n" + details.get(i));
+			return new ConstraintResult(cValid, sResult,"NbVehicleAvailable");
+		}
 
 	}
 
@@ -55,18 +61,21 @@ public class NbVehicleAvailable implements IConstraint {
 	 *            is a list containing the number of vehicle USED per type
 	 * @return true if the number of vehicles contraint is verified
 	 */
-	private boolean compare(List<Integer> nbVehicleTypeInstance,
+	private void compare(List<Integer> nbVehicleTypeInstance,
 			List<Integer> nbVehicleTypeSolution) {
 		if (nbVehicleTypeInstance.size() == 1) {
-			if (nbVehicleTypeInstance.get(0) < nbVehicleTypeSolution.get(0))
-				return false;
+			if (nbVehicleTypeInstance.get(0) < nbVehicleTypeSolution.get(0)){
+				cValid= false;
+				details.add("Number of vehicle available : "+nbVehicleTypeInstance.get(0)+" less than "+nbVehicleTypeSolution.get(0));
+			}
 		} else {
 			for (int i = 0; i < nbVehicleTypeInstance.size(); i++) {
-				if (nbVehicleTypeSolution.get(i) > nbVehicleTypeInstance.get(i))
-					return false;
+				if (nbVehicleTypeSolution.get(i) > nbVehicleTypeInstance.get(i)){
+					cValid= false;
+					details.add("Number of vehicle of type "+i+" available : "+nbVehicleTypeInstance.get(i)+" less than "+nbVehicleTypeSolution.get(i));
+				}
 			}
 		}
-		return true;
 	}
 
 	/**
@@ -86,10 +95,10 @@ public class NbVehicleAvailable implements IConstraint {
 			for (Vehicle v : Instance.getFleet()) {
 
 				nbVehicleType
-						.add(((IntValue) v.getAttribute("type").get(0))
-								.getValue(),
-								((IntValue) v.getAttribute("number").get(0))
-										.getValue());
+				.add(((IntValue) v.getAttribute("type").get(0))
+						.getValue(),
+						((IntValue) v.getAttribute("number").get(0))
+						.getValue());
 			}
 
 		}

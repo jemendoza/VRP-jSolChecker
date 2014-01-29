@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<result>
+    <constraints>
+        <nonValid>
+            <constraint name="NbVehicleAvailable">Number of vehicle of type 0 available : 0 greater than 1</constraint>
+        </nonValid>
+        <valid/>
+    </constraints>
+</result>

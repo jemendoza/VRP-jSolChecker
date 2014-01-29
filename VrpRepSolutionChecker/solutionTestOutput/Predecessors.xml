@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<result>
+    <constraints>
+        <nonValid>
+            <constraint name="Predecessors">The request 2 must be preceded by the following requests : 0-1
+The request 3 must be preceded by the following requests : 0-1</constraint>
+        </nonValid>
+        <valid/>
+    </constraints>
+</result>

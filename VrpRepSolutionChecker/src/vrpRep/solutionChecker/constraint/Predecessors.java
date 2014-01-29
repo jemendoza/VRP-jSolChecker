@@ -17,6 +17,8 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class Predecessors implements IConstraint {
 
+	private boolean				cValid	= true;
+	private ArrayList<String>	details	= new ArrayList<String>();
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -24,34 +26,48 @@ public class Predecessors implements IConstraint {
 	 */
 	@Override
 	public ConstraintResult evaluate() {
-		ConstraintResult cr = null;
-		boolean b = checkPredecessors();
-		System.out.println(b);
-		if (b)
-			cr = new ConstraintResult(b, "", "predecessors");
-		else
-			cr = new ConstraintResult(b, "", "predecessors");
-		// TODO : écrire detail
-		return cr;
+
+		checkPredecessors();
+		if(cValid)
+			return new ConstraintResult(cValid , "Predecessors");
+		else{
+			String sResult =details.get(0);
+			for(int i=1;i<details.size();i++)
+				sResult=sResult.concat("\n" + details.get(i));
+			return new ConstraintResult(cValid, sResult,"Predecessors");
+		}
 
 	}
 
-	private boolean checkPredecessors() {
+	private void checkPredecessors() {
 		List<Integer> listRequest = new ArrayList<Integer>();
 		for (Route r : Solution.getRoutes()) {
 			listRequest.clear();
+			boolean b=false;
 			for (Request re : r.getRequests()) {
 				listRequest.add(re.getId());
 
 				vrpRep.structure.instance.Request request = Instance
 						.getRequest(re.getId());
 				List<VrpAtt> list = request.getAttribute("predecessor");
-				for (VrpAtt i : list)
-					if (!listRequest.contains(((IntValue) i).getValue()))
-						return false;
-
+				List<Integer> predecessors =new ArrayList<Integer>();
+				
+				if(list.size()!=0){
+					for (VrpAtt v : list){
+						if (!listRequest.contains(((IntValue) v).getValue())){
+							cValid= false;
+							b=true;
+							predecessors.add(((IntValue)v).getValue());
+						}
+					}
+				}
+				if(b){
+					String sPredecessors= predecessors.get(0).toString();
+					for(int i=1;i<predecessors.size();i++)
+						sPredecessors=sPredecessors.concat("-" + predecessors.get(i));
+					details.add("The request "+re.getId()+" must be preceded by the following requests : "+sPredecessors);
+				}
 			}
 		}
-		return true;
 	}
 }

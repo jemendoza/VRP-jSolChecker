@@ -20,6 +20,8 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class Successors implements IConstraint {
 
+	private boolean				cValid	= true;
+	private ArrayList<String>	details	= new ArrayList<String>();
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -27,18 +29,20 @@ public class Successors implements IConstraint {
 	 */
 	@Override
 	public ConstraintResult evaluate() {
-		ConstraintResult cr = null;
-		boolean b = checkSuccessors();
-		System.out.println(b);
-		if (b)
-			cr = new ConstraintResult(b, "", "successors");
-		else
-			cr = new ConstraintResult(b, "", "successors");
-		// TODO : écrire detail
-		return cr;
+
+		checkSuccessors();
+
+		if(cValid)
+			return new ConstraintResult(cValid , "Successors");
+		else{
+			String sResult =details.get(0);
+			for(int i=1;i<details.size();i++)
+				sResult=sResult.concat("\n" + details.get(i));
+			return new ConstraintResult(cValid, sResult,"Successors");
+		}
 	}
 
-	private boolean checkSuccessors() {
+	private void checkSuccessors() {
 		List<Integer> listRequest = new ArrayList<Integer>();
 		for (Route r : Solution.getRoutes()) {
 			listRequest.clear();
@@ -49,15 +53,16 @@ public class Successors implements IConstraint {
 				vrpRep.structure.instance.Request request = Instance
 						.getRequest(re.getId());
 				List<VrpAtt> list = request.getAttribute("successor");
-				for (VrpAtt va : list)
-					if (!listRequest.contains(((IntValue) va).getValue()))
-						listRequest.add(((IntValue) va).getValue());
+				if(list.size()!=0){
+					for (VrpAtt va : list)
+						if (!listRequest.contains(((IntValue) va).getValue()))
+							listRequest.add(((IntValue) va).getValue());
+				}
 			}
 			if (!listRequest.isEmpty())
-				return false;
+				cValid= false;
 
 		}
-		return true;
 	}
 
 }

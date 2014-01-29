@@ -22,6 +22,8 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class NodeTypeCompatibility implements IConstraint {
 
+	private boolean				cValid	= true;
+	private ArrayList<String>	details	= new ArrayList<String>();
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -33,18 +35,24 @@ public class NodeTypeCompatibility implements IConstraint {
 	@Override
 	public ConstraintResult evaluate() {
 		List<List<Integer>> listCompatibilityInstance;
-		boolean valid = false;
 		try {
 			listCompatibilityInstance = vehicleNodeCompatibilityInstance();
 			List<Integer> listNodeType = getListNodeType();
-			 valid= checkCompatibility(listCompatibilityInstance,
+			 checkCompatibility(listCompatibilityInstance,
 					listNodeType);
 			
 
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		return new ConstraintResult(valid, "","NodeTypeCompatibility");
+		if(cValid)
+			return new ConstraintResult(cValid , "DepartureArrivalNode");
+		else{
+			String sResult =details.get(0);
+			for(int i=1;i<details.size();i++)
+				sResult=sResult.concat("\n" + details.get(i));
+			return new ConstraintResult(cValid, sResult,"DepartureArrivalNode");
+		}
 
 	}
 
@@ -59,7 +67,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	 *            : Object used to store XML solution data
 	 * @return true if the node/vehicle compatibility is respected
 	 */
-	private boolean checkCompatibility(
+	private	void checkCompatibility(
 			List<List<Integer>> listCompatibilityInstance,
 			List<Integer> listNodeType) {
 
@@ -70,12 +78,12 @@ public class NodeTypeCompatibility implements IConstraint {
 				for (Request n : r.getRequests()) {
 					if (!listCompatibilityInstance.get(b).contains(
 							listNodeType.get(n.getNodeId()))) {
-						return false;
+						cValid= false;
+						details.add("The vehicle of type "+r.getType()+" is not compatible to pass on node "+n.getNodeId());
 					}
 				}
 			}
 		}
-		return true;
 	}
 
 	/**

@@ -7,11 +7,11 @@ import java.io.File;
 import org.junit.Before;
 import org.junit.Test;
 
+import vrpRep.factory.ConstraintHandler;
 import vrpRep.fileReaders.IInstanceReader;
 import vrpRep.fileReaders.ISolutionReader;
 import vrpRep.fileReaders.InstanceTranslator;
 import vrpRep.fileReaders.SolutionTranslator;
-import vrpRep.utilities.ConstraintResult;
 
 public class NodeTypeCompatibilityTest {
 
@@ -26,9 +26,10 @@ public class NodeTypeCompatibilityTest {
 	
 	@Test
 	public void test() {
-		IConstraint constraint = new NodeTypeCompatibility();
-		ConstraintResult result =constraint.evaluate();
-		assertTrue(result.isValid());
+		ConstraintHandler ch = new ConstraintHandler();	
+		ch.addConstraint(new NodeTypeCompatibility());	
+		ch.evaluateConstraints("./solutionTestOutput/NodeTypeCompatibility", false);
+		assertTrue(ch.getConstraintResult().isValid());
 	}
 
 }

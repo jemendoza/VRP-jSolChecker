@@ -158,7 +158,7 @@ public class Instance {
 		if (i > myI.nodes.size())
 			throw new IndexOutOfBoundsException("Node");
 		else
-			return myI.nodes.get(--i);
+			return myI.nodes.get(i);
 	}
 
 	/**
@@ -182,7 +182,7 @@ public class Instance {
 		if (i > myI.links.size())
 			throw new IndexOutOfBoundsException("Link");
 		else
-			return myI.links.get(--i);
+			return myI.links.get(i);
 	}
 
 	/**
@@ -202,7 +202,7 @@ public class Instance {
 		if (i > myI.requests.size())
 			throw new IndexOutOfBoundsException("Request");
 		else
-			return myI.requests.get(--i);
+			return myI.requests.get(i);
 	}
 
 	/**
