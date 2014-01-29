@@ -217,8 +217,8 @@ public class InstanceTranslator implements IInstanceReader {
 						for (vrpRep.schema.instance.Tw tw : s.getTw()) {
 							time = new TimeWindow(Double.valueOf(tw.getStart()
 									.getContent()), Double.valueOf(tw.getEnd()
-									.getContent()), tw.getPeriod().intValue(),
-									tw.getStart().isIsHard(), tw.getEnd()
+											.getContent()), tw.getPeriod().intValue(),
+											tw.getStart().isIsHard(), tw.getEnd()
 											.isIsHard());
 							speed.addTw(time);
 						}
@@ -259,8 +259,8 @@ public class InstanceTranslator implements IInstanceReader {
 							.getWorkloadProfile().getTw()) {
 						tw = new TimeWindow(Double.valueOf(timew.getStart()
 								.getContent()), Double.valueOf(timew.getEnd()
-								.getContent()), timew.getPeriod().intValue(),
-								timew.getStart().isIsHard(), timew.getEnd()
+										.getContent()), timew.getPeriod().intValue(),
+										timew.getStart().isIsHard(), timew.getEnd()
 										.isIsHard());
 						temp.add("vLPtw", tw);
 					}
@@ -317,39 +317,41 @@ public class InstanceTranslator implements IInstanceReader {
 	}
 
 	private void linkTransformation() {
-		for (vrpRep.schema.instance.Instance.Network.Links.Link l : schemaInstance
-				.getNetwork().getLinks().getLink()) {
-			Link temp = new Link(l.getTail().intValue(), l.getHead().intValue());
-			// Attributes
-			if (l.getId() != null)
-				temp.addAttribute("id", new IntValue(l.getId().intValue()));
-			temp.addAttribute("tail", new IntValue(l.getTail().intValue()));
-			temp.addAttribute("head", new IntValue(l.getHead().intValue()));
-			temp.addAttribute("directed", new BooleanValue(l.isDirected()));
-			if (l.getType() != null)
-				temp.addAttribute("type", new IntValue(l.getType().intValue()));
-			// Elements
-			if (l.getCost() != null)
-				temp.addAttribute("cost", new DoubleValue(l.getCost()));
-			if (l.getLength() != null)
-				temp.addAttribute("length", new DoubleValue(l.getLength()));
-			if (l.getTime() != null && l.getTime().getContent().size() == 1)
-				temp.addAttribute(
-						"time",
-						new DoubleValue(Double.valueOf((String) l.getTime()
-								.getContent().get(0))));
-			if (l.getTime() != null && l.getTime().getContent().size() == 3) {
-				LinkProbaDist lpd = new LinkProbaDist();
-				ProbabilityDistribution pd = (ProbabilityDistribution) l
-						.getTime().getContent().get(1);
-				lpd.setName(pd.getName());
-				for (vrpRep.schema.instance.ProbabilityDistribution.Moment m : pd
-						.getMoment()) {
-					lpd.addMoment(m.getName(), m.getValue());
+		if(schemaInstance.getNetwork().getLinks() != null){
+			for (vrpRep.schema.instance.Instance.Network.Links.Link l : schemaInstance
+					.getNetwork().getLinks().getLink()) {
+				Link temp = new Link(l.getTail().intValue(), l.getHead().intValue());
+				// Attributes
+				if (l.getId() != null)
+					temp.addAttribute("id", new IntValue(l.getId().intValue()));
+				temp.addAttribute("tail", new IntValue(l.getTail().intValue()));
+				temp.addAttribute("head", new IntValue(l.getHead().intValue()));
+				temp.addAttribute("directed", new BooleanValue(l.isDirected()));
+				if (l.getType() != null)
+					temp.addAttribute("type", new IntValue(l.getType().intValue()));
+				// Elements
+				if (l.getCost() != null)
+					temp.addAttribute("cost", new DoubleValue(l.getCost()));
+				if (l.getLength() != null)
+					temp.addAttribute("length", new DoubleValue(l.getLength()));
+				if (l.getTime() != null && l.getTime().getContent().size() == 1)
+					temp.addAttribute(
+							"time",
+							new DoubleValue(Double.valueOf((String) l.getTime()
+									.getContent().get(0))));
+				if (l.getTime() != null && l.getTime().getContent().size() == 3) {
+					LinkProbaDist lpd = new LinkProbaDist();
+					ProbabilityDistribution pd = (ProbabilityDistribution) l
+							.getTime().getContent().get(1);
+					lpd.setName(pd.getName());
+					for (vrpRep.schema.instance.ProbabilityDistribution.Moment m : pd
+							.getMoment()) {
+						lpd.addMoment(m.getName(), m.getValue());
+					}
+					temp.addAttribute("probabilityDistribution", lpd);
 				}
-				temp.addAttribute("probabilityDistribution", lpd);
+				Instance.addLink(temp);
 			}
-			Instance.addLink(temp);
 		}
 	}
 
