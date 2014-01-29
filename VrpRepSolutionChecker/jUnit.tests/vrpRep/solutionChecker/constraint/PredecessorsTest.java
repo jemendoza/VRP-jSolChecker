@@ -26,8 +26,8 @@ public class PredecessorsTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		new InstanceTranslator(new File("./schemaFiles/testXmlFile.xml"));
-		new SolutionTranslator(new File("./schemaFiles/sampleSolution.xml"));
+		new InstanceTranslator(new File("./xmlTest/testXmlFile.xml"));
+		new SolutionTranslator(new File("./xmlTest/sampleSolution.xml"));
 
 		Predecessors pred = new Predecessors();
 		cr = pred.evaluate();

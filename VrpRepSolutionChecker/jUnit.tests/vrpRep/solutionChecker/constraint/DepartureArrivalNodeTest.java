@@ -18,9 +18,9 @@ public class DepartureArrivalNodeTest {
 	@Before
 	public void setUp() throws Exception {
 		IInstanceReader instR = new InstanceTranslator(new File(
-				"./schemaFiles/InstancetestDepartureArrivalNode.xml"));
+				"./xmlTest/InstancetestDepartureArrivalNode.xml"));
 		ISolutionReader solR = new SolutionTranslator(new File(
-				"./schemaFiles/SolutiontestDepartureArrivalNode.xml"));
+				"./xmlTest/SolutiontestDepartureArrivalNode.xml"));
 
 	}
 

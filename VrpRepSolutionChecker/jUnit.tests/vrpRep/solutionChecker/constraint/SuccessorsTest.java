@@ -29,8 +29,8 @@ public class SuccessorsTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		new InstanceTranslator(new File("./schemaFiles/testXmlFile.xml"));
-		new SolutionTranslator(new File("./schemaFiles/sampleSolution.xml"));
+		new InstanceTranslator(new File("./xmlTest/testXmlFile.xml"));
+		new SolutionTranslator(new File("./xmlTest/sampleSolution.xml"));
 
 		Successors succ = new Successors();
 		cr = succ.evaluate();

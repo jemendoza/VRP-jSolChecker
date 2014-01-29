@@ -34,9 +34,9 @@ public class DeterministicCapacityTest {
 	@Before
 	public void setUp() throws Exception {
 		new InstanceTranslator(new File(
-				"./schemaFiles/DeterministicCapacityInstance.xml"));
+				"./xmlTest/DeterministicCapacityInstance.xml"));
 		new SolutionTranslator(new File(
-				"./schemaFiles/DeterministicCapacitySolution.xml"));
+				"./xmlTest/DeterministicCapacitySolution.xml"));
 
 	}
 

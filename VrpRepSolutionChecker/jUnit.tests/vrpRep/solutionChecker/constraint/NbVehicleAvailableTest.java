@@ -19,9 +19,9 @@ public class NbVehicleAvailableTest {
 	@Before
 	public void setUp() throws Exception {
 		IInstanceReader instR = new InstanceTranslator(new File(
-				"./schemaFiles/InstanceNbVehicleAvailable.xml"));
+				"./xmlTest/InstanceNbVehicleAvailable.xml"));
 		ISolutionReader solR = new SolutionTranslator(new File(
-				"./schemaFiles/SolutionNbVehicleAvailable.xml"));
+				"./xmlTest/SolutionNbVehicleAvailable.xml"));
 
 	}
 
