@@ -41,6 +41,7 @@ public class Predecessors implements IConstraint {
 
 	private void checkPredecessors() {
 		List<Integer> listRequest = new ArrayList<Integer>();
+		List<Integer> predecessors =new ArrayList<Integer>();
 		for (Route r : Solution.getRoutes()) {
 			listRequest.clear();
 			boolean b=false;
@@ -50,7 +51,7 @@ public class Predecessors implements IConstraint {
 				vrpRep.structure.instance.Request request = Instance
 						.getRequest(re.getId());
 				List<VrpAtt> list = request.getAttribute("predecessor");
-				List<Integer> predecessors =new ArrayList<Integer>();
+				predecessors.clear();
 				
 				if(list.size()!=0){
 					for (VrpAtt v : list){

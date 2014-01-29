@@ -20,6 +20,8 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class VehicleSkill implements IConstraint {
 
+	private boolean				cValid	= true;
+	private ArrayList<String>	details	= new ArrayList<String>();
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -29,10 +31,17 @@ public class VehicleSkill implements IConstraint {
 	 */
 	@Override
 	public ConstraintResult evaluate() {
-		boolean b = checkVehicleSkill();
-		System.out.println(b);
-		// TODO
-		return null;
+
+		checkVehicleSkill();
+
+		if(cValid)
+			return new ConstraintResult(cValid , "DepartureArrivalNode");
+		else{
+			String sResult =details.get(0);
+			for(int i=1;i<details.size();i++)
+				sResult=sResult.concat("\n" + details.get(i));
+			return new ConstraintResult(cValid, sResult,"DepartureArrivalNode");
+		}
 	}
 
 	/**
@@ -40,10 +49,12 @@ public class VehicleSkill implements IConstraint {
 	 * @return
 	 * @throws MissingAttributeException
 	 */
-	private boolean checkVehicleSkill() {
-
+	private void checkVehicleSkill() {
+		List<SkillAndTool> list = new ArrayList<SkillAndTool>();
 		for (Route r : Solution.getRoutes()) {
+			list.clear();
 			int vehicle = 0;
+			boolean b=false;
 			if (r.isHasType()) {
 				vehicle = r.getType();
 			}
@@ -52,17 +63,28 @@ public class VehicleSkill implements IConstraint {
 			List<SkillAndTool> requestSkill = new ArrayList<SkillAndTool>();
 			for (Request n : r.getRequests()) {
 				int id = n.getId();
-				List<VrpAtt> list = Instance.getRequests().get(id)
+				List<VrpAtt> listAtt = Instance.getRequests().get(id)
 						.getAttribute("skill");
-				for (VrpAtt vrpAtt : list) {
+				for (VrpAtt vrpAtt : listAtt) {
 					requestSkill.add((SkillAndTool) vrpAtt);
 				}
 			}
-			for (SkillAndTool s : requestSkill)
-				if (!vehicleSkill.contains(s))
-					return false;
+
+			for (SkillAndTool s : requestSkill){
+
+				if (!vehicleSkill.contains(s)){
+					list.add(s);
+					cValid=false;
+					b=true;
+				}
+			}
+			if(b){
+				String sSkillMissing =""+list.get(0).getValue();
+				for(int i=1;i<list.size();i++)
+					sSkillMissing=sSkillMissing.concat(list.get(i)+"-");
+				details.add("The following skills are missing : "+sSkillMissing);
+			}
 		}
-		return true;
 	}
 
 	/**

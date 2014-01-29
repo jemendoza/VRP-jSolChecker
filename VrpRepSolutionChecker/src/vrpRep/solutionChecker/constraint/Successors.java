@@ -59,8 +59,11 @@ public class Successors implements IConstraint {
 							listRequest.add(((IntValue) va).getValue());
 				}
 			}
-			if (!listRequest.isEmpty())
+			if (!listRequest.isEmpty()){
+				//TODO Explication de ta méthode Romain ???? o_o
 				cValid= false;
+			details.add("");
+			}
 
 		}
 	}

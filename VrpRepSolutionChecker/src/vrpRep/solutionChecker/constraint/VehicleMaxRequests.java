@@ -3,6 +3,8 @@
  */
 package vrpRep.solutionChecker.constraint;
 
+import java.util.ArrayList;
+
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.solution.Route;
@@ -15,6 +17,8 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class VehicleMaxRequests implements IConstraint {
 
+	private boolean				cValid	= true;
+	private ArrayList<String>	details	= new ArrayList<String>();
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -26,30 +30,34 @@ public class VehicleMaxRequests implements IConstraint {
 	@Override
 	public ConstraintResult evaluate() {
 		try {
-			boolean b = checkMaxRequests();
-			System.out.println(b);
+			checkMaxRequests();
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		return null;
+		if(cValid)
+			return new ConstraintResult(cValid , "DepartureArrivalNode");
+		else{
+			String sResult =details.get(0);
+			for(int i=1;i<details.size();i++)
+				sResult=sResult.concat("\n" + details.get(i));
+			return new ConstraintResult(cValid, sResult,"DepartureArrivalNode");
+		}
 	}
 
-	private boolean checkMaxRequests() throws NumberFormatException {
+	private void checkMaxRequests() throws NumberFormatException {
 
 		int maxRequest;
 		for (Route r : Solution.getRoutes()) {
-			if (r.isHasType()) {
-				int type = r.getType();
-				maxRequest = ((IntValue) Instance.getFleet().get(type)
-						.getAttribute("maxRequests").get(0)).getValue();
-			} else
-				maxRequest = ((IntValue) Instance.getFleet().get(0)
-						.getAttribute("maxRequests").get(0)).getValue();
-			if (maxRequest < r.getRequests().size())
-				return false;
+			int type =0;
+			if (r.isHasType()) 
+				type = r.getType();
+			maxRequest = ((IntValue) Instance.getFleet().get(type)
+					.getAttribute("maxRequests").get(0)).getValue();
+
+			if (maxRequest < r.getRequests().size()){
+				cValid=false;
+				details.add("Number of requests for the vehicle "+r.getType()+" greater than "+maxRequest);
+			}
 		}
-
-		return true;
 	}
-
 }

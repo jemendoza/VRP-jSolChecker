@@ -20,6 +20,8 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class VehicleTool implements IConstraint {
 
+	private boolean				cValid	= true;
+	private ArrayList<String>	details	= new ArrayList<String>();
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -29,35 +31,52 @@ public class VehicleTool implements IConstraint {
 	 */
 	@Override
 	public ConstraintResult evaluate() {
-		boolean b = checkVehicletool();
-		System.out.println(b);
-		// TODO
-		return null;
+		checkVehicletool();
+		if(cValid)
+			return new ConstraintResult(cValid , "VehicleTool");
+		else{
+			String sResult =details.get(0);
+			for(int i=1;i<details.size();i++)
+				sResult=sResult.concat("\n" + details.get(i));
+			return new ConstraintResult(cValid, sResult,"VehicleTool");
+		}
+
 	}
 
-	private boolean checkVehicletool() {
-
+	private void checkVehicletool() {
+		List<SkillAndTool> list = new ArrayList<SkillAndTool>();
 		for (Route r : Solution.getRoutes()) {
+			list.clear();
 			int vehicle = 0;
+			boolean b=false;
 			if (r.isHasType()) {
 				vehicle = r.getType();
 			}
-			List<SkillAndTool> vehicletool = getToolVehicle(Instance.getFleet()
+			List<SkillAndTool> vehicleTool = getToolVehicle(Instance.getFleet()
 					.get(vehicle).getAttribute("tool"));
-			List<SkillAndTool> requesttool = new ArrayList<SkillAndTool>();
+			List<SkillAndTool> requestTool = new ArrayList<SkillAndTool>();
 			for (Request n : r.getRequests()) {
 				int id = n.getId();
-				List<VrpAtt> list = Instance.getRequests().get(id)
+				List<VrpAtt> listAtt = Instance.getRequests().get(id)
 						.getAttribute("tool");
-				for (VrpAtt vrpAtt : list) {
-					requesttool.add((SkillAndTool) vrpAtt);
+				for (VrpAtt vrpAtt : listAtt) {
+					requestTool.add((SkillAndTool) vrpAtt);
 				}
 			}
-			for (SkillAndTool s : requesttool)
-				if (!vehicletool.contains(s))
-					return false;
+			for (SkillAndTool s : requestTool){
+				if (!vehicleTool.contains(s)){
+					list.add(s);
+					cValid=false;
+					b=true;
+				}
+			}
+			if(b){
+				String sToolMissing =""+list.get(0).getValue();
+				for(int i=1;i<list.size();i++)
+					sToolMissing=sToolMissing.concat(list.get(i)+"-");
+				details.add("The following tools are missing : "+sToolMissing);
+			}
 		}
-		return true;
 	}
 
 	private List<SkillAndTool> getToolVehicle(List<VrpAtt> list) {
