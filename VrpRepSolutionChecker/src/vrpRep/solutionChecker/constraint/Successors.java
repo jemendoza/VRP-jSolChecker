@@ -64,7 +64,7 @@ public class Successors implements IConstraint {
 					for(VrpAtt att : list)
 						if(!listRequestByRoute.contains(((IntValue)att).getValue())) {
 							cValid= false;
-							details.add("The request "+re.getId()+" must be succeeded by the request : "+((IntValue)att).getValue()+" in route "+r.getId());
+							details.add("The request "+re.getId()+" must be succeeded by the request : "+((IntValue)att).getValue()+" on route "+r.getId());
 						}
 			}
 		}

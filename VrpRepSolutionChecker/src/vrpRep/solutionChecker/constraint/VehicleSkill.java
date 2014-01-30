@@ -35,12 +35,12 @@ public class VehicleSkill implements IConstraint {
 		checkVehicleSkill();
 
 		if(cValid)
-			return new ConstraintResult(cValid , "DepartureArrivalNode");
+			return new ConstraintResult(cValid , "VehicleSkill");
 		else{
 			String sResult =details.get(0);
 			for(int i=1;i<details.size();i++)
 				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"DepartureArrivalNode");
+			return new ConstraintResult(cValid, sResult,"VehicleSkill");
 		}
 	}
 
@@ -50,7 +50,7 @@ public class VehicleSkill implements IConstraint {
 	 * @throws MissingAttributeException
 	 */
 	private void checkVehicleSkill() {
-		List<SkillAndTool> list = new ArrayList<SkillAndTool>();
+		List<Integer> list = new ArrayList<Integer>();
 		for (Route r : Solution.getRoutes()) {
 			list.clear();
 			int vehicle = 0;
@@ -58,31 +58,31 @@ public class VehicleSkill implements IConstraint {
 			if (r.isHasType()) {
 				vehicle = r.getType();
 			}
-			List<SkillAndTool> vehicleSkill = getSkillVehicle(Instance
+			List<Integer> vehicleSkill = getSkillVehicle(Instance
 					.getFleet().get(vehicle).getAttribute("skill"));
-			List<SkillAndTool> requestSkill = new ArrayList<SkillAndTool>();
+			List<Integer> requestSkill = new ArrayList<Integer>();
 			for (Request n : r.getRequests()) {
 				int id = n.getId();
 				List<VrpAtt> listAtt = Instance.getRequests().get(id)
 						.getAttribute("skill");
 				for (VrpAtt vrpAtt : listAtt) {
-					requestSkill.add((SkillAndTool) vrpAtt);
+					requestSkill.add(((SkillAndTool) vrpAtt).getId());
 				}
 			}
 
-			for (SkillAndTool s : requestSkill){
+			for (Integer s : requestSkill){
 
-				if (!vehicleSkill.contains(s)){
+				if (!vehicleSkill.contains(s) && !list.contains(s)){
 					list.add(s);
 					cValid=false;
 					b=true;
 				}
 			}
 			if(b){
-				String sSkillMissing =""+list.get(0).getValue();
+				String sSkillMissing =String.valueOf(list.get(0));
 				for(int i=1;i<list.size();i++)
-					sSkillMissing=sSkillMissing.concat(list.get(i)+"-");
-				details.add("The following skills are missing : "+sSkillMissing);
+					sSkillMissing=sSkillMissing.concat("-"+list.get(i));
+				details.add("The following skills are missing : "+sSkillMissing+" on route "+r.getId());
 			}
 		}
 	}
@@ -92,10 +92,10 @@ public class VehicleSkill implements IConstraint {
 	 * @param list
 	 * @return
 	 */
-	private List<SkillAndTool> getSkillVehicle(List<VrpAtt> list) {
-		List<SkillAndTool> sat = new ArrayList<SkillAndTool>();
+	private List<Integer> getSkillVehicle(List<VrpAtt> list) {
+		List<Integer> sat = new ArrayList<Integer>();
 		for (VrpAtt vrpAtt : list) {
-			sat.add((SkillAndTool) vrpAtt);
+			sat.add(((SkillAndTool) vrpAtt).getId());
 		}
 
 		return sat;

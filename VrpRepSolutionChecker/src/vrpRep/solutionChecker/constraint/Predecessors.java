@@ -68,7 +68,7 @@ public class Predecessors implements IConstraint {
 					String sPredecessors= predecessors.get(0).toString();
 					for(int i=1;i<predecessors.size();i++)
 						sPredecessors=sPredecessors.concat("-" + predecessors.get(i));
-					details.add("The request "+re.getId()+" must be preceded by the following requests : "+sPredecessors+" in route "+r.getId());
+					details.add("The request "+re.getId()+" must be preceded by the following requests : "+sPredecessors+" on route "+r.getId());
 				}
 			}
 		}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<result>
+    <constraints>
+        <nonValid>
+            <constraint name="VehicleSkill">The following skills are missing : 0-1 on route 0
+The following skills are missing : 2-3 on route 1</constraint>
+        </nonValid>
+        <valid/>
+    </constraints>
+</result>
