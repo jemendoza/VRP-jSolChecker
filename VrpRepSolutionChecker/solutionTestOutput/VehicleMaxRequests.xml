@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<result>
+    <constraints>
+        <nonValid>
+            <constraint name="VehicleMaxRequests">Number of requests for the vehicle 1 greater than 2 on the route 1</constraint>
+        </nonValid>
+        <valid/>
+    </constraints>
+</result>

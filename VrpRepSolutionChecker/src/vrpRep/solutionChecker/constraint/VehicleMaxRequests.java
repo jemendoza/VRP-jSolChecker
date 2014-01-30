@@ -35,12 +35,12 @@ public class VehicleMaxRequests implements IConstraint {
 			e.printStackTrace();
 		}
 		if(cValid)
-			return new ConstraintResult(cValid , "DepartureArrivalNode");
+			return new ConstraintResult(cValid , "VehicleMaxRequests");
 		else{
 			String sResult =details.get(0);
 			for(int i=1;i<details.size();i++)
 				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"DepartureArrivalNode");
+			return new ConstraintResult(cValid, sResult,"VehicleMaxRequests");
 		}
 	}
 
@@ -51,12 +51,13 @@ public class VehicleMaxRequests implements IConstraint {
 			int type =0;
 			if (r.isHasType()) 
 				type = r.getType();
+			
 			maxRequest = ((IntValue) Instance.getFleet().get(type)
 					.getAttribute("maxRequests").get(0)).getValue();
 
 			if (maxRequest < r.getRequests().size()){
 				cValid=false;
-				details.add("Number of requests for the vehicle "+r.getType()+" greater than "+maxRequest);
+				details.add("Number of requests for the vehicle "+r.getType()+" greater than "+maxRequest+" on the route "+r.getId());
 			}
 		}
 	}
