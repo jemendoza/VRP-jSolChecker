@@ -16,27 +16,53 @@ public class LinkProbaDist implements LinkAttTime {
 	 * List of moments within distribution
 	 */
 	private List<Moment>	moments;
+	/**
+	 * Name of distribution
+	 */
 	private String			name;
 
+	/**
+	 * Default constructor
+	 */
 	public LinkProbaDist() {
 		moments = new ArrayList<Moment>();
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
 	/**
-	 * @param moments
+	 * Custom constructor
+	 * @param moments list of moments
 	 */
 	public LinkProbaDist(List<Moment> moments) {
 		super();
 		this.moments = moments;
 	}
+
+	/**
+	 * Add a moment to the distribution
+	 * @param name name of moment
+	 * @param value value of moment
+	 * @see vrpRep.structure.instance.Moment
+	 */
+	public void addMoment(String name, double value) {
+		this.moments.add(new Moment(name, value));
+	}
+	
+	/**
+	 * 
+	 * @return name of distribution
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * 
+	 * @param name new name of distribution
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
 
 	/**
 	 * @return the moments
@@ -53,8 +79,6 @@ public class LinkProbaDist implements LinkAttTime {
 		this.moments = moments;
 	}
 
-	public void addMoment(String name, double value) {
-		this.moments.add(new Moment(name, value));
-	}
+	
 
 }

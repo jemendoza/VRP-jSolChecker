@@ -5,17 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * 
+ * Stores all request information and attributes
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class Request {
-
+	/**
+	 * List of request attributes
+	 */
 	private HashMap<String, List<VrpAtt>>	atts;
+	/**
+	 * Id of request
+	 */
 	private int								id;
 
 	/**
-	 * @param id
+	 * Default constructor
+	 * @param id id of request
 	 */
 	public Request(int id) {
 		super();
@@ -24,8 +30,9 @@ public class Request {
 	}
 
 	/**
-	 * @param atts
-	 * @param id
+	 * Custom constructor
+	 * @param atts list of attributes
+	 * @param id id of request
 	 */
 	public Request(HashMap<String, List<VrpAtt>> atts, int id) {
 		super();
@@ -34,9 +41,9 @@ public class Request {
 	}
 
 	/**
-	 * 
-	 * @param name
-	 * @param att
+	 * Adds a VrpAtt attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	private void addAttr(String name, VrpAtt att) {
 		if (atts.containsKey(name)) {
@@ -49,59 +56,63 @@ public class Request {
 	}
 
 	/**
-	 * 
-	 * @param name
-	 * @param att
+	 * Adds a RequestAtt attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	public void add(String name, RequestAtt att) {
 		addAttr(name, att);
 	}
 
+	/**
+	 * Adds a IntValue attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
+	 */
 	public void add(String name, IntValue att) {
 		addAttr(name, att);
 	}
 
 	/**
-	 * 
-	 * @param name
-	 * @param att
+	 * Adds a DoubleValue attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	public void add(String name, DoubleValue att) {
 		addAttr(name, att);
 	}
 
 	/**
-	 * 
-	 * @param name
-	 * @param att
+	 * Adds a BooleanValue attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	public void add(String name, BooleanValue att) {
 		addAttr(name, att);
 	}
 
 	/**
-	 * 
-	 * @param name
-	 * @param att
+	 * Adds a TimeWindow attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	public void add(String name, TimeWindow att) {
 		addAttr(name, att);
 	}
 
 	/**
-	 * 
-	 * @param name
-	 * @param att
+	 * Adds a SkillAndTool attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	public void add(String name, SkillAndTool att) {
 		addAttr(name, att);
 	}
 
 	/**
-	 * 
-	 * @param name
-	 * @return
-	 * @throws MissingAttributeException
+	 * Retrieves an attribute from list of attributes.
+	 * @param name name of attribute
+	 * @return attribute. null if not found
 	 */
 	public List<VrpAtt> getAttribute(String name) {
 		if (!this.atts.containsKey(name))
@@ -111,14 +122,14 @@ public class Request {
 	}
 
 	/**
-	 * @return the atts
+	 * @return list of attributes
 	 */
 	public HashMap<String, List<VrpAtt>> getAtts() {
 		return atts;
 	}
 
 	/**
-	 * @return the id
+	 * @return the id of request
 	 */
 	public int getId() {
 		return id;

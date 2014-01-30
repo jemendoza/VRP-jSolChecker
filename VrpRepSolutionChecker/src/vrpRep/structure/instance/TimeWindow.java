@@ -1,7 +1,7 @@
 package vrpRep.structure.instance;
 
 /**
- * Class to hold structure of a time window
+ * Stores structure of a time windows
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
@@ -36,7 +36,7 @@ public class TimeWindow implements VrpAtt {
 	}
 
 	/**
-	 * Complex constructor. Initializes constructor with all possible parameters
+	 * Custom constructor. Initializes constructor with all possible parameters
 	 * 
 	 * @param begin
 	 *            start of time window
@@ -118,18 +118,34 @@ public class TimeWindow implements VrpAtt {
 		this.period = period;
 	}
 
+	/**
+	 * 
+	 * @return true if start of time window is hard, false otherwise
+	 */
 	public boolean isHardStart() {
 		return isHardStart;
 	}
 
+	/**
+	 * 
+	 * @param isHardStart new hardness of start of time window
+	 */
 	public void setHardStart(boolean isHardStart) {
 		this.isHardStart = isHardStart;
 	}
 
+	/**
+	 * 
+	 * @return true if end of time window is hard, false otherwise
+	 */
 	public boolean isHardEnd() {
 		return isHardEnd;
 	}
 
+	/**
+	 * 
+	 * @param isHardEnd new hardness of end of time window
+	 */
 	public void setHardEnd(boolean isHardEnd) {
 		this.isHardEnd = isHardEnd;
 	}

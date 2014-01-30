@@ -5,17 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * 
+ * Stores all node information and attributes
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class Node {
+	/**
+	 * List of node attributes
+	 */
 	private HashMap<String, List<VrpAtt>>	atts;
+	/**
+	 * Id of node
+	 */
 	private int								id;
 
 	/**
-	 * @param atts
-	 * @param id
+	 * Custom constructor
+	 * @param id id of node
 	 */
 	public Node(int id) {
 		super();
@@ -24,12 +30,9 @@ public class Node {
 	}
 
 	/**
-	 * Add attribute in hashmap
-	 * 
-	 * @param name
-	 *            Name of attribute
-	 * @param att
-	 *            Attribute value
+	 * Adds a VrpAtt attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	private void addAttr(String name, VrpAtt att) {
 		if (!atts.containsKey(name)) {
@@ -42,59 +45,45 @@ public class Node {
 	}
 
 	/**
-	 * Add attribute in hashmap
-	 * 
-	 * @param name
-	 *            Name of attribute
-	 * @param att
-	 *            Attribute value
+	 * Adds a Location attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
-	public void addAttribute(String name, VrpAtt att) {
+	public void addAttribute(String name, Location att) {
 		addAttr(name, att);
 	}
-
+	
 	/**
-	 * Add attribute in hashmap
-	 * 
-	 * @param name
-	 *            Name of attribute
-	 * @param att
-	 *            Attribute value
+	 * Adds a IntValue attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	public void addAttribute(String name, IntValue att) {
 		addAttr(name, att);
 	}
 
 	/**
-	 * Add attribute in hashmap
-	 * 
-	 * @param name
-	 *            Name of attribute
-	 * @param att
-	 *            Attribute value
+	 * Adds a DoubleValue attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	public void addAttribute(String name, DoubleValue att) {
 		addAttr(name, att);
 	}
 
 	/**
-	 * Add attribute in hashmap
-	 * 
-	 * @param name
-	 *            Name of attribute
-	 * @param att
-	 *            Attribute value
+	 * Adds a BooleanValue attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	public void addAttribute(String name, BooleanValue att) {
 		addAttr(name, att);
 	}
 
 	/**
-	 * Retrieve node attribute from hashmap
-	 * 
-	 * @param name
-	 *            name of attribute
-	 * @return Attribute value
+	 * Retrieves an attribute from list of attributes.
+	 * @param name name of attribute
+	 * @return attribute. null if not found
 	 */
 	public List<VrpAtt> getAttribute(String name) {
 		if (!this.atts.containsKey(name))
@@ -104,16 +93,18 @@ public class Node {
 	}
 
 	/**
-	 * @return the atts
+	 * @return list of attributed
 	 */
 	public HashMap<String, List<VrpAtt>> getAtts() {
 		return atts;
 	}
 
 	/**
-	 * @return the id
+	 * @return id of the attribute
 	 */
 	public int getId() {
 		return id;
 	}
+
+	
 }

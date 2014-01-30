@@ -36,12 +36,9 @@ public class Link {
 	}
 
 	/**
-	 * Add attribute in hashmap
-	 * 
-	 * @param name
-	 *            Name of attribute
-	 * @param att
-	 *            Attribute value
+	 * Adds a VrpAtt attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	private void addAttr(String name, VrpAtt att) {
 		if (!atts.containsKey(name)) {
@@ -54,61 +51,45 @@ public class Link {
 	}
 
 	/**
-	 * Add attribute in hashmap
-	 * 
-	 * @param name
-	 *            Name of attribute
-	 * @param att
-	 *            Attribute value
+	 * Adds a LinkAtt attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	public void addAttribute(String name, LinkAtt att) {
 		addAttr(name, att);
 	}
 
 	/**
-	 * Add attribute in hashmap
-	 * 
-	 * @param name
-	 *            Name of attribute
-	 * @param att
-	 *            Attribute value
+	 * Adds a IntValue attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	public void addAttribute(String name, IntValue att) {
 		addAttr(name, att);
 	}
 
 	/**
-	 * Add attribute in hashmap
-	 * 
-	 * @param name
-	 *            Name of attribute
-	 * @param att
-	 *            Attribute value
+	 * Adds a DoubleValue attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	public void addAttribute(String name, DoubleValue att) {
 		addAttr(name, att);
 	}
 
 	/**
-	 * Add attribute in hashmap
-	 * 
-	 * @param name
-	 *            Name of attribute
-	 * @param att
-	 *            Attribute value
+	 * Adds a BooleanValue attribute to list of attributes
+	 * @param name name of attribute
+	 * @param att attribute to add
 	 */
 	public void addAttribute(String name, BooleanValue att) {
 		addAttr(name, att);
 	}
 
 	/**
-	 * Retrieve link attribute from hashmap
-	 * 
-	 * @param name
-	 *            name of attribute
-	 * @return Attribute value
-	 * @throws MissingAttributeException
-	 *             Thrown if attribute not found
+	 * Retrieves an attribute from list of attributes.
+	 * @param name name of attribute
+	 * @return attribute. null if not found
 	 */
 	public List<VrpAtt> getAttribute(String name) {
 		if (!this.atts.containsKey(name))
@@ -118,21 +99,21 @@ public class Link {
 	}
 
 	/**
-	 * @return the atts
+	 * @return list of attributes
 	 */
 	public HashMap<String, List<VrpAtt>> getAtts() {
 		return atts;
 	}
 
 	/**
-	 * @return the tail
+	 * @return the tail id
 	 */
 	public int getTail() {
 		return tail;
 	}
 
 	/**
-	 * @return the head
+	 * @return the head id
 	 */
 	public int getHead() {
 		return head;

@@ -4,21 +4,34 @@
 package vrpRep.structure.instance;
 
 /**
+ * Stores all parameters related to the network
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class Network {
 
+	/**
+	 * True if network is considered complete, false otherwise
+	 */
 	private boolean	isComplete;
+	/**
+	 * Name of distance type to be used for distance calculations
+	 */
 	private String	distanceType;
+	/**
+	 * Rounding rule to be used
+	 */
 	private String	roundingRule;
 
+	/**
+	 * Default constructor
+	 */
 	public Network() {
 
 	}
 
 	/**
-	 * @return the isComplete
+	 * @return if is complete
 	 */
 	public boolean isComplete() {
 		return isComplete;
@@ -26,7 +39,7 @@ public class Network {
 
 	/**
 	 * @param isComplete
-	 *            the isComplete to set
+	 *            the new is complete parameter
 	 */
 	public void setComplete(boolean isComplete) {
 		this.isComplete = isComplete;

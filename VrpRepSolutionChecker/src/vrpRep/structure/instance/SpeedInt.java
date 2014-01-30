@@ -3,16 +3,31 @@ package vrpRep.structure.instance;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Stores information related to the speed interval of a vehicle.
+ * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
+ *
+ */
 public class SpeedInt implements VehicleAtt {
+	/**
+	 * Average speed during interval
+	 */
 	private double				speed;
+	/**
+	 * List of time windows where interval speed should be respected
+	 */
 	private List<TimeWindow>	tw;
 
+	/**
+	 * Default constructor
+	 */
 	public SpeedInt() {
 
 	}
 
 	/**
-	 * @param speed
+	 * Custom constructor
+	 * @param speed average speed
 	 */
 	public SpeedInt(double speed) {
 		super();
@@ -21,8 +36,9 @@ public class SpeedInt implements VehicleAtt {
 	}
 
 	/**
-	 * @param speed
-	 * @param tw
+	 * Custom constructor
+	 * @param speed average speed
+	 * @param tw list of time windows
 	 */
 	public SpeedInt(double speed, List<TimeWindow> tw) {
 		super();
@@ -31,7 +47,7 @@ public class SpeedInt implements VehicleAtt {
 	}
 
 	/**
-	 * @return the speed
+	 * @return average speed
 	 */
 	public double getSpeed() {
 		return speed;
@@ -46,7 +62,7 @@ public class SpeedInt implements VehicleAtt {
 	}
 
 	/**
-	 * @return the tw
+	 * @return list of time windows
 	 */
 	public List<TimeWindow> getTw() {
 		return tw;
@@ -54,7 +70,7 @@ public class SpeedInt implements VehicleAtt {
 
 	/**
 	 * @param tw
-	 *            the tw to set
+	 *            new list of time windows
 	 */
 	public void addTw(TimeWindow tw) {
 		this.tw.add(tw);
