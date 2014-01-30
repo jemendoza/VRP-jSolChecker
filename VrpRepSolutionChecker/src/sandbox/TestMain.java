@@ -5,6 +5,8 @@ package sandbox;
 
 import java.io.File;
 
+import org.apache.commons.math3.distribution.TDistribution;
+
 import vrpRep.fileReaders.InstanceTranslator;
 
 /**
@@ -23,6 +25,9 @@ public class TestMain {
 		// Instance.Network.Descriptor des =
 		// ((Instance)inst.getInstance()).getNetwork().getDescriptor();
 		// System.out.println(des.getCustom().getAny().get(0).getTextContent());
+		
+		
+		TDistribution t = new TDistribution(2);
 
 	}
 
