@@ -86,6 +86,7 @@ public class DeterministicMaxWorkTime implements IConstraint {
 	
 	private void checkWorkTimeOnNodes() {
 		int vehiType = -1;
+		
 		int departureNode, arrivalNode;
 		double timeSpent = 0, speed;
 		Request req;
