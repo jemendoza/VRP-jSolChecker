@@ -12,6 +12,9 @@ import java.util.List;
  * 
  */
 public class LinkProbaDist implements LinkAttTime {
+	/**
+	 * List of moments within distribution
+	 */
 	private List<Moment>	moments;
 	private String			name;
 
