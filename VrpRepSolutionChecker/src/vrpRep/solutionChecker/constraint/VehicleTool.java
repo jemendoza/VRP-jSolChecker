@@ -44,7 +44,7 @@ public class VehicleTool implements IConstraint {
 	}
 
 	private void checkVehicletool() {
-		List<SkillAndTool> list = new ArrayList<SkillAndTool>();
+		List<Integer> list = new ArrayList<Integer>();
 		for (Route r : Solution.getRoutes()) {
 			list.clear();
 			int vehicle = 0;
@@ -52,37 +52,37 @@ public class VehicleTool implements IConstraint {
 			if (r.isHasType()) {
 				vehicle = r.getType();
 			}
-			List<SkillAndTool> vehicleTool = getToolVehicle(Instance.getFleet()
+			List<Integer> vehicleTool = getToolVehicle(Instance.getFleet()
 					.get(vehicle).getAttribute("tool"));
-			List<SkillAndTool> requestTool = new ArrayList<SkillAndTool>();
+			List<Integer> requestTool = new ArrayList<Integer>();
 			for (Request n : r.getRequests()) {
 				int id = n.getId();
 				List<VrpAtt> listAtt = Instance.getRequests().get(id)
 						.getAttribute("tool");
 				for (VrpAtt vrpAtt : listAtt) {
-					requestTool.add((SkillAndTool) vrpAtt);
+					requestTool.add(((SkillAndTool) vrpAtt).getId());
 				}
 			}
-			for (SkillAndTool s : requestTool){
-				if (!vehicleTool.contains(s)){
+			for (Integer s : requestTool){
+				if (!vehicleTool.contains(s) && !list.contains(s)){
 					list.add(s);
 					cValid=false;
 					b=true;
 				}
 			}
 			if(b){
-				String sToolMissing =""+list.get(0).getValue();
+				String sToolMissing =""+list.get(0);
 				for(int i=1;i<list.size();i++)
-					sToolMissing=sToolMissing.concat(list.get(i)+"-");
-				details.add("The following tools are missing : "+sToolMissing);
+					sToolMissing=sToolMissing.concat("-"+list.get(i));
+				details.add("The following tools are missing : "+sToolMissing+" on route "+r.getId());
 			}
 		}
 	}
 
-	private List<SkillAndTool> getToolVehicle(List<VrpAtt> list) {
-		List<SkillAndTool> sat = new ArrayList<SkillAndTool>();
+	private List<Integer> getToolVehicle(List<VrpAtt> list) {
+		List<Integer> sat = new ArrayList<Integer>();
 		for (VrpAtt vrpAtt : list) {
-			sat.add((SkillAndTool) vrpAtt);
+			sat.add(((SkillAndTool) vrpAtt).getId());
 		}
 
 		return sat;
