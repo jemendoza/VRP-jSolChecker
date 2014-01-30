@@ -4,21 +4,31 @@
 package vrpRep.structure.instance;
 
 /**
+ * Stores euclidean element information for a node location
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class GPS implements Location {
-
+	/**
+	 * Latitude
+	 */
 	private double	lat;
+	/**
+	 * Longitude
+	 */
 	private double	lon;
 
+	/**
+	 * Default constructor
+	 */
 	public GPS() {
 
 	}
 
 	/**
-	 * @param lat
-	 * @param lon
+	 * Custom constructor
+	 * @param lat latitude
+	 * @param lon longitude
 	 */
 	public GPS(double lat, double lon) {
 		super();
@@ -27,7 +37,7 @@ public class GPS implements Location {
 	}
 
 	/**
-	 * @return the lat
+	 * @return the latitude
 	 */
 	public double getLat() {
 		return lat;
@@ -35,14 +45,14 @@ public class GPS implements Location {
 
 	/**
 	 * @param lat
-	 *            the lat to set
+	 *            the latitude to set
 	 */
 	public void setLat(double lat) {
 		this.lat = lat;
 	}
 
 	/**
-	 * @return the lon
+	 * @return the longitude
 	 */
 	public double getLon() {
 		return lon;
@@ -50,7 +60,7 @@ public class GPS implements Location {
 
 	/**
 	 * @param lon
-	 *            the lon to set
+	 *            the longitude to set
 	 */
 	public void setLon(double lon) {
 		this.lon = lon;

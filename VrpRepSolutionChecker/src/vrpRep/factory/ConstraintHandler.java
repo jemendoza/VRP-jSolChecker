@@ -20,7 +20,8 @@ import vrpRep.utilities.ConstraintResult;
 import vrpRep.utilities.VRPRepJAXBUtilities;
 
 /**
- * Stores add evaluates all the constraints.
+ * Stores all the constraints that need to be evaluated and holds the methods to evaluate and write
+ * the solution check result to an xml file.
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 

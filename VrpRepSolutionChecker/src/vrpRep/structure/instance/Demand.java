@@ -4,20 +4,32 @@
 package vrpRep.structure.instance;
 
 /**
+ * Stores default information related to a requests demand
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class Demand implements RequestAtt {
+	/**
+	 * Id/Type of demand
+	 */
 	private int		type;
+	/**
+	 * True if demand can be split between routes, false otherwise
+	 */
 	private boolean	isSplittable;
 
+	
+	/**
+	 * Default constructor
+	 */
 	public Demand() {
 
 	}
 
 	/**
-	 * @param type
-	 * @param isSplittable
+	 * Custom constructor
+	 * @param type Id/Type of demand
+	 * @param isSplittable True if demand can be split between routes, false otherwise
 	 */
 	public Demand(int type, boolean isSplittable) {
 		super();

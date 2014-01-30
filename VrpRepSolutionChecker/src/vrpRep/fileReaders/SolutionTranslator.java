@@ -44,6 +44,10 @@ public class SolutionTranslator implements ISolutionReader {
 		}
 	}
 
+	
+	/**
+	 * Calls all translation methods
+	 */
 	private void translateSolution() {
 		Solution.setSolution();
 		getObjectiveFunction();

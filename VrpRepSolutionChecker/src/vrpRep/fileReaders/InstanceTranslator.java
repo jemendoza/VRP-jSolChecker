@@ -63,6 +63,9 @@ public class InstanceTranslator implements IInstanceReader {
 		}
 	}
 
+	/**
+	 * Calls all transformation methods
+	 */
 	private void translateInstance() {
 		Instance.setInstance();
 		networkTransformation();
@@ -72,6 +75,9 @@ public class InstanceTranslator implements IInstanceReader {
 		requestTransformation();
 	}
 
+	/**
+	 * Translates all request information
+	 */
 	private void requestTransformation() {
 		for (vrpRep.schema.instance.Instance.Requests.Request r : schemaInstance
 				.getRequests().getRequest()) {
@@ -181,6 +187,9 @@ public class InstanceTranslator implements IInstanceReader {
 		}
 	}
 
+	/**
+	 * Translates all vehicle information
+	 */
 	private void vehicleTransformation() {
 		for (vrpRep.schema.instance.Instance.Fleet.Vehicle v : schemaInstance
 				.getFleet().getVehicle()) {
@@ -237,7 +246,7 @@ public class InstanceTranslator implements IInstanceReader {
 			if (v.getMaxRequests() != null) {
 				temp.add(
 						"maxRequests",
-						new DoubleValue(Double.valueOf(v.getMaxRequests()
+						new IntValue(Integer.valueOf(v.getMaxRequests()
 								.getContent())));
 				temp.add("maxRequestsIsFlexible", new BooleanValue(v
 						.getMaxRequests().isIsFlexible()));
@@ -316,6 +325,9 @@ public class InstanceTranslator implements IInstanceReader {
 		}
 	}
 
+	/**
+	 * Translates all link information
+	 */
 	private void linkTransformation() {
 		if(schemaInstance.getNetwork().getLinks() != null){
 			for (vrpRep.schema.instance.Instance.Network.Links.Link l : schemaInstance
@@ -355,6 +367,10 @@ public class InstanceTranslator implements IInstanceReader {
 		}
 	}
 
+	
+	/**
+	 * Translates all node information
+	 */
 	private void nodeTransformation() {
 		for (vrpRep.schema.instance.Instance.Network.Nodes.Node n : schemaInstance
 				.getNetwork().getNodes().getNode()) {
@@ -380,6 +396,9 @@ public class InstanceTranslator implements IInstanceReader {
 		}
 	}
 
+	/**
+	 * Translates all network information
+	 */
 	private void networkTransformation() {
 		Network n = Instance.getNetwork();
 		if (schemaInstance.getNetwork().getDescriptor().isIsComplete() != null)

@@ -15,8 +15,7 @@ import vrpRep.fileReaders.SolutionTranslator;
 import vrpRep.utilities.DistanceCalculator;
 
 /**
- * Dynamic factory containing links to all dynamic classes of the solution
- * checker such as the element readers
+ * Dynamic factory to build the parameterized solution checker
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 

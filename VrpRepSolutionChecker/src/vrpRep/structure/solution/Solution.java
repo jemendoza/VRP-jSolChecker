@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Represents the default solution
+ * 
+ * Main class of default solution structure. Class should be used to add and
+ * retrieve elements from the structure.
+ * All elements are accessed statically. i.e. Solution.XXX where XXX is either a variable or method name
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 

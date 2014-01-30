@@ -6,7 +6,8 @@ import java.util.List;
 /**
  * 
  * Main class of default instance structure. Class should be used to add and
- * retrieve elements from the structure
+ * retrieve elements from the structure.
+ * All elements are accessed statically. i.e. Instance.XXX where XXX is either a variable or method name
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 

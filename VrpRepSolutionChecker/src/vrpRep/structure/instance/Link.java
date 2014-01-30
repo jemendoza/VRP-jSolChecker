@@ -5,19 +5,28 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * 
+ * Stores all link information and attributes
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class Link {
+	/**
+	 * List of link attributes
+	 */
 	private HashMap<String, List<VrpAtt>>	atts;
+	/**
+	 * Id of tail node
+	 */
 	private int								tail;
+	/**
+	 * Id of head node
+	 */
 	private int								head;
 
 	/**
-	 * @param atts
-	 * @param tail
-	 * @param head
+	 * @param atts List of link attributes
+	 * @param tail Id of tail node
+	 * @param head Id of head node
 	 */
 	public Link(int tail, int head) {
 		super();

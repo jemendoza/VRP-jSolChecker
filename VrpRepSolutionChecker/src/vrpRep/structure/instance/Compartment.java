@@ -4,22 +4,31 @@
 package vrpRep.structure.instance;
 
 /**
- * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
+ * Stores all information related to a vehicle compartment.
  * 
+ * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
+ * @see vrpRep.structure.instance.
  */
 public class Compartment implements VehicleAtt {
+	/**
+	 * Id/Type of compartment
+	 */
 	private int		type;
+	/**
+	 * Minimum compartment size
+	 */
 	private Double	min;
+	/**
+	 * Maximum compartment size
+	 */
 	private Double	max;
 
-	public Compartment() {
 
-	}
 
 	/**
-	 * @param type
-	 * @param min
-	 * @param max
+	 * @param type Id/Type of compartment
+	 * @param min Minimum compartment size
+	 * @param max Maximum compartment size
 	 */
 	public Compartment(int type, Double min, Double max) {
 		super();
@@ -44,7 +53,7 @@ public class Compartment implements VehicleAtt {
 	}
 
 	/**
-	 * @return the min
+	 * @return the Minimum compartment size
 	 */
 	public Double getMin() {
 		return min;
@@ -52,14 +61,14 @@ public class Compartment implements VehicleAtt {
 
 	/**
 	 * @param min
-	 *            the min to set
+	 *            the minimum compartment size to set
 	 */
 	public void setMin(Double min) {
 		this.min = min;
 	}
 
 	/**
-	 * @return the max
+	 * @return the Maximum compartment size
 	 */
 	public Double getMax() {
 		return max;
@@ -67,7 +76,7 @@ public class Compartment implements VehicleAtt {
 
 	/**
 	 * @param max
-	 *            the max to set
+	 *            the maximum compartment size to set
 	 */
 	public void setMax(Double max) {
 		this.max = max;
