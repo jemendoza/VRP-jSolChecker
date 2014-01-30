@@ -2,8 +2,8 @@
 <result>
     <constraints>
         <nonValid>
-            <constraint name="Predecessors">The request 2 must be preceded by the following requests : 0-1
-The request 3 must be preceded by the following requests : 0-1</constraint>
+            <constraint name="Predecessors">The request 3 must be preceded by the following requests : 0 in route 0
+The request 2 must be preceded by the following requests : 1 in route 0</constraint>
         </nonValid>
         <valid/>
     </constraints>
