@@ -34,7 +34,7 @@ public class Predecessors implements IConstraint {
 			String sResult =details.get(0);
 			for(int i=1;i<details.size();i++)
 				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"Predecessors");
+			return new ConstraintResult(cValid, sResult, "Predecessors");
 		}
 
 	}
@@ -42,18 +42,20 @@ public class Predecessors implements IConstraint {
 	private void checkPredecessors() {
 		List<Integer> listRequest = new ArrayList<Integer>();
 		List<Integer> predecessors =new ArrayList<Integer>();
+		boolean b=false;
+		
 		for (Route r : Solution.getRoutes()) {
 			listRequest.clear();
-			boolean b=false;
 			for (Request re : r.getRequests()) {
 				listRequest.add(re.getId());
 
 				vrpRep.structure.instance.Request request = Instance
 						.getRequest(re.getId());
 				List<VrpAtt> list = request.getAttribute("predecessor");
-				predecessors.clear();
+				predecessors.clear(); 
+				b=false;
 				
-				if(list.size()!=0){
+				if(list!=null){
 					for (VrpAtt v : list){
 						if (!listRequest.contains(((IntValue) v).getValue())){
 							cValid= false;
@@ -66,7 +68,7 @@ public class Predecessors implements IConstraint {
 					String sPredecessors= predecessors.get(0).toString();
 					for(int i=1;i<predecessors.size();i++)
 						sPredecessors=sPredecessors.concat("-" + predecessors.get(i));
-					details.add("The request "+re.getId()+" must be preceded by the following requests : "+sPredecessors);
+					details.add("The request "+re.getId()+" must be preceded by the following requests : "+sPredecessors+" in route "+r.getId());
 				}
 			}
 		}

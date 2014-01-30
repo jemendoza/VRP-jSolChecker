@@ -22,8 +22,8 @@ public class PredecessorsTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		new InstanceTranslator(new File("./xmlTest/testXmlFile.xml"));
-		new SolutionTranslator(new File("./xmlTest/sampleSolution.xml"));
+		new InstanceTranslator(new File("./xmlTest/PredecessorsInstance.xml"));
+		new SolutionTranslator(new File("./xmlTest/PredecessorsSolution.xml"));
 	
 	}
 
