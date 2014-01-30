@@ -42,30 +42,33 @@ public class Successors implements IConstraint {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	private void checkSuccessors() {
-		List<Integer> listRequest = new ArrayList<Integer>();
-		for (Route r : Solution.getRoutes()) {
-			listRequest.clear();
-			for (Request re : r.getRequests()) {
-				if (listRequest.contains(re.getId()))
-					listRequest.remove((Object) re.getId());
-
+		List<Integer> listRequestByRoute = new ArrayList<Integer>();
+		
+		for(Route r : Solution.getRoutes()) {
+			listRequestByRoute.clear();
+			for(Request re : r.getRequests()) {
+				listRequestByRoute.add(re.getId());
+			}
+			for(Request re : r.getRequests()) {
 				vrpRep.structure.instance.Request request = Instance
 						.getRequest(re.getId());
 				List<VrpAtt> list = request.getAttribute("successor");
-				if(list.size()!=0){
-					for (VrpAtt va : list)
-						if (!listRequest.contains(((IntValue) va).getValue()))
-							listRequest.add(((IntValue) va).getValue());
-				}
+				
+				listRequestByRoute.remove((Object)re.getId());
+				
+				if(list!=null)
+					for(VrpAtt att : list)
+						if(!listRequestByRoute.contains(((IntValue)att).getValue())) {
+							cValid= false;
+							details.add("The request "+re.getId()+" must be succeeded by the request : "+((IntValue)att).getValue()+" in route "+r.getId());
+						}
 			}
-			if (!listRequest.isEmpty()){
-				//TODO Explication de ta méthode Romain ???? o_o
-				cValid= false;
-			details.add("");
-			}
-
 		}
+
 	}
 
 }
