@@ -379,10 +379,14 @@ public class InstanceTranslator implements IInstanceReader {
 				temp.addAttribute("type", new IntValue(n.getType().intValue()));
 			if (n.getLocation() != null) {
 				if (n.getLocation().getEuclidean() != null) {
-					Euclidian euclidian = new Euclidian(n.getLocation()
-							.getEuclidean().getCx(), n.getLocation()
+					Euclidian euclidian;
+					if(n.getLocation().getEuclidean().getCz()!=null)
+						euclidian = new Euclidian(n.getLocation().getEuclidean().getCx(), n.getLocation()
 							.getEuclidean().getCy(), n.getLocation()
 							.getEuclidean().getCz());
+					else 
+						euclidian = new Euclidian(n.getLocation().getEuclidean().getCx(), n.getLocation()
+								.getEuclidean().getCy());
 					temp.addAttribute("location", euclidian);
 				}
 				if (n.getLocation().getGPSCoordinates() != null) {
