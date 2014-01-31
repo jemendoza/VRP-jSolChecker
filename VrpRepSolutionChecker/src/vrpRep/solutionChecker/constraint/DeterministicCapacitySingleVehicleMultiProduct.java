@@ -86,9 +86,6 @@ public class DeterministicCapacitySingleVehicleMultiProduct implements IConstrai
 				cValid = false;
 			}
 		}
-
-
-
 	}
 
 }
