@@ -39,7 +39,7 @@ public class DeterministicCapacity implements IConstraint {
 		VehicleCResult vcr;
 		boolean multiVehiTypes;
 
-		// chekc multi type
+		// check multi type
 		if (Solution.getRoutes().get(0).isHasType())
 			multiVehiTypes = true;
 		else
