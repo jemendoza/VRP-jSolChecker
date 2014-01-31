@@ -31,8 +31,8 @@ public class DepartureArrivalNode implements IConstraint {
 
 	@Override
 	public ConstraintResult evaluate() {
-
-		test();
+		check();
+		
 		if(cValid)
 			return new ConstraintResult(cValid , "DepartureArrivalNode");
 		else{
@@ -43,9 +43,9 @@ public class DepartureArrivalNode implements IConstraint {
 		}
 	}
 
-	private void test() {
+	private void check() {
 		for (Route r : Solution.getRoutes()) {
-			int b = r.getType();
+			int type = r.getType();
 
 			if (r.getRequests().get(0).getNodeId() != -1) {
 				int routeNodeStart = r.getRequests().get(0).getNodeId();
@@ -54,7 +54,7 @@ public class DepartureArrivalNode implements IConstraint {
 				for (Vehicle v : Instance.getFleet()) {
 					if (v.getAttribute("type").get(0) != null) {
 						int vehicleType = ((IntValue)v.getAttribute("type").get(0)).getValue();
-						if (vehicleType == b) {
+						if (vehicleType == type) {
 							int vehicleNodeArrival = ((IntValue) v.getAttribute("arrivalNode").get(0)).getValue();
 							int vehicleNodeStart = ((IntValue) v.getAttribute("departureNode").get(0)).getValue();
 							if (vehicleNodeArrival != routeNodeArrival|| vehicleNodeStart != routeNodeStart){
@@ -86,4 +86,5 @@ public class DepartureArrivalNode implements IConstraint {
 			} 
 		}
 	}
+	
 }
