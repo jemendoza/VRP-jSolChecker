@@ -38,20 +38,18 @@ public class NodeTypeCompatibility implements IConstraint {
 		try {
 			listCompatibilityInstance = vehicleNodeCompatibilityInstance();
 			List<Integer> listNodeType = getListNodeType();
-			 checkCompatibility(listCompatibilityInstance,
-					listNodeType);
+			checkCompatibility(listCompatibilityInstance, listNodeType);
 			
-
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
 		if(cValid)
-			return new ConstraintResult(cValid , "DepartureArrivalNode");
+			return new ConstraintResult(cValid , "NodeTypeCompatibility");
 		else{
 			String sResult =details.get(0);
 			for(int i=1;i<details.size();i++)
 				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"DepartureArrivalNode");
+			return new ConstraintResult(cValid, sResult,"NodeTypeCompatibility");
 		}
 
 	}
@@ -63,9 +61,6 @@ public class NodeTypeCompatibility implements IConstraint {
 	 *            : contain all the node compatible for each vehicle
 	 * @param listNodeType
 	 *            : contain all type of each node
-	 * @param sol
-	 *            : Object used to store XML solution data
-	 * @return true if the node/vehicle compatibility is respected
 	 */
 	private	void checkCompatibility(
 			List<List<Integer>> listCompatibilityInstance,
@@ -74,12 +69,12 @@ public class NodeTypeCompatibility implements IConstraint {
 		for (Route r : Solution.getRoutes()) {
 			// Type de véhicle de la route
 			if(r.isHasType()) {
-				int b = r.getType();
+				int type = r.getType();
 				for (Request n : r.getRequests()) {
-					if (!listCompatibilityInstance.get(b).contains(
+					if (!listCompatibilityInstance.get(type).contains(
 							listNodeType.get(n.getNodeId()))) {
 						cValid= false;
-						details.add("The vehicle of type "+r.getType()+" is not compatible to pass on node "+n.getNodeId());
+						details.add("The vehicle of type "+r.getType()+" is not compatible to pass on node "+n.getNodeId()+" on route "+r.getId());
 					}
 				}
 			}
