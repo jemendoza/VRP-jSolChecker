@@ -9,7 +9,6 @@ import java.util.List;
 
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
-import vrpRep.structure.instance.Vehicle;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 import vrpRep.utilities.ConstraintResult;
@@ -18,7 +17,7 @@ import vrpRep.utilities.ConstraintResult;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
-public class NbVehicleAvailable implements IConstraint {
+public class NbVehicleAvailableSingle implements IConstraint {
 
 	private boolean				cValid	= true;
 	private ArrayList<String>	details	= new ArrayList<String>();
@@ -41,12 +40,12 @@ public class NbVehicleAvailable implements IConstraint {
 			e.printStackTrace();
 		}
 		if(cValid)
-			return new ConstraintResult(cValid , "NbVehicleAvailable");
+			return new ConstraintResult(cValid , "NbVehicleAvailableSingle");
 		else{
 			String sResult =details.get(0);
 			for(int i=1;i<details.size();i++)
 				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"NbVehicleAvailable");
+			return new ConstraintResult(cValid, sResult, "NbVehicleAvailableSingle");
 		}
 
 	}
@@ -62,45 +61,20 @@ public class NbVehicleAvailable implements IConstraint {
 	 */
 	private void compare(List<Integer> nbVehicleTypeInstance,
 			List<Integer> nbVehicleTypeSolution) {
-		if (nbVehicleTypeInstance.size() == 1) {
-			if (nbVehicleTypeInstance.get(0) < nbVehicleTypeSolution.get(0)){
-				cValid= false;
-				details.add("Number of vehicle available : "+nbVehicleTypeInstance.get(0)+" less than "+nbVehicleTypeSolution.get(0));
-			}
-		} else {
-			for (int i = 0; i < nbVehicleTypeInstance.size(); i++) {
-				if (nbVehicleTypeSolution.get(i) > nbVehicleTypeInstance.get(i)){
-					cValid= false;
-					details.add("Number of vehicle of type "+i+" available : "+nbVehicleTypeInstance.get(i)+" less than "+nbVehicleTypeSolution.get(i));
-				}
-			}
+
+		if (nbVehicleTypeInstance.get(0) < nbVehicleTypeSolution.get(0)){
+			cValid= false;
+			details.add("Number of vehicle available : "+nbVehicleTypeInstance.get(0)+" less than "+nbVehicleTypeSolution.get(0));
 		}
 	}
 
 	/**
 	 * 
-	 * @param inst2
-	 *            : Object used to store XML solution data
 	 * @return the list containing the number of vehicle AVAILABLE per type
-	 * @throws MissingAttributeException
-	 * @throws NumberFormatException
 	 */
 	private List<Integer> getInstanceVehicle() {
 		List<Integer> nbVehicleType = new ArrayList<Integer>();
-		if (Instance.getFleet().size() == 1) {
-			nbVehicleType.add(((IntValue) Instance.getFleet().get(0)
-					.getAttribute("number").get(0)).getValue());
-		} else {
-			for (Vehicle v : Instance.getFleet()) {
-
-				nbVehicleType
-				.add(((IntValue) v.getAttribute("type").get(0))
-						.getValue(),
-						((IntValue) v.getAttribute("number").get(0))
-						.getValue());
-			}
-
-		}
+		nbVehicleType.add(((IntValue) Instance.getFleet().get(0).getAttribute("number").get(0)).getValue());
 
 		return nbVehicleType;
 	}
@@ -109,7 +83,7 @@ public class NbVehicleAvailable implements IConstraint {
 	 * 
 	 * @return the list containing the number of vehicle USED per type
 	 */
-	private List<Integer> getSolutionVehicle() {
+	public List<Integer> getSolutionVehicle() {
 		List<Integer> nbVehicleType = new ArrayList<Integer>(
 				Collections.nCopies(Solution.getRoutes().size(), 0));
 		for (Route r : Solution.getRoutes()) {
