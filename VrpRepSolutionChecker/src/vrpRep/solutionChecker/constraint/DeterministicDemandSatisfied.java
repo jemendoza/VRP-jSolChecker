@@ -62,7 +62,9 @@ public class DeterministicDemandSatisfied implements IConstraint {
 				}	
 			}
 		}
+		
 		checkDemands();
+		
 		if (!cValid) {
 			String sResult = details.get(0);
 			for (int i = 1; i < details.size(); i++)
