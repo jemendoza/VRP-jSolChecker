@@ -118,7 +118,7 @@ public class NodeTypeCompatibility implements IConstraint {
 	/**
 	 * 
 	 * @param listAtt
-	 * @return
+	 * @return List of compatible nodes
 	 */
 	private List<Integer> getNodeTypesCompatible(List<VrpAtt> listAtt) {
 		List<Integer> listInt = new ArrayList<Integer>();

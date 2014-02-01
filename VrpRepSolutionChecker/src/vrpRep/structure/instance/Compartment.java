@@ -7,7 +7,6 @@ package vrpRep.structure.instance;
  * Stores all information related to a vehicle compartment.
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
- * @see vrpRep.structure.instance.
  */
 public class Compartment implements VehicleAtt {
 	/**

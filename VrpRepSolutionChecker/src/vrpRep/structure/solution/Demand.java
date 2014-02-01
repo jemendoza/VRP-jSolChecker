@@ -22,7 +22,7 @@ public class Demand {
 
 	/**
 	 * 
-	 * @param productId
+	 * @param id
 	 *            id of product
 	 */
 	public Demand(int id) {

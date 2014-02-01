@@ -34,17 +34,13 @@ public class VRPRepJAXBUtilities {
 
     /**
      * Write a result in a file
-     * 
-     * @param instance
-     *            the instance to be written
-     * @param destFile
-     *            the destination file
-     * @param compress
-     *            {@code true} if the instance should be compressed, in which case the suffix {@code  .zip} will be added
+	 * @param result Result schema class
+	 * @param destFile Destination file
+	 * @param compress {@code true} if the instance should be compressed, in which case the suffix {@code  .zip} will be added
      *            to the file name
-     * @throws JAXBException
-     * @throws IOException
-     */
+	 * @throws JAXBException
+	 * @throws IOException
+	 */
     public static void writeResult(Result result, File destFile, boolean compress)
             throws JAXBException, IOException {
         JAXBContext context = JAXBContext.newInstance(Result.class.getPackage().getName());

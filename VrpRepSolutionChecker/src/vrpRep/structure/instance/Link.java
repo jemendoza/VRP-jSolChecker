@@ -5,7 +5,19 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Stores all link information and attributes
+ * Stores all link information and attributes.<br />
+ * By default, the following attribute names are provide : 
+ * <ul>
+ * 	<li>id : id of type of request. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+ * 	<li>tail : id of tail node. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+ *  <li>head : id of tail node. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+ *  <li>directed : true if graph is directed. Stored in {@link vrpRep.structure.instance.BooleanValue}</li>
+ *  <li>type : type of link. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+ *  <li>cost : cost of link. Stored in {@link vrpRep.structure.instance.DoubleValue}</li>
+ *  <li>length : length of link. Stored in {@link vrpRep.structure.instance.DoubleValue}</li>
+ *  <li>time : time of link. Stored in {@link vrpRep.structure.instance.DoubleValue} for deterministic time
+ *  or {@link vrpRep.structure.instance.LinkProbaDist for stochastic time}</li>
+ * </ul>
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
@@ -24,7 +36,7 @@ public class Link {
 	private int								head;
 
 	/**
-	 * @param atts List of link attributes
+	 * Custom constructor
 	 * @param tail Id of tail node
 	 * @param head Id of head node
 	 */

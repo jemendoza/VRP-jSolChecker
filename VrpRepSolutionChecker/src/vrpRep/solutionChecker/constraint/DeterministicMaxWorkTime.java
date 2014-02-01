@@ -94,8 +94,8 @@ public class DeterministicMaxWorkTime implements IConstraint {
 		for(Route r : Solution.getRoutes()){
 			vehiType = (r.isHasType()?r.getType():-1);	
 			
-			if(Instance.getRequestAttribute(r.getRequests().get(0).getId(), "serviceTime") != null)
-				timeSpent = ((DoubleValue)Instance.getRequestAttribute(r.getRequests().get(0).getId(), "serviceTime")).getValue();
+			if(Instance.getRequest(r.getRequests().get(0).getId()).getAttribute("serviceTime") != null)
+				timeSpent = ((DoubleValue)Instance.getRequest(r.getRequests().get(0).getId()).getAttribute("serviceTime")).getValue();
 			else
 				timeSpent = 0;
 
@@ -106,24 +106,24 @@ public class DeterministicMaxWorkTime implements IConstraint {
 				arrivalNode = req.getNodeId();
 				
 				if(vehiType != -1)
-					speed = getSpeed(Instance.getVehicleAttribute(vehiType, "speedProfile"), timeSpent);
+					speed = getSpeed(Instance.getVehicle(vehiType).getAttribute("speedProfile"), timeSpent);
 					//speed = ((DoubleValue)Instance.getVehicleAttribute(vehiType, "speedProfile")).getValue();
 				else
-					speed = getSpeed(Instance.getVehicleAttribute(0, "speedProfile"), timeSpent);
+					speed = getSpeed(Instance.getVehicle(0).getAttribute("speedProfile"), timeSpent);
 					//speed = ((DoubleValue)Instance.getVehicleAttribute(0, "speedProfile")).getValue();
 
 				timeSpent += DistanceCalculator.calculateDistance(departureNode, arrivalNode)/speed;	
-				timeSpent += ((DoubleValue)Instance.getRequestAttribute(req.getId(), "serviceTime")).getValue();
+				timeSpent += ((DoubleValue)Instance.getRequest(req.getId()).getAttribute("serviceTime")).getValue();
 			}
 			
 			if(vehiType == -1)
 				vehiType = 0;
-			if(timeSpent > ((DoubleValue)Instance.getVehicleAttribute(vehiType, "wLPMaxWorkTime")).getValue()){
+			if(timeSpent > ((DoubleValue)Instance.getVehicle(vehiType).getAttribute("wLPMaxWorkTime")).getValue()){
 				
 				cValid = false;
 				details.add("Route id "+r.getId()+
 						" Vehicle id "+vehiType+
-						" - "+timeSpent+" greater than "+((DoubleValue)Instance.getVehicleAttribute(vehiType, "wLPMaxWorkTime")).getValue());
+						" - "+timeSpent+" greater than "+((DoubleValue)Instance.getVehicle(vehiType).getAttribute("wLPMaxWorkTime")).getValue());
 			}
 				
 		}	
@@ -145,7 +145,7 @@ public class DeterministicMaxWorkTime implements IConstraint {
 		}
 
 		if(vAtt instanceof DoubleValue)
-			return ((DoubleValue)Instance.getVehicleAttribute(0, "speedProfile")).getValue();
+			return ((DoubleValue)Instance.getVehicle(0).getAttribute("speedProfile")).getValue();
 		else{		
 			int i = -1, j;
 			while (++i < serviceTimes.size() && !(min <= time && time <= max)){

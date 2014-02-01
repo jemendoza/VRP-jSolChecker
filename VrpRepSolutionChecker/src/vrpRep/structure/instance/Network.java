@@ -4,7 +4,7 @@
 package vrpRep.structure.instance;
 
 /**
- * Stores all parameters related to the network
+ * Stores all parameters related to the network.
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */

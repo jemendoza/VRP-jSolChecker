@@ -79,7 +79,7 @@ public class Request {
 
 	/**
 	 * 
-	 * @return
+	 * @return request
 	 */
 	public String getRequest() {
 		return request;

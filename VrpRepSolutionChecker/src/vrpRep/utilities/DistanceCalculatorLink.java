@@ -41,7 +41,7 @@ public class DistanceCalculatorLink extends DistanceCalculator {
 	/**
 	 * Retrieve link from link list that corresponds to input nodes
 	 * 
-	 * @param Links
+	 * @param links
 	 *            list of links
 	 * @param headId
 	 *            Head node id

@@ -16,10 +16,7 @@ public interface IConstraint {
 
 	/**
 	 * Evaluates a constraint of solution
-	 * 
-	 * @param sol
-	 *            Solution to evaluate
-	 * @return TODO
+	 * @return Result of constraint
 	 */
 	public ConstraintResult evaluate();
 

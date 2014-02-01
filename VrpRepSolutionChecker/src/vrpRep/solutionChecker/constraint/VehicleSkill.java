@@ -44,10 +44,9 @@ public class VehicleSkill implements IConstraint {
 		}
 	}
 
+
 	/**
 	 * 
-	 * @return
-	 * @throws MissingAttributeException
 	 */
 	private void checkVehicleSkill() {
 		List<Integer> list = new ArrayList<Integer>();
@@ -89,8 +88,8 @@ public class VehicleSkill implements IConstraint {
 
 	/**
 	 * 
-	 * @param list
-	 * @return
+	 * @param list list of skills the vehicle has
+	 * @return list of skill vehicle has cast as integers
 	 */
 	private List<Integer> getSkillVehicle(List<VrpAtt> list) {
 		List<Integer> sat = new ArrayList<Integer>();

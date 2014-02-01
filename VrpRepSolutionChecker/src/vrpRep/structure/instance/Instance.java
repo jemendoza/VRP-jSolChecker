@@ -5,12 +5,16 @@ import java.util.List;
 
 /**
  * 
- * Main class of default instance structure. Class should be used to add and
- * retrieve elements from the structure.
+ * Main class of default instance structure. <br />
+ * Class should be used access Request, Link, Node, Vehicle and Network information.
  * All elements are accessed statically. i.e. Instance.XXX where XXX is either a variable or method name
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
- * 
+ * @see vrpRep.structure.instance.Request
+ * @see vrpRep.structure.instance.Link
+ * @see vrpRep.structure.instance.Node
+ * @see vrpRep.structure.instance.Vehicle
+ * @see vrpRep.structure.instance.Network
  */
 public class Instance {
 
@@ -241,64 +245,7 @@ public class Instance {
 		return myI.fleet.get(0);
 	}
 
-	/**
-	 * Retrieves node attribute from node
-	 * 
-	 * @param id
-	 *            id of node
-	 * @param attName
-	 *            name of attribute requested
-	 * @return attribute
-	 */
-	public static List<VrpAtt> getNodeAttribute(int id, String attName) {
-		Node n = getNode(id);
-		return n.getAttribute(attName);
-	}
 
-	/**
-	 * Retrieves link attribute from link
-	 * 
-	 * @param head
-	 *            id of head node
-	 * @param tail
-	 *            id of tail node
-	 * @param attName
-	 *            name of attribute requested
-	 * @return attribute
-	 */
-	public static List<VrpAtt> getLinkAttribute(int head, int tail,
-			String attName) {
-		Link l = getLink(head, tail);
-		return l.getAttribute(attName);
-	}
-
-	/**
-	 * Retrieves request attribute from request
-	 * 
-	 * @param id
-	 *            id of request
-	 * @param attName
-	 *            name of attribute requested
-	 * @return attribute
-	 */
-	public static List<VrpAtt> getRequestAttribute(int id, String attName) {
-		Request r = getRequest(id);
-		return r.getAttribute(attName);
-	}
-
-	/**
-	 * Retrieves vehicle attribute from vehicle
-	 * 
-	 * @param id
-	 *            id of vehicle
-	 * @param attName
-	 *            name of attribute requested
-	 * @return attribute
-	 */
-	public static List<VrpAtt> getVehicleAttribute(int id, String attName) {
-		Vehicle v = getVehicle(id);
-		return v.getAttribute(attName);
-	}
 
 	/**
 	 * 

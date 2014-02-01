@@ -65,7 +65,7 @@ public class DynamicFactory {
 	 * Loads solution. If exception thrown, ensure xml configuration file
 	 * contains class path to solution reader under key "solutionReader".
 	 * 
-	 * @param instanceXmlPath
+	 * @param solutionXmlPath
 	 *            path to solution xml file
 	 */
 	public void buildDefaultSolution(String solutionXmlPath) {
