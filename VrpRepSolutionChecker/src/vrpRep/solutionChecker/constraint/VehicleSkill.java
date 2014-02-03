@@ -16,6 +16,7 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
+ * Class checking that the vehicle satisfying a request has the skills required to complete the request.
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
@@ -40,10 +41,11 @@ public class VehicleSkill implements IConstraint {
 
 
 	/**
-	 * 
+	 * Evaluate constraint
 	 */
 	private void checkVehicleSkill() {
 		List<Integer> list = new ArrayList<Integer>();
+		//each route
 		for (Route r : Solution.getRoutes()) {
 			list.clear();
 			int vehicle = 0;
@@ -54,6 +56,7 @@ public class VehicleSkill implements IConstraint {
 			List<Integer> vehicleSkill = getSkillVehicle(Instance
 					.getFleet().get(vehicle).getAttribute("skill"));
 			List<Integer> requestSkill = new ArrayList<Integer>();
+			//each request
 			for (Request n : r.getRequests()) {
 				int id = n.getId();
 				List<VrpAtt> listAtt = Instance.getRequests().get(id)
@@ -62,7 +65,7 @@ public class VehicleSkill implements IConstraint {
 					requestSkill.add(((SkillAndTool) vrpAtt).getId());
 				}
 			}
-
+			//each skill
 			for (Integer s : requestSkill){
 
 				if (!vehicleSkill.contains(s) && !list.contains(s)){

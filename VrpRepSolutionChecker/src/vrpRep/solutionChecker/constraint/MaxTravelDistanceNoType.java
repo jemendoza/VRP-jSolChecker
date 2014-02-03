@@ -65,9 +65,6 @@ public class MaxTravelDistanceNoType implements IConstraint {
 			int maxTravelDist = ((IntValue) (Instance.getFleet().get(0)
 					.getAttribute("maxTravelDistance").get(0))).getValue();
 			if (travelDist > maxTravelDist) {
-				System.out
-				.println("Max travel distance of vehicle failed on route "
-						+ r.getId());
 				cEval.addMessage("MaxTravelDistanceNoType|On route :"+r.getId()+" distance travelled :"+travelDist+" greater than "+maxTravelDist);
 			}
 		}

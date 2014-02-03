@@ -35,8 +35,12 @@ public class DepartureArrivalNode implements IConstraint {
 		
 		return cEval;
 	}
-
+	
+	/**
+	 * Method checking the validity of the constraint Departure - Arrival Node.
+	 */
 	private void check() {
+		//each route
 		for (Route r : Solution.getRoutes()) {
 			int type = r.getType();
 
@@ -44,6 +48,7 @@ public class DepartureArrivalNode implements IConstraint {
 				int routeNodeStart = r.getRequests().get(0).getNodeId();
 				int routeNodeArrival = r.getRequests().get(r.getRequests().size()-1)
 						.getNodeId();
+				//each vehicle
 				for (Vehicle v : Instance.getFleet()) {
 					if (v.getAttribute("type").get(0) != null) {
 						int vehicleType = ((IntValue)v.getAttribute("type").get(0)).getValue();

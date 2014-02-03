@@ -15,6 +15,11 @@ import org.junit.Test;
 
 import vrpRep.solChecker.VrpRepSolutionChecker;
 
+/**
+ * 
+ * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
+ *
+ */
 public class NodeTypeCompatibilityTest {
 
 	private VrpRepSolutionChecker solC;

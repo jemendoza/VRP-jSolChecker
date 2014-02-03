@@ -13,6 +13,7 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
+ * Class checking that a request is satisfied after that the predecessors of this request are satisfied.
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
@@ -32,14 +33,17 @@ public class Predecessors implements IConstraint {
 		return cEval;
 
 	}
-
+	/**
+	 * Evaluate constraint
+	 */
 	private void checkPredecessors() {
 		List<Integer> listRequest = new ArrayList<Integer>();
 		List<Integer> predecessors =new ArrayList<Integer>();
 		boolean b=false;
-		
+		//each route
 		for (Route r : Solution.getRoutes()) {
 			listRequest.clear();
+			//each request
 			for (Request re : r.getRequests()) {
 				listRequest.add(re.getId());
 

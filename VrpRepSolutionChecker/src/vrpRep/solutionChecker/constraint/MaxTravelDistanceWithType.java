@@ -41,16 +41,15 @@ public class MaxTravelDistanceWithType implements IConstraint {
 
 	/**
 	 * Evaluate constraint with several types of vehicles
-	 * 
-	 * @return result
 	 */
 	private void evaluateMtdWithTypes() {
 		List<Vehicle> fleet = Instance.getFleet();
 		int currentType = 0, nodeId1, nodeId2;
 		double travelDist;
-
+		//each route
 		for (Route r : Solution.getRoutes()) {
 			travelDist = 0;
+			//each pair of node
 			for (int j = 0; j < r.getRequests().size() - 1; j++) {
 				try {
 					nodeId1 = ((IntValue) Instance.getRequest(
@@ -65,6 +64,7 @@ public class MaxTravelDistanceWithType implements IConstraint {
 					e.printStackTrace();
 				}
 			}
+			//each vehicle
 			for (int i = 0; i < fleet.size(); i++) {
 				currentType = ((IntValue) (fleet.get(i).getAttribute("Type")
 						.get(0))).getValue();
@@ -73,9 +73,6 @@ public class MaxTravelDistanceWithType implements IConstraint {
 							.getAttribute("maxTravelDistance").get(0)))
 							.getValue();
 					if (travelDist >maxTravelDist ) {
-						System.out
-						.println("Max travel distance of vehicle failed on route "
-								+ r.getId());
 						cEval.addMessage("MaxTravelDistanceWithType|On route :"+r.getId()+"vehicle of type : "+currentType+" travelled a distance of:"+travelDist+" greater than "+maxTravelDist);
 					}
 				}

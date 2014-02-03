@@ -18,6 +18,7 @@ import vrpRep.structure.solution.Solution;
 import vrpRep.utilities.DistanceCalculator;
 
 /**
+ * Class checking the deterministic MaxWorkTime constraint by calculating time spend between two nodes. 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  *
  */
@@ -36,7 +37,7 @@ public class DeterministicMaxWorkTimeNodes implements IConstraint {
 	}
 	
 	/**
-	 * 
+	 * Method checking the constraint
 	 */
 	private void checkWorkTimeOnNodes() {
 		int vehiType = -1;
@@ -44,7 +45,7 @@ public class DeterministicMaxWorkTimeNodes implements IConstraint {
 		int departureNode, arrivalNode;
 		double timeSpent = 0, speed;
 		Request req;
-
+		//each route
 		for(Route r : Solution.getRoutes()){
 			vehiType = (r.isHasType()?r.getType():-1);	
 			
@@ -61,11 +62,8 @@ public class DeterministicMaxWorkTimeNodes implements IConstraint {
 				
 				if(vehiType != -1)
 					speed = getSpeed(Instance.getVehicle(vehiType).getAttribute("speedProfile"), timeSpent);
-					//speed = ((DoubleValue)Instance.getVehicleAttribute(vehiType, "speedProfile")).getValue();
 				else
 					speed = getSpeed(Instance.getVehicle(vehiType).getAttribute("speedProfile"), timeSpent);
-					//speed = ((DoubleValue)Instance.getVehicleAttribute(0, "speedProfile")).getValue();
-
 				timeSpent += DistanceCalculator.calculateDistance(departureNode, arrivalNode)/speed;	
 				timeSpent += ((DoubleValue)Instance.getRequest(req.getId()).getAttribute("serviceTime")).getValue();
 			}
@@ -83,12 +81,11 @@ public class DeterministicMaxWorkTimeNodes implements IConstraint {
 	}
 	
 	/**
-	 * 
-	 * @param serviceTimes
+	 * @param speedProfile
 	 * @param time
 	 * @return speed of vehicle
 	 */
-	private double getSpeed(List<VrpAtt> serviceTimes, double time){
+	private double getSpeed(List<VrpAtt> speedProfile, double time){
 		VrpAtt vAtt;		
 		double min, max, speed = 0;
 		min = Double.MAX_VALUE;
@@ -97,18 +94,18 @@ public class DeterministicMaxWorkTimeNodes implements IConstraint {
 		TimeWindow tw;		
 
 
-		if(serviceTimes == null)
+		if(speedProfile == null)
 			throw new NullPointerException();
 		else{
-			vAtt = serviceTimes.get(0);
+			vAtt = speedProfile.get(0);
 		}
 
 		if(vAtt instanceof DoubleValue)
 			return ((DoubleValue)Instance.getVehicle(0).getAttribute("speedProfile")).getValue();
 		else{		
 			int i = -1, j;
-			while (++i < serviceTimes.size() && !(min <= time && time <= max)){
-				si = (SpeedInt)serviceTimes.get(i);
+			while (++i < speedProfile.size() && !(min <= time && time <= max)){
+				si = (SpeedInt)speedProfile.get(i);
 				speed = si.getSpeed();
 				j = -1;
 				while (++j < si.getTw().size() && !(min <= time && time <= max)){

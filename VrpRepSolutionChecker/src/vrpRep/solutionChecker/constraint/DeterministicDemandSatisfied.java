@@ -51,6 +51,7 @@ public class DeterministicDemandSatisfied implements IConstraint {
 				
 				ncr = requestDemands[req.getId()];					
 				if (req.getDemand().size() != 0) {
+					//each demand
 					for (Demand d : req.getDemand()) {
 						ncr.addDemand(d.getId(), d.getDemand(), ((DemandValue)Instance.getRequest(req.getId()).getAttribute("demand").get(d.getId())).isSplittable());
 					}

@@ -16,7 +16,7 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
- * Class used to evaluate capacity constraints
+ * Class used to evaluate capacity constraint for Single Vehicle and Single Product VRP.
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
@@ -68,7 +68,11 @@ public class DeterministicCapacitySingleVehicleSingleProduct implements IConstra
 		}
 
 	}
-
+	/**
+	 * Creation of an Object VehicleCResult
+	 * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
+	 *
+	 */
 	protected class VehicleCResult {
 		private int							vehiType;
 		private ArrayList<Integer>			productIds	= new ArrayList<Integer>();

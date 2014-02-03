@@ -13,6 +13,7 @@ import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;
 
 /**
+ * Class checking that the number of vehicle available in the instance is respected
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */

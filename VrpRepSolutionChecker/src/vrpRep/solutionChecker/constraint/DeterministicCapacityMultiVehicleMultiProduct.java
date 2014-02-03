@@ -14,7 +14,7 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
- * Class used to evaluate capacity constraints
+ * Class used to evaluate capacity constraint for Multi Vehicles and Multi Products VRP.
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
@@ -55,9 +55,14 @@ public class DeterministicCapacityMultiVehicleMultiProduct implements IConstrain
 		return cEval;
 	}
 
+	/**
+	 * Method testing that the capacity constraint is respected
+	 * @param vcr : VehicleCResult containing type of the vehicle, Ids of product and the sum of the demand.
+	 */
 	private void checkDemands(VehicleCResult vcr) {
 		double capacityMin, capacityMax;
 		Compartment compartement;
+		// each product
 		for (int pId : vcr.getProductIds()) {
 			compartement = (Compartment) Instance.getVehicle(
 					vcr.getVehiType()).getAttribute("compartment").get(pId);
