@@ -15,29 +15,24 @@ import org.junit.Test;
 
 import vrpRep.solutionChecker.DynamicFactory;
 import vrpRep.solutionChecker.VrpRepSolutionChecker;
+import vrpRep.structure.instance.Instance;
 
-/**
- * 
- * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
- *
- */
-public class DepartureArrivalNodeTest {
-
+public class DeterministicCapacityMultiVehicleMultiProductTest {
 
 	private VrpRepSolutionChecker solC;
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/DepartureArrivalNode/Instance.xml";
-	private String solutionFile = "./xmlTest/DepartureArrivalNode/SolutionFalse.xml";
-	private String outputFile = "./solutionTestOutput/DepartureArrivalNode.xml";
-
+	private String instanceFile = "./xmlTest/DeterministicCapacityMultiVehicleMultiProduct/Instance.xml";
+	private String solutionFile = "./xmlTest/DeterministicCapacityMultiVehicleMultiProduct/Solution.xml";
+	private String outputFile = "./solutionTestOutput/DeterministicCapacityMultiVehicleMultiProduct.xml";
 
 	@Before
-	public void setUp() throws Exception {	
+	public void setUp() throws Exception {
 		// set up test
 		solC = new VrpRepSolutionChecker(instanceFile, solutionFile);
-		
+
+		Instance i = Instance.getInstance();
 		// start building xml output
 		root=new Element("test");		
 		experiment=new Element("evaluation");
@@ -47,8 +42,7 @@ public class DepartureArrivalNodeTest {
 		factory.loadObjective(solC);
 		factory.setDistanceCalculator();
 	}
-
-
+	
 	@After
 	public void tearDown() throws Exception {
 		// close experiment
@@ -69,7 +63,7 @@ public class DepartureArrivalNodeTest {
 	@Test
 	public void test() {
 		// add constraint(s)
-		solC.addConstraint(new DepartureArrivalNode());
+		solC.addConstraint(new DeterministicCapacityMultiVehicleMultiProduct());
 		// run experiment
 		experiment.addContent(solC.checkSolution());
 			

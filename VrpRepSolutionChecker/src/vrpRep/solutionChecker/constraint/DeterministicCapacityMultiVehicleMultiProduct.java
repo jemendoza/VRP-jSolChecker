@@ -63,24 +63,18 @@ public class DeterministicCapacityMultiVehicleMultiProduct implements IConstrain
 	 * @param vcr : VehicleCResult containing type of the vehicle, Ids of product and the sum of the demand.
 	 */
 	private void checkDemands(VehicleCResult vcr) {
-		double capacityMin, capacityMax;
+		double capacityMax;
 		Compartment compartement;
 		// each product
 		for (int pId : vcr.getProductIds()) {
 			compartement = (Compartment) Instance.getVehicle(
 					vcr.getVehiType()).getAttribute("compartment").get(pId);
-			capacityMin = compartement.getMin();
 			capacityMax = compartement.getMax();
 			if (vcr.getSumDemands().get(pId) > capacityMax) {
 				cEval.addMessage("Deterministic capacity Multi Vehicle Multi Product|Vehicle capacity type "
 						+ vcr.getVehiType() + " , Product Id " + pId
 						+ " - " + vcr.getSumDemands().get(pId) + " greater than "
 						+ capacityMax);
-			} else if (vcr.getSumDemands().get(pId) < capacityMin) {
-				cEval.addMessage("Deterministic capacity Multi Vehicle Multi Product|Vehicle capacity type "
-						+ vcr.getVehiType() + " , Product Id " + pId
-						+ " - " + vcr.getSumDemands().get(pId) + " less than "
-						+ capacityMin);
 			}
 		}
 	}

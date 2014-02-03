@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test>
-  <evaluation solution_file="./xmlTest/SolutiontestDepartureArrivalNode.xml" />
+  <evaluation solution_file="./xmlTest/DepartureArrivalNode/SolutionFalse.xml">
+    <report>
+      <feasible>FALSE</feasible>
+      <messages>
+        <message>DepartureArrivalNode|On Route ID : 1, Departure Node : 0, Arrival Node : 2 but Vehicle of type 1 Departure Node is 1 and Arrival Node is 2</message>
+      </messages>
+      <objective>NaN</objective>
+    </report>
+  </evaluation>
 </test>
 

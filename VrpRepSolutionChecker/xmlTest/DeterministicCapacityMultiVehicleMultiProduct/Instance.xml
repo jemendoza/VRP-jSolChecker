@@ -88,14 +88,7 @@
 	</network>
 	<fleet>
 		<vehicle type="0">
-			<compartment type="0">
-				<minCapacity>0</minCapacity>
-				<maxCapacity>5</maxCapacity>
-			</compartment>
-			<compartment type="1">
-				<minCapacity>2</minCapacity>
-				<maxCapacity>3</maxCapacity>
-			</compartment>
+			<capacity></capacity>
 		</vehicle>
 		<vehicle type="1">
 			<compartment type="0">

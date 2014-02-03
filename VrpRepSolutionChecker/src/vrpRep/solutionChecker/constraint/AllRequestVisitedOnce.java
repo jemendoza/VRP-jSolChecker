@@ -33,19 +33,19 @@ public class AllRequestVisitedOnce implements IConstraint {
 	 * Method evaluating the constraint
 	 */
 	private void evaluateRequest() {
-		List<Request> listSolRequest = new ArrayList<Request>();
-		List<Request> doublon = new ArrayList<Request>();
+		List<Integer> listSolRequest = new ArrayList<Integer>();
+		List<Integer> doublon = new ArrayList<Integer>();
 		//each route
 		for(Route r : Solution.getRoutes()){
 			//each request
 			for(Request req : r.getRequests()){
-				if(!listSolRequest.contains(req)){
-					listSolRequest.add(req);
+				if(!listSolRequest.contains(req.getId())){
+					listSolRequest.add(req.getId());
 				}
 				else{
-					if(!doublon.contains(req)){
+					if(!doublon.contains(req.getId())){
 						cEval.addMessage("AllRequestVisitedOnce|The request : "+req.getId()+" is visited more than once");
-						doublon.add(req);
+						doublon.add(req.getId());
 					}
 				}
 			}

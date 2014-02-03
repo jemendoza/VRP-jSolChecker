@@ -57,22 +57,17 @@ public class DeterministicCapacitySingleVehicleMultiProduct implements IConstrai
 	}
 
 	private void checkDemands(VehicleCResult vcr) {
-		double capacityMin, capacityMax;
+		double capacityMax;
 		Compartment compartement;
 		for (int pId : vcr.getProductIds()) {
 			compartement = (Compartment) Instance.getVehicle()
 					.getAttribute("compartment").get(pId);
-			capacityMin = compartement.getMin();
 			capacityMax = compartement.getMax();
 			if (vcr.getSumDemands().get(pId) > capacityMax) {
 				cEval.addMessage("Deterministic capacity Single Vehicle Multi Product|Vehicle capacity , Product Id " + pId
 						+ " - " + vcr.getSumDemands().get(pId) + " greater than "
 						+ capacityMax);
-			} else if (vcr.getSumDemands().get(pId) < capacityMin) {
-				cEval.addMessage("Deterministic capacity Single Vehicle Multi Product|Vehicle capacity , Product Id " + pId
-						+ " - " + vcr.getSumDemands().get(pId) + " less than "
-						+ capacityMin);
-			}
+			} 
 		}
 	}
 

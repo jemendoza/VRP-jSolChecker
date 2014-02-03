@@ -37,10 +37,10 @@ public class AllRequestVisited implements IConstraint {
 	 */
 	private void evaluateRequest() {
 		List<Request> instRequest = Instance.getRequests();
-		List<Request> solRequest = getSolRequest();
+		List<Integer> solRequest = getSolRequest();
 		//each request
 		for(Request r  : instRequest){
-			if(!solRequest.contains(r)){
+			if(!solRequest.contains(r.getId())){
 				cEval.addMessage("AllRequestVisited|The request : "+r.getId()+" isn't satisfied on the solution" );
 			}
 		}
@@ -49,19 +49,19 @@ public class AllRequestVisited implements IConstraint {
 	 * 
 	 * @return requests satisfied in the solution
 	 */
-	private List<Request> getSolRequest() {
-		List<Request> listReq = new ArrayList<Request>();
+	private List<Integer> getSolRequest() {
+		List<Integer> reqId = new ArrayList<Integer>();
 		//each route
 		for(Route r : Solution.getRoutes()){
 			//each request
 			for(vrpRep.structure.solution.Request req : r.getRequests()){
 				Request requete = Instance.getRequest(req.getId());
-				if(!listReq.contains(requete)){
-					listReq.add(requete);
+				if(!reqId.contains(requete.getId())){
+					reqId.add(requete.getId());
 				}
 			}		
 		}
-		return listReq;
+		return reqId;
 	}
 
 }

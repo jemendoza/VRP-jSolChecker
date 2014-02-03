@@ -47,10 +47,8 @@ public class VrpRepSolutionChecker {
 	 * @param solution File path to xml solution
 	 */
 	public VrpRepSolutionChecker(String instance, String solution){
-		new InstanceTranslator(new File(
-				"./xmlTest/DeterministicCapacityInstance.xml"));
-		new SolutionTranslator(new File(
-				"./xmlTest/DeterministicCapacitySolution.xml"));
+		new InstanceTranslator(new File(instance));
+		new SolutionTranslator(new File(solution));
 
 	}
 	
@@ -61,7 +59,7 @@ public class VrpRepSolutionChecker {
 	 */
 	public void changeSolution(String solution){
 		new SolutionTranslator(new File(
-				"./xmlTest/DeterministicCapacitySolution.xml"));
+				solution));
 		this.ch = null;
 	}
 	

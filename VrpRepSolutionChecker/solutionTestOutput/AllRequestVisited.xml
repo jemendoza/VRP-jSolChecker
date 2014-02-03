@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test>
+  <evaluation solution_file="./xmlTest/AllRequestVisited/Solution.xml">
+    <report>
+      <feasible>TRUE</feasible>
+      <messages />
+      <objective>0.0</objective>
+    </report>
+  </evaluation>
+</test>
+
