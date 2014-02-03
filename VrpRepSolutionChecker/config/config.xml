@@ -6,7 +6,7 @@
     <constraint name="allvisited">vrpRep.solutionChecker.constraint.DeterministicDemandSatisfied</constraint>
 </constraints>
 <objectives>
-    <objective name="distance">vrpRep.solutionChecker.objective.StandardObjective</objective>
+    <objective name="distance">vrpRep.solutionChecker.objective.TotalDistance</objective>
 </objectives>
 <distanceCalculator>vrpRep.utilities.DistanceCalculatorEuc3D</distanceCalculator>
 </config>

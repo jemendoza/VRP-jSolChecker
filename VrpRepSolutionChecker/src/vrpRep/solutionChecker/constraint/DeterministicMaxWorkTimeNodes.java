@@ -84,11 +84,12 @@ public class DeterministicMaxWorkTimeNodes implements IConstraint {
 	}
 	
 	/**
-	 * @param speedProfile
-	 * @param time
+	 * Calculates allowed speed between two nodes
+	 * @param speedProfile speed profile of vehicle
+	 * @param time time at which speed is checked (needed when time windows are taken into account)
 	 * @return speed of vehicle
 	 */
-	private double getSpeed(List<VrpAtt> speedProfile, double time){
+	public double getSpeed(List<VrpAtt> speedProfile, double time){
 		VrpAtt vAtt;		
 		double min, max, speed = 0;
 		min = Double.MAX_VALUE;
