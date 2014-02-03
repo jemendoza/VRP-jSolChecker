@@ -1,4 +1,4 @@
-package vrpRep.solChecker;
+package vrpRep.utilities;
 
 import java.io.IOException;
 import org.jdom.*;

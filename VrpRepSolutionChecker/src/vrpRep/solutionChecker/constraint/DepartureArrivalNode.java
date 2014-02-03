@@ -3,8 +3,8 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import vrpRep.solChecker.ConstraintEvaluation;
-import vrpRep.solChecker.IConstraint;
+import vrpRep.solutionChecker.ConstraintEvaluation;
+import vrpRep.solutionChecker.IConstraint;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;

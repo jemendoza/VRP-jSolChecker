@@ -1,12 +1,10 @@
 /**
  * 
  */
-package vrpRep.solChecker;
+package vrpRep.solutionChecker;
 
 import java.io.IOException;
-import java.util.InvalidPropertiesFormatException;
 import java.util.List;
-import java.util.Properties;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -14,9 +12,10 @@ import org.jdom.JDOMException;
 
 import vrpRep.utilities.DistanceCalculator;
 import vrpRep.utilities.DistanceCalculatorEuc2D;
+import vrpRep.utilities.JDomParser;
 
 /**
- * Dynamic factory to build the parameterized solution checker
+ * Dynamic factory to build the parameterized solution checker (constraints, objective function and distance calulator)
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
@@ -24,24 +23,22 @@ import vrpRep.utilities.DistanceCalculatorEuc2D;
 public class DynamicFactory {
 
 	/**
-	 * Properties containing dynamic initialization parameters
+	 * List of constraint names
 	 */
-	private Properties	properties;
-	
-	
 	private List<Element> constraints;
-	
+	/**
+	 * List of objectives
+	 */
 	private List<Element> objectives;
-	
+	/**
+	 * Name of distance calculator
+	 */
 	private Element distanceCalc;
 
+
 	/**
-	 * Constructor
-	 * 
-	 * @param propertiesFilePath
-	 *            path to properties XML File
-	 * @throws IOException
-	 * @throws InvalidPropertiesFormatException
+	 * Constructor that extracts all necessary information from config file
+	 * @param configFilePath path to xmlconfiguration file
 	 */
 	public DynamicFactory(String configFilePath) {
 		try {
@@ -54,21 +51,13 @@ public class DynamicFactory {
 		} catch (JDOMException | IOException e1) {
 			e1.printStackTrace();
 		}
-		/*
-		try {
-			FileInputStream file = new FileInputStream(configFilePath);
-			this.properties = new Properties();
-			this.properties.loadFromXML(file);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (InvalidPropertiesFormatException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
 	}
 
 	
+	/**
+	 * Load constraints into solution checkers constraint handler
+	 * @param solC link to solution checker
+	 */
 	public void loadConstraints(VrpRepSolutionChecker solC){
 		for(Element e : this.constraints){
 			Class<?> tClass;
@@ -86,6 +75,10 @@ public class DynamicFactory {
 	}
 	
 	
+	/**
+	 * Load objective function calculation into solution checker
+	 * @param solC link to solution checker
+	 */
 	public void loadObjective(VrpRepSolutionChecker solC){
 		Class<?> tClass;
 		try {

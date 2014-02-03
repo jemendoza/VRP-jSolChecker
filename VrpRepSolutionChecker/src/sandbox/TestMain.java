@@ -3,8 +3,8 @@
  */
 package sandbox;
 
-import vrpRep.solChecker.DynamicFactory;
-import vrpRep.solChecker.VrpRepSolutionChecker;
+import vrpRep.solutionChecker.DynamicFactory;
+import vrpRep.solutionChecker.VrpRepSolutionChecker;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD

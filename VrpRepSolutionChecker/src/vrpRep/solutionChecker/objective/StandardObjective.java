@@ -3,7 +3,7 @@
  */
 package vrpRep.solutionChecker.objective;
 
-import vrpRep.solChecker.IObjectiveFunction;
+import vrpRep.solutionChecker.IObjectiveFunction;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD

@@ -12,6 +12,7 @@ import vrpRep.structure.solution.Demand;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
+import vrpRep.utilities.XmlSchemaReader;
 
 /**
  * Class used to translate a solution from the VRPREP schema structure to the

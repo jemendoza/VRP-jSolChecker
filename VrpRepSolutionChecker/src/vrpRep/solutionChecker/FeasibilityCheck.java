@@ -1,4 +1,4 @@
-package vrpRep.solChecker;
+package vrpRep.solutionChecker;
 
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import org.jdom.Element;
 
 
 /**
- * Implements a feasibility checker
+ * Implements a feasibility checker. I.E. a list of constraint evaluations and global feasibility
  * @author Main : Jorge E. Mendoza (jorge.mendoza@uco.fr). Modified : Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  *
  */
@@ -41,20 +41,30 @@ public class FeasibilityCheck {
 		return this.evaluations;
 	}
 
+	/**
+	 * set unfeasible
+	 */
 	public void setUnfeasible(){
 		this.feasible=false;
 	}
 
+	/**
+	 * set feasible
+	 */
 	public void setFeasible(){
 		this.feasible=true;
 	}
 
+	/**
+	 * 
+	 * @return feasibility
+	 */
 	public boolean isFeasible(){
 		return this.feasible;
 	}
 
 	/**
-	 * 
+	 * Return feasibility written in xml form
 	 * @return the result of the feasibility check as jDom XML element
 	 */
 	public Element toXML() {

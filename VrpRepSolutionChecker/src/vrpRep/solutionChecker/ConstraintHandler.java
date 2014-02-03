@@ -1,14 +1,13 @@
 /**
  * 
  */
-package vrpRep.solChecker;
+package vrpRep.solutionChecker;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Stores all the constraints that need to be evaluated and holds the methods to evaluate and write
- * the solution check result to an xml file.
+ * Stores all the constraints that need to be evaluated.
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
@@ -29,6 +28,10 @@ public class ConstraintHandler {
 	}
 
 
+	/**
+	 * Run all the constraints and return the result.
+	 * @return feasibilty in {@link vrpRep.solutionChecker.FeasibilityCheck} object
+	 */
 	public FeasibilityCheck evaluateFeasibility(){
 		FeasibilityCheck check=new FeasibilityCheck();
 		check.setFeasible();

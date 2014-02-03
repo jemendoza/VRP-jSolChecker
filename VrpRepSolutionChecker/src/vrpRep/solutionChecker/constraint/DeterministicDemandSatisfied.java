@@ -6,8 +6,8 @@ package vrpRep.solutionChecker.constraint;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import vrpRep.solChecker.ConstraintEvaluation;
-import vrpRep.solChecker.IConstraint;
+import vrpRep.solutionChecker.ConstraintEvaluation;
+import vrpRep.solutionChecker.IConstraint;
 import vrpRep.structure.instance.DemandValue;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.solution.Demand;

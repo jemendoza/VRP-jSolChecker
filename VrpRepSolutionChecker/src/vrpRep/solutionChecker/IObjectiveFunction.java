@@ -1,9 +1,7 @@
 /**
  * 
  */
-package vrpRep.solChecker;
-
-
+package vrpRep.solutionChecker;
 
 /**
  * Interface used to help implementation of constraint evaluators
@@ -11,12 +9,11 @@ package vrpRep.solChecker;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
-public interface IConstraint {
-
+public interface IObjectiveFunction {
+	
 	/**
-	 * Evaluates a constraint of solution
-	 * @return Result of constraint
+	 * Evaluates the objective function of a solution
+	 * @return Result of solution 
 	 */
-	public ConstraintEvaluation checkConstraint();
-
+	public double evaluate();
 }

@@ -16,7 +16,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import vrpRep.solChecker.VrpRepSolutionChecker;
+import vrpRep.solutionChecker.VrpRepSolutionChecker;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD

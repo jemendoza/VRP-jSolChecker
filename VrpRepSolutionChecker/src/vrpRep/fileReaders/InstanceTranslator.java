@@ -31,6 +31,7 @@ import vrpRep.structure.instance.SkillAndTool;
 import vrpRep.structure.instance.SpeedInt;
 import vrpRep.structure.instance.TimeWindow;
 import vrpRep.structure.instance.Vehicle;
+import vrpRep.utilities.XmlSchemaReader;
 
 /**
  * Class used to translate an instance from the VRPREP schema structure to the

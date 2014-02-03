@@ -1,10 +1,9 @@
 sandbox
 vrpRep.exceptions
-vrpRep.factory
 vrpRep.fileReaders
 vrpRep.schema.instance
-vrpRep.schema.output
 vrpRep.schema.solution
+vrpRep.solutionChecker
 vrpRep.solutionChecker.constraint
 vrpRep.solutionChecker.objective
 vrpRep.structure.instance
