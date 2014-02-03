@@ -6,10 +6,11 @@ package vrpRep.solutionChecker.constraint;
 import java.util.ArrayList;
 import java.util.List;
 
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;
-import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -17,8 +18,7 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class NbVehicleAvailableMultiple implements IConstraint {
 
-	private boolean				cValid	= true;
-	private ArrayList<String>	details	= new ArrayList<String>();
+	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -27,7 +27,8 @@ public class NbVehicleAvailableMultiple implements IConstraint {
 	 * .instance.DefaultInstance,
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
-	public ConstraintResult evaluate() {
+	public ConstraintEvaluation checkConstraint() {
+		cEval = new ConstraintEvaluation();
 		List<Integer> nbVehicleTypeInstance;
 		try {
 			nbVehicleTypeInstance = getInstanceVehicle();
@@ -38,14 +39,7 @@ public class NbVehicleAvailableMultiple implements IConstraint {
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		if(cValid)
-			return new ConstraintResult(cValid , "NbVehicleAvailableMultiple");
-		else{
-			String sResult =details.get(0);
-			for(int i=1;i<details.size();i++)
-				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"NbVehicleAvailableMultiple");
-		}
+		return cEval;
 
 	}
 
@@ -62,8 +56,7 @@ public class NbVehicleAvailableMultiple implements IConstraint {
 
 		for (int i = 0; i < nbVehicleTypeInstance.size(); i++) {
 			if (nbVehicleTypeSolution.get(i) > nbVehicleTypeInstance.get(i)){
-				cValid= false;
-				details.add("Number of vehicle of type "+i+" available : "+nbVehicleTypeInstance.get(i)+" less than "+nbVehicleTypeSolution.get(i));
+				cEval.addMessage("NbVehicleAvailableMultiple|Number of vehicle of type "+i+" available : "+nbVehicleTypeInstance.get(i)+" less than "+nbVehicleTypeSolution.get(i));
 			}
 		}
 	}

@@ -6,13 +6,14 @@ package vrpRep.solutionChecker.constraint;
 import java.util.ArrayList;
 import java.util.List;
 
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.VrpAtt;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
-import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -20,26 +21,19 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class Successors implements IConstraint {
 
-	private boolean				cValid	= true;
-	private ArrayList<String>	details	= new ArrayList<String>();
+	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see vrpRep.solutionChecker.constraint.IConstraint#evaluate()
 	 */
 	@Override
-	public ConstraintResult evaluate() {
+	public ConstraintEvaluation checkConstraint() {
+		cEval = new ConstraintEvaluation();
 
 		checkSuccessors();
 
-		if(cValid)
-			return new ConstraintResult(cValid , "Successors");
-		else{
-			String sResult =details.get(0);
-			for(int i=1;i<details.size();i++)
-				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"Successors");
-		}
+		return cEval;
 	}
 
 	/**
@@ -63,8 +57,7 @@ public class Successors implements IConstraint {
 				if(list!=null)
 					for(VrpAtt att : list)
 						if(!listRequestByRoute.contains(((IntValue)att).getValue())) {
-							cValid= false;
-							details.add("The request "+re.getId()+" must be succeeded by the request : "+((IntValue)att).getValue()+" on route "+r.getId());
+							cEval.addMessage("Successors|The request "+re.getId()+" must be succeeded by the request : "+((IntValue)att).getValue()+" on route "+r.getId());
 						}
 			}
 		}

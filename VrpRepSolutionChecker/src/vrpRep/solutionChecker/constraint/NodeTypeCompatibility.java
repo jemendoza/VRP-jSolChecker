@@ -6,6 +6,8 @@ package vrpRep.solutionChecker.constraint;
 import java.util.ArrayList;
 import java.util.List;
 
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Node;
@@ -14,7 +16,6 @@ import vrpRep.structure.instance.VrpAtt;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
-import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -22,8 +23,7 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class NodeTypeCompatibility implements IConstraint {
 
-	private boolean				cValid	= true;
-	private ArrayList<String>	details	= new ArrayList<String>();
+	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -33,7 +33,8 @@ public class NodeTypeCompatibility implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public ConstraintResult evaluate() {
+	public ConstraintEvaluation checkConstraint() {
+		cEval = new ConstraintEvaluation();
 		List<List<Integer>> listCompatibilityInstance;
 		try {
 			listCompatibilityInstance = vehicleNodeCompatibilityInstance();
@@ -43,14 +44,7 @@ public class NodeTypeCompatibility implements IConstraint {
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		if(cValid)
-			return new ConstraintResult(cValid , "NodeTypeCompatibility");
-		else{
-			String sResult =details.get(0);
-			for(int i=1;i<details.size();i++)
-				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"NodeTypeCompatibility");
-		}
+		return cEval;
 
 	}
 
@@ -73,8 +67,7 @@ public class NodeTypeCompatibility implements IConstraint {
 				for (Request n : r.getRequests()) {
 					if (!listCompatibilityInstance.get(type).contains(
 							listNodeType.get(n.getNodeId()))) {
-						cValid= false;
-						details.add("The vehicle of type "+r.getType()+" is not compatible to pass on node "+n.getNodeId()+" on route "+r.getId());
+						cEval.addMessage("NodeTypeCompatibility|The vehicle of type "+r.getType()+" is not compatible to pass on node "+n.getNodeId()+" on route "+r.getId());
 					}
 				}
 			}

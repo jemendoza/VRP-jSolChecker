@@ -1,12 +1,12 @@
 /**
  * 
  */
-package vrpRep.solutionChecker.objective;
+package vrpRep.solChecker;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  *
  */
-public interface IObjective {
-
+public interface IObjectiveFunction {
+	public double evaluate();
 }

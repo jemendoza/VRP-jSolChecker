@@ -6,13 +6,14 @@ package vrpRep.solutionChecker.constraint;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.structure.instance.DemandValue;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.solution.Demand;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
-import vrpRep.utilities.ConstraintResult;
 
 /**
  * This constraints verifies the demand at each request is satisfied. The parameter of the demand being splitabl between routes
@@ -22,14 +23,7 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class DeterministicDemandSatisfied implements IConstraint {
 
-	/**
-	 * true if constraint fully verified, false otherwise
-	 */
-	private boolean				cValid	= true;
-	/**
-	 * list of constraint failures
-	 */
-	private ArrayList<String>	details	= new ArrayList<String>();
+	private ConstraintEvaluation cEval;
 	/**
 	 * List of demands for each request
 	 */
@@ -43,7 +37,8 @@ public class DeterministicDemandSatisfied implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public ConstraintResult evaluate() {
+	public ConstraintEvaluation checkConstraint() {
+		cEval = new ConstraintEvaluation();
 		this.requestDemands = new RequestCResult[Instance.getRequests().size()];
 
 		RequestCResult ncr;
@@ -65,16 +60,7 @@ public class DeterministicDemandSatisfied implements IConstraint {
 		
 		checkDemands();
 		
-		if (!cValid) {
-			String sResult = details.get(0);
-			for (int i = 1; i < details.size(); i++)
-				sResult = sResult.concat("\n" + details.get(i));
-
-			return new ConstraintResult(cValid, sResult,
-					"Deterministic demand satisfaction");
-		} else {
-			return new ConstraintResult(cValid, "Deterministic demand satisfaction");
-		}
+		return cEval;
 	}
 	
 	
@@ -85,8 +71,7 @@ public class DeterministicDemandSatisfied implements IConstraint {
 		for(RequestCResult ncr : requestDemands){
 			for(int pId : ncr.getProductIds()){
 				if(ncr.getSumDemands().get(pId) != ((DemandValue)Instance.getRequest(ncr.getRequestId()).getAttribute("demand").get(pId)).getValue()){
-					cValid = false;
-					details.add("Request "+ncr.getRequestId()+" , Product "+pId+" - "+ncr.getSumDemands().get(pId)+" not equal to "+((DemandValue)Instance.getRequest(ncr.getRequestId()).getAttribute("demand").get(pId)).getValue());
+					cEval.addMessage("Deterministic demand satisfaction|Request "+ncr.getRequestId()+" , Product "+pId+" - "+ncr.getSumDemands().get(pId)+" not equal to "+((DemandValue)Instance.getRequest(ncr.getRequestId()).getAttribute("demand").get(pId)).getValue());
 				}
 			}
 		}

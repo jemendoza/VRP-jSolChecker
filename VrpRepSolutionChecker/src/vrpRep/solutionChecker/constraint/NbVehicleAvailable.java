@@ -7,12 +7,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
-import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -20,8 +21,7 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class NbVehicleAvailable implements IConstraint {
 
-	private boolean				cValid	= true;
-	private ArrayList<String>	details	= new ArrayList<String>();
+	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -30,7 +30,8 @@ public class NbVehicleAvailable implements IConstraint {
 	 * .instance.DefaultInstance,
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
-	public ConstraintResult evaluate() {
+	public ConstraintEvaluation checkConstraint() {
+		cEval = new ConstraintEvaluation();
 		List<Integer> nbVehicleTypeInstance;
 		try {
 			nbVehicleTypeInstance = getInstanceVehicle();
@@ -40,14 +41,7 @@ public class NbVehicleAvailable implements IConstraint {
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		if(cValid)
-			return new ConstraintResult(cValid , "NbVehicleAvailable");
-		else{
-			String sResult =details.get(0);
-			for(int i=1;i<details.size();i++)
-				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"NbVehicleAvailable");
-		}
+		return cEval;
 
 	}
 
@@ -64,14 +58,12 @@ public class NbVehicleAvailable implements IConstraint {
 			List<Integer> nbVehicleTypeSolution) {
 		if (nbVehicleTypeInstance.size() == 1) {
 			if (nbVehicleTypeInstance.get(0) < nbVehicleTypeSolution.get(0)){
-				cValid= false;
-				details.add("Number of vehicle available : "+nbVehicleTypeInstance.get(0)+" less than "+nbVehicleTypeSolution.get(0));
+				cEval.addMessage("NbVehicleAvailable|Number of vehicle available : "+nbVehicleTypeInstance.get(0)+" less than "+nbVehicleTypeSolution.get(0));
 			}
 		} else {
 			for (int i = 0; i < nbVehicleTypeInstance.size(); i++) {
 				if (nbVehicleTypeSolution.get(i) > nbVehicleTypeInstance.get(i)){
-					cValid= false;
-					details.add("Number of vehicle of type "+i+" available : "+nbVehicleTypeInstance.get(i)+" less than "+nbVehicleTypeSolution.get(i));
+					cEval.addMessage("NbVehicleAvailable|Number of vehicle of type "+i+" available : "+nbVehicleTypeInstance.get(i)+" less than "+nbVehicleTypeSolution.get(i));
 				}
 			}
 		}

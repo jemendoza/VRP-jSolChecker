@@ -5,25 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Stores all request information and attributes. <br />
- * By default, the following attribute names are provide : 
- * <ul>
- * 	<li>type : id of type of request. Stored in {@link vrpRep.structure.instance.IntValue}</li>
- * 	<li>node : id of linked node. Stored in {@link vrpRep.structure.instance.IntValue}</li>
- *  <li>link : id of linked link. Stored in {@link vrpRep.structure.instance.IntValue}</li>
- *  <li>tw : time windows of request. Stored in {@link vrpRep.structure.instance.TimeWindow}</li>
- *  <li>demand : demands of request : Stored in {@link vrpRep.structure.instance.DemandValue} for deterministic demands
- *  or {@link vrpRep.structure.instance.DemandProbaDist for stochastic demands}</li>
- *  <li>prize : prize of request. Stored in {@link vrpRep.structure.instance.DoubleValue}</li>
- *  <li>cost : cost of request. Stored in {@link vrpRep.structure.instance.DoubleValue}</li>
- *  <li>releaseDate : release date of request. Stored in {@link vrpRep.structure.instance.DoubleValue}</li>
- *  <li>serviceTime : service time of a request. Stored in {@link vrpRep.structure.instance.IntValue} for deterministic demands
- *  or {@link vrpRep.structure.instance.RequestProbaDist} for stochastic demands}</li>
- *  <li>predecessor : list of preceeding requets. Stored in {@link vrpRep.structure.instance.IntValue}</li>
- *  <li>successor : list of succeeding requests. Stored in {@link vrpRep.structure.instance.IntValue}</li>
- *  <li>skill : list of skills. Stored in {@link vrpRep.structure.instance.IntValue}</li>
- *  <li>tool: list of tools. Stored in {@link vrpRep.structure.instance.IntValue}</li>
- * </ul>
+ * Stores all request information and attributes. 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
@@ -128,7 +110,25 @@ public class Request {
 	}
 
 	/**
-	 * Retrieves an attribute from list of attributes.
+	 * Retrieves an attribute from list of attributes.<br />
+	 * By default, the following attribute names are provide : 
+	 * <ul>
+	 * 	<li>type : id of type of request. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+	 * 	<li>node : id of linked node. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+	 *  <li>link : id of linked link. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+	 *  <li>tw : time windows of request. Stored in {@link vrpRep.structure.instance.TimeWindow}</li>
+	 *  <li>demand : demands of request : Stored in {@link vrpRep.structure.instance.DemandValue} for deterministic demands
+	 *  or {@link vrpRep.structure.instance.DemandProbaDist for stochastic demands}</li>
+	 *  <li>prize : prize of request. Stored in {@link vrpRep.structure.instance.DoubleValue}</li>
+	 *  <li>cost : cost of request. Stored in {@link vrpRep.structure.instance.DoubleValue}</li>
+	 *  <li>releaseDate : release date of request. Stored in {@link vrpRep.structure.instance.DoubleValue}</li>
+	 *  <li>serviceTime : service time of a request. Stored in {@link vrpRep.structure.instance.IntValue} for deterministic demands
+	 *  or {@link vrpRep.structure.instance.RequestProbaDist} for stochastic demands}</li>
+	 *  <li>predecessor : list of preceeding requets. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+	 *  <li>successor : list of succeeding requests. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+	 *  <li>skill : list of skills. Stored in {@link vrpRep.structure.instance.SkillAndTool}</li>
+	 *  <li>tool: list of tools. Stored in {@link vrpRep.structure.instance.SkillAndTool}</li>
+	 * </ul>
 	 * @param name name of attribute
 	 * @return attribute. null if not found
 	 */

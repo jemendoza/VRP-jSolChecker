@@ -1,17 +1,14 @@
 /**
  * 
  */
-package vrpRep.factory;
+package vrpRep.solChecker;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
-import vrpRep.fileReaders.InstanceTranslator;
-import vrpRep.fileReaders.SolutionTranslator;
 import vrpRep.utilities.DistanceCalculator;
 
 /**
@@ -47,31 +44,13 @@ public class DynamicFactory {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	/**
-	 * Loads instance. If exception thrown, ensure xml configuration file
-	 * contains class path to instance reader under key "instanceReader".
-	 * 
-	 * @param instanceXmlPath
-	 *            path to instance xml file
-	 */
-	public void buildDefaultInstance(String instanceXmlPath) {
-		new InstanceTranslator(new File(instanceXmlPath));
+	
+	public void loadConstraints(VrpRepSolutionChecker solC){
+		// TODO
 	}
-
-	/**
-	 * Loads solution. If exception thrown, ensure xml configuration file
-	 * contains class path to solution reader under key "solutionReader".
-	 * 
-	 * @param solutionXmlPath
-	 *            path to solution xml file
-	 */
-	public void buildDefaultSolution(String solutionXmlPath) {
-		new SolutionTranslator(new File(solutionXmlPath));
-	}
-
+	
 	/**
 	 * Retrieves distance calculator. If exception thrown, ensure xml
 	 * configuration file contains class path to demand reader under key

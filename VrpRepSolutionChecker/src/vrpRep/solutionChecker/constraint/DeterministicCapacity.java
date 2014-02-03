@@ -6,6 +6,8 @@ package vrpRep.solutionChecker.constraint;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.structure.instance.Compartment;
 import vrpRep.structure.instance.DoubleValue;
 import vrpRep.structure.instance.Instance;
@@ -13,7 +15,6 @@ import vrpRep.structure.solution.Demand;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
-import vrpRep.utilities.ConstraintResult;
 
 /**
  * Class used to evaluate capacity constraints
@@ -23,8 +24,7 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class DeterministicCapacity implements IConstraint {
 
-	private boolean				cValid	= true;
-	private ArrayList<String>	details	= new ArrayList<String>();
+	private ConstraintEvaluation cEval;
 
 	/*
 	 * (non-Javadoc)
@@ -35,7 +35,8 @@ public class DeterministicCapacity implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public ConstraintResult evaluate() {
+	public ConstraintEvaluation checkConstraint() {
+		cEval = new ConstraintEvaluation();
 		VehicleCResult vcr;
 		boolean multiVehiTypes;
 
@@ -63,17 +64,7 @@ public class DeterministicCapacity implements IConstraint {
 
 			checkDemands(vcr, multiVehiTypes);
 		}
-		if (!cValid) {
-			String sResult = details.get(0);
-			for (int i = 1; i < details.size(); i++)
-				sResult = sResult.concat("\n" + details.get(i));
-
-			return new ConstraintResult(cValid, sResult,
-					"Deterministic capacity");
-		} else {
-			return new ConstraintResult(cValid, "Deterministic capacity");
-		}
-
+		return cEval;
 	}
 
 	private void checkDemands(VehicleCResult vcr, boolean multiVehiTypes) {
@@ -87,17 +78,15 @@ public class DeterministicCapacity implements IConstraint {
 					capacityMin = compartement.getMin();
 					capacityMax = compartement.getMax();
 					if (vcr.getSumDemands().get(pId) > capacityMax) {
-						details.add("Vehicle capacity type "
+						cEval.addMessage("Deterministic capacity|Vehicle capacity type "
 								+ vcr.getVehiType() + " , Product Id " + pId
 								+ " - " + vcr.getSumDemands().get(pId) + " greater than "
 								+ capacityMax);
-						cValid = false;
 					} else if (vcr.getSumDemands().get(pId) < capacityMin) {
-						details.add("Vehicle capacity type "
+						cEval.addMessage("Deterministic capacity|Vehicle capacity type "
 								+ vcr.getVehiType() + " , Product Id " + pId
 								+ " - " + vcr.getSumDemands().get(pId) + " less than "
 								+ capacityMin);
-						cValid = false;
 					}
 				} else {
 					compartement = (Compartment) Instance.getVehicle()
@@ -105,15 +94,13 @@ public class DeterministicCapacity implements IConstraint {
 					capacityMin = compartement.getMin();
 					capacityMax = compartement.getMax();
 					if (vcr.getSumDemands().get(pId) > capacityMax) {
-						details.add("Vehicle capacity , Product Id " + pId
+						cEval.addMessage("Deterministic capacity|Vehicle capacity , Product Id " + pId
 								+ " - " + vcr.getSumDemands().get(pId) + " greater than "
 								+ capacityMax);
-						cValid = false;
 					} else if (vcr.getSumDemands().get(pId) < capacityMin) {
-						details.add("Vehicle capacity , Product Id " + pId
+						cEval.addMessage("Deterministic capacity|Vehicle capacity , Product Id " + pId
 								+ " - " + vcr.getSumDemands().get(pId) + " less than "
 								+ capacityMin);
-						cValid = false;
 					}
 				}
 			}
@@ -122,17 +109,15 @@ public class DeterministicCapacity implements IConstraint {
 				capacityMax = ((DoubleValue) Instance.getVehicle(
 						vcr.getVehiType()).getAttribute("capacity")).getValue();
 				if (vcr.getSumDemands().get(vcr.getProductIds().get(0)) > capacityMax) {
-					details.add("Vehicle capacity " + vcr.getVehiType() + " - "
+					cEval.addMessage("Deterministic capacity|Vehicle capacity " + vcr.getVehiType() + " - "
 							+ vcr.getSumDemands().get(0) + " greater than " + capacityMax);
-					cValid = false;
 				}
 			} else {
 				capacityMax = ((DoubleValue) Instance.getVehicle()
 						.getAttribute("capacity").get(0)).getValue();
 				if (vcr.getSumDemands().get(vcr.getProductIds().get(0)) > capacityMax) {
-					details.add("Vehicle capacity - "
+					cEval.addMessage("Deterministic capacity|Vehicle capacity - "
 							+ vcr.getSumDemands().get(0) + " greater than " + capacityMax);
-					cValid = false;
 				}
 			}
 		}

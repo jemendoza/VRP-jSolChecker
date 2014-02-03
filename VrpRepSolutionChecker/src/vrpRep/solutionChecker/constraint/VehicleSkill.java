@@ -6,13 +6,14 @@ package vrpRep.solutionChecker.constraint;
 import java.util.ArrayList;
 import java.util.List;
 
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.SkillAndTool;
 import vrpRep.structure.instance.VrpAtt;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
-import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -20,8 +21,7 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class VehicleSkill implements IConstraint {
 
-	private boolean				cValid	= true;
-	private ArrayList<String>	details	= new ArrayList<String>();
+	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -30,18 +30,12 @@ public class VehicleSkill implements IConstraint {
 	 * .instance.Instance, vrpRep.structure.solution.Solution)
 	 */
 	@Override
-	public ConstraintResult evaluate() {
+	public ConstraintEvaluation checkConstraint() {
+		cEval = new ConstraintEvaluation();
 
 		checkVehicleSkill();
 
-		if(cValid)
-			return new ConstraintResult(cValid , "VehicleSkill");
-		else{
-			String sResult =details.get(0);
-			for(int i=1;i<details.size();i++)
-				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"VehicleSkill");
-		}
+		return cEval;
 	}
 
 
@@ -73,7 +67,6 @@ public class VehicleSkill implements IConstraint {
 
 				if (!vehicleSkill.contains(s) && !list.contains(s)){
 					list.add(s);
-					cValid=false;
 					b=true;
 				}
 			}
@@ -81,7 +74,7 @@ public class VehicleSkill implements IConstraint {
 				String sSkillMissing =String.valueOf(list.get(0));
 				for(int i=1;i<list.size();i++)
 					sSkillMissing=sSkillMissing.concat("-"+list.get(i));
-				details.add("The following skills are missing : "+sSkillMissing+" on route "+r.getId());
+				cEval.addMessage("VehicleSkill|The following skills are missing : "+sSkillMissing+" on route "+r.getId());
 			}
 		}
 	}

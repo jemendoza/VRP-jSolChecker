@@ -1,9 +1,8 @@
 /**
  * 
  */
-package vrpRep.solutionChecker.constraint;
+package vrpRep.solChecker;
 
-import vrpRep.utilities.ConstraintResult;
 
 
 /**
@@ -18,6 +17,6 @@ public interface IConstraint {
 	 * Evaluates a constraint of solution
 	 * @return Result of constraint
 	 */
-	public ConstraintResult evaluate();
+	public ConstraintEvaluation checkConstraint();
 
 }

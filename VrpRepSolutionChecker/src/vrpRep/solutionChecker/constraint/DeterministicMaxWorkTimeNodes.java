@@ -3,9 +3,10 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.structure.instance.DoubleValue;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.SpeedInt;
@@ -14,7 +15,6 @@ import vrpRep.structure.instance.VrpAtt;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
-import vrpRep.utilities.ConstraintResult;
 import vrpRep.utilities.DistanceCalculator;
 
 /**
@@ -23,29 +23,16 @@ import vrpRep.utilities.DistanceCalculator;
  */
 public class DeterministicMaxWorkTimeNodes implements IConstraint {
 
-	/**
-	 * true if constraint fully verified, false otherwise
-	 */
-	private boolean				cValid	= true;
-	/**
-	 * list of constraint failures
-	 */
-	private ArrayList<String>	details	= new ArrayList<String>();
+	private ConstraintEvaluation cEval;
 	/* (non-Javadoc)
 	 * @see vrpRep.solutionChecker.constraint.IConstraint#evaluate()
 	 */
 	@Override
-	public ConstraintResult evaluate() {
+	public ConstraintEvaluation checkConstraint() {
+		cEval = new ConstraintEvaluation();
 		checkWorkTimeOnNodes();
 
-		if(cValid)
-			return new ConstraintResult(cValid , "DeterministicMaxWorkTimeNodes");
-		else{
-			String sResult =details.get(0);
-			for(int i=1;i<details.size();i++)
-				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"DeterministicMaxWorkTimeNodes");
-		}
+		return cEval;
 	}
 	
 	/**
@@ -87,8 +74,7 @@ public class DeterministicMaxWorkTimeNodes implements IConstraint {
 				vehiType = 0;
 			if(timeSpent > ((DoubleValue)Instance.getVehicle(vehiType).getAttribute("wLPMaxWorkTime")).getValue()){
 				
-				cValid = false;
-				details.add("Route id "+r.getId()+
+				cEval.addMessage("DeterministicMaxWorkTimeNodes|Route id "+r.getId()+
 						" Vehicle id "+vehiType+
 						" - "+timeSpent+" greater than "+((DoubleValue)Instance.getVehicle(vehiType).getAttribute("wLPMaxWorkTime")).getValue());
 			}

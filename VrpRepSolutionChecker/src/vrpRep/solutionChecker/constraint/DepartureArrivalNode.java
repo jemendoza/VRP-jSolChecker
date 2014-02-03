@@ -3,23 +3,22 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import java.util.ArrayList;
-
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
-import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class DepartureArrivalNode implements IConstraint {
+	
+	private ConstraintEvaluation cEval;
 
-	private boolean				cValid	= true;
-	private ArrayList<String>	details	= new ArrayList<String>();
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -30,17 +29,11 @@ public class DepartureArrivalNode implements IConstraint {
 	 */
 
 	@Override
-	public ConstraintResult evaluate() {
+	public ConstraintEvaluation checkConstraint() {
+		cEval = new ConstraintEvaluation();
 		check();
 		
-		if(cValid)
-			return new ConstraintResult(cValid , "DepartureArrivalNode");
-		else{
-			String sResult =details.get(0);
-			for(int i=1;i<details.size();i++)
-				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"DepartureArrivalNode");
-		}
+		return cEval;
 	}
 
 	private void check() {
@@ -58,13 +51,12 @@ public class DepartureArrivalNode implements IConstraint {
 							int vehicleNodeArrival = ((IntValue) v.getAttribute("arrivalNode").get(0)).getValue();
 							int vehicleNodeStart = ((IntValue) v.getAttribute("departureNode").get(0)).getValue();
 							if (vehicleNodeArrival != routeNodeArrival|| vehicleNodeStart != routeNodeStart){
-								details.add("On Route ID : "+r.getId()+
+								cEval.addMessage("DepartureArrivalNode|On Route ID : "+r.getId()+
 										", Departure Node : "+routeNodeStart+
 										", Arrival Node : "+routeNodeArrival+
 										" but Vehicle of type "+vehicleType+
 										" Departure Node is "+vehicleNodeStart+
 										" and Arrival Node is "+vehicleNodeArrival);
-								cValid=false;
 							}
 
 						}
@@ -73,13 +65,12 @@ public class DepartureArrivalNode implements IConstraint {
 						int vehicleNodeStart = ((IntValue) v.getAttribute("departureNode").get(0)).getValue();
 						if (((IntValue) v.getAttribute("arrivalNode").get(0)).getValue() != 
 								routeNodeArrival|| ((IntValue) v.getAttribute("departureNode").get(0)).getValue() != routeNodeStart){
-							details.add("On Route ID : "+r.getId()+
+							cEval.addMessage("DepartureArrivalNode|On Route ID : "+r.getId()+
 									", Departure Node : "+routeNodeStart+
 									", Arrival Node : "+routeNodeArrival+
 									" but Vehicle "+
 									" Departure Node is "+vehicleNodeStart+
 									" and Arrival Node is "+vehicleNodeArrival);
-							cValid= false;
 						}
 					}
 				}

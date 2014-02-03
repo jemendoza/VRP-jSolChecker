@@ -3,9 +3,10 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.structure.instance.DoubleValue;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.Link;
@@ -15,7 +16,6 @@ import vrpRep.structure.instance.VrpAtt;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
-import vrpRep.utilities.ConstraintResult;
 import vrpRep.utilities.DistanceCalculator;
 
 /**
@@ -24,33 +24,19 @@ import vrpRep.utilities.DistanceCalculator;
  */
 public class DeterministicMaxWorkTime implements IConstraint {
 
-	/**
-	 * true if constraint fully verified, false otherwise
-	 */
-	private boolean				cValid	= true;
-	/**
-	 * list of constraint failures
-	 */
-	private ArrayList<String>	details	= new ArrayList<String>();
+	private ConstraintEvaluation cEval;
 	/* (non-Javadoc)
 	 * @see vrpRep.solutionChecker.constraint.IConstraint#evaluate()
 	 */
 	@Override
-	public ConstraintResult evaluate() {
-
+	public ConstraintEvaluation checkConstraint() {
+		cEval = new ConstraintEvaluation();
 		if(Instance.getLinks()!=null || Instance.getLinks().get(0).getAttribute("time")!=null)
 			checkWorkTimeOnLinks();
 		else
 			checkWorkTimeOnNodes();
 
-		if(cValid)
-			return new ConstraintResult(cValid , "DeterministicMaxWorkTime");
-		else{
-			String sResult =details.get(0);
-			for(int i=1;i<details.size();i++)
-				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"DeterministicMaxWorkTime");
-		}
+		return cEval;
 	}
 
 
@@ -78,8 +64,7 @@ public class DeterministicMaxWorkTime implements IConstraint {
 			}
 			double maxWorkTime = ((DoubleValue)Instance.getFleet().get(r.getType()).getAttribute("wLPMaxWorkTime").get(0)).getValue();
 			if(totalTime>maxWorkTime){
-				cValid=false;
-				details.add("On Route "+r.getId()+" time worked is "+totalTime+" greater than "+maxWorkTime);
+				cEval.addMessage("DeterministicMaxWorkTime|On Route "+r.getId()+" time worked is "+totalTime+" greater than "+maxWorkTime);
 			}
 		}
 	}
@@ -119,9 +104,7 @@ public class DeterministicMaxWorkTime implements IConstraint {
 			if(vehiType == -1)
 				vehiType = 0;
 			if(timeSpent > ((DoubleValue)Instance.getVehicle(vehiType).getAttribute("wLPMaxWorkTime")).getValue()){
-				
-				cValid = false;
-				details.add("Route id "+r.getId()+
+				cEval.addMessage("DeterministicMaxWorkTime|Route id "+r.getId()+
 						" Vehicle id "+vehiType+
 						" - "+timeSpent+" greater than "+((DoubleValue)Instance.getVehicle(vehiType).getAttribute("wLPMaxWorkTime")).getValue());
 			}

@@ -3,8 +3,8 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import java.util.ArrayList;
-
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.solutionChecker.constraint.DeterministicCapacitySingleVehicleSingleProduct.VehicleCResult;
 import vrpRep.structure.instance.Compartment;
 import vrpRep.structure.instance.Instance;
@@ -12,7 +12,6 @@ import vrpRep.structure.solution.Demand;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
-import vrpRep.utilities.ConstraintResult;
 
 /**
  * Class used to evaluate capacity constraints
@@ -22,9 +21,7 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class DeterministicCapacityMultiVehicleMultiProduct implements IConstraint {
 
-	private boolean				cValid	= true;
-	private ArrayList<String>	details	= new ArrayList<String>();
-
+	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -34,7 +31,9 @@ public class DeterministicCapacityMultiVehicleMultiProduct implements IConstrain
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public ConstraintResult evaluate() {
+	public ConstraintEvaluation checkConstraint() {
+
+		cEval = new ConstraintEvaluation();
 		VehicleCResult vcr;
 		DeterministicCapacitySingleVehicleSingleProduct dcsvsp = new DeterministicCapacitySingleVehicleSingleProduct();
 
@@ -53,16 +52,7 @@ public class DeterministicCapacityMultiVehicleMultiProduct implements IConstrain
 
 			checkDemands(vcr);
 		}
-		if (!cValid) {
-			String sResult = details.get(0);
-			for (int i = 1; i < details.size(); i++)
-				sResult = sResult.concat("\n" + details.get(i));
-
-			return new ConstraintResult(cValid, sResult,
-					"Deterministic capacity Multi Vehicle Multi Product");
-		} else {
-			return new ConstraintResult(cValid, "Deterministic capacity Multi Vehicle Multi Product");
-		}
+		return cEval;
 
 	}
 
@@ -75,17 +65,15 @@ public class DeterministicCapacityMultiVehicleMultiProduct implements IConstrain
 			capacityMin = compartement.getMin();
 			capacityMax = compartement.getMax();
 			if (vcr.getSumDemands().get(pId) > capacityMax) {
-				details.add("Vehicle capacity type "
+				cEval.addMessage("Deterministic capacity Multi Vehicle Multi Product|Vehicle capacity type "
 						+ vcr.getVehiType() + " , Product Id " + pId
 						+ " - " + vcr.getSumDemands().get(pId) + " greater than "
 						+ capacityMax);
-				cValid = false;
 			} else if (vcr.getSumDemands().get(pId) < capacityMin) {
-				details.add("Vehicle capacity type "
+				cEval.addMessage("Deterministic capacity Multi Vehicle Multi Product|Vehicle capacity type "
 						+ vcr.getVehiType() + " , Product Id " + pId
 						+ " - " + vcr.getSumDemands().get(pId) + " less than "
 						+ capacityMin);
-				cValid = false;
 			}
 		}
 	}

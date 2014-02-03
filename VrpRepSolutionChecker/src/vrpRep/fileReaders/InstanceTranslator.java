@@ -271,7 +271,7 @@ public class InstanceTranslator implements IInstanceReader {
 										.getContent()), timew.getPeriod().intValue(),
 										timew.getStart().isIsHard(), timew.getEnd()
 										.isIsHard());
-						temp.add("vLPtw", tw);
+						temp.add("wLPtw", tw);
 					}
 				}
 			}

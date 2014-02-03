@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Stores all inforation and attributes of a vehicle
+ * Stores all inforation and attributes of a vehicle.
+ * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
@@ -102,7 +103,31 @@ public class Vehicle {
 	}
 
 	/**
-	 * Retrieves an attribute from list of attributes.
+	 * Retrieves an attribute from list of attributes.<br />
+	 * 
+	 * By default, the following attribute names are provide : 
+	 * <ul>
+	 * 	<li>type : id of type of vehicle. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+	 * 	<li>fixedCost : fixed cost of vehicle. Stored in {@link vrpRep.structure.instance.DoubleValue}</li>
+	 *  <li>variableCost : fixed cost of vehicle. Stored in {@link vrpRep.structure.instance.DoubleValue}</li>
+	 *  <li>number : Number of available vehicles. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+	 *  <li>nodeTypesCompatible : list of compatible nodes. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+	 *  <li>speedProfile : allowed speed of vehicle. Stored in {@link vrpRep.structure.instance.DoubleValue} for global average
+	 *  or in {@link vrpRep.structure.instance.SpeedInt} for a series of speed intervals</li>
+	 *  <li>maxTravelDistance : maximum travel distance. Stored in {@link vrpRep.structure.instance.DoubleValue}</li>
+	 *  <li>maxTravelDistanceIsFlexible : true if maximum travel distance is flexible false otherwise. Stored in {@link vrpRep.structure.instance.BooleanValue}</li>
+	 *  <li>maxRequests : maximum number of requests. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+	 *  <li>maxRequestsIsFlexible : true if number of requests is flexible false otherwise. Stored in {@link vrpRep.structure.instance.BooleanValue}</li>
+	 *  <li>wLPMaxWorkTime : maximum work time. Stored in {@link vrpRep.structure.instance.DoubleValue}</li>
+	 *  <li>wLPMaxWorkTimeIsFlexible : true if maximum work time is flexible false otherwise. Stored in {@link vrpRep.structure.instance.BooleanValue}</li>
+	 *  <li>wLPtw : time windows of possible work periods. Stored in {@link vrpRep.structure.instance.TimeWindow}</li>
+	 *  <li>capacity: total capacity of vehicle. Stored in {@link vrpRep.structure.instance.DoubleValue}</li>
+	 *  <li>compartment : capacities of compartments. Stored in {@link vrpRep.structure.instance.Compartment}</li>
+	 *  <li>departureNode : id of departure node. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+	 *  <li>arrivalNode : id of arrival node. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+	 *  <li>skill : list of skills. Stored in {@link vrpRep.structure.instance.SkillAndTool}</li>
+	 *  <li>tool: list of tools. Stored in {@link vrpRep.structure.instance.SkillAndTool}</li>
+	 * </ul>
 	 * @param name name of attribute
 	 * @return attribute. null if not found
 	 */

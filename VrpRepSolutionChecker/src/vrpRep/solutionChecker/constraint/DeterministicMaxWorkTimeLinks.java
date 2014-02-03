@@ -3,14 +3,13 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import java.util.ArrayList;
-
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.structure.instance.DoubleValue;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.Link;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
-import vrpRep.utilities.ConstraintResult;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -18,29 +17,16 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class DeterministicMaxWorkTimeLinks implements IConstraint {
 
-	/**
-	 * true if constraint fully verified, false otherwise
-	 */
-	private boolean				cValid	= true;
-	/**
-	 * list of constraint failures
-	 */
-	private ArrayList<String>	details	= new ArrayList<String>();
+	private ConstraintEvaluation cEval;
 	/* (non-Javadoc)
 	 * @see vrpRep.solutionChecker.constraint.IConstraint#evaluate()
 	 */
 	@Override
-	public ConstraintResult evaluate() {
+	public ConstraintEvaluation checkConstraint() {
+		cEval = new ConstraintEvaluation();
 		checkWorkTimeOnLinks();
 
-		if(cValid)
-			return new ConstraintResult(cValid , "DeterministicMaxWorkTimeLinks");
-		else{
-			String sResult =details.get(0);
-			for(int i=1;i<details.size();i++)
-				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"DeterministicMaxWorkTimeLinks");
-		}
+		return cEval;
 	}
 
 	/**
@@ -70,8 +56,7 @@ public class DeterministicMaxWorkTimeLinks implements IConstraint {
 			}
 			double maxWorkTime = ((DoubleValue)Instance.getFleet().get(r.getType()).getAttribute("wLPMaxWorkTime").get(0)).getValue();
 			if(totalTime>maxWorkTime){
-				cValid=false;
-				details.add("On Route "+r.getId()+" time worked is "+totalTime+" greater than "+maxWorkTime);
+				cEval.addMessage("DeterministicMaxWorkTimeLinks|On Route "+r.getId()+" time worked is "+totalTime+" greater than "+maxWorkTime);
 			}
 		}
 	}

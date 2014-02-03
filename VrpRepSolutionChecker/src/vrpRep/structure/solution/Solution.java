@@ -38,11 +38,12 @@ public class Solution {
 	}
 
 	/**
-	 * Sets the solution
+	 * Sets a new solution
 	 */
 	public static void setSolution() {
 		myS = new Solution();
 	}
+	
 
 	public static Solution getSolution() {
 		return myS;

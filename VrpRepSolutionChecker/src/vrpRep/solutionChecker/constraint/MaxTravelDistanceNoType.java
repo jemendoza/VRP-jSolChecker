@@ -3,13 +3,12 @@
  */
 package vrpRep.solutionChecker.constraint;
 
-import java.util.ArrayList;
-
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
-import vrpRep.utilities.ConstraintResult;
 import vrpRep.utilities.DistanceCalculator;
 
 /**
@@ -20,8 +19,7 @@ import vrpRep.utilities.DistanceCalculator;
  */
 public class MaxTravelDistanceNoType implements IConstraint {
 
-	private boolean				cValid	= true;
-	private ArrayList<String>	details	= new ArrayList<String>();
+	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -31,17 +29,11 @@ public class MaxTravelDistanceNoType implements IConstraint {
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public ConstraintResult evaluate() {
+	public ConstraintEvaluation checkConstraint() {
+		cEval = new ConstraintEvaluation();
 		evaluateMtd();
 		
-		if(cValid)
-			return new ConstraintResult(cValid , "MaxTravelDistanceNoType");
-		else{
-			String sResult =details.get(0);
-			for(int i=1;i<details.size();i++)
-				sResult=sResult.concat("\n" + details.get(i));
-			return new ConstraintResult(cValid, sResult,"MaxTravelDistanceNoType");
-		}
+		return cEval;
 	}
 
 	/**
@@ -76,8 +68,7 @@ public class MaxTravelDistanceNoType implements IConstraint {
 				System.out
 				.println("Max travel distance of vehicle failed on route "
 						+ r.getId());
-				cValid = false;
-				details.add("On route :"+r.getId()+" distance travelled :"+travelDist+" greater than "+maxTravelDist);
+				cEval.addMessage("MaxTravelDistanceNoType|On route :"+r.getId()+" distance travelled :"+travelDist+" greater than "+maxTravelDist);
 			}
 		}
 	}

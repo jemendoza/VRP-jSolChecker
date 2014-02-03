@@ -6,13 +6,14 @@ package vrpRep.solutionChecker.constraint;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import vrpRep.solChecker.ConstraintEvaluation;
+import vrpRep.solChecker.IConstraint;
 import vrpRep.structure.instance.DoubleValue;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.solution.Demand;
 import vrpRep.structure.solution.Request;
 import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
-import vrpRep.utilities.ConstraintResult;
 
 /**
  * Class used to evaluate capacity constraints
@@ -22,8 +23,7 @@ import vrpRep.utilities.ConstraintResult;
  */
 public class DeterministicCapacitySingleVehicleSingleProduct implements IConstraint {
 
-	private boolean				cValid	= true;
-	private ArrayList<String>	details	= new ArrayList<String>();
+	private ConstraintEvaluation cEval;
 
 	/*
 	 * (non-Javadoc)
@@ -34,7 +34,8 @@ public class DeterministicCapacitySingleVehicleSingleProduct implements IConstra
 	 * vrpRep.solutionChecker.solution.DefaultSolution)
 	 */
 	@Override
-	public ConstraintResult evaluate() {
+	public ConstraintEvaluation checkConstraint() {
+		cEval = new ConstraintEvaluation();
 		VehicleCResult vcr;
 
 		// each route
@@ -52,16 +53,7 @@ public class DeterministicCapacitySingleVehicleSingleProduct implements IConstra
 
 			checkDemands(vcr);
 		}
-		if (!cValid) {
-			String sResult = details.get(0);
-			for (int i = 1; i < details.size(); i++)
-				sResult = sResult.concat("\n" + details.get(i));
-
-			return new ConstraintResult(cValid, sResult,
-					"Deterministic capacity Single Vehicle Single Product");
-		} else {
-			return new ConstraintResult(cValid, "Deterministic capacity Single Vehicle Single Product");
-		}
+		return cEval;
 
 	}
 
@@ -71,9 +63,8 @@ public class DeterministicCapacitySingleVehicleSingleProduct implements IConstra
 				.getAttribute("capacity").get(0)).getValue();
 		
 		if (vcr.getSumDemands().get(vcr.getProductIds().get(0)) > capacityMax) {
-			details.add("Vehicle capacity - "
+			cEval.addMessage("Deterministic capacity Single Vehicle Single Product|Vehicle capacity - "
 					+ vcr.getSumDemands().get(0) + " greater than " + capacityMax);
-			cValid = false;
 		}
 
 	}

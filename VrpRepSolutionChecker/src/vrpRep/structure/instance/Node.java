@@ -5,13 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Stores all node information and attributes.<br />
- * By default, the following attribute names are provide : 
- * <ul>
- *  <li>type : type of link. Stored in {@link vrpRep.structure.instance.IntValue}</li>
- *  <li>location : location of link. Stored in {@link vrpRep.structure.instance.Euclidean} for euclidean location
- *  or {@link vrpRep.structure.instance.GPS for gps location}</li>
- * </ul>
+ * Stores all node information and attributes.
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
@@ -87,7 +81,13 @@ public class Node {
 	}
 
 	/**
-	 * Retrieves an attribute from list of attributes.
+	 * Retrieves an attribute from list of attributes.<br />
+	 * By default, the following attribute names are provide : 
+	 * <ul>
+	 *  <li>type : type of link. Stored in {@link vrpRep.structure.instance.IntValue}</li>
+	 *  <li>location : location of link. Stored in {@link vrpRep.structure.instance.Euclidian} for euclidean location
+	 *  or {@link vrpRep.structure.instance.GPS} for gps location</li>
+	 * </ul>
 	 * @param name name of attribute
 	 * @return attribute. null if not found
 	 */
