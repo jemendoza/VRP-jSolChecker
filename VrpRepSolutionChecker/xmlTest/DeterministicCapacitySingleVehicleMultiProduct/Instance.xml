@@ -65,7 +65,7 @@
 			<fixedCost>3.14</fixedCost>
 			<variableCost>3.141</variableCost>
 			<variableCost>3.1415</variableCost>
-			<number>0</number>
+			<number>2</number>
 			<nodeTypesCompatible>0</nodeTypesCompatible>
 			<nodeTypesCompatible>1</nodeTypesCompatible>
 			<speedProfile>
@@ -84,15 +84,13 @@
 					<end isHard="true">46</end>
 				</tw>
 			</workloadProfile>
-			<capacity>3.14</capacity>
-			<capacity>3.141</capacity>
 			<compartment type="0">
-				<minCapacity>4</minCapacity>
-				<maxCapacity>4</maxCapacity>
+				<minCapacity>9</minCapacity>
+				<maxCapacity>9</maxCapacity>
 			</compartment>
 			<compartment type="1">
-				<minCapacity>6</minCapacity>
-				<maxCapacity>6</maxCapacity>
+				<minCapacity>13</minCapacity>
+				<maxCapacity>13</maxCapacity>
 			</compartment>
 			<departureNode>0</departureNode>
 			<arrivalNode>1</arrivalNode>
@@ -100,47 +98,6 @@
 			<skill id="1">2</skill>
 			<tool id="0">3</tool>
 			<tool id="1">4</tool>
-		</vehicle>
-		<vehicle type="1">
-			<fixedCost>3.14</fixedCost>
-			<fixedCost>3.141</fixedCost>
-			<variableCost>3.1</variableCost>
-			<variableCost>3.14</variableCost>
-			<number>4</number>
-			<nodeTypesCompatible>1</nodeTypesCompatible>
-			<nodeTypesCompatible>0</nodeTypesCompatible>
-			<speedProfile>
-				<avg>3.1415</avg>
-			</speedProfile>
-			<maxTravelDistance isFlexible="true">34</maxTravelDistance>
-			<maxRequests isFlexible="false">23</maxRequests>
-			<workloadProfile>
-				<maxWorkTime isFlexible="true">45</maxWorkTime>
-				<tw period="0">
-					<start isHard="true">45</start>
-					<end isHard="false">46</end>
-				</tw>
-				<tw period="0">
-					<start isHard="true">22</start>
-					<end isHard="false">23</end>
-				</tw>
-			</workloadProfile>
-			<capacity>3.1</capacity>
-			<capacity>3.14</capacity>
-			<compartment type="0">
-				<minCapacity>5</minCapacity>
-				<maxCapacity>5</maxCapacity>
-			</compartment>
-			<compartment type="1">
-				<minCapacity>7</minCapacity>
-				<maxCapacity>7</maxCapacity>
-			</compartment>
-			<departureNode>1</departureNode>
-			<arrivalNode>0</arrivalNode>
-			<skill id="0">4</skill>
-			<skill id="1">3</skill>
-			<tool id="1">2</tool>
-			<tool id="0">1</tool>
 		</vehicle>
 	</fleet>
 	<requests>

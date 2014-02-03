@@ -17,15 +17,15 @@ import vrpRep.solutionChecker.DynamicFactory;
 import vrpRep.solutionChecker.VrpRepSolutionChecker;
 import vrpRep.structure.instance.Instance;
 
-public class DeterministicCapacityMultiVehicleMultiProductTest {
+public class DeterministicCapacityMultiVehicleSingleProductTest {
 
 	private VrpRepSolutionChecker solC;
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/DeterministicCapacityMultiVehicleMultiProduct/Instance.xml";
-	private String solutionFile = "./xmlTest/DeterministicCapacityMultiVehicleMultiProduct/SolutionFalse.xml";
-	private String outputFile = "./solutionTestOutput/DeterministicCapacityMultiVehicleMultiProduct.xml";
+	private String instanceFile = "./xmlTest/DeterministicCapacityMultiVehicleSingleProduct/Instance.xml";
+	private String solutionFile = "./xmlTest/DeterministicCapacityMultiVehicleSingleProduct/SolutionFalse.xml";
+	private String outputFile = "./solutionTestOutput/DeterministicCapacityMultiVehicleSingleProduct.xml";
 
 	@Before
 	public void setUp() throws Exception {
@@ -63,7 +63,7 @@ public class DeterministicCapacityMultiVehicleMultiProductTest {
 	@Test
 	public void test() {
 		// add constraint(s)
-		solC.addConstraint(new DeterministicCapacityMultiVehicleMultiProduct());
+		solC.addConstraint(new DeterministicCapacityMultiVehicleSingleProduct());
 		// run experiment
 		experiment.addContent(solC.checkSolution());
 			

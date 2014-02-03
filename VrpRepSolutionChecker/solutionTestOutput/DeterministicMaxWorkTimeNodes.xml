@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test>
+  <evaluation solution_file="./xmlTest/DeterministicMaxWorkTimeNodes/Solution.xml">
+    <report>
+      <feasible>FALSE</feasible>
+      <messages>
+        <message>DeterministicMaxWorkTimeNodes|Route id 0 Vehicle id 0 - 15.795107103111686 greater than 15.0</message>
+      </messages>
+      <objective>NaN</objective>
+    </report>
+  </evaluation>
+</test>
+

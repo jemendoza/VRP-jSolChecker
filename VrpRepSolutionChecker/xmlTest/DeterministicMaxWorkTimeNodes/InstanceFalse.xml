@@ -23,7 +23,7 @@
 			<node type="1" id="1">
 				<location>
 					<euclidean>
-						<cx>1.2</cx>
+						<cx>15.2</cx>
 						<cy>2.2</cy>
 					</euclidean>
 				</location>
@@ -31,7 +31,7 @@
 			<node type="2" id="2">
 				<location>
 					<euclidean>
-						<cx>1.1</cx>
+						<cx>3.1</cx>
 						<cy>2.1</cy>
 					</euclidean>
 				</location>
@@ -78,46 +78,6 @@
 			</node>
 		</nodes>
 		<links>
-			<link directed="false" tail="1" type="0" head="0" id="0">
-				<cost>111</cost>
-				<length>14</length>
-				<time>14</time>
-			</link>
-			<link directed="false" tail="0" type="1" head="1" id="1">
-				<cost>333</cost>
-				<length>25</length>
-				<time>25</time>
-			</link>
-			<link directed="false" tail="4" type="0" head="1" id="0">
-				<cost>111</cost>
-				<length>25</length>
-				<time>25</time>
-			</link>
-			<link directed="false" tail="3" type="0" head="2" id="0">
-				<cost>111</cost>
-				<length>22</length>
-				<time>22</time>
-			</link>
-			<link directed="false" tail="6" type="0" head="3" id="0">
-				<cost>111</cost>
-				<length>28</length>
-				<time>28</time>
-			</link>
-			<link directed="false" tail="5" type="0" head="4" id="0">
-				<cost>111</cost>
-				<length>43</length>
-				<time>43</time>
-			</link>
-			<link directed="false" tail="6" type="0" head="5" id="0">
-				<cost>111</cost>
-				<length>32</length>
-				<time>32</time>
-			</link>
-			<link directed="false" tail="7" type="0" head="6" id="0">
-				<cost>111</cost>
-				<length>25</length>
-				<time>25</time>
-			</link>
 		</links>
 		<descriptor>
 			<isComplete>false</isComplete>
@@ -128,10 +88,23 @@
 	<fleet>
 		<vehicle type="0">
 			<speedProfile>
-				<avg>3.14159</avg>
+				<speedInterval>
+				    <speed>10</speed>
+				    <tw period="0">
+						<start isHard="true">1</start>
+						<end isHard="true">2</end>
+					</tw>
+				</speedInterval>
+				<speedInterval>
+				    <speed>25</speed>
+				    <tw period="1">
+						<start isHard="true">2</start>
+						<end isHard="true">15000</end>
+					</tw>
+				</speedInterval>
 			</speedProfile>
 			<workloadProfile>
-				<maxWorkTime isFlexible="false">90</maxWorkTime>
+				<maxWorkTime isFlexible="false">15</maxWorkTime>
 				<tw period="0">
 					<start isHard="true">22</start>
 					<end isHard="true">23</end>
@@ -167,12 +140,12 @@
 			<nodeTypesCompatible>1</nodeTypesCompatible>
 			<nodeTypesCompatible>0</nodeTypesCompatible>
 			<speedProfile>
-				<avg>3.1415</avg>
+				<avg>15</avg>
 			</speedProfile>
 			<maxTravelDistance isFlexible="true">34</maxTravelDistance>
-			<maxRequests isFlexible="false">23</maxRequests>
+			<maxRequests isFlexible="false">15</maxRequests>
 			<workloadProfile>
-				<maxWorkTime isFlexible="true">100</maxWorkTime>
+				<maxWorkTime isFlexible="true">23</maxWorkTime>
 				<tw period="0">
 					<start isHard="true">45</start>
 					<end isHard="false">46</end>

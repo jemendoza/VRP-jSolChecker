@@ -61,7 +61,7 @@ public class DeterministicCapacityMultiVehicleSingleProduct implements IConstrai
 	private void checkDemands(VehicleCResult vcr) {
 		
 		double capacityMax = ((DoubleValue) Instance.getVehicle(
-				vcr.getVehiType()).getAttribute("capacity")).getValue();
+				vcr.getVehiType()).getAttribute("capacity").get(0)).getValue();
 		if (vcr.getSumDemands().get(vcr.getProductIds().get(0)) > capacityMax) {
 			cEval.addMessage("Deterministic capacity Multi Vehicle Single Product|Vehicle capacity " + vcr.getVehiType() + " - "
 					+ vcr.getSumDemands().get(0) + " greater than " + capacityMax);

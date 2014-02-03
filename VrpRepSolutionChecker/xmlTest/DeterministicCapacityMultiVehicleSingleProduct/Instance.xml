@@ -84,16 +84,7 @@
 					<end isHard="true">46</end>
 				</tw>
 			</workloadProfile>
-			<capacity>3.14</capacity>
-			<capacity>3.141</capacity>
-			<compartment type="0">
-				<minCapacity>4</minCapacity>
-				<maxCapacity>4</maxCapacity>
-			</compartment>
-			<compartment type="1">
-				<minCapacity>6</minCapacity>
-				<maxCapacity>6</maxCapacity>
-			</compartment>
+			<capacity>4</capacity>
 			<departureNode>0</departureNode>
 			<arrivalNode>1</arrivalNode>
 			<skill id="0">1</skill>
@@ -125,16 +116,7 @@
 					<end isHard="false">23</end>
 				</tw>
 			</workloadProfile>
-			<capacity>3.1</capacity>
-			<capacity>3.14</capacity>
-			<compartment type="0">
-				<minCapacity>5</minCapacity>
-				<maxCapacity>5</maxCapacity>
-			</compartment>
-			<compartment type="1">
-				<minCapacity>7</minCapacity>
-				<maxCapacity>7</maxCapacity>
-			</compartment>
+			<capacity>5</capacity>
 			<departureNode>1</departureNode>
 			<arrivalNode>0</arrivalNode>
 			<skill id="0">4</skill>
@@ -154,7 +136,6 @@
 				<end isHard="true">57</end>
 			</tw>
 			<demand isSplitable="false" type="0">1</demand>
-			<demand isSplitable="false" type="1">2</demand>
 			<prize>0</prize>
 			<cost>3.141</cost>
 			<releaseDate>3.1</releaseDate>
@@ -185,7 +166,6 @@
 				<end isHard="true">12</end>
 			</tw>
 			<demand isSplitable="false" type="0">3</demand>
-			<demand isSplitable="false" type="1">4</demand>
 			<prize>0</prize>
 			<cost>3.141592</cost>
 			<releaseDate>3.141</releaseDate>
@@ -216,7 +196,6 @@
 				<end isHard="true">57</end>
 			</tw>
 			<demand isSplitable="false" type="0">4</demand>
-			<demand isSplitable="false" type="1">5</demand>
 			<prize>0</prize>
 			<cost>3.141</cost>
 			<releaseDate>3.1</releaseDate>
@@ -248,7 +227,6 @@
 				<end isHard="true">57</end>
 			</tw>
 			<demand isSplitable="false" type="0">1</demand>
-			<demand isSplitable="false" type="1">2</demand>
 			<prize>0</prize>
 			<cost>3.141</cost>
 			<releaseDate>3.1</releaseDate>

@@ -52,7 +52,7 @@ public class DeterministicMaxWorkTimeLinks implements IConstraint {
 				if(l.getAttribute("time")!=null){
 					totalTime+=((DoubleValue)l.getAttribute("time").get(0)).getValue();
 				}
-				vrpRep.structure.instance.Request re = Instance.getRequest(r.getRequests().get(0).getId());
+				vrpRep.structure.instance.Request re = Instance.getRequest(r.getRequests().get(i+1).getId());
 				if(re.getAttribute("serviceTime")!=null){
 					totalTime+=((DoubleValue)re.getAttribute("serviceTime").get(0)).getValue();
 				}

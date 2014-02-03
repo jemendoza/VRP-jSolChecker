@@ -15,16 +15,16 @@
 			<request requestId="0">
 				<demand productId="0">1</demand>
 			</request>
-			<request requestId="0">
-				<demand productId="1">1</demand>
+			<request requestId="1">
+				<demand productId="0">3</demand>
 			</request>
 		</route>
 		<route id="1" type="1">
-			<request requestId="0">
-				<demand productId="0">5</demand>
+			<request requestId="2">
+				<demand productId="0">4</demand>
 			</request>
-			<request requestId="0">
-				<demand productId="1">5</demand>
+			<request requestId="3">
+				<demand productId="0">1</demand>
 			</request>
 		</route>
 	</routes>

@@ -53,7 +53,7 @@ public class DeterministicMaxWorkTimeNodes implements IConstraint {
 			vehiType = (r.isHasType()?r.getType():-1);	
 			
 			if(Instance.getRequest(r.getRequests().get(0).getId()).getAttribute("serviceTime") != null)
-				timeSpent = ((DoubleValue)Instance.getRequest(r.getRequests().get(0).getId()).getAttribute("serviceTime")).getValue();
+				timeSpent = ((DoubleValue)Instance.getRequest(r.getRequests().get(0).getId()).getAttribute("serviceTime").get(0)).getValue();
 			else
 				timeSpent = 0;
 
@@ -68,16 +68,17 @@ public class DeterministicMaxWorkTimeNodes implements IConstraint {
 				else
 					speed = getSpeed(Instance.getVehicle(vehiType).getAttribute("speedProfile"), timeSpent);
 				timeSpent += DistanceCalculator.calculateDistance(departureNode, arrivalNode)/speed;	
-				timeSpent += ((DoubleValue)Instance.getRequest(req.getId()).getAttribute("serviceTime")).getValue();
+				timeSpent += ((DoubleValue)Instance.getRequest(req.getId()).getAttribute("serviceTime").get(0)).getValue();
 			}
 			
 			if(vehiType == -1)
 				vehiType = 0;
-			if(timeSpent > ((DoubleValue)Instance.getVehicle(vehiType).getAttribute("wLPMaxWorkTime")).getValue()){
+			double maxWorkTime = ((DoubleValue)Instance.getVehicle(vehiType).getAttribute("wLPMaxWorkTime").get(0)).getValue();
+			if(timeSpent > maxWorkTime){
 				
 				cEval.addMessage("DeterministicMaxWorkTimeNodes|Route id "+r.getId()+
 						" Vehicle id "+vehiType+
-						" - "+timeSpent+" greater than "+((DoubleValue)Instance.getVehicle(vehiType).getAttribute("wLPMaxWorkTime")).getValue());
+						" - "+timeSpent+" greater than "+((DoubleValue)Instance.getVehicle(vehiType).getAttribute("wLPMaxWorkTime").get(0)).getValue());
 			}
 				
 		}	
@@ -105,7 +106,7 @@ public class DeterministicMaxWorkTimeNodes implements IConstraint {
 		}
 
 		if(vAtt instanceof DoubleValue)
-			return ((DoubleValue)Instance.getVehicle(0).getAttribute("speedProfile")).getValue();
+			return ((SpeedInt)Instance.getVehicle(0).getAttribute("speedProfile").get(0)).getSpeed();
 		else{		
 			int i = -1, j;
 			while (++i < speedProfile.size() && !(min <= time && time <= max)){
