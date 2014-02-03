@@ -32,6 +32,7 @@ public class TestMain {
 		
 		DynamicFactory factory = new DynamicFactory("./config/config.xml");
 		
+		
 		factory.loadConstraints(solCheck);
 		factory.loadObjective(solCheck);
 		factory.setDistanceCalculator();
