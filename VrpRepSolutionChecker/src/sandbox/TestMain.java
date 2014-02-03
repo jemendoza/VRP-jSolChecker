@@ -3,11 +3,8 @@
  */
 package sandbox;
 
-import java.io.File;
-
-import org.apache.commons.math3.distribution.TDistribution;
-
-import vrpRep.fileReaders.InstanceTranslator;
+import vrpRep.solChecker.DynamicFactory;
+import vrpRep.solChecker.VrpRepSolutionChecker;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
@@ -19,7 +16,7 @@ public class TestMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		InstanceTranslator inst = new InstanceTranslator(new File(
+		/*InstanceTranslator inst = new InstanceTranslator(new File(
 				"./schemaFiles/A-n32-k5.xml.zip"));
 
 		// Instance.Network.Descriptor des =
@@ -27,7 +24,19 @@ public class TestMain {
 		// System.out.println(des.getCustom().getAny().get(0).getTextContent());
 		
 		
-		TDistribution t = new TDistribution(2);
+		TDistribution t = new TDistribution(2);*/
+		
+		
+		VrpRepSolutionChecker solCheck = new VrpRepSolutionChecker("./xmlTest/InstancetestDepartureArrivalNode.xml"
+												, "./xmlTest/SolutiontestDepartureArrivalNode.xml");
+		
+		DynamicFactory factory = new DynamicFactory("./config/config.xml");
+		
+		factory.loadConstraints(solCheck);
+		
+		factory.setDistanceCalculator();
+		
+		
 
 	}
 

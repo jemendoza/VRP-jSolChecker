@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+<constraints>
+    <constraint name="capacity">vrpRep.solutionChecker.constraint.DeterministicCapacity</constraint>
+    <constraint name="distance">vrpRep.solutionChecker.constraint.MaxTravelDistance</constraint>
+    <constraint name="allvisited">vrpRep.solutionChecker.constraint.DeterministicDemandSatisfied</constraint>
+</constraints>
+<objectives>
+    <objective name="distance">vrpRep.solutionChecker.objective.StandardObjective</objective>
+</objectives>
+<distanceCalculator>vrpRep.utilities.DistanceCalculatorEuc3D</distanceCalculator>
+</config>

@@ -45,6 +45,7 @@ public class VrpRepSolutionChecker {
 				"./xmlTest/DeterministicCapacityInstance.xml"));
 		new SolutionTranslator(new File(
 				"./xmlTest/DeterministicCapacitySolution.xml"));
+
 	}
 	
 	

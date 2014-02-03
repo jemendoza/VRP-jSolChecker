@@ -3,13 +3,17 @@
  */
 package vrpRep.solChecker;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InvalidPropertiesFormatException;
+import java.util.List;
 import java.util.Properties;
 
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.JDOMException;
+
 import vrpRep.utilities.DistanceCalculator;
+import vrpRep.utilities.DistanceCalculatorEuc2D;
 
 /**
  * Dynamic factory to build the parameterized solution checker
@@ -23,6 +27,13 @@ public class DynamicFactory {
 	 * Properties containing dynamic initialization parameters
 	 */
 	private Properties	properties;
+	
+	
+	private List<Element> constraints;
+	
+	private List<Element> objectives;
+	
+	private Element distanceCalc;
 
 	/**
 	 * Constructor
@@ -32,9 +43,20 @@ public class DynamicFactory {
 	 * @throws IOException
 	 * @throws InvalidPropertiesFormatException
 	 */
-	public DynamicFactory(String propertiesFilePath) {
+	public DynamicFactory(String configFilePath) {
 		try {
-			FileInputStream file = new FileInputStream(propertiesFilePath);
+			Document config = JDomParser.parseDocument(configFilePath);
+			Element rootNode = config.getRootElement();
+			
+			constraints = rootNode.getChild("constraints").getChildren("constraint");
+			objectives =  rootNode.getChild("objectives").getChildren("objective");
+			distanceCalc = rootNode.getChild("distanceCalculator");
+		} catch (JDOMException | IOException e1) {
+			e1.printStackTrace();
+		}
+		/*
+		try {
+			FileInputStream file = new FileInputStream(configFilePath);
 			this.properties = new Properties();
 			this.properties.loadFromXML(file);
 		} catch (FileNotFoundException e) {
@@ -43,29 +65,58 @@ public class DynamicFactory {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	
 	public void loadConstraints(VrpRepSolutionChecker solC){
-		// TODO
+		for(Element e : this.constraints){
+			Class<?> tClass;
+				try {
+					tClass = Class.forName(e.getText());
+					solC.addConstraint((IConstraint)tClass.newInstance());
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (InstantiationException e1) {
+					e1.printStackTrace();
+				} catch (IllegalAccessException e1) {
+					e1.printStackTrace();
+				}		
+		}
+	}
+	
+	
+	public void loadObjective(VrpRepSolutionChecker solC){
+		Class<?> tClass;
+		try {
+			tClass = Class.forName(this.objectives.get(0).getText());
+			solC.setObjectiveFunction((IObjectiveFunction)tClass.newInstance());
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			e1.printStackTrace();
+		}	
 	}
 	
 	/**
 	 * Retrieves distance calculator. If exception thrown, ensure xml
 	 * configuration file contains class path to demand reader under key
-	 * "distanceCalculator".
+	 * "distanceCalculator". <br />
+	 * If no configuration was found in xml config file. The euclidean 2D distance calculator is initialized.
 	 * 
 	 */
-	public void buildDistanceCalculator() {
+	public void setDistanceCalculator() {
 		try {
-			if (this.properties.getProperty("distanceCalculator") != null) {
+			if (this.distanceCalc != null) {
 				Class<?> tClass;
-				tClass = Class.forName(this.properties
-						.getProperty("distanceCalculator"));
+				tClass = Class.forName(this.distanceCalc.getText());
 				DistanceCalculator
 						.setDistanceCalculator((DistanceCalculator) tClass
 								.newInstance());
+			}else{
+				DistanceCalculator.setDistanceCalculator(new DistanceCalculatorEuc2D());
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
