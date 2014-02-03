@@ -30,7 +30,7 @@ public class DeterministicCapacityTest {
 
 	private String instanceFile = "./xmlTest/DeterministicCapacityInstance.xml";
 	private String solutionFile = "./xmlTest/DeterministicCapacitySolution.xml";
-	private String outputFile = "./solutionTestOutput/DeterministicCapacity";
+	private String outputFile = "./solutionTestOutput/DeterministicCapacity.xml";
 
 
 	@Before

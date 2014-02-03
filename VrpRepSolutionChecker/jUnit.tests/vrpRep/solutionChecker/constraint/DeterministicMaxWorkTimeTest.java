@@ -30,7 +30,7 @@ public class DeterministicMaxWorkTimeTest {
 
 	private String instanceFile = "./xmlTest/DeterministicMaxWorkTimeLinksInstance.xml";
 	private String solutionFile = "./xmlTest/DeterministicMaxWorkTimeLinksSolution.xml";
-	private String outputFile = "./solutionTestOutput/DeterministicMaxWorkTimeTest";
+	private String outputFile = "./solutionTestOutput/DeterministicMaxWorkTimeTest.xml";
 
 
 	@Before

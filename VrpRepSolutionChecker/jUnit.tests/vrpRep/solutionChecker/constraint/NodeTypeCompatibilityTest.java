@@ -23,7 +23,7 @@ public class NodeTypeCompatibilityTest {
 
 	private String instanceFile = "./xmlTest/NodeTypeCompatibilityInstance.xml";
 	private String solutionFile = "./xmlTest/NodeTypeCompatibilitySolution.xml";
-	private String outputFile = "./solutionTestOutput/NodeTypeCompatibility";
+	private String outputFile = "./solutionTestOutput/NodeTypeCompatibility.xml";
 
 
 	@Before

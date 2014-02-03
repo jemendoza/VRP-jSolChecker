@@ -53,7 +53,6 @@ public class DeterministicCapacityMultiVehicleMultiProduct implements IConstrain
 			checkDemands(vcr);
 		}
 		return cEval;
-
 	}
 
 	private void checkDemands(VehicleCResult vcr) {

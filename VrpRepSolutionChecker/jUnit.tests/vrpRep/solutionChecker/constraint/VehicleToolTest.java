@@ -30,7 +30,7 @@ public class VehicleToolTest {
 
 	private String instanceFile = "./xmlTest/VehicleToolInstance.xml";
 	private String solutionFile = "./xmlTest/VehicleToolSolution.xml";
-	private String outputFile = "./solutionTestOutput/VehicleTool";
+	private String outputFile = "./solutionTestOutput/VehicleTool.xml";
 
 
 	@Before

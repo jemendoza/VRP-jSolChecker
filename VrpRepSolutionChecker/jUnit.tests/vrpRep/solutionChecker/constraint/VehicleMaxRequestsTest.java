@@ -27,7 +27,7 @@ public class VehicleMaxRequestsTest {
 
 	private String instanceFile = "./xmlTest/VehicleMaxRequestsInstance.xml";
 	private String solutionFile = "./xmlTest/VehicleMaxRequestsSolution.xml";
-	private String outputFile = "./solutionTestOutput/VehicleMaxRequests";
+	private String outputFile = "./solutionTestOutput/VehicleMaxRequests.xml";
 
 
 	@Before

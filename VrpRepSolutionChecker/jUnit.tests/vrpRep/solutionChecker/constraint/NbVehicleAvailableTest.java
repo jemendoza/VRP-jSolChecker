@@ -23,7 +23,7 @@ public class NbVehicleAvailableTest {
 
 	private String instanceFile = "./xmlTest/InstanceNbVehicleAvailable.xml";
 	private String solutionFile = "./xmlTest/SolutionNbVehicleAvailable.xml";
-	private String outputFile = "./solutionTestOutput/NbVehicleAvailable";
+	private String outputFile = "./solutionTestOutput/NbVehicleAvailable.xml";
 
 
 	@Before

@@ -27,7 +27,7 @@ public class SuccessorsTest {
 
 	private String instanceFile = "./xmlTest/SuccessorsInstance.xml";
 	private String solutionFile = "./xmlTest/SuccessorsSolution.xml";
-	private String outputFile = "./solutionTestOutput/Successors";
+	private String outputFile = "./solutionTestOutput/Successors.xml";
 
 
 	@Before

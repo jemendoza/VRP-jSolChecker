@@ -24,7 +24,7 @@ public class DepartureArrivalNodeTest {
 
 	private String instanceFile = "./xmlTest/InstancetestDepartureArrivalNode.xml";
 	private String solutionFile = "./xmlTest/SolutiontestDepartureArrivalNode.xml";
-	private String outputFile = "./solutionTestOutput/DepartureArrivalNode";
+	private String outputFile = "./solutionTestOutput/DepartureArrivalNode.xml";
 
 
 	@Before
