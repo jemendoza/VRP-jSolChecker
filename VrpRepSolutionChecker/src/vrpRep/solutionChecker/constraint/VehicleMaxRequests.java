@@ -11,12 +11,14 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
- * Class checking that the maximal number of request that a vehicle can satisfy is respected.
+ * Verifies the solution does not viloate the maximum number of requests each vehicle can serve.
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class VehicleMaxRequests implements IConstraint {
-
+	/**
+	 * Evaluation result
+	 */
 	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)

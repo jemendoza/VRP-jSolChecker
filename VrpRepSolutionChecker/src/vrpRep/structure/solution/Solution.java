@@ -32,7 +32,7 @@ public class Solution {
 	private ArrayList<Route>	routes	= null;
 
 	/**
-	 * 
+	 * Constructor
 	 */
 	public Solution() {
 	}

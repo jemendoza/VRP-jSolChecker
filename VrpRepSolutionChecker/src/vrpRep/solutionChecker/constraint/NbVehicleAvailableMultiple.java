@@ -13,12 +13,15 @@ import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;
 
 /**
- * Class checking that the number of vehicle available in the instance is respected
+ * Verifies solution does not violate the number of available vehicles when multiples vehicle
+ * types exist.
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class NbVehicleAvailableMultiple implements IConstraint {
-
+	/**
+	 * Evaluation result
+	 */
 	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)

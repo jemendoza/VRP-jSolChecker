@@ -16,12 +16,14 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
- * Class checking that the vehicle satisfying a request has the skills required to complete the request.
+ * Verifies all requests requiring a certain skill and served by a vehicle with that skill.
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class VehicleSkill implements IConstraint {
-
+	/**
+	 * Evaluation result
+	 */
 	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)

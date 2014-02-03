@@ -12,12 +12,15 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
- * Class checking the deterministic MaxWorkTime constraint on the time spend on links. 
+ * Evaluates deterministic vehicle Max Work Time constraint when 
+ * time is defined within the link attributes. 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  *
  */
 public class DeterministicMaxWorkTimeLinks implements IConstraint {
-
+	/**
+	 * Evaluation result
+	 */
 	private ConstraintEvaluation cEval;
 	/* (non-Javadoc)
 	 * @see vrpRep.solutionChecker.constraint.IConstraint#evaluate()

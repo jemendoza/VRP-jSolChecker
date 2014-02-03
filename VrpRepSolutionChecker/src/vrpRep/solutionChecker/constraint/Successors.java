@@ -16,12 +16,14 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
- * Class checking that after satisfying a request all of its successors are too.
+ * Verifies all compulsory succeeding nodes have been visited for each node.
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class Successors implements IConstraint {
-
+	/**
+	 * Evaluation result
+	 */
 	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)

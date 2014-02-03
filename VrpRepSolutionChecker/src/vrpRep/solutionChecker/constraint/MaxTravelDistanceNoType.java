@@ -12,13 +12,16 @@ import vrpRep.structure.solution.Solution;
 import vrpRep.utilities.DistanceCalculator;
 
 /**
- * Class verifies that all vehicle traveling distance constraints are respected.
+ * Verifies that all maximum vehicle traveling distance constraints are respected when only one 
+ * vehicle type exists.
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class MaxTravelDistanceNoType implements IConstraint {
-
+	/**
+	 * Evaluation result
+	 */
 	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)

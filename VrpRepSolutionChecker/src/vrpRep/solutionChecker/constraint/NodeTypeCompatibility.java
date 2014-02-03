@@ -18,12 +18,14 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
- * Class checking that the vehicle used to satisfy a request is allow to pass on the type of node.
+ * Verifies all nodes are visited by compatible vehicles?
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class NodeTypeCompatibility implements IConstraint {
-
+	/**
+	 * Evaluation result
+	 */
 	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)

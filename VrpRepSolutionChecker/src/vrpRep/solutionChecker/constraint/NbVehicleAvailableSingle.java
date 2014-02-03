@@ -15,12 +15,15 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
- * Class checking that the number of vehicle available in the instance is respected
+ * Verifies solution does not violate the number of available vehicles when only one vehicle
+ * type exists.
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class NbVehicleAvailableSingle implements IConstraint {
-
+	/**
+	 * Evaluation result
+	 */
 	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)

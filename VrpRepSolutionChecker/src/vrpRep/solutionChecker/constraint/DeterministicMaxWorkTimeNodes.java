@@ -18,12 +18,15 @@ import vrpRep.structure.solution.Solution;
 import vrpRep.utilities.DistanceCalculator;
 
 /**
- * Class checking the deterministic MaxWorkTime constraint by calculating time spend between two nodes. 
+ * Evaluates deterministic vehicle Max Work Time constraint when 
+ * time is calculated using a distance calculator and node locations. 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  *
  */
 public class DeterministicMaxWorkTimeNodes implements IConstraint {
-
+	/**
+	 * Evaluation result
+	 */
 	private ConstraintEvaluation cEval;
 	/* (non-Javadoc)
 	 * @see vrpRep.solutionChecker.constraint.IConstraint#evaluate()

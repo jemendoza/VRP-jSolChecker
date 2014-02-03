@@ -14,13 +14,15 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
- * Class used to evaluate capacity constraint for Multi Vehicles and Single Product VRP.
+ * Evaluates vehicle capacity constraint for deterministic Multi Vehicle and Single Product VRP.
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
 public class DeterministicCapacityMultiVehicleSingleProduct implements IConstraint {
-
+	/**
+	 * Evaluation result
+	 */
 	private ConstraintEvaluation cEval;
 	/*
 	 * (non-Javadoc)

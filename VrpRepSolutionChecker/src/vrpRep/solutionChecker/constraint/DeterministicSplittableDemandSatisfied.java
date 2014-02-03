@@ -16,12 +16,11 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
- * This constraints verifies the demand at each request is satisfied. The parameter of the demand being splitabl between routes
- * is taken into account
+ * Verifies the demand at each request is satisfied for splittable demands.
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
-public class DeterministicDemandSatisfied implements IConstraint {
+public class DeterministicSplittableDemandSatisfied implements IConstraint {
 
 	private ConstraintEvaluation cEval;
 	/**

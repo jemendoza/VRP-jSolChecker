@@ -14,7 +14,7 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
- * Class used to evaluate capacity constraint for Single Vehicle and Multi Products VRP.
+ * Evaluates vehicle capacity constraint for deterministic Single Vehicle and Multi Product VRP.
  * 
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
