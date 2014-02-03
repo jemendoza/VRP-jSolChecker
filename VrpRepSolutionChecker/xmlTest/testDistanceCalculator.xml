@@ -48,18 +48,12 @@
 			</node>
 			<node type="0" id="4">
 				<location>
-					<gpsCoordinates>
-						<lat>47.478419</lat>
-						<lon>-0.5631660000000238</lon>
-					</gpsCoordinates>
+					<GPSCoordinates lat = "47.478419" lon = "-0.563166"></GPSCoordinates>
 				</location>
 			</node>
 			<node type="1" id="5">
 				<location>
-					<gpsCoordinates>
-						<lat>48.856614</lat>
-						<lon>2.3522219000000177</lon>
-					</gpsCoordinates>
+					<GPSCoordinates lat = "48.856614" lon = "2.3522219" ></GPSCoordinates>
 				</location>
 			</node>
 		</nodes>

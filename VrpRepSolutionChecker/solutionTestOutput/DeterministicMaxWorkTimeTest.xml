@@ -1,9 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<result>
-    <constraints>
-        <nonValid>
-            <constraint name="DeterministicMaxWorkTime">On Route 0 time worked is 96.0 greater than 90.0</constraint>
-        </nonValid>
-        <valid/>
-    </constraints>
-</result>
+<?xml version="1.0" encoding="UTF-8"?>
+<test>
+  <evaluation solution_file="./xmlTest/DeterministicMaxWorkTimeLinksSolution.xml" />
+</test>
+

@@ -1,9 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<result>
-    <constraints>
-        <nonValid>
-            <constraint name="Successors">The request 2 must be succeeded by the request : 3 in route 1</constraint>
-        </nonValid>
-        <valid/>
-    </constraints>
-</result>
+<?xml version="1.0" encoding="UTF-8"?>
+<test>
+  <evaluation solution_file="./xmlTest/SuccessorsSolution.xml" />
+</test>
+

@@ -26,15 +26,14 @@ public class DistanceCalculatorGPS extends DistanceCalculator {
 		h = (GPS) Instance.getNode(head).getAttribute("location").get(0);
 		t = (GPS) Instance.getNode(tail).getAttribute("location").get(0);
 
-		double lon1 = degreeToRadian(h.getLon());
-		double lon2 = degreeToRadian(t.getLon());
-		double lat1 = degreeToRadian(h.getLat());
-		double lat2 = degreeToRadian(t.getLat());
-		double dlon = lon2 - lon1;
-		double dlat = lat2 - lat1;
-		double a = Math.pow(Math.sin(dlat / 2), 2)
-				+ (Math.cos(lat1) * Math.cos(lat2) * Math.pow(
-						Math.sin(dlon / 2), 2));
+		double lat1 = h.getLat(), lat2 = t.getLat();
+;		double dlat = degreeToRadian(lat2-lat1);
+		double dlon =  degreeToRadian(t.getLon()-h.getLon());
+		lat1 = degreeToRadian(lat1);
+		lat2 = degreeToRadian(lat2);
+		
+		double a = (Math.sin(dlat/2)*Math.sin(dlat/2))
+				+ Math.sin(dlon/2)*Math.sin(dlon/2)* Math.cos(lat1)* Math.cos(lat2);
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 		return 6373 * c;
 		// TODO test and compare results with :
