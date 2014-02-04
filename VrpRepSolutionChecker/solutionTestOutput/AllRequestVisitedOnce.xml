@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test instance_file="./xmlTest/AllRequestVisitedOnce/Instance.xml">
-  <evaluation solution_file="./xmlTest/AllRequestVisitedOnce/SolutionFalse.xml">
+  <evaluation solution_file="./xmlTest/AllRequestVisitedOnce/SolutionTrue.xml">
     <report>
-      <feasible>FALSE</feasible>
-      <messages>
-        <message>AllRequestVisitedOnce|The request : 0 is visited more than once</message>
-      </messages>
-      <objective>NaN</objective>
+      <feasible>TRUE</feasible>
+      <messages />
+      <objective>0.0</objective>
     </report>
   </evaluation>
 </test>

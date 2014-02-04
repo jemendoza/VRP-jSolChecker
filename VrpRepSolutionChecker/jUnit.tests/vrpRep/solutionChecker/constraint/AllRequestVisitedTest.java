@@ -15,7 +15,6 @@ import org.junit.Test;
 
 import vrpRep.solutionChecker.DynamicFactory;
 import vrpRep.solutionChecker.VrpRepSolutionChecker;
-import vrpRep.structure.instance.Instance;
 
 public class AllRequestVisitedTest {
 
@@ -31,8 +30,7 @@ public class AllRequestVisitedTest {
 	public void setUp() throws Exception {
 		// set up test
 		solC = new VrpRepSolutionChecker(instanceFile, solutionFile);
-
-		Instance i = Instance.getInstance();
+		
 		// start building xml output
 		root=new Element("test");
 		root.setAttribute("instance_file", instanceFile);

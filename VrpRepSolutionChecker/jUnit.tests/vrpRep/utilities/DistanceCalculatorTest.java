@@ -30,6 +30,7 @@ public class DistanceCalculatorTest {
 	@Before
 	public void setUp() throws Exception {	
 		// set up test
+		@SuppressWarnings("unused")
 		IInstanceReader instR = new InstanceTranslator(new File(
 				"./xmlTest/testDistanceCalculator.xml"));
 	}

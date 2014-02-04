@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test>
-  <evaluation solution_file="./xmlTest/DeterministicCapacitySingleVehicleSingleProduct/SolutionFalse.xml">
+<test instance_file="./xmlTest/DeterministicCapacitySingleVehicleSingleProduct/Instance.xml">
+  <evaluation solution_file="./xmlTest/DeterministicCapacitySingleVehicleSingleProduct/SolutionTrue.xml">
     <report>
-      <feasible>FALSE</feasible>
-      <messages>
-        <message>Deterministic capacity Single Vehicle Single Product|Vehicle capacity - 5.0 greater than 4.0</message>
-      </messages>
-      <objective>NaN</objective>
+      <feasible>TRUE</feasible>
+      <messages />
+      <objective>0.0</objective>
     </report>
   </evaluation>
 </test>

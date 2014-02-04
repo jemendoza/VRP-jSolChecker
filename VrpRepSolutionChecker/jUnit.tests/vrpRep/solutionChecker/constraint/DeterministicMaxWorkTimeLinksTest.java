@@ -1,5 +1,6 @@
 package vrpRep.solutionChecker.constraint;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileOutputStream;
@@ -15,7 +16,6 @@ import org.junit.Test;
 
 import vrpRep.solutionChecker.DynamicFactory;
 import vrpRep.solutionChecker.VrpRepSolutionChecker;
-import vrpRep.structure.instance.Instance;
 
 public class DeterministicMaxWorkTimeLinksTest {
 
@@ -23,7 +23,7 @@ public class DeterministicMaxWorkTimeLinksTest {
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/DeterministicMaxWorkTimeLinks/InstanceTrue.xml";
+	private String instanceFile = "./xmlTest/DeterministicMaxWorkTimeLinks/InstanceFalse.xml";
 	private String solutionFile = "./xmlTest/DeterministicMaxWorkTimeLinks/Solution.xml";
 	private String outputFile = "./solutionTestOutput/DeterministicMaxWorkTimeLinks.xml";
 
@@ -32,7 +32,6 @@ public class DeterministicMaxWorkTimeLinksTest {
 		// set up test
 		solC = new VrpRepSolutionChecker(instanceFile, solutionFile);
 
-		Instance i = Instance.getInstance();
 		// start building xml output
 		root=new Element("test");	
 		root.setAttribute("instance_file", instanceFile);
@@ -68,6 +67,13 @@ public class DeterministicMaxWorkTimeLinksTest {
 		// run experiment
 		experiment.addContent(solC.checkSolution());
 			
-		assertTrue(solC.isFeasible());
+		if(instanceFile.endsWith("True.xml"))
+			assertTrue(solC.isFeasible());
+		else{
+			if(instanceFile.endsWith("False.xml"))
+				assertFalse(solC.isFeasible());
+			else
+				assertFalse(true);
+		}
 	}
 }

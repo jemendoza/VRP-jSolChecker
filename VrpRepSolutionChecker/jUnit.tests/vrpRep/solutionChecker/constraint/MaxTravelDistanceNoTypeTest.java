@@ -1,5 +1,6 @@
 package vrpRep.solutionChecker.constraint;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileOutputStream;
@@ -22,7 +23,7 @@ public class MaxTravelDistanceNoTypeTest {
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/MaxTravelDistanceNoType/InstanceFalse.xml";
+	private String instanceFile = "./xmlTest/MaxTravelDistanceNoType/InstanceTrue.xml";
 	private String solutionFile = "./xmlTest/MaxTravelDistanceNoType/Solution.xml";
 	private String outputFile = "./solutionTestOutput/MaxTravelDistanceNoType.xml";
 
@@ -66,7 +67,14 @@ public class MaxTravelDistanceNoTypeTest {
 		// run experiment
 		experiment.addContent(solC.checkSolution());
 			
-		assertTrue(solC.isFeasible());
+		if(instanceFile.endsWith("True.xml"))
+			assertTrue(solC.isFeasible());
+		else{
+			if(instanceFile.endsWith("False.xml"))
+				assertFalse(solC.isFeasible());
+			else
+				assertFalse(true);
+		}
 	}
 
 }
