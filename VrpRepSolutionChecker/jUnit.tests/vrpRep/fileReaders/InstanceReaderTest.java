@@ -58,9 +58,9 @@ public class InstanceReaderTest {
 
 			if (n.getId() == 0) {
 
-				assertEquals(e.getCx(), 1.1, 0);
-				assertEquals(e.getCy(), 2.1, 0);
-				assertEquals(e.getCz(), 3.1, 0);
+				assertEquals(e.getCx(), 1, 0);
+				assertEquals(e.getCy(), 18, 0);
+				assertEquals(e.getCz(), -6, 0);
 				assertEquals(
 						((IntValue) n.getAttribute("type").get(0)).getValue(),
 						0);
@@ -68,9 +68,9 @@ public class InstanceReaderTest {
 			}
 			if (n.getId() == 1) {
 
-				assertEquals(e.getCx(), 1.2, 0);
-				assertEquals(e.getCy(), 2.2, 0);
-				assertEquals(e.getCz(), 3.2, 0);
+				assertEquals(e.getCx(), -20, 0);
+				assertEquals(e.getCy(), 2, 0);
+				assertEquals(e.getCz(), 43, 0);
 				assertEquals(
 						((IntValue) n.getAttribute("type").get(0)).getValue(),
 						1);
@@ -226,34 +226,34 @@ public class InstanceReaderTest {
 				assertFalse(((BooleanValue) v.getAttribute(
 						"wLPMaxWorkTimeIsFlexible").get(0)).getValue());
 				assertEquals(
-						((TimeWindow) v.getAttribute("vLPtw").get(0))
+						((TimeWindow) v.getAttribute("wLPtw").get(0))
 								.getBegin(),
 						22, 0);
 				assertEquals(
-						((TimeWindow) v.getAttribute("vLPtw").get(0)).getEnd(),
+						((TimeWindow) v.getAttribute("wLPtw").get(0)).getEnd(),
 						23, 0);
-				assertTrue(((TimeWindow) v.getAttribute("vLPtw").get(0))
+				assertTrue(((TimeWindow) v.getAttribute("wLPtw").get(0))
 						.isFlexStart());
-				assertTrue(((TimeWindow) v.getAttribute("vLPtw").get(0))
+				assertTrue(((TimeWindow) v.getAttribute("wLPtw").get(0))
 						.isFlexEnd());
 				assertEquals(
-						((TimeWindow) v.getAttribute("vLPtw").get(0))
+						((TimeWindow) v.getAttribute("wLPtw").get(0))
 								.getPeriod(),
 						0);
 
 				assertEquals(
-						((TimeWindow) v.getAttribute("vLPtw").get(1))
+						((TimeWindow) v.getAttribute("wLPtw").get(1))
 								.getBegin(),
 						45, 0);
 				assertEquals(
-						((TimeWindow) v.getAttribute("vLPtw").get(1)).getEnd(),
+						((TimeWindow) v.getAttribute("wLPtw").get(1)).getEnd(),
 						46, 0);
-				assertTrue(((TimeWindow) v.getAttribute("vLPtw").get(1))
+				assertTrue(((TimeWindow) v.getAttribute("wLPtw").get(1))
 						.isFlexStart());
-				assertTrue(((TimeWindow) v.getAttribute("vLPtw").get(1))
+				assertTrue(((TimeWindow) v.getAttribute("wLPtw").get(1))
 						.isFlexEnd());
 				assertEquals(
-						((TimeWindow) v.getAttribute("vLPtw").get(1))
+						((TimeWindow) v.getAttribute("wLPtw").get(1))
 								.getPeriod(),
 						1);
 				assertEquals(
@@ -346,8 +346,8 @@ public class InstanceReaderTest {
 						.get(0)).getValue(), 34, 0);
 				assertTrue(((BooleanValue) v.getAttribute(
 						"maxTravelDistanceIsFlexible").get(0)).getValue());
-				assertEquals(((DoubleValue) v.getAttribute("maxRequests")
-						.get(0)).getValue(), 23, 0);
+				assertEquals(((IntValue) v.getAttribute("maxRequests")
+						.get(0)).getValue(), 23);
 				assertFalse(((BooleanValue) v.getAttribute(
 						"maxRequestsIsFlexible").get(0)).getValue());
 
@@ -356,34 +356,34 @@ public class InstanceReaderTest {
 				assertTrue(((BooleanValue) v.getAttribute(
 						"wLPMaxWorkTimeIsFlexible").get(0)).getValue());
 				assertEquals(
-						((TimeWindow) v.getAttribute("vLPtw").get(0))
+						((TimeWindow) v.getAttribute("wLPtw").get(0))
 								.getBegin(),
 						45, 0);
 				assertEquals(
-						((TimeWindow) v.getAttribute("vLPtw").get(0)).getEnd(),
+						((TimeWindow) v.getAttribute("wLPtw").get(0)).getEnd(),
 						46, 0);
-				assertTrue(((TimeWindow) v.getAttribute("vLPtw").get(0))
+				assertTrue(((TimeWindow) v.getAttribute("wLPtw").get(0))
 						.isFlexStart());
-				assertFalse(((TimeWindow) v.getAttribute("vLPtw").get(0))
+				assertFalse(((TimeWindow) v.getAttribute("wLPtw").get(0))
 						.isFlexEnd());
 				assertEquals(
-						((TimeWindow) v.getAttribute("vLPtw").get(0))
+						((TimeWindow) v.getAttribute("wLPtw").get(0))
 								.getPeriod(),
 						0);
 
 				assertEquals(
-						((TimeWindow) v.getAttribute("vLPtw").get(1))
+						((TimeWindow) v.getAttribute("wLPtw").get(1))
 								.getBegin(),
 						22, 0);
 				assertEquals(
-						((TimeWindow) v.getAttribute("vLPtw").get(1)).getEnd(),
+						((TimeWindow) v.getAttribute("wLPtw").get(1)).getEnd(),
 						23, 0);
-				assertTrue(((TimeWindow) v.getAttribute("vLPtw").get(1))
+				assertTrue(((TimeWindow) v.getAttribute("wLPtw").get(1))
 						.isFlexStart());
-				assertFalse(((TimeWindow) v.getAttribute("vLPtw").get(1))
+				assertFalse(((TimeWindow) v.getAttribute("wLPtw").get(1))
 						.isFlexEnd());
 				assertEquals(
-						((TimeWindow) v.getAttribute("vLPtw").get(1))
+						((TimeWindow) v.getAttribute("wLPtw").get(1))
 								.getPeriod(),
 						0);
 				assertEquals(
