@@ -7,6 +7,7 @@ import java.util.List;
 
 import vrpRep.solutionChecker.ConstraintEvaluation;
 import vrpRep.solutionChecker.IConstraint;
+import vrpRep.structure.instance.DoubleValue;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.instance.Vehicle;
@@ -56,10 +57,10 @@ public class MaxTravelDistanceWithType implements IConstraint {
 				try {
 					nodeId1 = ((IntValue) Instance.getRequest(
 							r.getRequests().get(j).getId())
-							.getAttribute("node")).getValue();
+							.getAttribute("node").get(0)).getValue();
 					nodeId2 = ((IntValue) Instance.getRequest(
 							r.getRequests().get(j + 1).getId()).getAttribute(
-									"node")).getValue();
+									"node").get(0)).getValue();
 					travelDist += DistanceCalculator.calculateDistance(nodeId2,
 							nodeId1);
 				} catch (Exception e) {
@@ -68,10 +69,10 @@ public class MaxTravelDistanceWithType implements IConstraint {
 			}
 			//each vehicle
 			for (int i = 0; i < fleet.size(); i++) {
-				currentType = ((IntValue) (fleet.get(i).getAttribute("Type")
+				currentType = ((IntValue) (fleet.get(i).getAttribute("type")
 						.get(0))).getValue();
 				if (currentType == r.getType()) {
-					int maxTravelDist=((IntValue) (Instance.getFleet().get(i)
+					double maxTravelDist=((DoubleValue) (Instance.getFleet().get(i)
 							.getAttribute("maxTravelDistance").get(0)))
 							.getValue();
 					if (travelDist >maxTravelDist ) {

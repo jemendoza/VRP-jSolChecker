@@ -15,7 +15,6 @@ import org.junit.Test;
 
 import vrpRep.solutionChecker.DynamicFactory;
 import vrpRep.solutionChecker.VrpRepSolutionChecker;
-import vrpRep.structure.instance.Instance;
 
 public class MaxTravelDistanceNoTypeTest {
 
@@ -23,8 +22,8 @@ public class MaxTravelDistanceNoTypeTest {
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/MaxTravelDistanceNoType/Instance.xml";
-	private String solutionFile = "./xmlTest/MaxTravelDistanceNoType/SolutionTrue.xml";
+	private String instanceFile = "./xmlTest/MaxTravelDistanceNoType/InstanceFalse.xml";
+	private String solutionFile = "./xmlTest/MaxTravelDistanceNoType/Solution.xml";
 	private String outputFile = "./solutionTestOutput/MaxTravelDistanceNoType.xml";
 
 	@Before
@@ -32,7 +31,6 @@ public class MaxTravelDistanceNoTypeTest {
 		// set up test
 		solC = new VrpRepSolutionChecker(instanceFile, solutionFile);
 
-		Instance i = Instance.getInstance();
 		// start building xml output
 		root=new Element("test");	
 		root.setAttribute("instance_file", instanceFile);

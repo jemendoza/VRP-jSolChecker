@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test instance_file="./xmlTest/MaxTravelDistanceWithType/InstanceFalse.xml">
+  <evaluation solution_file="./xmlTest/MaxTravelDistanceWithType/Solution.xml">
+    <report>
+      <feasible>FALSE</feasible>
+      <messages>
+        <message>MaxTravelDistanceWithType|On route :0vehicle of type : 0 travelled a distance of:29.618820182586962 greater than 29.0</message>
+        <message>MaxTravelDistanceWithType|On route :1vehicle of type : 1 travelled a distance of:4.263277422790012 greater than 4.0</message>
+      </messages>
+      <objective>NaN</objective>
+    </report>
+  </evaluation>
+</test>
+

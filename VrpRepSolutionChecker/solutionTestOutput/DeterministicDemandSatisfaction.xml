@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test instance_file="./xmlTest/DeterministicDemandSatisfaction/Instance.xml">
+  <evaluation solution_file="./xmlTest/DeterministicDemandSatisfaction/SolutionFalse.xml">
+    <report>
+      <feasible>FALSE</feasible>
+      <messages>
+        <message>Deterministic demand satisfaction|Request 1 , Product 0 - 2.0 not equal to 3.0</message>
+        <message>Deterministic demand satisfaction|Request 1 , Product 1 - 2.0 not equal to 1.0</message>
+      </messages>
+      <objective>NaN</objective>
+    </report>
+  </evaluation>
+</test>
+

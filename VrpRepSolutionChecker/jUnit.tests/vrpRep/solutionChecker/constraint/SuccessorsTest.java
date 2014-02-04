@@ -13,6 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import vrpRep.solutionChecker.DynamicFactory;
 import vrpRep.solutionChecker.VrpRepSolutionChecker;
 
 /**
@@ -25,8 +26,8 @@ public class SuccessorsTest {
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/SuccessorsInstance.xml";
-	private String solutionFile = "./xmlTest/SuccessorsSolution.xml";
+	private String instanceFile = "./xmlTest/Successors/Instance.xml";
+	private String solutionFile = "./xmlTest/Successors/SolutionFalse.xml";
 	private String outputFile = "./solutionTestOutput/Successors.xml";
 
 
@@ -37,10 +38,13 @@ public class SuccessorsTest {
 
 		// start building xml output
 		root=new Element("test");		
+		root.setAttribute("instance_file", instanceFile);
 		experiment=new Element("evaluation");
 		experiment.setAttribute("solution_file",solutionFile);
 
-
+		DynamicFactory factory = new DynamicFactory("./config/config.xml");
+		factory.loadObjective(solC);
+		factory.setDistanceCalculator();
 	}
 
 

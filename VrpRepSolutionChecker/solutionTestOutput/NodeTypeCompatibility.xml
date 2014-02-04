@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test>
-  <evaluation solution_file="./xmlTest/NodeTypeCompatibilitySolution.xml" />
+<test instance_file="./xmlTest/NodeTypeCompatibility/Instance.xml">
+  <evaluation solution_file="./xmlTest/NodeTypeCompatibility/SolutionFalse.xml">
+    <report>
+      <feasible>FALSE</feasible>
+      <messages>
+        <message>NodeTypeCompatibility|The vehicle of type 0 is not compatible to pass on node 2 on route 0</message>
+      </messages>
+      <objective>NaN</objective>
+    </report>
+  </evaluation>
 </test>
 

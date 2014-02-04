@@ -16,11 +16,11 @@ import vrpRep.structure.solution.Route;
 import vrpRep.structure.solution.Solution;
 
 /**
- * Verifies the demand at each request is satisfied for splittable demands.
+ * Verifies the demand at each request is satisfied for non splittable demands.
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
-public class DeterministicSplittableDemandSatisfied implements IConstraint {
+public class DeterministicDemandSatisfied implements IConstraint {
 
 	private ConstraintEvaluation cEval;
 	/**
@@ -52,7 +52,7 @@ public class DeterministicSplittableDemandSatisfied implements IConstraint {
 				if (req.getDemand().size() != 0) {
 					//each demand
 					for (Demand d : req.getDemand()) {
-						ncr.addDemand(d.getId(), d.getDemand(), ((DemandValue)Instance.getRequest(req.getId()).getAttribute("demand").get(d.getId())).isSplittable());
+						ncr.addDemand(d.getId(), d.getDemand());
 					}
 				}	
 			}
@@ -71,7 +71,7 @@ public class DeterministicSplittableDemandSatisfied implements IConstraint {
 		for(RequestCResult ncr : requestDemands){
 			for(int pId : ncr.getProductIds()){
 				if(ncr.getSumDemands().get(pId) != ((DemandValue)Instance.getRequest(ncr.getRequestId()).getAttribute("demand").get(pId)).getValue()){
-					cEval.addMessage("Deterministic splittable demand satisfaction|Request "+ncr.getRequestId()+" , Product "+pId+" - "+ncr.getSumDemands().get(pId)+" not equal to "+((DemandValue)Instance.getRequest(ncr.getRequestId()).getAttribute("demand").get(pId)).getValue());
+					cEval.addMessage("Deterministic demand satisfaction|Request "+ncr.getRequestId()+" , Product "+pId+" - "+ncr.getSumDemands().get(pId)+" not equal to "+((DemandValue)Instance.getRequest(ncr.getRequestId()).getAttribute("demand").get(pId)).getValue());
 				}
 			}
 		}
@@ -93,10 +93,6 @@ public class DeterministicSplittableDemandSatisfied implements IConstraint {
 		 */
 		private ArrayList<Integer>			productIds	= new ArrayList<Integer>();
 		/**
-		 * List of product splitability values
-		 */
-		private ArrayList<Boolean>			prodsSplitable	= new ArrayList<Boolean>();
-		/**
 		 * Sum of demands for each product
 		 */
 		private HashMap<Integer, Double>	sumDemands	= new HashMap<Integer, Double>();
@@ -114,16 +110,11 @@ public class DeterministicSplittableDemandSatisfied implements IConstraint {
 		 * Add demand to the request
 		 * @param productId id of product
 		 * @param demand amount of the product
-		 * @param prodSplitable true if demand can be split between routes, false otherwise
 		 */
-		public void addDemand(int productId, double demand, boolean prodSplitable) {
+		public void addDemand(int productId, double demand) {
 			if (!productIds.contains(productId)) {
 				productIds.add(productId);
-				prodsSplitable.add(prodSplitable);
 				sumDemands.put(productId, demand);
-			} else {
-				if(prodsSplitable.get(productId))
-					sumDemands.put(productId, sumDemands.get(productId) + demand);
 			}
 		}
 

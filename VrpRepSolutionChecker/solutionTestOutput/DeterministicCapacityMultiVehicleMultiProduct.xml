@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test>
-  <evaluation solution_file="./xmlTest/DeterministicCapacityMultiVehicleMultiProduct/SolutionFalse.xml">
+  <evaluation solution_file="./xmlTest/DeterministicCapacityMultiVehicleMultiProduct/SolutionTrue.xml">
     <report>
-      <feasible>FALSE</feasible>
-      <messages>
-        <message>Deterministic capacity Multi Vehicle Multi Product|Vehicle capacity type 1 , Product Id 1 - 11.0 greater than 7.0</message>
-      </messages>
-      <objective>NaN</objective>
+      <feasible>TRUE</feasible>
+      <messages />
+      <objective>0.0</objective>
     </report>
   </evaluation>
 </test>

@@ -5,6 +5,7 @@ package vrpRep.solutionChecker.constraint;
 
 import vrpRep.solutionChecker.ConstraintEvaluation;
 import vrpRep.solutionChecker.IConstraint;
+import vrpRep.structure.instance.DoubleValue;
 import vrpRep.structure.instance.Instance;
 import vrpRep.structure.instance.IntValue;
 import vrpRep.structure.solution.Route;
@@ -55,17 +56,17 @@ public class MaxTravelDistanceNoType implements IConstraint {
 				try {
 					nodeId1 = ((IntValue) Instance.getRequest(
 							r.getRequests().get(j).getId())
-							.getAttribute("node")).getValue();
+							.getAttribute("node").get(0)).getValue();
 					nodeId2 = ((IntValue) Instance.getRequest(
 							r.getRequests().get(j + 1).getId()).getAttribute(
-									"node")).getValue();
+									"node").get(0)).getValue();
 					travelDist += DistanceCalculator.calculateDistance(nodeId2,
 							nodeId1);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-			int maxTravelDist = ((IntValue) (Instance.getFleet().get(0)
+			double maxTravelDist = ((DoubleValue) (Instance.getFleet().get(0)
 					.getAttribute("maxTravelDistance").get(0))).getValue();
 			if (travelDist > maxTravelDist) {
 				cEval.addMessage("MaxTravelDistanceNoType|On route :"+r.getId()+" distance travelled :"+travelDist+" greater than "+maxTravelDist);

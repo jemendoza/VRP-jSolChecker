@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<test>
-  <evaluation solution_file="./xmlTest/DeterministicDemandSatisfactionSolution.xml" />
-</test>
-
