@@ -1,5 +1,6 @@
 package vrpRep.solutionChecker.constraint;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileOutputStream;
@@ -13,6 +14,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import vrpRep.solutionChecker.DynamicFactory;
 import vrpRep.solutionChecker.VrpRepSolutionChecker;
 
 public class NbVehicleAvailableSingleTypeTest {
@@ -21,9 +23,9 @@ public class NbVehicleAvailableSingleTypeTest {
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/InstanceNbVehicleAvailable.xml";
-	private String solutionFile = "./xmlTest/SolutionNbVehicleAvailable.xml";
-	private String outputFile = "./solutionTestOutput/NbVehicleAvailable.xml";
+	private String instanceFile = "./xmlTest/NbVehicleAvailableSingleType/Instance.xml";
+	private String solutionFile = "./xmlTest/NbVehicleAvailableSingleType/SolutionFalse.xml";
+	private String outputFile = "./solutionTestOutput/NbVehicleAvailableSingleType.xml";
 
 
 	@Before
@@ -33,10 +35,13 @@ public class NbVehicleAvailableSingleTypeTest {
 
 		// start building xml output
 		root=new Element("test");		
+		root.setAttribute("instance_file", instanceFile);
 		experiment=new Element("evaluation");
 		experiment.setAttribute("solution_file",solutionFile);
 
-
+		DynamicFactory factory = new DynamicFactory("./config/config.xml");
+		factory.loadObjective(solC);
+		factory.setDistanceCalculator();
 	}
 
 
@@ -63,8 +68,15 @@ public class NbVehicleAvailableSingleTypeTest {
 		solC.addConstraint(new NbVehicleAvailableSingleType());
 		// run experiment
 		experiment.addContent(solC.checkSolution());
-
-		assertTrue(solC.isFeasible());
+		
+		if(solutionFile.endsWith("True.xml"))
+			assertTrue(solC.isFeasible());
+			else{
+				if(solutionFile.endsWith("False.xml"))
+						assertFalse(solC.isFeasible());
+				else
+					assertFalse(true);
+			}
 	}
 
 }
