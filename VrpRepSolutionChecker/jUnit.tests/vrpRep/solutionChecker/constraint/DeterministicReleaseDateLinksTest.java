@@ -20,7 +20,7 @@ import vrpRep.solutionChecker.VrpRepSolutionChecker;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  *
  */
-public class ReleaseDateLinksTest {
+public class DeterministicReleaseDateLinksTest {
 
 	private VrpRepSolutionChecker solC;
 	private Element root;
