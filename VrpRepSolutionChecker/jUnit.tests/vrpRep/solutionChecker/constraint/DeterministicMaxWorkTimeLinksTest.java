@@ -23,7 +23,7 @@ public class DeterministicMaxWorkTimeLinksTest {
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/DeterministicMaxWorkTimeLinks/InstanceFalse.xml";
+	private String instanceFile = "./xmlTest/DeterministicMaxWorkTimeLinks/InstanceTrue.xml";
 	private String solutionFile = "./xmlTest/DeterministicMaxWorkTimeLinks/Solution.xml";
 	private String outputFile = "./solutionTestOutput/DeterministicMaxWorkTimeLinks.xml";
 

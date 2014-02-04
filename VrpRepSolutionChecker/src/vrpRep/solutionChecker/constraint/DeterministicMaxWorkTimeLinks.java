@@ -45,17 +45,7 @@ public class DeterministicMaxWorkTimeLinks implements IConstraint {
 			}
 			for(int i=0;i<r.getRequests().size()-1;i++){
 
-				int startNode =r.getRequests().get(i).getNodeId();
-				int arrivalNode = r.getRequests().get(i+1).getNodeId();
-				Link l = Instance.getLink(startNode, arrivalNode);
-				//Si on a un temps sur les arcs.
-				if(l.getAttribute("time")!=null){
-					totalTime+=((DoubleValue)l.getAttribute("time").get(0)).getValue();
-				}
-				vrpRep.structure.instance.Request re = Instance.getRequest(r.getRequests().get(i+1).getId());
-				if(re.getAttribute("serviceTime")!=null){
-					totalTime+=((DoubleValue)re.getAttribute("serviceTime").get(0)).getValue();
-				}
+				totalTime+=getTime(r, i);
 
 			}
 			double maxWorkTime = ((DoubleValue)Instance.getFleet().get(r.getType()).getAttribute("wLPMaxWorkTime").get(0)).getValue();
@@ -63,6 +53,30 @@ public class DeterministicMaxWorkTimeLinks implements IConstraint {
 				cEval.addMessage("DeterministicMaxWorkTimeLinks|On Route "+r.getId()+" time worked is "+totalTime+" greater than "+maxWorkTime);
 			}
 		}
+	}
+	
+	/**
+	 * Keeps total time on one request
+	 * @param r is the Route
+	 * @param request is the index of the request 
+	 * @return total time
+	 */
+	public double getTime(Route r, int request) {
+		double totalTime=0;
+		
+		int startNode =r.getRequests().get(request).getNodeId();
+		int arrivalNode = r.getRequests().get(request+1).getNodeId();
+		Link l = Instance.getLink(startNode, arrivalNode);
+		//Si on a un temps sur les arcs.
+		if(l.getAttribute("time")!=null){
+			totalTime+=((DoubleValue)l.getAttribute("time").get(0)).getValue();
+		}
+		vrpRep.structure.instance.Request re = Instance.getRequest(r.getRequests().get(request+1).getId());
+		if(re.getAttribute("serviceTime")!=null){
+			totalTime+=((DoubleValue)re.getAttribute("serviceTime").get(0)).getValue();
+		}
+		
+		return totalTime;
 	}
 
 }
