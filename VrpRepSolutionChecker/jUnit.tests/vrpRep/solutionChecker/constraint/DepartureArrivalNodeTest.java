@@ -39,7 +39,8 @@ public class DepartureArrivalNodeTest {
 		solC = new VrpRepSolutionChecker(instanceFile, solutionFile);
 		
 		// start building xml output
-		root=new Element("test");		
+		root=new Element("test");
+		root.setAttribute("instance_file", instanceFile);
 		experiment=new Element("evaluation");
 		experiment.setAttribute("solution_file",solutionFile);
 		
