@@ -28,8 +28,8 @@ public class DeterministicSplittableDemandSatisfiedTest {
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/DeterministicDemandSatisfactionInstance.xml";
-	private String solutionFile = "./xmlTest/DeterministicDemandSatisfactionSolution.xml";
+	private String instanceFile = "./xmlTest/DeterministicDemandSatisfaction/Instance.xml";
+	private String solutionFile = "./xmlTest/DeterministicDemandSatisfaction/Solution.xml";
 	private String outputFile = "./solutionTestOutput/DeterministicDemandSatisfaction.xml";
 
 
@@ -65,7 +65,7 @@ public class DeterministicSplittableDemandSatisfiedTest {
 	}
 
 	@Test
-	public void test() {
+	public void testTrue() {
 		// add constraint(s)
 		solC.addConstraint(new DeterministicSplittableDemandSatisfied());
 		// run experiment
