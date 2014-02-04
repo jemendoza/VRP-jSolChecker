@@ -20,7 +20,7 @@ import vrpRep.structure.solution.Solution;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
-public class NbVehicleAvailableSingle implements IConstraint {
+public class NbVehicleAvailableSingleType implements IConstraint {
 	/**
 	 * Evaluation result
 	 */

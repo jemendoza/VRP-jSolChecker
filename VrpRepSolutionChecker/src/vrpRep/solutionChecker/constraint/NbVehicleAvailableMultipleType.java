@@ -18,7 +18,7 @@ import vrpRep.structure.instance.Vehicle;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
-public class NbVehicleAvailableMultiple implements IConstraint {
+public class NbVehicleAvailableMultipleType implements IConstraint {
 	/**
 	 * Evaluation result
 	 */
@@ -36,7 +36,7 @@ public class NbVehicleAvailableMultiple implements IConstraint {
 		List<Integer> nbVehicleTypeInstance;
 		try {
 			nbVehicleTypeInstance = getInstanceVehicle();
-			NbVehicleAvailableSingle nvas = new NbVehicleAvailableSingle();
+			NbVehicleAvailableSingleType nvas = new NbVehicleAvailableSingleType();
 			List<Integer> nbVehicleTypeSolution = nvas.getSolutionVehicle();
 			compare(nbVehicleTypeInstance, nbVehicleTypeSolution);
 
