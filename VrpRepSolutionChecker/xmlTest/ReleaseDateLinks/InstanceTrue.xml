@@ -131,7 +131,7 @@
 				<avg>3.14159</avg>
 			</speedProfile>
 			<workloadProfile>
-				<maxWorkTime isFlexible="false">91</maxWorkTime>
+				<maxWorkTime isFlexible="false">107</maxWorkTime>
 				<tw period="0">
 					<start isHard="true">22</start>
 					<end isHard="true">23</end>
@@ -260,7 +260,7 @@
 			</demand>
 			<prize>0</prize>
 			<cost>3.141592</cost>
-			<releaseDate>3141</releaseDate>
+			<releaseDate>15</releaseDate>
 			<serviceTime>2</serviceTime>
 			<predecessors>
 				<request>0</request>
@@ -296,7 +296,7 @@
 			</demand>
 			<prize>0</prize>
 			<cost>3.141</cost>
-			<releaseDate>3.1</releaseDate>
+			<releaseDate>4</releaseDate>
 			<serviceTime>3</serviceTime>
 			<predecessors>
 				<request>0</request>
@@ -333,7 +333,7 @@
 			</demand>
 			<prize>0</prize>
 			<cost>3.141</cost>
-			<releaseDate>25.1</releaseDate>
+			<releaseDate>24.02</releaseDate>
 			<serviceTime>4</serviceTime>
 			<predecessors>
 				<request>0</request>
@@ -371,7 +371,7 @@
 			</demand>
 			<prize>0</prize>
 			<cost>3.141</cost>
-			<releaseDate>3.1</releaseDate>
+			<releaseDate>42</releaseDate>
 			<serviceTime>5</serviceTime>
 			<predecessors>
 				<request>0</request>
@@ -409,7 +409,7 @@
 			</demand>
 			<prize>0</prize>
 			<cost>3.141</cost>
-			<releaseDate>100</releaseDate>
+			<releaseDate>85</releaseDate>
 			<serviceTime>6</serviceTime>
 			<predecessors>
 				<request>0</request>
@@ -447,7 +447,7 @@
 			</demand>
 			<prize>0</prize>
 			<cost>3.141</cost>
-			<releaseDate>3.1</releaseDate>
+			<releaseDate>56.9</releaseDate>
 			<serviceTime>7</serviceTime>
 			<predecessors>
 				<request>0</request>
@@ -485,7 +485,7 @@
 			</demand>
 			<prize>0</prize>
 			<cost>3.141</cost>
-			<releaseDate>3.1</releaseDate>
+			<releaseDate>82</releaseDate>
 			<serviceTime>8</serviceTime>
 			<predecessors>
 				<request>0</request>

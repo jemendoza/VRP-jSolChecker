@@ -1,9 +1,5 @@
-/**
- * 
- */
 package vrpRep.solutionChecker.constraint;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileOutputStream;
@@ -24,25 +20,27 @@ import vrpRep.solutionChecker.VrpRepSolutionChecker;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  *
  */
-public class DeterministicDemandSatisfiedTest {
+public class ReleaseDateLinksTest {
 
 	private VrpRepSolutionChecker solC;
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/DeterministicDemandSatisfaction/Instance.xml";
-	private String solutionFile = "./xmlTest/DeterministicDemandSatisfaction/SolutionFalse.xml";
-	private String outputFile = "./solutionTestOutput/DeterministicDemandSatisfaction.xml";
+	private String instanceFile = "./xmlTest/ReleaseDateLinks/InstanceFalse.xml";
+	private String solutionFile = "./xmlTest/ReleaseDateLinks/Solution.xml";
+	private String outputFile = "./solutionTestOutput/ReleaseDateLinks.xml";
 
-
+	/**
+	 * @throws java.lang.Exception
+	 */
 	@Before
-	public void setUp() throws Exception {	
+	public void setUp() throws Exception {
 		// set up test
 		solC = new VrpRepSolutionChecker(instanceFile, solutionFile);
 
 		// start building xml output
-		root=new Element("test");	
-		root.setAttribute("instance_file", instanceFile);	
+		root=new Element("test");
+		root.setAttribute("instance_file", instanceFile);
 		experiment=new Element("evaluation");
 		experiment.setAttribute("solution_file",solutionFile);
 
@@ -51,7 +49,9 @@ public class DeterministicDemandSatisfiedTest {
 		factory.setDistanceCalculator();
 	}
 
-
+	/**
+	 * @throws java.lang.Exception
+	 */
 	@After
 	public void tearDown() throws Exception {
 		// close experiment
@@ -70,21 +70,12 @@ public class DeterministicDemandSatisfiedTest {
 	}
 
 	@Test
-	public void testTrue() {
+	public void test() {
 		// add constraint(s)
-		solC.addConstraint(new DeterministicSplittableDemandSatisfied());
+		solC.addConstraint(new DeterministicReleaseDateLinks());
 		// run experiment
 		experiment.addContent(solC.checkSolution());
-
-		if(solutionFile.endsWith("True.xml"))
-			assertTrue(solC.isFeasible());
-		else {
-			if(solutionFile.endsWith("False.xml"))
-
-				assertFalse(solC.isFeasible());
-			else
-				assertFalse(true);
-		}
+		assertTrue(solC.isFeasible());
 	}
 
 }

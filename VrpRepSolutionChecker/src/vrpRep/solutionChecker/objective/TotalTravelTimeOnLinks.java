@@ -15,7 +15,7 @@ import vrpRep.structure.solution.Solution;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  *
  */
-public class TotalTravelTimeOnLinksWithServiceTimes implements IObjectiveFunction{
+public class TotalTravelTimeOnLinks implements IObjectiveFunction{
 
 	@Override
 	public double evaluate() {		
@@ -23,7 +23,8 @@ public class TotalTravelTimeOnLinksWithServiceTimes implements IObjectiveFunctio
 		// each route
 		for(Route r : Solution.getRoutes()){	
 			vrpRep.structure.instance.Request requete = Instance.getRequest(r.getRequests().get(0).getId());
-			totalTime+=((DoubleValue)requete.getAttribute("serviceTime").get(0)).getValue();
+			if(requete.getAttribute("serviceTime") != null)
+				totalTime+=((DoubleValue)requete.getAttribute("serviceTime").get(0)).getValue();
 			for(int i=0;i<r.getRequests().size()-1;i++){
 				int startNode =r.getRequests().get(i).getNodeId();
 				int arrivalNode = r.getRequests().get(i+1).getNodeId();
@@ -33,7 +34,8 @@ public class TotalTravelTimeOnLinksWithServiceTimes implements IObjectiveFunctio
 					totalTime+=((DoubleValue)l.getAttribute("time").get(0)).getValue();
 				}
 				vrpRep.structure.instance.Request re = Instance.getRequest(r.getRequests().get(0).getId());
-				totalTime+=((DoubleValue)re.getAttribute("serviceTime").get(0)).getValue();
+				if(re.getAttribute("serviceTime") != null)
+					totalTime+=((DoubleValue)re.getAttribute("serviceTime").get(0)).getValue();
 			}
 		}
 		return totalTime;

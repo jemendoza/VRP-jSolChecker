@@ -67,8 +67,9 @@ public class DeterministicMaxWorkTimeNodes implements IConstraint {
 					speed = getSpeed(Instance.getVehicle(vehiType).getAttribute("speedProfile"), timeSpent);
 				else
 					speed = getSpeed(Instance.getVehicle(vehiType).getAttribute("speedProfile"), timeSpent);
-				timeSpent += DistanceCalculator.calculateDistance(departureNode, arrivalNode)/speed;	
-				timeSpent += ((DoubleValue)Instance.getRequest(req.getId()).getAttribute("serviceTime").get(0)).getValue();
+				timeSpent += DistanceCalculator.calculateDistance(departureNode, arrivalNode)/speed;
+				if(Instance.getRequest(req.getId()).getAttribute("serviceTime") != null)
+					timeSpent += ((DoubleValue)Instance.getRequest(req.getId()).getAttribute("serviceTime").get(0)).getValue();
 			}
 			
 			if(vehiType == -1)
