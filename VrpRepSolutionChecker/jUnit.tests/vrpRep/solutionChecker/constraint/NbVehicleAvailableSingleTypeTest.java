@@ -68,15 +68,15 @@ public class NbVehicleAvailableSingleTypeTest {
 		solC.addConstraint(new NbVehicleAvailableSingleType());
 		// run experiment
 		experiment.addContent(solC.checkSolution());
-		
+
 		if(solutionFile.endsWith("True.xml"))
 			assertTrue(solC.isFeasible());
-			else{
-				if(solutionFile.endsWith("False.xml"))
-						assertFalse(solC.isFeasible());
-				else
-					assertFalse(true);
-			}
+		else{
+			if(solutionFile.endsWith("False.xml"))
+				assertFalse(solC.isFeasible());
+			else
+				assertFalse(true);
+		}
 	}
 
 }

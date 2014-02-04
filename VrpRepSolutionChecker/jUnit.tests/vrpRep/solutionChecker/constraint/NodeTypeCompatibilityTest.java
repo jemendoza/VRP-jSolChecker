@@ -1,5 +1,6 @@
 package vrpRep.solutionChecker.constraint;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileOutputStream;
@@ -13,6 +14,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import vrpRep.solutionChecker.DynamicFactory;
 import vrpRep.solutionChecker.VrpRepSolutionChecker;
 
 /**
@@ -26,8 +28,8 @@ public class NodeTypeCompatibilityTest {
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/NodeTypeCompatibilityInstance.xml";
-	private String solutionFile = "./xmlTest/NodeTypeCompatibilitySolution.xml";
+	private String instanceFile = "./xmlTest/NodeTypeCompatibility/Instance.xml";
+	private String solutionFile = "./xmlTest/NodeTypeCompatibility/SolutionFalse.xml";
 	private String outputFile = "./solutionTestOutput/NodeTypeCompatibility.xml";
 
 
@@ -38,10 +40,13 @@ public class NodeTypeCompatibilityTest {
 
 		// start building xml output
 		root=new Element("test");		
+		root.setAttribute("instance_file", instanceFile);
 		experiment=new Element("evaluation");
 		experiment.setAttribute("solution_file",solutionFile);
 
-
+		DynamicFactory factory = new DynamicFactory("./config/config.xml");
+		factory.loadObjective(solC);
+		factory.setDistanceCalculator();
 	}
 
 
@@ -69,7 +74,14 @@ public class NodeTypeCompatibilityTest {
 		// run experiment
 		experiment.addContent(solC.checkSolution());
 
-		assertTrue(solC.isFeasible());
+		if(solutionFile.endsWith("True.xml"))
+			assertTrue(solC.isFeasible());
+		else{
+			if(solutionFile.endsWith("False.xml"))
+				assertFalse(solC.isFeasible());
+			else
+				assertFalse(true);
+		}
 	}
 
 }
