@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test instance_file="./xmlTest/DeterministicSplittableDemandSatisfied/Instance.xml">
+  <evaluation solution_file="./xmlTest/DeterministicSplittableDemandSatisfied/SolutionFalse.xml">
+    <report>
+      <feasible>FALSE</feasible>
+      <messages>
+        <message>Deterministic splittable demand satisfaction|Request 0 , Product 0 - 3.0 not equal to 1.0</message>
+        <message>Deterministic splittable demand satisfaction|Request 1 , Product 0 - 2.0 not equal to 3.0</message>
+        <message>Deterministic splittable demand satisfaction|Request 2 , Product 1 - 2.0 not equal to 3.0</message>
+      </messages>
+      <objective>NaN</objective>
+    </report>
+  </evaluation>
+</test>
+

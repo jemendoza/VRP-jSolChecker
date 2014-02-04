@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test instance_file="./xmlTest/DeterministicReleaseDateOnNodes/InstanceFalse.xml">
+  <evaluation solution_file="./xmlTest/DeterministicReleaseDateOnNodes/Solution.xml">
+    <report>
+      <feasible>FALSE</feasible>
+      <messages>
+        <message>DeterministicReleaseDateOnNodes|Request : 1is served at : 2.4100354605470033which is before : 3.0</message>
+        <message>DeterministicReleaseDateOnNodes|Request : 4is served at : 4.998525052638486which is before : 4.999</message>
+      </messages>
+      <objective>NaN</objective>
+    </report>
+  </evaluation>
+</test>
+

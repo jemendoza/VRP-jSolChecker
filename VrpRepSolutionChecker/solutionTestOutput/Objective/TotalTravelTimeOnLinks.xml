@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test instance_file="./xmlTestObjective/TotalTravelTimeOnLinks/Instance.xml">
+  <evaluation solution_file="./xmlTestObjective/TotalTravelTimeOnLinks/Solution.xml">
+    <report>
+      <feasible>TRUE</feasible>
+      <messages />
+      <objective>193.0</objective>
+    </report>
+  </evaluation>
+</test>
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test instance_file="./xmlTestObjective/TotalDistance/Instance.xml">
+  <evaluation solution_file="./xmlTestObjective/TotalDistance/Solution.xml">
+    <report>
+      <feasible>TRUE</feasible>
+      <messages />
+      <objective>33.88209760537697</objective>
+    </report>
+  </evaluation>
+</test>
+
