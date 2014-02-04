@@ -15,7 +15,7 @@ import org.junit.Test;
 
 import vrpRep.solutionChecker.VrpRepSolutionChecker;
 
-public class NbVehicleAvailableTest {
+public class NbVehicleAvailableSingleTypeTest {
 
 	private VrpRepSolutionChecker solC;
 	private Element root;
@@ -60,7 +60,7 @@ public class NbVehicleAvailableTest {
 	@Test
 	public void test() {
 		// add constraint(s)
-		solC.addConstraint(new NbVehicleAvailable());
+		solC.addConstraint(new NbVehicleAvailableSingleType());
 		// run experiment
 		experiment.addContent(solC.checkSolution());
 

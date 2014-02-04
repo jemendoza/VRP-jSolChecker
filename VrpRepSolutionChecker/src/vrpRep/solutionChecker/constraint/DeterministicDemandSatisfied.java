@@ -20,7 +20,7 @@ import vrpRep.structure.solution.Solution;
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  * 
  */
-public class DeterministicSplittableDemandSatisfied implements IConstraint {
+public class DeterministicDemandSatisfied implements IConstraint {
 
 	private ConstraintEvaluation cEval;
 	/**

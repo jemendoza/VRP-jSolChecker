@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test instance_file="./xmlTest/NbVehicleAvailableMultiple/Instance.xml">
+  <evaluation solution_file="./xmlTest/NbVehicleAvailableMultiple/SolutionFalse.xml">
+    <report>
+      <feasible>FALSE</feasible>
+      <messages>
+        <message>NbVehicleAvailableMultiple|Number of vehicle of type 0 available : 1 less than 3</message>
+      </messages>
+      <objective>NaN</objective>
+    </report>
+  </evaluation>
+</test>
+

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package vrpRep.solutionChecker.constraint;
 
 import static org.junit.Assert.assertFalse;
@@ -20,19 +17,15 @@ import org.junit.Test;
 import vrpRep.solutionChecker.DynamicFactory;
 import vrpRep.solutionChecker.VrpRepSolutionChecker;
 
-/**
- * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
- *
- */
-public class DeterministicDemandSatisfiedTest {
+public class NbVehicleAvailableMultipleTypeTest {
 
 	private VrpRepSolutionChecker solC;
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/DeterministicDemandSatisfaction/Instance.xml";
-	private String solutionFile = "./xmlTest/DeterministicDemandSatisfaction/SolutionFalse.xml";
-	private String outputFile = "./solutionTestOutput/DeterministicDemandSatisfaction.xml";
+	private String instanceFile = "./xmlTest/NbVehicleAvailableMultiple/Instance.xml";
+	private String solutionFile = "./xmlTest/NbVehicleAvailableMultiple/SolutionFalse.xml";
+	private String outputFile = "./solutionTestOutput/NbVehicleAvailableMultiple.xml";
 
 
 	@Before
@@ -41,8 +34,8 @@ public class DeterministicDemandSatisfiedTest {
 		solC = new VrpRepSolutionChecker(instanceFile, solutionFile);
 
 		// start building xml output
-		root=new Element("test");	
-		root.setAttribute("instance_file", instanceFile);	
+		root=new Element("test");		
+		root.setAttribute("instance_file", instanceFile);
 		experiment=new Element("evaluation");
 		experiment.setAttribute("solution_file",solutionFile);
 
@@ -70,18 +63,17 @@ public class DeterministicDemandSatisfiedTest {
 	}
 
 	@Test
-	public void testTrue() {
+	public void test() {
 		// add constraint(s)
-		solC.addConstraint(new DeterministicDemandSatisfied());
+		solC.addConstraint(new NbVehicleAvailableMultipleType());
 		// run experiment
 		experiment.addContent(solC.checkSolution());
 
 		if(solutionFile.endsWith("True.xml"))
-			assertTrue(solC.isFeasible());
-		else {
+		assertTrue(solC.isFeasible());
+		else{
 			if(solutionFile.endsWith("False.xml"))
-
-				assertFalse(solC.isFeasible());
+					assertFalse(solC.isFeasible());
 			else
 				assertFalse(true);
 		}
