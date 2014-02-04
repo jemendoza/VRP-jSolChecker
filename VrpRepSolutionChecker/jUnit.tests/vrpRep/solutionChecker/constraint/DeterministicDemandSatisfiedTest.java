@@ -72,7 +72,7 @@ public class DeterministicDemandSatisfiedTest {
 	@Test
 	public void testTrue() {
 		// add constraint(s)
-		solC.addConstraint(new DeterministicDemandSatisfied());
+		solC.addConstraint(new DeterministicSplittableDemandSatisfied());
 		// run experiment
 		experiment.addContent(solC.checkSolution());
 
