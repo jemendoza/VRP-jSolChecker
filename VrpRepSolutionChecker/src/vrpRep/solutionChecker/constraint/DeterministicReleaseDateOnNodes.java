@@ -45,10 +45,11 @@ public class DeterministicReleaseDateOnNodes implements IConstraint {
 			else
 				timeSpent = 0;
 
-			departureNode = r.getRequests().get(0).getNodeId();
+		
 
 			for(int reqIndex = 1; reqIndex < r.getRequests().size(); reqIndex++){
 				req = r.getRequests().get(reqIndex);
+				departureNode = r.getRequests().get(reqIndex-1).getNodeId();
 				arrivalNode = req.getNodeId();
 
 				if(vehiType != -1)
@@ -57,11 +58,11 @@ public class DeterministicReleaseDateOnNodes implements IConstraint {
 					speed = mxton.getSpeed(Instance.getVehicle(vehiType).getAttribute("speedProfile"), timeSpent);
 				timeSpent += DistanceCalculator.calculateDistance(departureNode, arrivalNode)/speed;	
 
-				if(((DoubleValue)Instance.getRequest(req.getId()).getAttribute("releaseDate")).getValue() > timeSpent)
+				if(((DoubleValue)Instance.getRequest(req.getId()).getAttribute("releaseDate").get(0)).getValue() > timeSpent)
 					cEval.addMessage("DeterministicReleaseDateOnNodes|"+
 							"Request : "+req.getId()+
 							"is served at : "+timeSpent+
-							"which is before : "+((DoubleValue)Instance.getRequest(req.getId()).getAttribute("releaseDate")).getValue());
+							"which is before : "+((DoubleValue)Instance.getRequest(req.getId()).getAttribute("releaseDate").get(0)).getValue());
 
 				if(Instance.getRequest(req.getId()).getAttribute("serviceTime") != null)
 					timeSpent += ((DoubleValue)Instance.getRequest(req.getId()).getAttribute("serviceTime").get(0)).getValue();

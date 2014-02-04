@@ -24,7 +24,7 @@ public class DeterministicMaxWorkTimeNodesTest {
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/DeterministicMaxWorkTimeNodes/InstanceFalse.xml";
+	private String instanceFile = "./xmlTest/DeterministicMaxWorkTimeNodes/InstanceTrue.xml";
 	private String solutionFile = "./xmlTest/DeterministicMaxWorkTimeNodes/Solution.xml";
 	private String outputFile = "./solutionTestOutput/DeterministicMaxWorkTimeNodes.xml";
 

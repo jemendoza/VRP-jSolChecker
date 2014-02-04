@@ -32,12 +32,13 @@ public class TotalTravelTimeOverNodes implements IObjectiveFunction{
 		for(Route r : Solution.getRoutes()){
 			vehiType = (r.isHasType()?r.getType():-1);	
 			if(Instance.getRequest(r.getRequests().get(0).getId()).getAttribute("serviceTime") != null)
-				timeSpent += ((DoubleValue)Instance.getRequest(r.getRequests().get(0).getId()).getAttribute("serviceTime")).getValue();
+				timeSpent += ((DoubleValue)Instance.getRequest(r.getRequests().get(0).getId()).getAttribute("serviceTime").get(0)).getValue();
 
-			departureNode = r.getRequests().get(0).getNodeId();
+			
 			for(int reqIndex = 1; reqIndex < r.getRequests().size(); reqIndex++){
 				req = r.getRequests().get(reqIndex);
 				arrivalNode = req.getNodeId();
+				departureNode = r.getRequests().get(reqIndex-1).getNodeId();
 
 				if(vehiType != -1)
 					speed = wton.getSpeed(Instance.getVehicle(vehiType).getAttribute("speedProfile"), timeSpent);
@@ -45,7 +46,7 @@ public class TotalTravelTimeOverNodes implements IObjectiveFunction{
 					speed = wton.getSpeed(Instance.getVehicle(vehiType).getAttribute("speedProfile"), timeSpent);
 				timeSpent += DistanceCalculator.calculateDistance(departureNode, arrivalNode)/speed;	
 				if(Instance.getRequest(req.getId()).getAttribute("serviceTime") != null)
-					timeSpent += ((DoubleValue)Instance.getRequest(req.getId()).getAttribute("serviceTime")).getValue();
+					timeSpent += ((DoubleValue)Instance.getRequest(req.getId()).getAttribute("serviceTime").get(0)).getValue();
 			}
 		}
 

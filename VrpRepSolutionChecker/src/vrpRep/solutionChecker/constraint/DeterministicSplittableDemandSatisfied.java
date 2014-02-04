@@ -70,7 +70,9 @@ public class DeterministicSplittableDemandSatisfied implements IConstraint {
 	private void checkDemands() {
 		for(RequestCResult ncr : requestDemands){
 			for(int pId : ncr.getProductIds()){
-				if(ncr.getSumDemands().get(pId) != ((DemandValue)Instance.getRequest(ncr.getRequestId()).getAttribute("demand").get(pId)).getValue()){
+				double  demand = ncr.getSumDemands().get(pId);
+				double demandReel = ((DemandValue)Instance.getRequest(ncr.getRequestId()).getAttribute("demand").get(pId)).getValue();
+				if(demand != demandReel){
 					cEval.addMessage("Deterministic splittable demand satisfaction|Request "+ncr.getRequestId()+" , Product "+pId+" - "+ncr.getSumDemands().get(pId)+" not equal to "+((DemandValue)Instance.getRequest(ncr.getRequestId()).getAttribute("demand").get(pId)).getValue());
 				}
 			}

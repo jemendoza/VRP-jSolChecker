@@ -8,5 +8,5 @@
 <objectives>
     <objective name="distance">vrpRep.solutionChecker.objective.FalseObjective</objective>
 </objectives>
-<distanceCalculator>vrpRep.utilities.DistanceCalculatorEuc3D</distanceCalculator>
+<distanceCalculator>vrpRep.utilities.DistanceCalculatorEuc2D</distanceCalculator>
 </config>

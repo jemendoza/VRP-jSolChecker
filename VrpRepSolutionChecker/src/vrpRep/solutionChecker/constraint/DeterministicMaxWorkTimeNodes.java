@@ -57,10 +57,11 @@ public class DeterministicMaxWorkTimeNodes implements IConstraint {
 			else
 				timeSpent = 0;
 
-			departureNode = r.getRequests().get(0).getNodeId();
+			
 
 			for(int reqIndex = 1; reqIndex < r.getRequests().size(); reqIndex++){
 				req = r.getRequests().get(reqIndex);
+				departureNode = r.getRequests().get(reqIndex-1).getNodeId();
 				arrivalNode = req.getNodeId();
 				
 				if(vehiType != -1)
@@ -107,7 +108,7 @@ public class DeterministicMaxWorkTimeNodes implements IConstraint {
 		}
 
 		if(vAtt instanceof DoubleValue)
-			return ((SpeedInt)Instance.getVehicle(0).getAttribute("speedProfile").get(0)).getSpeed();
+			return ((DoubleValue) vAtt).getValue();
 		else{		
 			int i = -1, j;
 			while (++i < speedProfile.size() && !(min <= time && time <= max)){

@@ -28,7 +28,7 @@ public class DeterministicReleaseDateLinksTest {
 
 	private String instanceFile = "./xmlTest/ReleaseDateLinks/InstanceFalse.xml";
 	private String solutionFile = "./xmlTest/ReleaseDateLinks/Solution.xml";
-	private String outputFile = "./solutionTestOutput/ReleaseDateLinks.xml";
+	private String outputFile = "./solutionTestOutput/DeterministicReleaseDateLinks.xml";
 
 	/**
 	 * @throws java.lang.Exception
