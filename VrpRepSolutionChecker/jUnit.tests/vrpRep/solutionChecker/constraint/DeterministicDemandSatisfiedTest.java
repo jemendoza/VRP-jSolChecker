@@ -3,6 +3,7 @@
  */
 package vrpRep.solutionChecker.constraint;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileOutputStream;
@@ -16,20 +17,21 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import vrpRep.solutionChecker.DynamicFactory;
 import vrpRep.solutionChecker.VrpRepSolutionChecker;
 
 /**
  * @author Maxim HOSKINS, Romain LIENARD, Raphael MOLY and Alexandre RENAUD
  *
  */
-public class DeterministicSplittableDemandSatisfiedTest {
+public class DeterministicDemandSatisfiedTest {
 
 	private VrpRepSolutionChecker solC;
 	private Element root;
 	private Element experiment;
 
 	private String instanceFile = "./xmlTest/DeterministicDemandSatisfaction/Instance.xml";
-	private String solutionFile = "./xmlTest/DeterministicDemandSatisfaction/Solution.xml";
+	private String solutionFile = "./xmlTest/DeterministicDemandSatisfaction/SolutionTrue.xml";
 	private String outputFile = "./solutionTestOutput/DeterministicDemandSatisfaction.xml";
 
 
@@ -43,7 +45,9 @@ public class DeterministicSplittableDemandSatisfiedTest {
 		experiment=new Element("evaluation");
 		experiment.setAttribute("solution_file",solutionFile);
 
-
+		DynamicFactory factory = new DynamicFactory("./config/config.xml");
+		factory.loadObjective(solC);
+		factory.setDistanceCalculator();
 	}
 
 
@@ -71,7 +75,15 @@ public class DeterministicSplittableDemandSatisfiedTest {
 		// run experiment
 		experiment.addContent(solC.checkSolution());
 
-		assertTrue(solC.isFeasible());
+		if(solutionFile.endsWith("True.xml"))
+			assertTrue(solC.isFeasible());
+		else {
+			if(solutionFile.endsWith("False.xml"))
+
+				assertFalse(solC.isFeasible());
+			else
+				assertFalse(true);
+		}
 	}
 
 }
