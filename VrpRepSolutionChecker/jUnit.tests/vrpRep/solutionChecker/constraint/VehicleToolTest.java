@@ -16,6 +16,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import vrpRep.solutionChecker.DynamicFactory;
 import vrpRep.solutionChecker.VrpRepSolutionChecker;
 
 /**
@@ -28,8 +29,8 @@ public class VehicleToolTest {
 	private Element root;
 	private Element experiment;
 
-	private String instanceFile = "./xmlTest/VehicleToolInstance.xml";
-	private String solutionFile = "./xmlTest/VehicleToolSolution.xml";
+	private String instanceFile = "./xmlTest/VehicleTool/Instance.xml";
+	private String solutionFile = "./xmlTest/VehicleTool/SolutionFalse.xml";
 	private String outputFile = "./solutionTestOutput/VehicleTool.xml";
 
 
@@ -39,10 +40,14 @@ public class VehicleToolTest {
 		solC = new VrpRepSolutionChecker(instanceFile, solutionFile);
 
 		// start building xml output
-		root=new Element("test");		
+		root=new Element("test");
+		root.setAttribute("instance_file", instanceFile);
 		experiment=new Element("evaluation");
 		experiment.setAttribute("solution_file",solutionFile);
-
+		
+		DynamicFactory factory = new DynamicFactory("./config/config.xml");
+		factory.loadObjective(solC);
+		factory.setDistanceCalculator();
 
 	}
 

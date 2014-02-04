@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test instance_file="./xmlTest/MaxTravelDistanceNoType/InstanceFalse.xml">
+  <evaluation solution_file="./xmlTest/MaxTravelDistanceNoType/Solution.xml">
+    <report>
+      <feasible>FALSE</feasible>
+      <messages>
+        <message>MaxTravelDistanceNoType|On route :0 distance travelled :29.618820182586962 greater than 28.0</message>
+      </messages>
+      <objective>NaN</objective>
+    </report>
+  </evaluation>
+</test>
+

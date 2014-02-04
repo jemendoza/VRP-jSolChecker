@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test>
-  <evaluation solution_file="./xmlTest/VehicleMaxRequestsSolution.xml" />
+<test instance_file="./xmlTest/VehicleMaxRequests/Instance.xml">
+  <evaluation solution_file="./xmlTest/VehicleMaxRequests/SolutionFalse.xml">
+    <report>
+      <feasible>FALSE</feasible>
+      <messages>
+        <message>VehicleMaxRequests|Number of requests for the vehicle 1 greater than 2 on the route 1</message>
+      </messages>
+      <objective>NaN</objective>
+    </report>
+  </evaluation>
 </test>
 

@@ -81,14 +81,14 @@
 			<tool id="1">4</tool>
 		</request>
 		<request type="0" link="0" id="1" node="0">
-			<skill id="2">3</skill>
-			<skill id="3">4</skill>
+			<skill id="0">3</skill>
+			<skill id="1">4</skill>
 			<tool id="4">1</tool>
 			<tool id="3">2</tool>
 		</request>
 		<request type="0" link="0" id="2" node="0">
-			<skill id="0">1</skill>
-			<skill id="1">2</skill>
+			<skill id="2">1</skill>
+			<skill id="3">2</skill>
 			<tool id="2">3</tool>
 			<tool id="1">4</tool>
 		</request>

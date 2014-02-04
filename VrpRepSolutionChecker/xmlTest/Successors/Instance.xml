@@ -145,166 +145,19 @@
 	</fleet>
 	<requests>
 		<request type="0" link="0" id="0" node="0">
-			<tw period="0">
-				<start isHard="true">53</start>
-				<end isHard="true">54</end>
-			</tw>
-			<tw period="1">
-				<start isHard="true">56</start>
-				<end isHard="true">57</end>
-			</tw>
-			<demand isSplitable="false" type="0">
-				<ProbabilityDistribution name="poisson">
-					<moment name="String">3.1415</moment>
-					<moment name="String">3.1410</moment>
-				</ProbabilityDistribution>
-			</demand>
-			<demand isSplitable="false" type="0">
-				<ProbabilityDistribution name="normal">
-					<moment name="String">3.1415</moment>
-					<moment name="String">3.14</moment>
-				</ProbabilityDistribution>
-			</demand>
-			<prize>0</prize>
-			<cost>3.141</cost>
-			<releaseDate>3.1</releaseDate>
-			<serviceTime>
-				<ProbabilityDistribution name="normal">
-					<moment name="String">3.141</moment>
-					<moment name="String">3.14</moment>
-				</ProbabilityDistribution>
-			</serviceTime>
 			<successors>
 				<request>1</request>
+				<request>2</request>
 			</successors>
-			<skill id="0">1</skill>
-			<skill id="1">2</skill>
-			<tool id="2">3</tool>
-			<tool id="1">4</tool>
 		</request>
 		<request type="0" link="0" id="1" node="0">
-			<tw period="0">
-				<start isHard="true">34</start>
-				<end isHard="true">35</end>
-			</tw>
-			<tw period="1">
-				<start isHard="true">23</start>
-				<end isHard="true">12</end>
-			</tw>
-			<demand isSplitable="false" type="0">
-				<ProbabilityDistribution name="poisson">
-					<moment name="String">3.1415</moment>
-					<moment name="String">3.1415</moment>
-				</ProbabilityDistribution>
-			</demand>
-			<demand isSplitable="false" type="0">
-				<ProbabilityDistribution name="normal">
-					<moment name="String">3.141</moment>
-					<moment name="String">3.1</moment>
-				</ProbabilityDistribution>
-			</demand>
-			<prize>0</prize>
-			<cost>3.141592</cost>
-			<releaseDate>3.141</releaseDate>
-			<serviceTime>
-				<ProbabilityDistribution name="poisson">
-					<moment name="String">3.1415</moment>
-					<moment name="String">3.14</moment>
-				</ProbabilityDistribution>
-			</serviceTime>
-			<predecessors>
-				<request>0</request>
-			</predecessors>
 			<successors>
-				<request>1</request>
+				<request>2</request>
 			</successors>
-			<skill id="0">3</skill>
-			<skill id="1">4</skill>
-			<tool id="4">1</tool>
-			<tool id="3">2</tool>
 		</request>
 		<request type="0" link="0" id="2" node="0">
-			<tw period="0">
-				<start isHard="true">53</start>
-				<end isHard="true">54</end>
-			</tw>
-			<tw period="1">
-				<start isHard="true">56</start>
-				<end isHard="true">57</end>
-			</tw>
-			<demand isSplitable="false" type="0">
-				<ProbabilityDistribution name="poisson">
-					<moment name="String">3.1415</moment>
-					<moment name="String">3.1410</moment>
-				</ProbabilityDistribution>
-			</demand>
-			<demand isSplitable="false" type="0">
-				<ProbabilityDistribution name="normal">
-					<moment name="String">3.1415</moment>
-					<moment name="String">3.14</moment>
-				</ProbabilityDistribution>
-			</demand>
-			<prize>0</prize>
-			<cost>3.141</cost>
-			<releaseDate>3.1</releaseDate>
-			<serviceTime>
-				<ProbabilityDistribution name="normal">
-					<moment name="String">3.141</moment>
-					<moment name="String">3.14</moment>
-				</ProbabilityDistribution>
-			</serviceTime>
-			<predecessors>
-				<request>0</request>
-				<request>1</request>
-			</predecessors>
-			<successors>
-				<request>3</request>
-			</successors>
-			<skill id="0">1</skill>
-			<skill id="1">2</skill>
-			<tool id="2">3</tool>
-			<tool id="1">4</tool>
 		</request>
 		<request type="0" link="0" id="3" node="0">
-			<tw period="0">
-				<start isHard="true">53</start>
-				<end isHard="true">54</end>
-			</tw>
-			<tw period="1">
-				<start isHard="true">56</start>
-				<end isHard="true">57</end>
-			</tw>
-			<demand isSplitable="false" type="0">
-				<ProbabilityDistribution name="poisson">
-					<moment name="String">3.1415</moment>
-					<moment name="String">3.1410</moment>
-				</ProbabilityDistribution>
-			</demand>
-			<demand isSplitable="false" type="0">
-				<ProbabilityDistribution name="normal">
-					<moment name="String">3.1415</moment>
-					<moment name="String">3.14</moment>
-				</ProbabilityDistribution>
-			</demand>
-			<prize>0</prize>
-			<cost>3.141</cost>
-			<releaseDate>3.1</releaseDate>
-			<serviceTime>
-				<ProbabilityDistribution name="normal">
-					<moment name="String">3.141</moment>
-					<moment name="String">3.14</moment>
-				</ProbabilityDistribution>
-			</serviceTime>
-			<predecessors>
-				<request>0</request>
-			</predecessors>
-			<successors>
-				<request>3</request>
-			</successors>
-			<skill id="0">1</skill>
-			<skill id="1">2</skill>
-			<tool id="2">3</tool>
-			<tool id="1">4</tool>
 		</request>
 	</requests>
 </instance>
