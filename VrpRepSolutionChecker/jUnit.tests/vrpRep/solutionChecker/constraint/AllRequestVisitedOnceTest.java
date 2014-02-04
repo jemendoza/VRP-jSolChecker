@@ -34,7 +34,8 @@ public class AllRequestVisitedOnceTest {
 
 		Instance i = Instance.getInstance();
 		// start building xml output
-		root=new Element("test");		
+		root=new Element("test");
+		root.setAttribute("instance_file", instanceFile);
 		experiment=new Element("evaluation");
 		experiment.setAttribute("solution_file",solutionFile);
 		

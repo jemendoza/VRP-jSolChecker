@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test>
+<test instance_file="./xmlTest/AllRequestVisitedOnce/Instance.xml">
   <evaluation solution_file="./xmlTest/AllRequestVisitedOnce/SolutionFalse.xml">
     <report>
       <feasible>FALSE</feasible>
