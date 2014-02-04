@@ -260,7 +260,7 @@
 			</demand>
 			<prize>0</prize>
 			<cost>3.141592</cost>
-			<releaseDate>3141</releaseDate>
+			<releaseDate>16</releaseDate>
 			<serviceTime>2</serviceTime>
 			<predecessors>
 				<request>0</request>
@@ -409,7 +409,6 @@
 			</demand>
 			<prize>0</prize>
 			<cost>3.141</cost>
-			<releaseDate>100</releaseDate>
 			<serviceTime>6</serviceTime>
 			<predecessors>
 				<request>0</request>

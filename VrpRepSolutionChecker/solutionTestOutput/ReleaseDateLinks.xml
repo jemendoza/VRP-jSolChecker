@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test instance_file="./xmlTest/ReleaseDateLinks/InstanceFalse.xml">
+  <evaluation solution_file="./xmlTest/ReleaseDateLinks/Solution.xml">
+    <report>
+      <feasible>FALSE</feasible>
+      <messages>
+        <message>ReleaseDateLinks|On route 0 the request 1 release date is 16.0 greater than 15.0</message>
+        <message>ReleaseDateLinks|On route 1 the request 3 release date is 25.1 greater than 25.0</message>
+      </messages>
+      <objective>NaN</objective>
+    </report>
+  </evaluation>
+</test>
+
