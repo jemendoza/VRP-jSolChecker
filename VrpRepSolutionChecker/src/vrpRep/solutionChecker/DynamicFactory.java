@@ -40,6 +40,7 @@ public class DynamicFactory {
 	 * Constructor that extracts all necessary information from config file
 	 * @param configFilePath path to xmlconfiguration file
 	 */
+	@SuppressWarnings("unchecked")
 	public DynamicFactory(String configFilePath) {
 		try {
 			Document config = JDomParser.parseDocument(configFilePath);

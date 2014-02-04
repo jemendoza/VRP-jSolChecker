@@ -16,6 +16,7 @@ public class TestFileReader {
 		// InstanceTranslator instT = new InstanceTranslator(new
 		// File("./schemaFiles/testXmlFile.xml"));
 
+		@SuppressWarnings("unused")
 		SolutionTranslator solT = new SolutionTranslator(new File(
 				"./schemaFiles/sampleSolution.xml"));
 		System.out.println();

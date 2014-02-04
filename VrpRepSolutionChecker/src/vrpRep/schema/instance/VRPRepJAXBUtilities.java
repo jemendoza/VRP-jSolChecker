@@ -58,7 +58,8 @@ public class VRPRepJAXBUtilities {
         if (compress) {
             String zipFile = destFile.getAbsolutePath().endsWith(".zip") ? destFile
                     .getAbsolutePath() : destFile.getAbsolutePath() + ".zip";
-            ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipFile));
+            @SuppressWarnings("resource")
+			ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipFile));
             ZipEntry ze = new ZipEntry(destFile.getName());
             zos.putNextEntry(ze);
 
@@ -91,7 +92,8 @@ public class VRPRepJAXBUtilities {
 
         InputStream is;
         if (file.getName().endsWith(".zip")) {
-            ZipInputStream zis = new ZipInputStream(new FileInputStream(file));
+            @SuppressWarnings("resource")
+			ZipInputStream zis = new ZipInputStream(new FileInputStream(file));
             zis.getNextEntry();
             is = zis;
         } else {

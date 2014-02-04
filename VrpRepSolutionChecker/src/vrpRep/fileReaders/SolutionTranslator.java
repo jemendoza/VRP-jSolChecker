@@ -112,6 +112,7 @@ public class SolutionTranslator implements ISolutionReader {
 	 *            destination object
 	 * @return Request containing demands
 	 */
+	@SuppressWarnings("rawtypes")
 	private Request getDemands(
 			vrpRep.schema.solution.Solution.Routes.Route.Request schemaR,
 			Request request) {
