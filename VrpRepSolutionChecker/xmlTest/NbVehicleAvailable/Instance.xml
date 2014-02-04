@@ -92,7 +92,7 @@
 			<fixedCost>3.14</fixedCost>
 			<variableCost>3.141</variableCost>
 			<variableCost>3.1415</variableCost>
-			<number>0</number>
+			<number>1</number>
 			<nodeTypesCompatible>0</nodeTypesCompatible>
 			<nodeTypesCompatible>1</nodeTypesCompatible>
 			<speedProfile>
