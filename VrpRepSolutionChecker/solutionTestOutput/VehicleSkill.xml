@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test instance_file="./xmlTest/VehicleSkill/Instance.xml">
-  <evaluation solution_file="./xmlTest/VehicleSkill/SolutionFalse.xml">
+  <evaluation solution_file="./xmlTest/VehicleSkill/SolutionTrue.xml">
     <report>
-      <feasible>FALSE</feasible>
-      <messages>
-        <message>VehicleSkill|The following skills are missing : 0-1 on route 1</message>
-      </messages>
-      <objective>NaN</objective>
+      <feasible>TRUE</feasible>
+      <messages />
+      <objective>0.0</objective>
     </report>
   </evaluation>
 </test>

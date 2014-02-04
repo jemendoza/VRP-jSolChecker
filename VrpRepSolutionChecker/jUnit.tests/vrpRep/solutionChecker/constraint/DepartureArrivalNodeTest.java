@@ -1,5 +1,6 @@
 package vrpRep.solutionChecker.constraint;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileOutputStream;
@@ -29,7 +30,7 @@ public class DepartureArrivalNodeTest {
 	private Element experiment;
 
 	private String instanceFile = "./xmlTest/DepartureArrivalNode/Instance.xml";
-	private String solutionFile = "./xmlTest/DepartureArrivalNode/SolutionFalse.xml";
+	private String solutionFile = "./xmlTest/DepartureArrivalNode/SolutionTrue.xml";
 	private String outputFile = "./solutionTestOutput/DepartureArrivalNode.xml";
 
 
@@ -74,7 +75,14 @@ public class DepartureArrivalNodeTest {
 		// run experiment
 		experiment.addContent(solC.checkSolution());
 			
-		assertTrue(solC.isFeasible());
+		if(solutionFile.endsWith("True.xml"))
+			assertTrue(solC.isFeasible());
+		else{
+			if(solutionFile.endsWith("False.xml"))
+				assertFalse(solC.isFeasible());
+			else
+				assertFalse(true);
+		}
 	}
 
 }

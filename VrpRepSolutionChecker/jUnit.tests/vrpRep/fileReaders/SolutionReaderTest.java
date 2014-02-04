@@ -19,17 +19,17 @@ import vrpRep.structure.solution.Solution;
  */
 public class SolutionReaderTest {
 
-	private SolutionTranslator	instS;
-
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		@SuppressWarnings("unused")
 		IInstanceReader instR = new InstanceTranslator(new File(
-				"./schemaFiles/testXmlFile.xml"));
+				"./xmlTest/testXmlFile.xml"));
+		@SuppressWarnings("unused")
 		ISolutionReader solR = new SolutionTranslator(new File(
-				"./schemaFiles/sampleSolution.xml"));
+				"./xmlTest/sampleSolution.xml"));
 
 	}
 

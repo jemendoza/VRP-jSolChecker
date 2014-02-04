@@ -42,8 +42,9 @@ public class InstanceReaderTest {
 	@Before
 	public void setUp() throws Exception {
 
+		@SuppressWarnings("unused")
 		IInstanceReader instR = new InstanceTranslator(new File(
-				"./schemaFiles/testXMLFile.xml"));
+				"./xmlTest/testXMLFile.xml"));
 
 	}
 
@@ -215,8 +216,8 @@ public class InstanceReaderTest {
 						.get(0)).getValue(), 34, 0);
 				assertFalse(((BooleanValue) v.getAttribute(
 						"maxTravelDistanceIsFlexible").get(0)).getValue());
-				assertEquals(((DoubleValue) v.getAttribute("maxRequests")
-						.get(0)).getValue(), 44, 0);
+				assertEquals(((IntValue) v.getAttribute("maxRequests")
+						.get(0)).getValue(), 44);
 				assertFalse(((BooleanValue) v.getAttribute(
 						"maxRequestsIsFlexible").get(0)).getValue());
 

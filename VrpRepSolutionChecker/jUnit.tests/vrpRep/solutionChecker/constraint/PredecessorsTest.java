@@ -1,5 +1,6 @@
 package vrpRep.solutionChecker.constraint;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileOutputStream;
@@ -27,7 +28,7 @@ public class PredecessorsTest {
 	private Element experiment;
 
 	private String instanceFile = "./xmlTest/Predecessors/Instance.xml";
-	private String solutionFile = "./xmlTest/Predecessors/SolutionFalse.xml";
+	private String solutionFile = "./xmlTest/Predecessors/SolutionTrue.xml";
 	private String outputFile = "./solutionTestOutput/Predecessors.xml";
 
 
@@ -73,7 +74,14 @@ public class PredecessorsTest {
 		// run experiment
 		experiment.addContent(solC.checkSolution());
 
-		assertTrue(solC.isFeasible());
+		if(solutionFile.endsWith("True.xml"))
+			assertTrue(solC.isFeasible());
+		else{
+			if(solutionFile.endsWith("False.xml"))
+				assertFalse(solC.isFeasible());
+			else
+				assertFalse(true);
+		}
 	}
 
 }

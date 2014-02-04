@@ -1,5 +1,6 @@
 package vrpRep.solutionChecker.constraint;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileOutputStream;
@@ -15,7 +16,6 @@ import org.junit.Test;
 
 import vrpRep.solutionChecker.DynamicFactory;
 import vrpRep.solutionChecker.VrpRepSolutionChecker;
-import vrpRep.structure.instance.Instance;
 
 public class DeterministicCapacityMultiVehicleSingleProductTest {
 
@@ -24,7 +24,7 @@ public class DeterministicCapacityMultiVehicleSingleProductTest {
 	private Element experiment;
 
 	private String instanceFile = "./xmlTest/DeterministicCapacityMultiVehicleSingleProduct/Instance.xml";
-	private String solutionFile = "./xmlTest/DeterministicCapacityMultiVehicleSingleProduct/SolutionFalse.xml";
+	private String solutionFile = "./xmlTest/DeterministicCapacityMultiVehicleSingleProduct/SolutionTrue.xml";
 	private String outputFile = "./solutionTestOutput/DeterministicCapacityMultiVehicleSingleProduct.xml";
 
 	@Before
@@ -32,7 +32,6 @@ public class DeterministicCapacityMultiVehicleSingleProductTest {
 		// set up test
 		solC = new VrpRepSolutionChecker(instanceFile, solutionFile);
 
-		Instance i = Instance.getInstance();
 		// start building xml output
 		root=new Element("test");
 		root.setAttribute("instance_file", instanceFile);
@@ -68,7 +67,14 @@ public class DeterministicCapacityMultiVehicleSingleProductTest {
 		// run experiment
 		experiment.addContent(solC.checkSolution());
 			
-		assertTrue(solC.isFeasible());
+		if(solutionFile.endsWith("True.xml"))
+			assertTrue(solC.isFeasible());
+		else{
+			if(solutionFile.endsWith("False.xml"))
+				assertFalse(solC.isFeasible());
+			else
+				assertFalse(true);
+		}
 	}
 
 }

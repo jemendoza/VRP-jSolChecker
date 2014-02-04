@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test instance_file="./xmlTest/Predecessors/Instance.xml">
-  <evaluation solution_file="./xmlTest/Predecessors/SolutionFalse.xml">
+  <evaluation solution_file="./xmlTest/Predecessors/SolutionTrue.xml">
     <report>
-      <feasible>FALSE</feasible>
-      <messages>
-        <message>Predecessors|The request 2 must be preceded by the following requests : 3 on route 1</message>
-      </messages>
-      <objective>NaN</objective>
+      <feasible>TRUE</feasible>
+      <messages />
+      <objective>0.0</objective>
     </report>
   </evaluation>
 </test>

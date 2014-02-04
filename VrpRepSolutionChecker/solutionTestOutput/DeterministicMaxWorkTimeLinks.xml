@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test>
+<test instance_file="./xmlTest/DeterministicMaxWorkTimeLinks/InstanceFalse.xml">
   <evaluation solution_file="./xmlTest/DeterministicMaxWorkTimeLinks/Solution.xml">
     <report>
-      <feasible>TRUE</feasible>
-      <messages />
-      <objective>0.0</objective>
+      <feasible>FALSE</feasible>
+      <messages>
+        <message>DeterministicMaxWorkTimeLinks|On Route 0 time worked is 96.0 greater than 91.0</message>
+      </messages>
+      <objective>NaN</objective>
     </report>
   </evaluation>
 </test>

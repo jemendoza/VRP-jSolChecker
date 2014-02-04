@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test instance_file="./xmlTest/VehicleTool/Instance.xml">
-  <evaluation solution_file="./xmlTest/VehicleTool/SolutionFalse.xml">
+  <evaluation solution_file="./xmlTest/VehicleTool/SolutionTrue.xml">
     <report>
-      <feasible>FALSE</feasible>
-      <messages>
-        <message>VehicleTool|The following tools are missing : 0-1 on route 0</message>
-        <message>VehicleTool|The following tools are missing : 2-3 on route 1</message>
-      </messages>
-      <objective>NaN</objective>
+      <feasible>TRUE</feasible>
+      <messages />
+      <objective>0.0</objective>
     </report>
   </evaluation>
 </test>

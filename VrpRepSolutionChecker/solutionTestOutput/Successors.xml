@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test instance_file="./xmlTest/Successors/Instance.xml">
-  <evaluation solution_file="./xmlTest/Successors/SolutionFalse.xml">
+  <evaluation solution_file="./xmlTest/Successors/SolutionTrue.xml">
     <report>
-      <feasible>FALSE</feasible>
-      <messages>
-        <message>Successors|The request 0 must be succeeded by the request : 1 on route 1</message>
-      </messages>
-      <objective>NaN</objective>
+      <feasible>TRUE</feasible>
+      <messages />
+      <objective>0.0</objective>
     </report>
   </evaluation>
 </test>
